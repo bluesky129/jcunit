@@ -144,7 +144,7 @@ The method mustn't have any parameters and its return value must be an array of 
 <p>The values returned by the method will be picked up and assigned to the field 'a' by the framework one by one.</p>
 
 <h2>
-<a name="tip-2-doing-pairwise-test-or-customizing-coverage" class="anchor" href="#tip-2-doing-pairwise-test-or-customizing-coverage"><span class="octicon octicon-link"></span></a>Tip 2: Doing pairwise test or customizing coverage.</h2>
+<a name="tip-2-doing-pairwise-tests-or-customizing-coverage" class="anchor" href="#tip-2-doing-pairwise-tests-or-customizing-coverage"><span class="octicon octicon-link"></span></a>Tip 2: Doing pairwise tests or customizing coverage.</h2>
 
 <p>Add annotation '<a href="https://github.com/Generator" class="user-mention">@Generator</a>(PairwiseTestArrayGenerator.class)' to CalcTest.java</p>
 
@@ -154,6 +154,8 @@ public class CalcTest {
 </code></pre>
 
 <p>Since there are only two parameters in this test class now (members a and b only), the test will automatically be exhaustive.</p>
+
+<p>You can also specify CartesianTestArrayGenerator, which does exhausitive combinatorial tests always and takes long (sometimes too long and not practical), or SimpleTestArrayGenerator, which is default and has less coverage than Pairwise.</p>
 
 <h1>
 <a name="copyright-and-license" class="anchor" href="#copyright-and-license"><span class="octicon octicon-link"></span></a>Copyright and license</h1>
