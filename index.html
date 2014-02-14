@@ -38,37 +38,139 @@
           <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
         </div>
 
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+        <h1>
+<a name="jcunit" class="anchor" href="#jcunit"><span class="octicon octicon-link"></span></a>jcunit</h1>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p>JCUnit is a framework to perform combinatorial testing framework using 'pairwise' technique.</p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+<h1>
+<a name="first-test-with-jcunit" class="anchor" href="#first-test-with-jcunit"><span class="octicon octicon-link"></span></a>First test with JCUnit</h1>
+
+<p>Below is jcunit's most basic example 'Calc.java'. Gist is also available at <a href="https://gist.github.com/dakusui/8980728">https://gist.github.com/dakusui/8980728</a>
+Just by running CalcTest.java as a usual JUnit test, JCUnit will automatically generate test cases based on '<a href="https://github.com/In" class="user-mention">@In</a>' annotations, and will store the output of Calc based on '<a href="https://github.com/Out" class="user-mention">@Out</a>' annotation at the first time. 
+From then on, in other words from the second run, you will be able to verify if Calc#calc's output is unchanged just by running CalcTest as a JUnit test.</p>
+
+<p>And the values of '<a href="https://github.com/Out" class="user-mention">@Out</a>' annotated fields are stored in '.jcunit/' under current directory you can remove it when you want to record new values of your SUT.</p>
+
+<h2>
+<a name="calcjava-example" class="anchor" href="#calcjava-example"><span class="octicon octicon-link"></span></a>Calc.java example</h2>
+
+<h3>
+<a name="calcjava-main-class-sut" class="anchor" href="#calcjava-main-class-sut"><span class="octicon octicon-link"></span></a>Calc.java (Main class, SUT)</h3>
+
+<p>Calc is the SUT (Software under test) in this example.
+The class provides a function to perform a calculation based on given two numbers and returns the result.</p>
+
+<pre><code>package com.github.dakusui.jcunit.tutorial.session01;
+
+public class Calc {
+    public int calc(int a, int b) {
+        return a + b;
+    }
+}
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<h3>
+<a name="calctestjava-test" class="anchor" href="#calctestjava-test"><span class="octicon octicon-link"></span></a>CalcTest.java (Test)</h3>
+
+<p>CalcTest is a test class for Calc class. '<a href="https://github.com/Rule" class="user-mention">@Rule</a>' and '@ClassRule' in this example is kind of boilerplate.</p>
+
+<pre><code>package com.github.dakusui.jcunit.tutorial.session01;
+
+import org.junit.ClassRule;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import com.github.dakusui.jcunit.core.BasicSummarizer;
+import com.github.dakusui.jcunit.core.DefaultRuleSetBuilder;
+import com.github.dakusui.jcunit.core.In;
+import com.github.dakusui.jcunit.core.JCUnit;
+import com.github.dakusui.jcunit.core.Out;
+import com.github.dakusui.jcunit.core.RuleSet;
+import com.github.dakusui.jcunit.core.Summarizer;
+
+@RunWith(JCUnit.class)
+public class CalcTest {
+    @In
+    public int a;
+    @In
+    public int b;
+    @Out
+    public int c;
+
+    @Rule
+    public RuleSet rules = new DefaultRuleSetBuilder().autoRuleSet(this).summarizer(summarizer);
+    @ClassRule
+    public static Summarizer summarizer = new BasicSummarizer();
+
+    @Test
+    public void test() {
+        this.c = new Calc().calc(this.a, this.b);
+    }
+}
+</code></pre>
 
 <h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<a name="maven-dependency" class="anchor" href="#maven-dependency"><span class="octicon octicon-link"></span></a>Maven dependency</h3>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<p>Below is a pom.xml fragment to describe jcunit's dependency.</p>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<pre><code>    &lt;dependency&gt;
+      &lt;groupId&gt;com.github.dakusui&lt;/groupId&gt;
+      &lt;artifactId&gt;jcunit&lt;/artifactId&gt;
+      &lt;version&gt;0.1.4&lt;/version&gt;
+    &lt;/dependency&gt;
+</code></pre>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<h2>
+<a name="tip-1-customizing-domains-of-in-fields" class="anchor" href="#tip-1-customizing-domains-of-in-fields"><span class="octicon octicon-link"></span></a>Tip 1: Customizing domains of <a href="https://github.com/In" class="user-mention">@In</a> fields</h2>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<p>JCUnit creates combinations based on types. For example, if a memeber is annotated with '<a href="https://github.com/In" class="user-mention">@In</a>' and its type is int, jcunit will pick up values {0, -1, 100, -100, 2147483647, -2147483648, 1}.
+But this set is just a default set and you can customize it by using 'domain' paramter of '<a href="https://github.com/In" class="user-mention">@In</a>' annotation and creating a static method whose name is the same as the input field name's.
+The method mustn't have any parameters and its return value must be an array of the field's type.</p>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<p>Below is the example for this function.</p>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<pre><code>    @In(domain=Domain.Method)
+    public int a;
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+    public static int[] a() {
+        return new int[]{0, 1, 2};
+    }
+
+</code></pre>
+
+<p>The values returned by the method will be picked up and assigned to the field 'a' by the framework one by one.</p>
+
+<h2>
+<a name="tip-2-doing-pairwise-test-or-customizing-coverage" class="anchor" href="#tip-2-doing-pairwise-test-or-customizing-coverage"><span class="octicon octicon-link"></span></a>Tip 2: Doing pairwise test or customizing coverage.</h2>
+
+<p>Add annotation '<a href="https://github.com/Generator" class="user-mention">@Generator</a>(PairwiseTestArrayGenerator.class)' to CalcTest.java</p>
+
+<pre><code>@RunWith(JCUnit.class)
+@Generator(PairwiseTestArrayGenerator.class)
+public class CalcTest {
+</code></pre>
+
+<p>Since there are only two parameters in this test class now (members a and b only), the test will automatically be exhaustive.</p>
+
+<h1>
+<a name="copyright-and-license" class="anchor" href="#copyright-and-license"><span class="octicon octicon-link"></span></a>Copyright and license</h1>
+
+<p>Copyright 2013 Hiroshi Ukai.</p>
+
+<p>Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this work except in compliance with the License.
+You may obtain a copy of the License in the LICENSE file, or at:</p>
+
+<p><a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+
+<p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.</p>
       </section>
 
     </div>
