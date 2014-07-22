@@ -1,139 +1,198 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
     <title>JCUnit by dakusui</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
   </head>
+
   <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/dakusui/jcunit">View On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/dakusui/jcunit/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/dakusui/jcunit/tarball/master">TAR</a></li>
-          <li class="title">DOWNLOADS</li>
-        </nav>
-      </div><!-- end header -->
 
-    <div class="wrapper">
+    <header>
+      <div class="container">
+        <h1>JCUnit</h1>
+        <h2>A combinatorial testing framework on top of JUnit. It makes your refactoring life lot easier.</h2>
 
-      <section>
-        <div id="title">
-          <h1>JCUnit</h1>
-          <p>A combinatorial testing framework on top of JUnit. It makes your refactoring life lot easier.</p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/dakusui">dakusui</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
-        </div>
+        <section id="downloads">
+          <a href="https://github.com/dakusui/jcunit/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/dakusui/jcunit/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/dakusui/jcunit" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
 
+    <div class="container">
+      <section id="main_content">
         <h1>
-<a name="jcunit" class="anchor" href="#jcunit"><span class="octicon octicon-link"></span></a>jcunit</h1>
+<a name="jcunit" class="anchor" href="#jcunit"><span class="octicon octicon-link"></span></a>JCUnit</h1>
 
-<p>JCUnit is a framework to perform combinatorial testing framework using 'pairwise' technique.</p>
+<p>JCUnit is a framework to perform combinatorial tests using 'pairwise'(or more generaly 't-wise') technique.
+About what combinatorial testings are, an Wikipedia article below might be helpful as a starting point.</p>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/All-pairs_testing">All-pairs testing</a></li>
+</ul><h1>
+<a name="for-users-of-previous-versions" class="anchor" href="#for-users-of-previous-versions"><span class="octicon octicon-link"></span></a>For users of previous versions</h1>
+
+<p>Thank you for using JCUnit.
+In this release, I have simplified JCUnit's interfaces and I had to remove some features like automatic regression tests, 
+reporting, or writing tests as logical predicates.
+Furthermore, names and semantics of annotations were changed and basically JCUnit 0.3.0 (or later) isn't compatible with the previous versions anymore.
+Although the removed functions might be provided as a part of JCUnit's core library itself or JCUnit-extra library 
+(and of course they will become more sophisticated) in future, they are not available at this moment.
+So, if you need these features, please keep using the older version for the time being. </p>
 
 <h1>
 <a name="first-test-with-jcunit" class="anchor" href="#first-test-with-jcunit"><span class="octicon octicon-link"></span></a>First test with JCUnit</h1>
 
-<p>Below is jcunit's most basic example 'Calc.java'. Gist is also available at <a href="https://gist.github.com/dakusui/8980728">https://gist.github.com/dakusui/8980728</a></p>
-
-<p>Just by running CalcTest.java as a usual JUnit test, JCUnit will automatically generate test cases based on '<a href="https://github.com/In" class="user-mention">@In</a>' annotations, and will store the output of Calc based on '<a href="https://github.com/Out" class="user-mention">@Out</a>' annotation at the first time. 
-From then on, in other words from the second run, you will be able to verify if Calc#calc's output is unchanged just by running CalcTest as a JUnit test.</p>
-
-<p>And the values of '<a href="https://github.com/Out" class="user-mention">@Out</a>' annotated fields are stored in '.jcunit/' under current directory you can remove it when you want to record new values of your SUT.</p>
+<p>Below is JCUnit's most basic example 'QuadraticEquationSolver.java'.
+Just by running QuadraticEquationSolverTest.java as a usual JUnit test, JCUnit will automatically generate test cases based on '@FactorLevels' annotations.</p>
 
 <h2>
-<a name="calcjava-example" class="anchor" href="#calcjava-example"><span class="octicon octicon-link"></span></a>Calc.java example</h2>
+<a name="quadraticequationsolver-program-example" class="anchor" href="#quadraticequationsolver-program-example"><span class="octicon octicon-link"></span></a>QuadraticEquationSolver program example</h2>
 
-<h3>
-<a name="calcjava-main-class-sut" class="anchor" href="#calcjava-main-class-sut"><span class="octicon octicon-link"></span></a>Calc.java (Main class, SUT)</h3>
+<p>To understand JCUnit's functions, let's test 'QuadraticEquationSolver.java' program, which solves 'quadratic equations' using a formula.
+The program contains some intentional bugs and unclear specifications (or behaviors).
+The formula it uses is,</p>
 
-<p>Calc is the SUT (Software under test) in this example.
-The class provides a function to perform a calculation based on given two numbers and returns the result.</p>
+<pre><code>{x1, x2} =  { (-b + Math.sqrt(b*b - 4*c*a)) / 2*a, (-b - Math.sqrt(b*b - 4*c*a)) / 2*a }
+</code></pre>
 
-<pre><code>package com.github.dakusui.jcunit.tutorial.session01;
+<p>where {x1, x2} are the solutions of an equation, </p>
 
-public class Calc {
-    public int calc(int a, int b) {
-        return a + b;
-    }
-}
+<pre><code>a * x^2 + b * x + c = 0
 </code></pre>
 
 <h3>
-<a name="calctestjava-test" class="anchor" href="#calctestjava-test"><span class="octicon octicon-link"></span></a>CalcTest.java (Test)</h3>
+<a name="quadraticequationsolverjava-main-class-sut" class="anchor" href="#quadraticequationsolverjava-main-class-sut"><span class="octicon octicon-link"></span></a>QuadraticEquationSolver.java (Main class, SUT)</h3>
 
-<p>CalcTest is a test class for Calc class. '<a href="https://github.com/Rule" class="user-mention">@Rule</a>' and '@ClassRule' in this example is kind of boilerplate.</p>
+<p>'QuadraticEquationSolver' is the SUT (Software under test) in this example.
+The class provides a function to solve a quadratic equation using a quadratic formula and returns the solutions.</p>
 
-<pre><code>package com.github.dakusui.jcunit.tutorial.session01;
+<pre><code>package com.github.dakusui.jcunit.framework.examples.quadraticequation.session1;
 
-import org.junit.ClassRule;
-import org.junit.Rule;
+public class QuadraticEquationSolver {
+  private final double a;
+  private final double b;
+  private final double c;
+
+  public static class Solutions {
+    public final double x1;
+    public final double x2;
+
+    public Solutions(double x1, double x2) {
+      this.x1 = x1;
+      this.x2 = x2;
+    }
+
+    public String toString() {
+      return String.format("(%f,%f)", x1, x2);
+    }
+  }
+
+  public QuadraticEquationSolver(double a, double b, double c) {
+    this.a = a;
+    this.b = b;
+    this.c = c;
+  }
+
+  public Solutions solve() {
+    return new Solutions(
+        (-b + Math.sqrt(b * b - 4 * c * a)) / (2 * a),
+        (-b - Math.sqrt(b * b - 4 * c * a)) / (2 * a)
+    );
+  }
+}
+</code></pre>
+
+<p>Did you already notice the bugs that this program has?</p>
+
+<ul>
+<li>It doesn't consider equations do not have solutions in real.</li>
+<li>If it's not a quadratic equation but a linear one, how should it behave?</li>
+<li>Errors. How should it handle errors? To what extent error is acceptable?</li>
+<li>Overflows. If b * b, 4 * c * a, etc become bigger than Double.MAX_VALUE (or smaller than Double.MIN_VALUE), how should it handle it?</li>
+<li>Shouldn't we set some limits for a, b, and c? Both to make errors small enough and prevent overflows happen.</li>
+<li>etc. (maybe)</li>
+</ul><p>Try to find (and reproduce) these bugs using JCUnit and fix them.</p>
+
+<h3>
+<a name="quadraticequationsolvertestjava-test" class="anchor" href="#quadraticequationsolvertestjava-test"><span class="octicon octicon-link"></span></a>QuadraticEquationSolverTest.java (Test)</h3>
+
+<p>QuadraticEquationSolverTest is a test class for QuadraticEquationSolver class.</p>
+
+<pre><code>package com.github.dakusui.jcunit.framework.examples.quadraticequation.session1;
+
+import com.github.dakusui.jcunit.core.JCUnit;
+import com.github.dakusui.jcunit.core.factor.FactorField;
+import com.github.dakusui.jcunit.framework.examples.quadraticequation.session1.QuadraticEquationSolver;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.github.dakusui.jcunit.core.BasicSummarizer;
-import com.github.dakusui.jcunit.core.DefaultRuleSetBuilder;
-import com.github.dakusui.jcunit.core.In;
-import com.github.dakusui.jcunit.core.JCUnit;
-import com.github.dakusui.jcunit.core.Out;
-import com.github.dakusui.jcunit.core.RuleSet;
-import com.github.dakusui.jcunit.core.Summarizer;
+import static junit.framework.Assert.assertEquals;
 
 @RunWith(JCUnit.class)
-public class CalcTest {
-    @In
+public class QuadraticEquationSolverTest1 {
+    @FactorField
     public int a;
-    @In
+    @FactorField
     public int b;
-    @Out
+    @FactorField
     public int c;
-
-    @Rule
-    public RuleSet rules = new DefaultRuleSetBuilder().autoRuleSet(this).summarizer(summarizer);
-    @ClassRule
-    public static Summarizer summarizer = new BasicSummarizer();
 
     @Test
     public void test() {
-        this.c = new Calc().calc(this.a, this.b);
+        QuadraticEquationSolver.Solutions s = new QuadraticEquationSolver(a, b,
+                c).solve();
+        assertEquals(0.0, a * s.x1 * s.x1 + b * s.x1 + c);
+        assertEquals(0.0, a * s.x2 * s.x2 + b * s.x2 + c);
     }
 }
 </code></pre>
 
 <h3>
-<a name="maven-dependency" class="anchor" href="#maven-dependency"><span class="octicon octicon-link"></span></a>Maven dependency</h3>
+<a name="maven-coordinate" class="anchor" href="#maven-coordinate"><span class="octicon octicon-link"></span></a>Maven coordinate</h3>
 
 <p>Below is a pom.xml fragment to describe jcunit's dependency.</p>
 
 <pre><code>    &lt;dependency&gt;
       &lt;groupId&gt;com.github.dakusui&lt;/groupId&gt;
       &lt;artifactId&gt;jcunit&lt;/artifactId&gt;
-      &lt;version&gt;0.1.4&lt;/version&gt;
+      &lt;version&gt;[0.3.0,]&lt;/version&gt;
     &lt;/dependency&gt;
 </code></pre>
 
 <h2>
-<a name="tip-1-customizing-domains-of-in-fields" class="anchor" href="#tip-1-customizing-domains-of-in-fields"><span class="octicon octicon-link"></span></a>Tip 1: Customizing domains of <a href="https://github.com/In" class="user-mention">@In</a> fields</h2>
+<a name="tip-1-customizing-domains-of-factorfield-annotated-fields-1" class="anchor" href="#tip-1-customizing-domains-of-factorfield-annotated-fields-1"><span class="octicon octicon-link"></span></a>Tip 1: Customizing domains of @FactorField annotated fields (1)</h2>
 
-<p>JCUnit creates combinations based on types. For example, if a memeber is annotated with '<a href="https://github.com/In" class="user-mention">@In</a>' and its type is int, jcunit will pick up values from a set {0, -1, 100, -100, 2147483647, -2147483648, 1}.
-But this set is just a 'default' and you can customize it by using 'domain' paramter of '<a href="https://github.com/In" class="user-mention">@In</a>' annotation and creating a static method whose name is the same as the input field name's.
-The method mustn't have any parameters and its return value must be an array of the field's type.</p>
+<p>By default, JCUnit creates test cases by assigning a value, picked up from a hardcoded set of values defined for each type, to each '@FactorField' annotated field in a test class
+For example, if a member is annotated with '@FactorField' and its type is int, JCUnit will pick up a value from a set
+{1, 0, -1, 100, -100, Integer.MAX_VALUE, Integer.MIN_VALUE}.
+But this set is just a 'default' and you can customize it by using (overriding) an 'xyzLevels' attribute of a '@FactorField' annotation, 
+where 'xyz' is a primitive types.</p>
 
-<p>Below is the example for this function.</p>
+<pre><code>  @FactorField(intLevels = { 0, 1, 2, -1, -2, 100, -100, 10000, -10000 })
+  public int a;
+</code></pre>
 
-<pre><code>    @In(domain=Domain.Method)
+<p>Below is an example of using the 'intLevels' attribute.</p>
+
+<h2>
+<a name="tip-2-customizing-domains-of-factorfield-annotated-fields-2" class="anchor" href="#tip-2-customizing-domains-of-factorfield-annotated-fields-2"><span class="octicon octicon-link"></span></a>Tip 2: Customizing domains of @FactorField annotated fields (2)</h2>
+
+<p>By using 'levelsFactory' parameter of '@FactorField' and creating a static method whose name is the same as the annotated field's name,
+you can customize the domain of a certain field in a much more flexible way.</p>
+
+<p>The method mustn't have any parameters and its return value must be an array of the field's type.</p>
+
+<p>Below is the example for that sort of function.</p>
+
+<pre><code>    @FactorField(levelsFactory = MethodLevelsFactory.class)
     public int a;
 
     public static int[] a() {
@@ -142,21 +201,161 @@ The method mustn't have any parameters and its return value must be an array of 
 
 </code></pre>
 
-<p>The values returned by the method will be picked up and assigned to the field 'a' by the framework one by one.</p>
+<p>The values returned by the method will be picked up and assigned to the field 'a' by the framework one by one.
+And you need to use 'levelsFactory' attribute when you are going to use non-primitive, non-enum, nor non-string values as levels for a factor.</p>
 
 <h2>
-<a name="tip-2-doing-pairwise-tests-or-customizing-coverage" class="anchor" href="#tip-2-doing-pairwise-tests-or-customizing-coverage"><span class="octicon octicon-link"></span></a>Tip 2: Doing pairwise tests or customizing coverage.</h2>
+<a name="tip-3-customizing-the-strength-of-t-wise-testing" class="anchor" href="#tip-3-customizing-the-strength-of-t-wise-testing"><span class="octicon octicon-link"></span></a>Tip 3: Customizing the strength of t-wise testing.</h2>
 
-<p>Add annotation '<a href="https://github.com/Generator" class="user-mention">@Generator</a>(PairwiseTestArrayGenerator.class)' to CalcTest.java</p>
+<p>Add parameter 'generator = <a href="https://github.com/Generator" class="user-mention">@Generator</a>(IPO2TestCaseGenerator.class)' explicitly to the '@TestCaseGeneration',
+annotation for 'QuadraticEquationSolverTest1.java' and set the first parameter, which represents a 'strength'. </p>
 
 <pre><code>@RunWith(JCUnit.class)
-@Generator(PairwiseTestArrayGenerator.class)
-public class CalcTest {
+@TestCaseGeneration(
+        generator = @Generator(
+                value = IPO2TestCaseGenerator.class,
+                params = {
+                        @Param(type = Param.Type.Int, array = false, value = {"3"})
+                }))
+public class QuadraticEquationSolverTest1 {
 </code></pre>
 
-<p>Since there are only two parameters in this test class now (members a and b only), the test will automatically be exhaustive.</p>
+<p>In this example, the line</p>
 
-<p>You can also specify CartesianTestArrayGenerator, which does exhausitive combinatorial tests always and takes long (sometimes too long and not practical), or SimpleTestArrayGenerator, which is default and has less coverage than Pairwise.</p>
+<pre><code>    @Param(type = Param.Type.Int, array = false, value = {"3"})
+</code></pre>
+
+<p>configures the strength of the t-wise tests performed by JCUnit.
+And '<a href="https://github.com/Param" class="user-mention">@Param</a>' annotation is a standard way to give a parameter to JCUnit (excepting '@FactorLevels', 
+which requires more conciseness). It looks a bit complicated, but is straightforward actually.</p>
+
+<p>'type' attribute tells JCUnit the type of the parameter,</p>
+
+<pre><code>    type = Param.Type.Int,
+</code></pre>
+
+<p>'array' attribute whether it's a array field or a non-array field.</p>
+
+<pre><code>    array = false, 
+</code></pre>
+
+<p>and 'value' attribute is for actual data content to be passed to JCUnit.</p>
+
+<pre><code>    value = {"3"})
+</code></pre>
+
+<p>Even if the value is a non-array value, you need to have braces surrounding the value.
+And the values need to be strings, even if they are numbers like int, double, and so on.
+In other words, 'value' is given as an array of string(s), and the type (including 
+whether it is an array or not) is given by 'type' and 'array' attributes. </p>
+
+<h2>
+<a name="tips-4-defining-constraints" class="anchor" href="#tips-4-defining-constraints"><span class="octicon octicon-link"></span></a>Tips 4: Defining constraints.</h2>
+
+<p>In testings, we sometimes want to exclude a certain pair (, a triple, or a tuple) from the test cases since there are constraints in the test domain.
+For example, suppose there is a software system which has 100 parameters and doesn't accept any larger value than 1,000 for parameter x1.
+And it validates all the parameters and immediately exits if any one of them is invalid at start up.
+Since combinatorial testing is an effort to cover pairs (or tuples) with test cases as less as possible to find bugs which cannot be found by testing any single input parameter,
+if a test case, which can possibly contain a lot of meaningful pairs, is revoked by such an error, which can be cause by just one parameter, it means the coverage of the test suite is severely reduced. 
+Below are the links that would be helpful for understanding how much constraint managements are important in combinatorial testing area. </p>
+
+<ul>
+<li><a href="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?reload=true&amp;arnumber=6221818">Combinatorial test cases with constraints in software systems</a></li>
+<li><a href="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?reload=true&amp;arnumber=6569736">An Efficient Algorithm for Constraint Handling in Combinatorial Test Generation</a></li>
+</ul><p>For this purpose, JCUnit has a mechanism called 'constraints manager'.
+To use a constraint manager, you can do below</p>
+
+<pre><code>@RunWith(JCUnit.class)
+@TestCaseGeneration(
+    constraint = @Constraint(
+        value = QuadraticEquationSolverTestX.CM.class ))
+public class QuadraticEquationSolverTestX {
+    ...
+</code></pre>
+
+<p>'CM' is a name of inner class which implements 'ConstraintManager' interface and checks if a given tuple violates any constraints in the test domain or not.
+Unfortunately you cannot use anonymous classes because a value passed to an annotation as its parameter must be a constant and Java's anonymous classes cannot be one.
+And if you want to exclude test cases that violate a discriminant of the quadratic equation formula and also make sure the given equation is a quadratic, 
+not a linear, the definition of 'CM' would be</p>
+
+<pre><code>  public static class CM extends ConstraintManagerBase {
+    @Override
+    public boolean check(Tuple tuple) throws JCUnitSymbolException {
+      if (!tuple.containsKey("a") || !tuple.containsKey("b") || !tuple
+          .containsKey("c")) {
+        throw new JCUnitSymbolException();
+      }
+      int a = (Integer) tuple.get("a");
+      int b = (Integer) tuple.get("b");
+      int c = (Integer) tuple.get("c");
+      return a != 0 &amp;&amp; b * b - 4 * c * a &gt;= 0;
+    }
+  }
+</code></pre>
+
+<p>'ConstraintManagerBase' is a helper class that makes it easy to implement a ConstraintManager.
+All that you need is overriding 'boolean check(Tuple)' method.
+Since a test case is passed as a tuple, you need to use 'get' method of it.
+"a", "b", or "c" are the names of the field annotated with '@FactorField'. JCUnit accesses them using 'reflection' techniques of Java.
+JCUnit avoids using tuples for which check method of the specified constraint manager returns 'false'.</p>
+
+<h1>
+<a name="tips-5-writing-test-cases-for-error-handling" class="anchor" href="#tips-5-writing-test-cases-for-error-handling"><span class="octicon octicon-link"></span></a>Tips 5: Writing test cases for error handling</h1>
+
+<p>That being said, handling errors appropriately is another concern.
+A program must complain of invalid parameters in an appropriate way, if given.
+And this characteristic is an aspect of software under test to be tested.</p>
+
+<p>You can do it be overriding 'getViolations' method of a constraint manager and switching the
+verification procedures based on a test's 'sub-identifier'.</p>
+
+<p>First, by overriding method, return test cases that explicitly violate the constraint represented by the constraint manager class itself.</p>
+
+<pre><code>  public static class CM extends ConstraintManagerBase {
+    @Override
+    public boolean check(Tuple tuple) throws JCUnitSymbolException {
+        ...
+    }
+
+    @Override
+    public List&lt;Violation&gt; getViolations() {
+      List&lt;Violation&gt; ret = new LinkedList&lt;Violation&gt;();
+      ret.add(createViolation("a=0", createTestCase(0, 1, 1)));
+      ret.add(createViolation("b*b-4ca&lt;0", createTestCase(100, 1, 100)));
+      ret.add(createViolation("nonsense 1=0", createTestCase(0, 0, 1)));
+      return ret;
+    }
+
+    private Tuple createTestCase(int a, int b, int c) {
+      return new Tuple.Builder().put("a", a).put("b", b).put("c", c).build();
+    }
+  }
+</code></pre>
+
+<p>The method 'createViolation' is a helper method defined in 'ConstraintManagerBase', that returns a new 'Violation' object.
+The first parameter to it can be any 'Serializable' object, which means you can use a string, 
+an enum, int, short, or whatever an object which implements a 'Serializable' interface.
+You will use these objects in order to identify which test procedure should be applied.</p>
+
+<p>Now you enhance your test case so that it verifies the software under test behaves correctly in case invalid parameters are given.
+Let's assume that the SUT should return null if one of the parameters 'a', 'b', or 'c' is not valid. </p>
+
+<pre><code>    @Test
+    public void test() {
+        if ("a=0".equals(desc.getSubIdentifier())) {
+          assertEquals(null, s);
+        } else if ("b*b-4ca&lt;0".equals(desc.getSubIdentifier())) {
+          assertEquals(null, s);
+        } else if ("nonsense 1=0".equals(desc.getSubIdentifier())) {
+          assertEquals(null, s);
+        } else {
+            QuadraticEquationSolver.Solutions s = new QuadraticEquationSolver(a, b,
+                    c).solve();
+            assertEquals(0.0, a * s.x1 * s.x1 + b * s.x1 + c);
+            assertEquals(0.0, a * s.x2 * s.x2 + b * s.x2 + c);
+        }
+    }
+</code></pre>
 
 <h1>
 <a name="copyright-and-license" class="anchor" href="#copyright-and-license"><span class="octicon octicon-link"></span></a>Copyright and license</h1>
@@ -175,9 +374,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.</p>
       </section>
-
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
     
   </body>
 </html>
