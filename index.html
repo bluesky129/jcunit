@@ -1,136 +1,127 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-
     <title>JCUnit by dakusui</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
-
   <body>
-
-    <header>
-      <div class="container">
+    <div class="wrapper">
+      <header>
         <h1>JCUnit</h1>
-        <h2>A combinatorial testing framework on top of JUnit. It makes your testing life a lot easier.</h2>
+        <p>A combinatorial testing framework on top of JUnit + Model-based testing. It makes your testing life a lot easier.</p>
 
-        <section id="downloads">
-          <a href="https://github.com/dakusui/jcunit/zipball/master" class="btn">Download as .zip</a>
-          <a href="https://github.com/dakusui/jcunit/tarball/master" class="btn">Download as .tar.gz</a>
-          <a href="https://github.com/dakusui/jcunit" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-        </section>
-      </div>
-    </header>
+        <p class="view"><a href="https://github.com/dakusui/jcunit">View the Project on GitHub <small>dakusui/jcunit</small></a></p>
 
-    <div class="container">
-      <section id="main_content">
+
+        <ul>
+          <li><a href="https://github.com/dakusui/jcunit/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/dakusui/jcunit/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/dakusui/jcunit">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
         <h1>
-<a name="jcunit" class="anchor" href="#jcunit"><span class="octicon octicon-link"></span></a>JCUnit</h1>
+<a id="jcunit" class="anchor" href="#jcunit" aria-hidden="true"><span class="octicon octicon-link"></span></a>JCUnit</h1>
 
-<p>JCUnit is a framework to perform combinatorial tests using 'pairwise'(or more generally 't-wise') technique.
-About what combinatorial testings are, an Wikipedia article below might be helpful as a starting point.</p>
+<p>JCUnit is a framework to perform combinatorial tests using 'pairwise'(or more generally 't-wise') 
+technique.
+About what combinatorial testings are, articles below are useful as a starting point.</p>
 
 <ul>
 <li><a href="http://en.wikipedia.org/wiki/All-pairs_testing">All-pairs testing</a></li>
-</ul><p>Very roughly to say, it's a technique to generate test cases with good 'coverage' without making the number of test cases explode.</p>
+<li><a href="http://mse.isri.cmu.edu/software-engineering/documents/faculty-publications/miranda/kuhnintroductioncombinatorialtesting.pdf">Introduction to Combinatorial Testing</a></li>
+</ul>
+
+<p>Very roughly to say, it's a technique to generate test cases with good 'coverage' 
+without making the number of test cases explode.</p>
 
 <h1>
-<a name="for-users-of-previous-versions" class="anchor" href="#for-users-of-previous-versions"><span class="octicon octicon-link"></span></a>For users of previous versions</h1>
-
-<p>Thank you for using JCUnit.
-In this release, I have simplified JCUnit's interfaces and I had to remove some features like automatic regression tests, 
-reporting, or writing tests as logical predicates.
-Furthermore, names and semantics of annotations were changed and basically JCUnit 0.3.0 (or later) isn't compatible with the previous versions anymore.
-Although the removed functions might be provided as a part of JCUnit's core library itself or JCUnit-extra library 
-(and of course they will become more sophisticated) in future, they are not available at this moment.
-So, if you need these features, please keep using the older version for the time being. </p>
-
-<h1>
-<a name="first-test-with-jcunit" class="anchor" href="#first-test-with-jcunit"><span class="octicon octicon-link"></span></a>First test with JCUnit</h1>
+<a id="first-test-with-jcunit" class="anchor" href="#first-test-with-jcunit" aria-hidden="true"><span class="octicon octicon-link"></span></a>First test with JCUnit</h1>
 
 <p>Below is JCUnit's most basic example 'QuadraticEquationSolver.java'.
-Just by running QuadraticEquationSolverTest.java as a usual JUnit test, JCUnit will automatically generate test cases based on '@FactorLevels' annotations.</p>
+Just by running QuadraticEquationSolverTest.java as a usual JUnit test, JCUnit will 
+automatically generate test cases based on '@FactorField' annotations.</p>
 
 <h2>
-<a name="quadraticequationsolver-program-example" class="anchor" href="#quadraticequationsolver-program-example"><span class="octicon octicon-link"></span></a>QuadraticEquationSolver program example</h2>
+<a id="quadraticequationsolver-program-example" class="anchor" href="#quadraticequationsolver-program-example" aria-hidden="true"><span class="octicon octicon-link"></span></a>QuadraticEquationSolver program example</h2>
 
 <p>To understand JCUnit's functions, let's test 'QuadraticEquationSolver.java' program, which solves 'quadratic equations' using a formula.
 The program contains some intentional bugs and unclear specifications (or behaviors).
 The formula it uses is,</p>
 
-<div class="highlight highlight-java"><pre>
-    <span class="o">{</span><span class="n">x1</span><span class="o">,</span> <span class="n">x2</span><span class="o">}</span> <span class="o">=</span> <span class="o">{</span> <span class="o">(-</span><span class="n">b</span> <span class="o">+</span> <span class="n">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="n">b</span><span class="o">*</span><span class="n">b</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">c</span><span class="o">*</span><span class="n">a</span><span class="o">))</span> <span class="o">/</span> <span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="o">,</span> <span class="o">(-</span><span class="n">b</span> <span class="o">-</span> <span class="n">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="n">b</span><span class="o">*</span><span class="n">b</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">c</span><span class="o">*</span><span class="n">a</span><span class="o">))</span> <span class="o">/</span> <span class="mi">2</span><span class="o">*</span><span class="n">a</span> <span class="o">}</span>
-
+<div class="highlight highlight-source-java"><pre>
+    {x1, x2} <span class="pl-k">=</span> { (<span class="pl-k">-</span>b <span class="pl-k">+</span> <span class="pl-smi">Math</span><span class="pl-k">.</span>sqrt(b<span class="pl-k">*</span>b <span class="pl-k">-</span> <span class="pl-c1">4</span><span class="pl-k">*</span>c<span class="pl-k">*</span>a)) <span class="pl-k">/</span> <span class="pl-c1">2</span><span class="pl-k">*</span>a, (<span class="pl-k">-</span>b <span class="pl-k">-</span> <span class="pl-smi">Math</span><span class="pl-k">.</span>sqrt(b<span class="pl-k">*</span>b <span class="pl-k">-</span> <span class="pl-c1">4</span><span class="pl-k">*</span>c<span class="pl-k">*</span>a)) <span class="pl-k">/</span> <span class="pl-c1">2</span><span class="pl-k">*</span>a }
 </pre></div>
 
 <p>where {x1, x2} are the solutions of an equation, </p>
 
-<div class="highlight highlight-java"><pre>
-    <span class="n">a</span> <span class="o">*</span> <span class="n">x</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>
-
+<div class="highlight highlight-source-java"><pre>
+    a <span class="pl-k">*</span> x<span class="pl-k">^</span><span class="pl-c1">2</span> <span class="pl-k">+</span> b <span class="pl-k">*</span> x <span class="pl-k">+</span> c <span class="pl-k">=</span> <span class="pl-c1">0</span>
 </pre></div>
 
 <h3>
-<a name="maven-coordinate" class="anchor" href="#maven-coordinate"><span class="octicon octicon-link"></span></a>Maven coordinate</h3>
+<a id="maven-coordinate" class="anchor" href="#maven-coordinate" aria-hidden="true"><span class="octicon octicon-link"></span></a>Maven coordinate</h3>
 
 <p>First of all, you will need to link JCUnit to your project.
 Below is a pom.xml fragment to describe jcunit's dependency.
 Please add it to your project's pom.xml </p>
 
-<div class="highlight highlight-xml"><pre>
-    <span class="nt">&lt;dependency&gt;</span>
-      <span class="nt">&lt;groupId&gt;</span>com.github.dakusui<span class="nt">&lt;/groupId&gt;</span>
-      <span class="nt">&lt;artifactId&gt;</span>jcunit<span class="nt">&lt;/artifactId&gt;</span>
-      <span class="nt">&lt;version&gt;</span>[0.4.11,]<span class="nt">&lt;/version&gt;</span>
-    <span class="nt">&lt;/dependency&gt;</span>
-
+<div class="highlight highlight-text-xml"><pre>
+    &lt;<span class="pl-ent">dependency</span>&gt;
+      &lt;<span class="pl-ent">groupId</span>&gt;com.github.dakusui&lt;/<span class="pl-ent">groupId</span>&gt;
+      &lt;<span class="pl-ent">artifactId</span>&gt;jcunit&lt;/<span class="pl-ent">artifactId</span>&gt;
+      &lt;<span class="pl-ent">version</span>&gt;0.5.1&lt;/<span class="pl-ent">version</span>&gt;
+    &lt;/<span class="pl-ent">dependency</span>&gt;
 </pre></div>
 
 <h3>
-<a name="quadraticequationsolverjava-main-class-sut" class="anchor" href="#quadraticequationsolverjava-main-class-sut"><span class="octicon octicon-link"></span></a>QuadraticEquationSolver.java (Main class, SUT)</h3>
+<a id="quadraticequationsolverjava-main-class-sut" class="anchor" href="#quadraticequationsolverjava-main-class-sut" aria-hidden="true"><span class="octicon octicon-link"></span></a>QuadraticEquationSolver.java (Main class, SUT)</h3>
 
 <p>'QuadraticEquationSolver' is the SUT (Software under test) in this example.
 The class provides a function to solve a quadratic equation using a quadratic formula and returns the solutions.</p>
 
-<div class="highlight highlight-java"><pre>
-    <span class="c1">//QuadraticEquationSolver.java</span>
-    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">QuadraticEquationSolver</span> <span class="o">{</span>
-      <span class="kd">private</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">a</span><span class="o">;</span>
-      <span class="kd">private</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">b</span><span class="o">;</span>
-      <span class="kd">private</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">c</span><span class="o">;</span>
+<div class="highlight highlight-source-java"><pre>
+    <span class="pl-c">//QuadraticEquationSolver.java</span>
+    <span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">QuadraticEquationSolver</span> {
+      <span class="pl-k">private</span> <span class="pl-k">final</span> <span class="pl-k">double</span> a;
+      <span class="pl-k">private</span> <span class="pl-k">final</span> <span class="pl-k">double</span> b;
+      <span class="pl-k">private</span> <span class="pl-k">final</span> <span class="pl-k">double</span> c;
 
-      <span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">Solutions</span> <span class="o">{</span>
-        <span class="kd">public</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">x1</span><span class="o">;</span>
-        <span class="kd">public</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">x2</span><span class="o">;</span>
+      <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">class</span> <span class="pl-en">Solutions</span> {
+        <span class="pl-k">public</span> <span class="pl-k">final</span> <span class="pl-k">double</span> x1;
+        <span class="pl-k">public</span> <span class="pl-k">final</span> <span class="pl-k">double</span> x2;
 
-        <span class="kd">public</span> <span class="nf">Solutions</span><span class="o">(</span><span class="kt">double</span> <span class="n">x1</span><span class="o">,</span> <span class="kt">double</span> <span class="n">x2</span><span class="o">)</span> <span class="o">{</span>
-          <span class="k">this</span><span class="o">.</span><span class="na">x1</span> <span class="o">=</span> <span class="n">x1</span><span class="o">;</span>
-          <span class="k">this</span><span class="o">.</span><span class="na">x2</span> <span class="o">=</span> <span class="n">x2</span><span class="o">;</span>
-        <span class="o">}</span>
+        <span class="pl-k">public</span> <span class="pl-en">Solutions</span>(<span class="pl-k">double</span> <span class="pl-v">x1</span>, <span class="pl-k">double</span> <span class="pl-v">x2</span>) {
+          <span class="pl-v">this</span><span class="pl-k">.</span>x1 <span class="pl-k">=</span> x1;
+          <span class="pl-v">this</span><span class="pl-k">.</span>x2 <span class="pl-k">=</span> x2;
+        }
 
-        <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
-          <span class="k">return</span> <span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"(%f,%f)"</span><span class="o">,</span> <span class="n">x1</span><span class="o">,</span> <span class="n">x2</span><span class="o">);</span>
-        <span class="o">}</span>
-      <span class="o">}</span>
+        <span class="pl-k">public</span> <span class="pl-smi">String</span> <span class="pl-en">toString</span>() {
+          <span class="pl-k">return</span> <span class="pl-smi">String</span><span class="pl-k">.</span>format(<span class="pl-s"><span class="pl-pds">"</span>(%f,%f)<span class="pl-pds">"</span></span>, x1, x2);
+        }
+      }
 
-      <span class="kd">public</span> <span class="nf">QuadraticEquationSolver</span><span class="o">(</span><span class="kt">double</span> <span class="n">a</span><span class="o">,</span> <span class="kt">double</span> <span class="n">b</span><span class="o">,</span> <span class="kt">double</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">a</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">b</span> <span class="o">=</span> <span class="n">b</span><span class="o">;</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">c</span> <span class="o">=</span> <span class="n">c</span><span class="o">;</span>
-      <span class="o">}</span>
+      <span class="pl-k">public</span> <span class="pl-en">QuadraticEquationSolver</span>(<span class="pl-k">double</span> <span class="pl-v">a</span>, <span class="pl-k">double</span> <span class="pl-v">b</span>, <span class="pl-k">double</span> <span class="pl-v">c</span>) {
+        <span class="pl-v">this</span><span class="pl-k">.</span>a <span class="pl-k">=</span> a;
+        <span class="pl-v">this</span><span class="pl-k">.</span>b <span class="pl-k">=</span> b;
+        <span class="pl-v">this</span><span class="pl-k">.</span>c <span class="pl-k">=</span> c;
+      }
 
-      <span class="kd">public</span> <span class="n">Solutions</span> <span class="nf">solve</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Solutions</span><span class="o">(</span>
-            <span class="o">(-</span><span class="n">b</span> <span class="o">+</span> <span class="n">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="n">b</span> <span class="o">*</span> <span class="n">b</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">c</span> <span class="o">*</span> <span class="n">a</span><span class="o">))</span> <span class="o">/</span> <span class="o">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">a</span><span class="o">),</span>
-            <span class="o">(-</span><span class="n">b</span> <span class="o">-</span> <span class="n">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="n">b</span> <span class="o">*</span> <span class="n">b</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">c</span> <span class="o">*</span> <span class="n">a</span><span class="o">))</span> <span class="o">/</span> <span class="o">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">a</span><span class="o">)</span>
-        <span class="o">);</span>
-      <span class="o">}</span>
-    <span class="o">}</span>
-</pre></div>
+      <span class="pl-k">public</span> <span class="pl-smi">Solutions</span> <span class="pl-en">solve</span>() {
+        <span class="pl-k">return</span> <span class="pl-k">new</span> <span class="pl-smi">Solutions</span>(
+            (<span class="pl-k">-</span>b <span class="pl-k">+</span> <span class="pl-smi">Math</span><span class="pl-k">.</span>sqrt(b <span class="pl-k">*</span> b <span class="pl-k">-</span> <span class="pl-c1">4</span> <span class="pl-k">*</span> c <span class="pl-k">*</span> a)) <span class="pl-k">/</span> (<span class="pl-c1">2</span> <span class="pl-k">*</span> a),
+            (<span class="pl-k">-</span>b <span class="pl-k">-</span> <span class="pl-smi">Math</span><span class="pl-k">.</span>sqrt(b <span class="pl-k">*</span> b <span class="pl-k">-</span> <span class="pl-c1">4</span> <span class="pl-k">*</span> c <span class="pl-k">*</span> a)) <span class="pl-k">/</span> (<span class="pl-c1">2</span> <span class="pl-k">*</span> a)
+        );
+      }
+    }</pre></div>
 
 <p>Did you already notice the bugs that this program has?</p>
 
@@ -138,46 +129,49 @@ The class provides a function to solve a quadratic equation using a quadratic fo
 <li>It doesn't consider equations that do not have solutions in real.</li>
 <li>If it's not a quadratic equation but a linear one, how should it behave?</li>
 <li>Errors. How should it handle errors? To what extent error is acceptable?</li>
-<li>Overflows. If b * b, 4 * c * a, etc become bigger than Double.MAX_VALUE (or smaller than Double.MIN_VALUE), how should it handle it?</li>
-<li>Shouldn't we set some limits for a, b, and c? Both to make errors small enough and prevent overflows happen.</li>
+<li>Overflows. If b * b, 4 * c * a, etc become bigger than Double.MAX_VALUE (or 
+smaller than Double.MIN_VALUE), how should it handle them?</li>
+<li>Shouldn't we set some limits for a, b, and c? Both to make errors small enough 
+and prevent overflows from happening.</li>
 <li>etc. (maybe)</li>
-</ul><p>Try to find (and reproduce) these bugs using JCUnit and fix them.</p>
+</ul>
+
+<p>Try to find (and reproduce) these bugs using JCUnit and fix them.</p>
 
 <h3>
-<a name="quadraticequationsolvertestjava-test" class="anchor" href="#quadraticequationsolvertestjava-test"><span class="octicon octicon-link"></span></a>QuadraticEquationSolverTest.java (Test)</h3>
+<a id="quadraticequationsolvertestjava-test" class="anchor" href="#quadraticequationsolvertestjava-test" aria-hidden="true"><span class="octicon octicon-link"></span></a>QuadraticEquationSolverTest.java (Test)</h3>
 
 <p>QuadraticEquationSolverTest1 is a test class for QuadraticEquationSolver class.</p>
 
-<div class="highlight highlight-java"><pre>
-    <span class="c1">// QuadraticEquationSolverTest1.java</span>
-    <span class="nd">@RunWith</span><span class="o">(</span><span class="n">JCUnit</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">QuadraticEquationSolverTest1</span> <span class="o">{</span>
-        <span class="nd">@FactorField</span>
-        <span class="kd">public</span> <span class="kt">int</span> <span class="n">a</span><span class="o">;</span>
-        <span class="nd">@FactorField</span>
-        <span class="kd">public</span> <span class="kt">int</span> <span class="n">b</span><span class="o">;</span>
-        <span class="nd">@FactorField</span>
-        <span class="kd">public</span> <span class="kt">int</span> <span class="n">c</span><span class="o">;</span>
+<div class="highlight highlight-source-java"><pre>
+    <span class="pl-c">// QuadraticEquationSolverTest1.java</span>
+    @RunWith(<span class="pl-smi">JCUnit</span><span class="pl-k">.</span>class)
+    <span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">QuadraticEquationSolverTest1</span> {
+        <span class="pl-k">@FactorField</span>
+        <span class="pl-k">public</span> <span class="pl-k">int</span> a;
+        <span class="pl-k">@FactorField</span>
+        <span class="pl-k">public</span> <span class="pl-k">int</span> b;
+        <span class="pl-k">@FactorField</span>
+        <span class="pl-k">public</span> <span class="pl-k">int</span> c;
 
-        <span class="nd">@Test</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">()</span> <span class="o">{</span>
-            <span class="n">QuadraticEquationSolver</span><span class="o">.</span><span class="na">Solutions</span> <span class="n">s</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">QuadraticEquationSolver</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">,</span>
-                    <span class="n">c</span><span class="o">).</span><span class="na">solve</span><span class="o">();</span>
-            <span class="n">assertEquals</span><span class="o">(</span><span class="mf">0.0</span><span class="o">,</span> <span class="n">a</span> <span class="o">*</span> <span class="n">s</span><span class="o">.</span><span class="na">x1</span> <span class="o">*</span> <span class="n">s</span><span class="o">.</span><span class="na">x1</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">s</span><span class="o">.</span><span class="na">x1</span> <span class="o">+</span> <span class="n">c</span><span class="o">);</span>
-            <span class="n">assertEquals</span><span class="o">(</span><span class="mf">0.0</span><span class="o">,</span> <span class="n">a</span> <span class="o">*</span> <span class="n">s</span><span class="o">.</span><span class="na">x2</span> <span class="o">*</span> <span class="n">s</span><span class="o">.</span><span class="na">x2</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">s</span><span class="o">.</span><span class="na">x2</span> <span class="o">+</span> <span class="n">c</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
+        <span class="pl-k">@Test</span>
+        <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">test</span>() {
+            <span class="pl-smi">QuadraticEquationSolver</span><span class="pl-k">.</span><span class="pl-smi">Solutions</span> s <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">QuadraticEquationSolver</span>(a, b,
+                    c)<span class="pl-k">.</span>solve();
+            assertEquals(<span class="pl-c1">0.0</span>, a <span class="pl-k">*</span> s<span class="pl-k">.</span>x1 <span class="pl-k">*</span> s<span class="pl-k">.</span>x1 <span class="pl-k">+</span> b <span class="pl-k">*</span> s<span class="pl-k">.</span>x1 <span class="pl-k">+</span> c);
+            assertEquals(<span class="pl-c1">0.0</span>, a <span class="pl-k">*</span> s<span class="pl-k">.</span>x2 <span class="pl-k">*</span> s<span class="pl-k">.</span>x2 <span class="pl-k">+</span> b <span class="pl-k">*</span> s<span class="pl-k">.</span>x2 <span class="pl-k">+</span> c);
+        }
+    }
 </pre></div>
 
 <p>If you run this test class, JCUnit generates about fifty test cases and run them.
 By default, it generates the test cases by using 'all-pairs' technique.</p>
 
 <h1>
-<a name="tips" class="anchor" href="#tips"><span class="octicon octicon-link"></span></a>Tips</h1>
+<a id="tips" class="anchor" href="#tips" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tips</h1>
 
 <h2>
-<a name="tip-1-customizing-domains-of-factorfield-annotated-fields-1" class="anchor" href="#tip-1-customizing-domains-of-factorfield-annotated-fields-1"><span class="octicon octicon-link"></span></a>Tip 1: Customizing domains of @FactorField annotated fields (1)</h2>
+<a id="tip-1-customizing-domains-of-factorfield-annotated-fields-1" class="anchor" href="#tip-1-customizing-domains-of-factorfield-annotated-fields-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tip 1: Customizing domains of @FactorField annotated fields (1)</h2>
 
 <p>JCUnit creates test cases by assigning a value, picked up from a hardcoded set of values defined for each type, to each '@FactorField' annotated field in a test class.
 For example, if a member is annotated with '@FactorField' and its type is int, JCUnit will pick up a value from a set
@@ -185,67 +179,63 @@ For example, if a member is annotated with '@FactorField' and its type is int, J
 But this set is just a 'default' and you can customize it by using (overriding) an 'xyzLevels' attribute of a '@FactorField' annotation, 
 where 'xyz' is a primitive types.</p>
 
-<div class="highlight highlight-java"><pre>
-    <span class="nd">@FactorField</span><span class="o">(</span><span class="n">intLevels</span> <span class="o">=</span> <span class="o">{</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">,</span> <span class="o">-</span><span class="mi">2</span><span class="o">,</span> <span class="mi">100</span><span class="o">,</span> <span class="o">-</span><span class="mi">100</span><span class="o">,</span> <span class="mi">10000</span><span class="o">,</span> <span class="o">-</span><span class="mi">10000</span> <span class="o">})</span>
-    <span class="kd">public</span> <span class="kt">int</span> <span class="n">a</span><span class="o">;</span>
-
+<div class="highlight highlight-source-java"><pre>
+    @FactorField(intLevels <span class="pl-k">=</span> { <span class="pl-c1">0</span>, <span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-k">-</span><span class="pl-c1">1</span>, <span class="pl-k">-</span><span class="pl-c1">2</span>, <span class="pl-c1">100</span>, <span class="pl-k">-</span><span class="pl-c1">100</span>, <span class="pl-c1">10000</span>, <span class="pl-k">-</span><span class="pl-c1">10000</span> })
+    <span class="pl-k">public</span> <span class="pl-k">int</span> a;
 </pre></div>
 
 <p>Above is an example of the use the 'intLevels' attribute.</p>
 
 <h2>
-<a name="tip-2-customizing-domains-of-factorfield-annotated-fields-2" class="anchor" href="#tip-2-customizing-domains-of-factorfield-annotated-fields-2"><span class="octicon octicon-link"></span></a>Tip 2: Customizing domains of @FactorField annotated fields (2)</h2>
+<a id="tip-2-customizing-domains-of-factorfield-annotated-fields-2" class="anchor" href="#tip-2-customizing-domains-of-factorfield-annotated-fields-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tip 2: Customizing domains of @FactorField annotated fields (2)</h2>
 
-<p>By using 'levelsFactory' parameter of '@FactorField' and creating a static method whose name is the same as the annotated field's name,
+<p>By using 'levelsProvider' parameter of '@FactorField' and creating a static method whose name is the same as the annotated field's name,
 you can customize the domain of a certain field in a much more flexible way.</p>
 
 <p>The method mustn't have any parameters and its return value must be an array of the field's type.</p>
 
 <p>Below is the example for that sort of function.</p>
 
-<div class="highlight highlight-java"><pre>
-    <span class="nd">@FactorField</span><span class="o">(</span><span class="n">levelsFactory</span> <span class="o">=</span> <span class="n">MethodLevelsFactory</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="kt">int</span> <span class="n">a</span><span class="o">;</span>
+<div class="highlight highlight-source-java"><pre>
+    @FactorField(levelsProvider <span class="pl-k">=</span> <span class="pl-smi">MethodLevelsProvider</span><span class="pl-k">.</span>class)
+    <span class="pl-k">public</span> <span class="pl-k">int</span> a;
 
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">a</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">};</span>
-    <span class="o">}</span>
-
+    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">int</span>[] a() {
+        <span class="pl-k">return</span> <span class="pl-k">new</span> <span class="pl-smi">int</span>[]{<span class="pl-c1">0</span>, <span class="pl-c1">1</span>, <span class="pl-c1">2</span>};
+    }
 </pre></div>
 
 <p>The values returned by the method will be picked up and assigned to the field 'a' by the framework one by one.
-And you need to use 'levelsFactory' attribute when you are going to use non-primitive, non-enum, nor non-string values as levels for a factor.</p>
+And you need to use 'levelsProvider' attribute when you are going to use non-primitive, non-enum, nor non-string values as levels for a factor.</p>
 
 <h2>
-<a name="tip-3-customizing-the-strength-of-t-wise-testing" class="anchor" href="#tip-3-customizing-the-strength-of-t-wise-testing"><span class="octicon octicon-link"></span></a>Tip 3: Customizing the strength of t-wise testing.</h2>
+<a id="tip-3-customizing-the-strength-of-t-wise-testing" class="anchor" href="#tip-3-customizing-the-strength-of-t-wise-testing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tip 3: Customizing the strength of t-wise testing.</h2>
 
 <p>Add parameter 'generator = <a href="https://github.com/Generator" class="user-mention">@Generator</a>(IPO2TestCaseGenerator.class)' explicitly to the '@TestCaseGeneration',
 annotation for 'QuadraticEquationSolverTest1.java' and set the first parameter, which represents a 'strength'. </p>
 
-<div class="highlight highlight-java"><pre>
-    <span class="nd">@RunWith</span><span class="o">(</span><span class="n">JCUnit</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-    <span class="nd">@TestCaseGeneration</span><span class="o">(</span>
-            <span class="n">generator</span> <span class="o">=</span> <span class="nd">@Generator</span><span class="o">(</span>
-                    <span class="n">value</span> <span class="o">=</span> <span class="n">IPO2TestCaseGenerator</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>
-                    <span class="n">params</span> <span class="o">=</span> <span class="o">{</span> <span class="nd">@Param</span><span class="o">(</span><span class="s">"3"</span><span class="o">)</span> <span class="o">}))</span>
-    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">QuadraticEquationSolverTest1</span> <span class="o">{</span>
-</pre></div>
+<div class="highlight highlight-source-java"><pre>
+    @RunWith(<span class="pl-smi">JCUnit</span><span class="pl-k">.</span>class)
+    @TestCaseGeneration(
+            generator <span class="pl-k">=</span> @Generator(
+                    value <span class="pl-k">=</span> <span class="pl-smi">IPO2TestCaseGenerator</span><span class="pl-k">.</span>class,
+                    params <span class="pl-k">=</span> { @Param(<span class="pl-s"><span class="pl-pds">"</span>3<span class="pl-pds">"</span></span>) }))
+    <span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">QuadraticEquationSolverTest1</span> {</pre></div>
 
 <p>In this example, the line</p>
 
-<div class="highlight highlight-java"><pre>
-    <span class="n">params</span> <span class="o">=</span> <span class="o">{</span> <span class="nd">@Param</span><span class="o">(</span><span class="s">"3"</span><span class="o">)</span> <span class="o">}))</span>
-
+<div class="highlight highlight-source-java"><pre>
+    params <span class="pl-k">=</span> { @Param(<span class="pl-s"><span class="pl-pds">"</span>3<span class="pl-pds">"</span></span>) }))
 </pre></div>
 
 <p>configures the strength of the t-wise tests performed by JCUnit.</p>
 
-<p>And '<a href="https://github.com/Param" class="user-mention">@Param</a>' annotation is a standard way to give a parameter to JCUnit plugins (excepting '@FactorLevels', which requires more conciseness). 
+<p>And '<a href="https://github.com/Param" class="user-mention">@Param</a>' annotation is a standard way to give a parameter to JCUnit plugins (excepting '@FactorField', which requires more conciseness). 
 It takes a string array as its 'value'(and remember that you can omit curly braces if there is only one element in the array). 
 JCUnit internally translates those values accordingly.</p>
 
 <h2>
-<a name="tip-4-defining-constraints" class="anchor" href="#tip-4-defining-constraints"><span class="octicon octicon-link"></span></a>Tip 4: Defining constraints.</h2>
+<a id="tip-4-defining-constraints" class="anchor" href="#tip-4-defining-constraints" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tip 4: Defining constraints.</h2>
 
 <p>In testings, we sometimes want to exclude a certain pair (, a triple, or a tuple) from the test cases since there are constraints in the test domain.</p>
 
@@ -259,19 +249,20 @@ Below are the links that would be helpful for understanding how much constraint 
 <ul>
 <li><a href="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?reload=true&amp;arnumber=6221818">Combinatorial test cases with constraints in software systems</a></li>
 <li><a href="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?reload=true&amp;arnumber=6569736">An Efficient Algorithm for Constraint Handling in Combinatorial Test Generation</a></li>
-</ul><p>(Of course we want to test the behaviors on such illegal inputs. It will be discussed in the next tip.) </p>
+</ul>
+
+<p>(Of course we want to test the behaviors on such illegal inputs. It will be discussed in the next tip.) </p>
 
 <p>For this purpose, JCUnit has a mechanism called 'constraints manager'.
 To use a constraint manager, you can do below</p>
 
-<div class="highlight highlight-java"><pre>
-    <span class="nd">@RunWith</span><span class="o">(</span><span class="n">JCUnit</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-    <span class="nd">@TestCaseGeneration</span><span class="o">(</span>
-        <span class="n">constraint</span> <span class="o">=</span> <span class="nd">@Constraint</span><span class="o">(</span>
-            <span class="n">value</span> <span class="o">=</span> <span class="n">QuadraticEquationSolverTestX</span><span class="o">.</span><span class="na">CM</span><span class="o">.</span><span class="na">class</span> <span class="o">))</span>
-    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">QuadraticEquationSolverTestX</span> <span class="o">{</span>
-    <span class="o">...</span>
-</pre></div>
+<div class="highlight highlight-source-java"><pre>
+    @RunWith(<span class="pl-smi">JCUnit</span><span class="pl-k">.</span>class)
+    @TestCaseGeneration(
+        constraint <span class="pl-k">=</span> @Constraint(
+            value <span class="pl-k">=</span> <span class="pl-smi">QuadraticEquationSolverTestX</span><span class="pl-k">.</span><span class="pl-smi">CM</span><span class="pl-k">.</span>class ))
+    <span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">QuadraticEquationSolverTestX</span> {
+    <span class="pl-c1">...</span></pre></div>
 
 <p>'CM' is a name of inner class which implements 'ConstraintManager' interface and checks if a given tuple violates any constraints in the test domain or not.
 Unfortunately you cannot use anonymous classes because a value passed to an annotation as its parameter must be a constant and Java's anonymous classes cannot be one.</p>
@@ -279,21 +270,20 @@ Unfortunately you cannot use anonymous classes because a value passed to an anno
 <p>If you want to exclude test cases that violate a discriminant of the quadratic equation formula and also make sure the given equation is a quadratic, 
 not a linear, the definition of 'CM' would be</p>
 
-<div class="highlight highlight-java"><pre>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">CM</span> <span class="kd">extends</span> <span class="n">ConstraintManagerBase</span> <span class="o">{</span>
-        <span class="nd">@Override</span>
-        <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">check</span><span class="o">(</span><span class="n">Tuple</span> <span class="n">tuple</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">JCUnitSymbolException</span> <span class="o">{</span>
-          <span class="k">if</span> <span class="o">(!</span><span class="n">tuple</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="s">"a"</span><span class="o">)</span> <span class="o">||</span> <span class="o">!</span><span class="n">tuple</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="s">"b"</span><span class="o">)</span> <span class="o">||</span> <span class="o">!</span><span class="n">tuple</span>
-              <span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="s">"c"</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="nf">UndefinedSymbol</span><span class="o">();</span>
-          <span class="o">}</span>
-          <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="o">(</span><span class="n">Integer</span><span class="o">)</span> <span class="n">tuple</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"a"</span><span class="o">);</span>
-          <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="o">(</span><span class="n">Integer</span><span class="o">)</span> <span class="n">tuple</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"b"</span><span class="o">);</span>
-          <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="o">(</span><span class="n">Integer</span><span class="o">)</span> <span class="n">tuple</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"c"</span><span class="o">);</span>
-          <span class="k">return</span> <span class="n">a</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">b</span> <span class="o">*</span> <span class="n">b</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">c</span> <span class="o">*</span> <span class="n">a</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-</pre></div>
+<div class="highlight highlight-source-java"><pre>
+    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">class</span> <span class="pl-en">CM</span> <span class="pl-k">extends</span> <span class="pl-e">ConstraintManagerBase</span> {
+        <span class="pl-k">@Override</span>
+        <span class="pl-k">public</span> <span class="pl-k">boolean</span> <span class="pl-en">check</span>(<span class="pl-smi">Tuple</span> <span class="pl-v">tuple</span>) <span class="pl-k">throws</span> <span class="pl-smi">JCUnitSymbolException</span> {
+          <span class="pl-k">if</span> (<span class="pl-k">!</span>tuple<span class="pl-k">.</span>containsKey(<span class="pl-s"><span class="pl-pds">"</span>a<span class="pl-pds">"</span></span>) <span class="pl-k">||</span> <span class="pl-k">!</span>tuple<span class="pl-k">.</span>containsKey(<span class="pl-s"><span class="pl-pds">"</span>b<span class="pl-pds">"</span></span>) <span class="pl-k">||</span> <span class="pl-k">!</span>tuple
+              .containsKey(<span class="pl-s"><span class="pl-pds">"</span>c<span class="pl-pds">"</span></span>)) {
+            <span class="pl-k">throw</span> <span class="pl-k">new</span> <span class="pl-smi">UndefinedSymbol</span>();
+          }
+          <span class="pl-k">int</span> a <span class="pl-k">=</span> (<span class="pl-smi">Integer</span>) tuple<span class="pl-k">.</span>get(<span class="pl-s"><span class="pl-pds">"</span>a<span class="pl-pds">"</span></span>);
+          <span class="pl-k">int</span> b <span class="pl-k">=</span> (<span class="pl-smi">Integer</span>) tuple<span class="pl-k">.</span>get(<span class="pl-s"><span class="pl-pds">"</span>b<span class="pl-pds">"</span></span>);
+          <span class="pl-k">int</span> c <span class="pl-k">=</span> (<span class="pl-smi">Integer</span>) tuple<span class="pl-k">.</span>get(<span class="pl-s"><span class="pl-pds">"</span>c<span class="pl-pds">"</span></span>);
+          <span class="pl-k">return</span> a <span class="pl-k">!=</span> <span class="pl-c1">0</span> <span class="pl-k">&amp;&amp;</span> b <span class="pl-k">*</span> b <span class="pl-k">-</span> <span class="pl-c1">4</span> <span class="pl-k">*</span> c <span class="pl-k">*</span> a <span class="pl-k">&gt;=</span> <span class="pl-c1">0</span>;
+        }
+    }</pre></div>
 
 <p>'ConstraintManagerBase' is a helper class that makes it easy to implement a ConstraintManager.
 All that you need is overriding 'boolean check(Tuple)' method.
@@ -304,7 +294,7 @@ A test case is passed as a tuple, you need to use 'get' method of it to retrieve
 JCUnit avoids using tuples for which check method of the specified constraint manager returns 'false'.</p>
 
 <h2>
-<a name="tip-5-writing-test-cases-for-error-handling-negative-tests" class="anchor" href="#tip-5-writing-test-cases-for-error-handling-negative-tests"><span class="octicon octicon-link"></span></a>Tip 5: Writing test cases for error handling (negative tests)</h2>
+<a id="tip-5-writing-test-cases-for-error-handling-negative-tests" class="anchor" href="#tip-5-writing-test-cases-for-error-handling-negative-tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tip 5: Writing test cases for error handling (negative tests)</h2>
 
 <p>That being said, handling errors appropriately is another concern.
 A program must complain of invalid parameters in an appropriate way.
@@ -314,58 +304,186 @@ And this characteristic is another aspect of software under test to be tested.</
 
 <p>First, by overriding method, return test cases that explicitly violate the constraint represented by the constraint manager class itself.</p>
 
-<pre><code>
-    public static class CM extends ConstraintManagerBase {
-        @Override
-        public boolean check(Tuple tuple) throws JCUnitSymbolException {
-            ...
+<div class="highlight highlight-source-java"><pre>
+    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">class</span> <span class="pl-en">CM</span> <span class="pl-k">extends</span> <span class="pl-e">ConstraintManagerBase</span> {
+        <span class="pl-k">@Override</span>
+        <span class="pl-k">public</span> <span class="pl-k">boolean</span> <span class="pl-en">check</span>(<span class="pl-smi">Tuple</span> <span class="pl-v">tuple</span>) <span class="pl-k">throws</span> <span class="pl-smi">JCUnitSymbolException</span> {
+            <span class="pl-c1">...</span>
         }
 
-        @Override
-        public List&lt;Tuple&gt; getViolations() {
-            List&lt;Tuple&gt; ret = new LinkedList&lt;Tuple&gt;();
-            ret.add(createTestCase("a=0", createTestCase(0, 1, 1)));
-            ret.add(createTestCase("b*b-4ca&lt;0", createTestCase(100, 1, 100)));
-            ret.add(createTestCase("nonsense 1=0", createTestCase(0, 0, 1)));
-            return ret;
+        <span class="pl-k">@Override</span>
+        <span class="pl-k">public</span> <span class="pl-k">List&lt;<span class="pl-smi">Tuple</span>&gt;</span> <span class="pl-en">getViolations</span>() {
+            <span class="pl-k">List&lt;<span class="pl-smi">Tuple</span>&gt;</span> ret <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-k">LinkedList&lt;<span class="pl-smi">Tuple</span>&gt;</span>();
+            ret<span class="pl-k">.</span>add(createTestCase(<span class="pl-s"><span class="pl-pds">"</span>a=0<span class="pl-pds">"</span></span>, createTestCase(<span class="pl-c1">0</span>, <span class="pl-c1">1</span>, <span class="pl-c1">1</span>)));
+            ret<span class="pl-k">.</span>add(createTestCase(<span class="pl-s"><span class="pl-pds">"</span>b*b-4ca&lt;0<span class="pl-pds">"</span></span>, createTestCase(<span class="pl-c1">100</span>, <span class="pl-c1">1</span>, <span class="pl-c1">100</span>)));
+            ret<span class="pl-k">.</span>add(createTestCase(<span class="pl-s"><span class="pl-pds">"</span>nonsense 1=0<span class="pl-pds">"</span></span>, createTestCase(<span class="pl-c1">0</span>, <span class="pl-c1">0</span>, <span class="pl-c1">1</span>)));
+            <span class="pl-k">return</span> ret;
         }
 
-        private Tuple createTestCase(int a, int b, int c) {
-            return new Tuple.Builder().put("a", a).put("b", b).put("c", c).build();
+        <span class="pl-k">private</span> <span class="pl-smi">Tuple</span> <span class="pl-en">createTestCase</span>(<span class="pl-k">int</span> <span class="pl-v">a</span>, <span class="pl-k">int</span> <span class="pl-v">b</span>, <span class="pl-k">int</span> <span class="pl-v">c</span>) {
+            <span class="pl-k">return</span> <span class="pl-k">new</span> <span class="pl-smi">Tuple</span>.<span class="pl-smi">Builder</span>()<span class="pl-k">.</span>put(<span class="pl-s"><span class="pl-pds">"</span>a<span class="pl-pds">"</span></span>, a)<span class="pl-k">.</span>put(<span class="pl-s"><span class="pl-pds">"</span>b<span class="pl-pds">"</span></span>, b)<span class="pl-k">.</span>put(<span class="pl-s"><span class="pl-pds">"</span>c<span class="pl-pds">"</span></span>, c)<span class="pl-k">.</span>build();
         }
-    }
-</code></pre>
+    }</pre></div>
 
 <p>Now you enhance your test case so that it verifies the software under test behaves correctly in case invalid parameters are given.
 Let's assume that the SUT should return null if one of the parameters 'a', 'b', or 'c' is not valid. </p>
 
-<pre><code>
-    @Test
-    public void test() {
-        if ("a=0".equals(desc.getSubIdentifier())) {
-          assertEquals(null, s);
-        } else if ("b*b-4ca&lt;0".equals(desc.getSubIdentifier())) {
-          assertEquals(null, s);
-        } else if ("nonsense 1=0".equals(desc.getSubIdentifier())) {
-          assertEquals(null, s);
-        } else {
-            QuadraticEquationSolver.Solutions s = new QuadraticEquationSolver(a, b,
-                    c).solve();
-            assertEquals(0.0, a * s.x1 * s.x1 + b * s.x1 + c);
-            assertEquals(0.0, a * s.x2 * s.x2 + b * s.x2 + c);
+<div class="highlight highlight-source-java"><pre>
+    @<span class="pl-smi">Test</span>
+    <span class="pl-k">public</span> <span class="pl-k">void</span> test() {
+        <span class="pl-k">if</span> (<span class="pl-s"><span class="pl-pds">"</span>a=0<span class="pl-pds">"</span></span><span class="pl-k">.</span>equals(desc<span class="pl-k">.</span>getSubIdentifier())) {
+          assertEquals(<span class="pl-c1">null</span>, s);
+        } <span class="pl-k">else</span> <span class="pl-k">if</span> (<span class="pl-s"><span class="pl-pds">"</span>b*b-4ca&lt;0<span class="pl-pds">"</span></span><span class="pl-k">.</span>equals(desc<span class="pl-k">.</span>getSubIdentifier())) {
+          assertEquals(<span class="pl-c1">null</span>, s);
+        } <span class="pl-k">else</span> <span class="pl-k">if</span> (<span class="pl-s"><span class="pl-pds">"</span>nonsense 1=0<span class="pl-pds">"</span></span><span class="pl-k">.</span>equals(desc<span class="pl-k">.</span>getSubIdentifier())) {
+          assertEquals(<span class="pl-c1">null</span>, s);
+        } <span class="pl-k">else</span> {
+            <span class="pl-smi">QuadraticEquationSolver</span><span class="pl-k">.</span><span class="pl-smi">Solutions</span> s <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">QuadraticEquationSolver</span>(a, b,
+                    c)<span class="pl-k">.</span>solve();
+            assertEquals(<span class="pl-c1">0.0</span>, a <span class="pl-k">*</span> s<span class="pl-k">.</span>x1 <span class="pl-k">*</span> s<span class="pl-k">.</span>x1 <span class="pl-k">+</span> b <span class="pl-k">*</span> s<span class="pl-k">.</span>x1 <span class="pl-k">+</span> c);
+            assertEquals(<span class="pl-c1">0.0</span>, a <span class="pl-k">*</span> s<span class="pl-k">.</span>x2 <span class="pl-k">*</span> s<span class="pl-k">.</span>x2 <span class="pl-k">+</span> b <span class="pl-k">*</span> s<span class="pl-k">.</span>x2 <span class="pl-k">+</span> c);
         }
-    }
+    }</pre></div>
+
+<h2>
+<a id="tip-6-filtering-test-cases" class="anchor" href="#tip-6-filtering-test-cases" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tip 6: Filtering test cases</h2>
+
+<p>From time to time, you want to disable/enable test cases in order to concentrate some among all of them.
+'@Precondition' notation is your friend in this use case.</p>
+
+<p>You can define a method returning boolean and with no parameter like below,</p>
+
+<div class="highlight highlight-source-java"><pre>
+    @FactorField(intLevels <span class="pl-k">=</span> { <span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span> })
+    <span class="pl-k">public</span> <span class="pl-k">int</span> a;
+
+    <span class="pl-c1">...</span>
+
+    @<span class="pl-smi">Precondition</span>
+    <span class="pl-k">public</span> <span class="pl-k">boolean</span> filterMethod() {
+      <span class="pl-k">return</span> <span class="pl-v">this</span><span class="pl-k">.</span>a <span class="pl-k">==</span> <span class="pl-c1">3</span>;
+    }</pre></div>
+
+<p>By defining such a method, you can disable test cases which result in the method's value false.
+In the example above, test cases whose factor 'a' is non 3 will no longer be executed.</p>
+
+<h2>
+<a id="tip-7-executing-test-methods-based-on-given-conditions" class="anchor" href="#tip-7-executing-test-methods-based-on-given-conditions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tip 7: Executing test methods based on given conditions</h2>
+
+<p>Also you sometimes want to let JCUnit decide a certain test method should be executed 
+based on some conditions automatically.</p>
+
+<p>E.g, in case you are testing quadratic equation solver program, if a discriminant of a given
+ equation is negative, you want to check if error handling is working correct, 
+ but probably you don't want to perform a test to check if the solutions are precise.
+ Of course the value is non-negative, you don't need a test for error handling and 
+ do need a test for solutions' precision.</p>
+
+<p>For this purpose, JCUnit provides another annotation '<a href="https://github.com/When" class="user-mention">@When</a>'.
+Below is an example to illustrate how this feature should be used.</p>
+
+<div class="highlight highlight-source-java"><pre>
+    @<span class="pl-smi">Test</span>
+    @When( <span class="pl-s"><span class="pl-pds">"</span>discriminantIsNonNegative<span class="pl-pds">"</span></span> )
+    <span class="pl-k">public</span> <span class="pl-k">void</span> thenSolveQuadraticEquation() {
+      <span class="pl-c1">...</span>
+    }</pre></div>
+
+<p>JCUnit will invoke a method whose name is 'discriminantIsNonNegative' and iff its
+return value is true, this test method will be executed.</p>
+
+<p>If the coefficients of an equation, i.e. factors of this test class, are a, b, and c, 
+the method would look like below. </p>
+
+<div class="highlight highlight-source-java"><pre>
+    <span class="pl-k">public</span> <span class="pl-k">boolean</span> discriminantIsNonNegative() {
+        <span class="pl-k">return</span> b <span class="pl-k">*</span> b <span class="pl-k">-</span> <span class="pl-c1">4</span> <span class="pl-k">*</span> c <span class="pl-k">*</span> a <span class="pl-k">&gt;=</span> <span class="pl-c1">0</span>;
+    }</pre></div>
+
+<p>If you want to add another condition you can also do below. </p>
+
+<div class="highlight highlight-source-java"><pre>
+    @<span class="pl-smi">Test</span>
+    @When( <span class="pl-s"><span class="pl-pds">"</span>aIsNonZero&amp;&amp;discriminantIsNonNegative<span class="pl-pds">"</span></span> )
+    <span class="pl-k">public</span> <span class="pl-k">void</span> thenSolveQuadraticEquation() {
+        <span class="pl-c1">...</span>
+    }</pre></div>
+
+<p>In this example, you are making sure that a is not zero AND the discriminant is non-negative
+before this method is executed.</p>
+
+<p>Also you can do</p>
+
+<div class="highlight highlight-source-java"><pre>
+    @<span class="pl-smi">Test</span>
+    @When( <span class="pl-s"><span class="pl-pds">"</span>!discriminantIsNonNegative<span class="pl-pds">"</span></span> )
+    <span class="pl-k">public</span> <span class="pl-k">void</span> thenAnErrorWillBeReported() {
+        <span class="pl-c1">....</span>
+    }</pre></div>
+
+<p>And, to express 'OR', do</p>
+
+<div class="highlight highlight-source-java"><pre>
+    @<span class="pl-smi">Test</span>
+    @When({<span class="pl-s"><span class="pl-pds">"</span>!discriminantIsNonNegative<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>!aIsNonZero<span class="pl-pds">"</span></span>})
+    <span class="pl-k">public</span> <span class="pl-k">void</span> thenAnErrorWillBeReported() {
+        <span class="pl-c1">....</span>
+    }</pre></div>
+
+<p>Unfortunately you cannot use parentheses as of now.</p>
+
+<h2>
+<a id="tip-8-as-a-pairwise-test-generator" class="anchor" href="#tip-8-as-a-pairwise-test-generator" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tip 8: As a pairwise test generator</h2>
+
+<p>By creating a test method below, which just prints test case definition, you can use JCUnit as a pairwise (or t-wise) test case generator.</p>
+
+<div class="highlight highlight-source-java"><pre>
+    @<span class="pl-smi">Test</span>
+    <span class="pl-k">public</span> <span class="pl-k">void</span> printTestCase() {
+        <span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(<span class="pl-smi">TupleUtils</span><span class="pl-k">.</span>toString(<span class="pl-smi">TestCaseUtils</span><span class="pl-k">.</span>toTestCase(<span class="pl-v">this</span>)));
+    }</pre></div>
+
+<p>The output will be a text whose lines are JSON objects and look like,</p>
+
+<pre><code>{"browser":"IE","cpuClockInGHz":1.5,"edition":"Home Premium","gramInMB":128,"hddSizeInGB":100,"ramInGB":8}
+{"browser":"IE","cpuClockInGHz":2.5,"edition":"Enterprise","gramInMB":256,"hddSizeInGB":30,"ramInGB":1}
+{"browser":"IE","cpuClockInGHz":3.0,"edition":"Home Basic","gramInMB":512,"hddSizeInGB":50,"ramInGB":2}
+{"browser":"Opera","cpuClockInGHz":1.5,"edition":"Ultimate","gramInMB":512,"hddSizeInGB":20,"ramInGB":1}
+{"browser":"Opera","cpuClockInGHz":2.0,"edition":"Professional","gramInMB":256,"hddSizeInGB":50,"ramInGB":8}
+...
 </code></pre>
 
+<p>You can refer to a following example for this use case. </p>
+
+<ul>
+<li><a href="https://github.com/dakusui/jcunit/tree/develop/src/test/java/com/github/dakusui/jcunit/examples/testgen/TestGen.java">TestGen.java</a></li>
+</ul>
+
+<h2>
+<a id="tip-9-modeling-a-finite-state-machine" class="anchor" href="#tip-9-modeling-a-finite-state-machine" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tip 9: Modeling a finite state machine</h2>
+
+<p>Probably your SUT might have a specification where users need to follow a certain 
+manner like "1. You will initialize the object, 2. Now you can do A or B, 3.
+If you did A in step 2, you can do A1, A2, or B1. Otherwise you can only do B1.",
+and A, B, etc can take a few parameters respectively.</p>
+
+<p>You might be able to write a constraint manager to describe this sort of specification
+ but it would be very complicated, boring, and error prone task.</p>
+
+<p>JCUnit has a feature called "FSM support" and the detail and how to use it are 
+discussed in a separate document. Please refer to <a href="FSM-README.md">FSM/JCUnit</a> </p>
+
 <h1>
-<a name="examples" class="anchor" href="#examples"><span class="octicon octicon-link"></span></a>Examples</h1>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h1>
 
 <p>For more examples, see</p>
 
 <ul>
 <li><a href="https://github.com/dakusui/jcunit/tree/develop/src/test/java/com/github/dakusui/jcunit/examples/quadraticequation">Examples</a></li>
-</ul><h1>
-<a name="copyright-and-license" class="anchor" href="#copyright-and-license"><span class="octicon octicon-link"></span></a>Copyright and license</h1>
+</ul>
+
+<h1>
+<a id="copyright-and-license" class="anchor" href="#copyright-and-license" aria-hidden="true"><span class="octicon octicon-link"></span></a>Copyright and license</h1>
 
 <p>Copyright 2013 Hiroshi Ukai.</p>
 
@@ -381,8 +499,12 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.</p>
       </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/dakusui">dakusui</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
     </div>
-
+    <script src="javascripts/scale.fix.js"></script>
     
   </body>
 </html>
