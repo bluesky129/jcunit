@@ -4,30 +4,40 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>JCUnit by dakusui</title>
-
     <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-light.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="stylesheets/github-dark.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
     <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
   </head>
   <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/dakusui/jcunit">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/dakusui/jcunit/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/dakusui/jcunit/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
     <div class="wrapper">
-      <header>
-        <h1>JCUnit</h1>
-        <p>A combinatorial testing framework on top of JUnit + Model-based testing. It makes your testing life a lot easier.</p>
 
-        <p class="view"><a href="https://github.com/dakusui/jcunit">View the Project on GitHub <small>dakusui/jcunit</small></a></p>
-
-
-        <ul>
-          <li><a href="https://github.com/dakusui/jcunit/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/dakusui/jcunit/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/dakusui/jcunit">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
       <section>
+        <div id="title">
+          <h1>JCUnit</h1>
+          <p>A combinatorial testing framework on top of JUnit + Model-based testing. It makes your testing life a lot easier.</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/dakusui">dakusui</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
         <h1>
 <a id="jcunit" class="anchor" href="#jcunit" aria-hidden="true"><span class="octicon octicon-link"></span></a>JCUnit</h1>
 
@@ -78,7 +88,7 @@ Please add it to your project's pom.xml </p>
     &lt;<span class="pl-ent">dependency</span>&gt;
       &lt;<span class="pl-ent">groupId</span>&gt;com.github.dakusui&lt;/<span class="pl-ent">groupId</span>&gt;
       &lt;<span class="pl-ent">artifactId</span>&gt;jcunit&lt;/<span class="pl-ent">artifactId</span>&gt;
-      &lt;<span class="pl-ent">version</span>&gt;0.5.1&lt;/<span class="pl-ent">version</span>&gt;
+      &lt;<span class="pl-ent">version</span>&gt;0.5.5&lt;/<span class="pl-ent">version</span>&gt;
     &lt;/<span class="pl-ent">dependency</span>&gt;
 </pre></div>
 
@@ -435,6 +445,9 @@ before this method is executed.</p>
 <h2>
 <a id="tip-8-as-a-pairwise-test-generator" class="anchor" href="#tip-8-as-a-pairwise-test-generator" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tip 8: As a pairwise test generator</h2>
 
+<h3>
+<a id="under-junit-execution-recommended" class="anchor" href="#under-junit-execution-recommended" aria-hidden="true"><span class="octicon octicon-link"></span></a>Under JUnit execution (recommended)</h3>
+
 <p>By creating a test method below, which just prints test case definition, you can use JCUnit as a pairwise (or t-wise) test case generator.</p>
 
 <div class="highlight highlight-source-java"><pre>
@@ -445,19 +458,63 @@ before this method is executed.</p>
 
 <p>The output will be a text whose lines are JSON objects and look like,</p>
 
-<pre><code>{"browser":"IE","cpuClockInGHz":1.5,"edition":"Home Premium","gramInMB":128,"hddSizeInGB":100,"ramInGB":8}
-{"browser":"IE","cpuClockInGHz":2.5,"edition":"Enterprise","gramInMB":256,"hddSizeInGB":30,"ramInGB":1}
-{"browser":"IE","cpuClockInGHz":3.0,"edition":"Home Basic","gramInMB":512,"hddSizeInGB":50,"ramInGB":2}
-{"browser":"Opera","cpuClockInGHz":1.5,"edition":"Ultimate","gramInMB":512,"hddSizeInGB":20,"ramInGB":1}
-{"browser":"Opera","cpuClockInGHz":2.0,"edition":"Professional","gramInMB":256,"hddSizeInGB":50,"ramInGB":8}
-...
+<pre><code>
+    {"browser":"IE","cpuClockInGHz":1.5,"edition":"Home Premium","gramInMB":128,"hddSizeInGB":100,"ramInGB":8}
+    {"browser":"IE","cpuClockInGHz":2.5,"edition":"Enterprise","gramInMB":256,"hddSizeInGB":30,"ramInGB":1}
+    {"browser":"IE","cpuClockInGHz":3.0,"edition":"Home Basic","gramInMB":512,"hddSizeInGB":50,"ramInGB":2}
+    {"browser":"Opera","cpuClockInGHz":1.5,"edition":"Ultimate","gramInMB":512,"hddSizeInGB":20,"ramInGB":1}
+    {"browser":"Opera","cpuClockInGHz":2.0,"edition":"Professional","gramInMB":256,"hddSizeInGB":50,"ramInGB":8}
+    ...
 </code></pre>
 
 <p>You can refer to a following example for this use case. </p>
 
 <ul>
-<li><a href="https://github.com/dakusui/jcunit/tree/develop/src/test/java/com/github/dakusui/jcunit/examples/testgen/TestGen.java">TestGen.java</a></li>
+<li><a href="https://github.com/dakusui/jcunit/blob/0.5.x/src/test/java/com/github/dakusui/jcunit/examples/testgen/TestGen.java">TestGen.java</a></li>
 </ul>
+
+<h3>
+<a id="without-junit" class="anchor" href="#without-junit" aria-hidden="true"><span class="octicon octicon-link"></span></a>Without JUnit</h3>
+
+<p>Apparently people sometimes want to use JCUnit not as a JUnit runner but as a pairwise (t-wise)
+test generator library.</p>
+
+<p>You can do it by doing this.</p>
+
+<div class="highlight highlight-source-java"><pre>
+      <span class="pl-k">public</span> <span class="pl-k">void</span> moreFluentStyleRun(<span class="pl-smi">PrintStream</span> ps) {
+        <span class="pl-smi">TupleGenerator</span> tg <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">TupleGenerator</span>.<span class="pl-smi">Builder</span>()<span class="pl-k">.</span>setFactors(
+            <span class="pl-k">new</span> <span class="pl-smi">Factors</span>.<span class="pl-smi">Builder</span>()
+                .add(<span class="pl-s"><span class="pl-pds">"</span>OS<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Windows<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Linux<span class="pl-pds">"</span></span>)
+                .add(<span class="pl-s"><span class="pl-pds">"</span>Browser<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Chrome<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Firefox<span class="pl-pds">"</span></span>)
+                .add(<span class="pl-s"><span class="pl-pds">"</span>Bits<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>32<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>64<span class="pl-pds">"</span></span>)<span class="pl-k">.</span>build()
+        )<span class="pl-k">.</span>build();
+        <span class="pl-k">for</span> (<span class="pl-smi">Tuple</span> each <span class="pl-k">:</span> tg) {
+          ps<span class="pl-k">.</span>println(each);
+        }
+      }</pre></div>
+
+<p>This should print out something like following.</p>
+
+<pre><code>
+    {Bits=32, Browser=Chrome, OS=Windows}
+    {Bits=64, Browser=Firefox, OS=Windows}
+    {Bits=64, Browser=Chrome, OS=Linux}
+    {Bits=32, Browser=Firefox, OS=Linux}
+</code></pre>
+
+<p>You can refer to a following example for this use case. </p>
+
+<ul>
+<li><a href="https://github.com/dakusui/jcunit/blob/0.5.x/src/test/java/com/github/dakusui/jcunit/examples/testgen/TestGenWithoutJUnit.java">TestGenWithoutJUnit.java</a></li>
+</ul>
+
+<p>Above mentioned code doesn't use JUnit's functionality at all and from JCUnit 0.5.4 on, 
+dependency on JUnit is marked optional in pom.xml of JCUnit. Therefore it should even 
+work without having JUnit library in your classpath at all.
+But if you are using earlier version of JCUnit, or somehow unwanted version of JUnit 
+is picked up, probably you need to 'exclude' the dependency. 
+please refer to <a href="https://maven.apache.org/guides/introduction/introduction-to-optional-and-excludes-dependencies.html">Apache Maven Project page</a></p>
 
 <h2>
 <a id="tip-9-modeling-a-finite-state-machine" class="anchor" href="#tip-9-modeling-a-finite-state-machine" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tip 9: Modeling a finite state machine</h2>
@@ -483,6 +540,17 @@ discussed in a separate document. Please refer to <a href="FSM-README.md">FSM/JC
 </ul>
 
 <h1>
+<a id="refefences" class="anchor" href="#refefences" aria-hidden="true"><span class="octicon octicon-link"></span></a>Refefences</h1>
+
+<ul>
+<li>[1] "Pairwise Testing", A website for pairwise technique</li>
+<li>[2] "PICT", A most known powerful pairwise tool by microsoft, which is now open source.
+[1] <a href="http://www.pairwise.org/">http://www.pairwise.org/</a>
+[2] <a href="https://github.com/microsoft/pict">https://github.com/microsoft/pict</a>
+</li>
+</ul>
+
+<h1>
 <a id="copyright-and-license" class="anchor" href="#copyright-and-license" aria-hidden="true"><span class="octicon octicon-link"></span></a>Copyright and license</h1>
 
 <p>Copyright 2013 Hiroshi Ukai.</p>
@@ -499,12 +567,9 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.</p>
       </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/dakusui">dakusui</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+
     </div>
-    <script src="javascripts/scale.fix.js"></script>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     
   </body>
 </html>
