@@ -4,40 +4,30 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>JCUnit by dakusui</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-dark.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
   <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/dakusui/jcunit">View On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/dakusui/jcunit/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/dakusui/jcunit/tarball/master">TAR</a></li>
-          <li class="title">DOWNLOADS</li>
-        </nav>
-      </div><!-- end header -->
-
     <div class="wrapper">
+      <header>
+        <h1>JCUnit</h1>
+        <p>A combinatorial testing framework on top of JUnit + Model-based testing. It makes your testing life a lot easier.</p>
 
+        <p class="view"><a href="https://github.com/dakusui/jcunit">View the Project on GitHub <small>dakusui/jcunit</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/dakusui/jcunit/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/dakusui/jcunit/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/dakusui/jcunit">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
       <section>
-        <div id="title">
-          <h1>JCUnit</h1>
-          <p>A combinatorial testing framework on top of JUnit + Model-based testing. It makes your testing life a lot easier.</p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/dakusui">dakusui</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
-        </div>
-
         <h1>
 <a id="jcunit" class="anchor" href="#jcunit" aria-hidden="true"><span class="octicon octicon-link"></span></a>JCUnit</h1>
 
@@ -53,6 +43,122 @@ About what combinatorial testings are, articles below are useful as a starting p
 <p>Very roughly to say, it's a technique to generate test cases with good 'coverage' 
 without making the number of test cases explode.</p>
 
+<p>Suppose that we have a software product that can be run on various platforms, under
+various application/web servers, with various DBMSs, etc. Probably, we can describe
+this situation as following.</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">Factor</th>
+<th align="left">Levels</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Platform</td>
+<td align="left">Linux, MacOSX, Windows</td>
+</tr>
+<tr>
+<td align="center">Java</td>
+<td align="left">JavaSE7, JavaSE8, OpenJDK7</td>
+</tr>
+<tr>
+<td align="center">Browser</td>
+<td align="left">Safari, Firefox, Chrome, InternetExplorer</td>
+</tr>
+<tr>
+<td align="center">DBMS</td>
+<td align="left">PostgreSQL, MySQL, SQLServer</td>
+</tr>
+<tr>
+<td align="center">Application server</td>
+<td align="left">Jetty, Tomcat</td>
+</tr>
+<tr>
+<td align="center">Web server</td>
+<td align="left">Apache HTTP server, IIS</td>
+</tr>
+</tbody>
+</table>
+
+<p>In total 3 * 3 * 4 * 3 * 2 * 2 = 432 test cases will be necessary to cover all the
+possible patterns.
+In this example, we only have 6 paramters (factors) in this domain, fortunately.
+But in real life, engineers don't get surprised even if there are more than one
+hundred parameters in a system. In other words, the number of all the possible 
+patterns explodes very quickly.</p>
+
+<p>But if we give up to cover all the possible patterns, but try to cover all the possible
+value pairs, things might be a bit different.
+That is, if we ensure to cover "Linux + Jetty", "Jetty + Java SE8", etc (all the value pairs),
+ but we do not try to cover "Linux + Jetty + Java SE8", we can reduce the size of
+ test suite dramatically.</p>
+
+<p>If you run this example,</p>
+
+<ul>
+<li><a href="/src/main/java/com/github/dakusui/jcunit/examples/confg/ConfigExample.java">ConfigExample</a></li>
+</ul>
+
+<p>you will notice that only 17 test cases can cover all possible value pairs.
+17 vs 432 sounds impressive, isn't it?</p>
+
+<h1>
+<a id="changes" class="anchor" href="#changes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Changes</h1>
+
+<p>About changes from previous versions, refer to <a href="RELEASENOTES.md">release notes</a>.</p>
+
+<h1>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h1>
+
+<p>JCUnit requires Java SE6 or later. 
+It is tested using <code>JUnit</code> (4.12) and <code>mockito-core</code> (1.9.5).</p>
+
+<h2>
+<a id="maven-coordinate" class="anchor" href="#maven-coordinate" aria-hidden="true"><span class="octicon octicon-link"></span></a>Maven coordinate</h2>
+
+<p>First of all, you will need to link JCUnit to your project.
+Below is a pom.xml fragment to describe jcunit's dependency.
+Please add it to your project's pom.xml </p>
+
+<div class="highlight highlight-text-xml"><pre>
+    &lt;<span class="pl-ent">dependency</span>&gt;
+      &lt;<span class="pl-ent">groupId</span>&gt;com.github.dakusui&lt;/<span class="pl-ent">groupId</span>&gt;
+      &lt;<span class="pl-ent">artifactId</span>&gt;jcunit&lt;/<span class="pl-ent">artifactId</span>&gt;
+      &lt;<span class="pl-ent">version</span>&gt;0.5.5&lt;/<span class="pl-ent">version</span>&gt;
+    &lt;/<span class="pl-ent">dependency</span>&gt;
+</pre></div>
+
+<h2>
+<a id="building-from-source" class="anchor" href="#building-from-source" aria-hidden="true"><span class="octicon octicon-link"></span></a>Building from source</h2>
+
+<p>You can build <code>combinatoradix</code> by getting the source code from github.</p>
+
+<pre><code>
+    $ git clone https://github.com/dakusui/jcunit.git
+    ...
+    $ cd combinatoradix
+    ...
+    $ mvn install
+    ...
+    $
+</code></pre>
+
+<p>You will find a compiled jar file <code>jcunit-{X.Y.Z}-SNAPSHOT.jar</code> under
+ <code>target/</code> directory. Place the file somewhere handy and include it in your classpath.</p>
+
+<p>To use the jar file created by this procedure in a maven based project, include 
+following dependency in your pom.xml</p>
+
+<div class="highlight highlight-text-xml"><pre>
+    &lt;<span class="pl-ent">dependency</span>&gt;
+      &lt;<span class="pl-ent">groupId</span>&gt;com.github.dakusui&lt;/<span class="pl-ent">groupId</span>&gt;
+      &lt;<span class="pl-ent">artifactId</span>&gt;jcunit&lt;/<span class="pl-ent">artifactId</span>&gt;
+      &lt;<span class="pl-ent">version</span>&gt;0.5.6-SNAPSHOT&lt;/<span class="pl-ent">version</span>&gt;
+    &lt;/<span class="pl-ent">dependency</span>&gt;
+</pre></div>
+
 <h1>
 <a id="first-test-with-jcunit" class="anchor" href="#first-test-with-jcunit" aria-hidden="true"><span class="octicon octicon-link"></span></a>First test with JCUnit</h1>
 
@@ -63,7 +169,8 @@ automatically generate test cases based on '@FactorField' annotations.</p>
 <h2>
 <a id="quadraticequationsolver-program-example" class="anchor" href="#quadraticequationsolver-program-example" aria-hidden="true"><span class="octicon octicon-link"></span></a>QuadraticEquationSolver program example</h2>
 
-<p>To understand JCUnit's functions, let's test 'QuadraticEquationSolver.java' program, which solves 'quadratic equations' using a formula.
+<p>To understand JCUnit's functions, let's test 'QuadraticEquationSolver.java' program,
+ which solves 'quadratic equations' using a formula.
 The program contains some intentional bugs and unclear specifications (or behaviors).
 The formula it uses is,</p>
 
@@ -78,25 +185,11 @@ The formula it uses is,</p>
 </pre></div>
 
 <h3>
-<a id="maven-coordinate" class="anchor" href="#maven-coordinate" aria-hidden="true"><span class="octicon octicon-link"></span></a>Maven coordinate</h3>
-
-<p>First of all, you will need to link JCUnit to your project.
-Below is a pom.xml fragment to describe jcunit's dependency.
-Please add it to your project's pom.xml </p>
-
-<div class="highlight highlight-text-xml"><pre>
-    &lt;<span class="pl-ent">dependency</span>&gt;
-      &lt;<span class="pl-ent">groupId</span>&gt;com.github.dakusui&lt;/<span class="pl-ent">groupId</span>&gt;
-      &lt;<span class="pl-ent">artifactId</span>&gt;jcunit&lt;/<span class="pl-ent">artifactId</span>&gt;
-      &lt;<span class="pl-ent">version</span>&gt;0.5.5&lt;/<span class="pl-ent">version</span>&gt;
-    &lt;/<span class="pl-ent">dependency</span>&gt;
-</pre></div>
-
-<h3>
 <a id="quadraticequationsolverjava-main-class-sut" class="anchor" href="#quadraticequationsolverjava-main-class-sut" aria-hidden="true"><span class="octicon octicon-link"></span></a>QuadraticEquationSolver.java (Main class, SUT)</h3>
 
 <p>'QuadraticEquationSolver' is the SUT (Software under test) in this example.
-The class provides a function to solve a quadratic equation using a quadratic formula and returns the solutions.</p>
+The class provides a function to solve a quadratic equation using a quadratic
+formula and returns the solutions.</p>
 
 <div class="highlight highlight-source-java"><pre>
     <span class="pl-c">//QuadraticEquationSolver.java</span>
@@ -178,376 +271,91 @@ and prevent overflows from happening.</li>
 By default, it generates the test cases by using 'all-pairs' technique.</p>
 
 <h1>
-<a id="tips" class="anchor" href="#tips" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tips</h1>
+<a id="features-tips-and-examples" class="anchor" href="#features-tips-and-examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features, tips, and examples</h1>
 
 <h2>
-<a id="tip-1-customizing-domains-of-factorfield-annotated-fields-1" class="anchor" href="#tip-1-customizing-domains-of-factorfield-annotated-fields-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tip 1: Customizing domains of @FactorField annotated fields (1)</h2>
+<a id="fsm-support-feature" class="anchor" href="#fsm-support-feature" aria-hidden="true"><span class="octicon octicon-link"></span></a>FSM support feature</h2>
 
-<p>JCUnit creates test cases by assigning a value, picked up from a hardcoded set of values defined for each type, to each '@FactorField' annotated field in a test class.
-For example, if a member is annotated with '@FactorField' and its type is int, JCUnit will pick up a value from a set
-{1, 0, -1, 100, -100, Integer.MAX_VALUE, Integer.MIN_VALUE}.
-But this set is just a 'default' and you can customize it by using (overriding) an 'xyzLevels' attribute of a '@FactorField' annotation, 
-where 'xyz' is a primitive types.</p>
+<p>FSM support of JCUnit (FSM/JCUnit) is a feature that allows you to model your 
+software as a finite state machine, and JCUnit generates and executes a test suite 
+for it.
+The test suite generation can be done by JCUnit's tuple generators.</p>
 
-<div class="highlight highlight-source-java"><pre>
-    @FactorField(intLevels <span class="pl-k">=</span> { <span class="pl-c1">0</span>, <span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-k">-</span><span class="pl-c1">1</span>, <span class="pl-k">-</span><span class="pl-c1">2</span>, <span class="pl-c1">100</span>, <span class="pl-k">-</span><span class="pl-c1">100</span>, <span class="pl-c1">10000</span>, <span class="pl-k">-</span><span class="pl-c1">10000</span> })
-    <span class="pl-k">public</span> <span class="pl-k">int</span> a;
-</pre></div>
-
-<p>Above is an example of the use the 'intLevels' attribute.</p>
+<p>This is really fun feature. Please try. Documentation is found <a href="/src/site/markdown/FSM.md">here</a>.</p>
 
 <h2>
-<a id="tip-2-customizing-domains-of-factorfield-annotated-fields-2" class="anchor" href="#tip-2-customizing-domains-of-factorfield-annotated-fields-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tip 2: Customizing domains of @FactorField annotated fields (2)</h2>
-
-<p>By using 'levelsProvider' parameter of '@FactorField' and creating a static method whose name is the same as the annotated field's name,
-you can customize the domain of a certain field in a much more flexible way.</p>
-
-<p>The method mustn't have any parameters and its return value must be an array of the field's type.</p>
-
-<p>Below is the example for that sort of function.</p>
-
-<div class="highlight highlight-source-java"><pre>
-    @FactorField(levelsProvider <span class="pl-k">=</span> <span class="pl-smi">MethodLevelsProvider</span><span class="pl-k">.</span>class)
-    <span class="pl-k">public</span> <span class="pl-k">int</span> a;
-
-    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">int</span>[] a() {
-        <span class="pl-k">return</span> <span class="pl-k">new</span> <span class="pl-smi">int</span>[]{<span class="pl-c1">0</span>, <span class="pl-c1">1</span>, <span class="pl-c1">2</span>};
-    }
-</pre></div>
-
-<p>The values returned by the method will be picked up and assigned to the field 'a' by the framework one by one.
-And you need to use 'levelsProvider' attribute when you are going to use non-primitive, non-enum, nor non-string values as levels for a factor.</p>
-
-<h2>
-<a id="tip-3-customizing-the-strength-of-t-wise-testing" class="anchor" href="#tip-3-customizing-the-strength-of-t-wise-testing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tip 3: Customizing the strength of t-wise testing.</h2>
-
-<p>Add parameter 'generator = <a href="https://github.com/Generator" class="user-mention">@Generator</a>(IPO2TestCaseGenerator.class)' explicitly to the '@TestCaseGeneration',
-annotation for 'QuadraticEquationSolverTest1.java' and set the first parameter, which represents a 'strength'. </p>
-
-<div class="highlight highlight-source-java"><pre>
-    @RunWith(<span class="pl-smi">JCUnit</span><span class="pl-k">.</span>class)
-    @TestCaseGeneration(
-            generator <span class="pl-k">=</span> @Generator(
-                    value <span class="pl-k">=</span> <span class="pl-smi">IPO2TestCaseGenerator</span><span class="pl-k">.</span>class,
-                    params <span class="pl-k">=</span> { @Param(<span class="pl-s"><span class="pl-pds">"</span>3<span class="pl-pds">"</span></span>) }))
-    <span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">QuadraticEquationSolverTest1</span> {</pre></div>
-
-<p>In this example, the line</p>
-
-<div class="highlight highlight-source-java"><pre>
-    params <span class="pl-k">=</span> { @Param(<span class="pl-s"><span class="pl-pds">"</span>3<span class="pl-pds">"</span></span>) }))
-</pre></div>
-
-<p>configures the strength of the t-wise tests performed by JCUnit.</p>
-
-<p>And '<a href="https://github.com/Param" class="user-mention">@Param</a>' annotation is a standard way to give a parameter to JCUnit plugins (excepting '@FactorField', which requires more conciseness). 
-It takes a string array as its 'value'(and remember that you can omit curly braces if there is only one element in the array). 
-JCUnit internally translates those values accordingly.</p>
-
-<h2>
-<a id="tip-4-defining-constraints" class="anchor" href="#tip-4-defining-constraints" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tip 4: Defining constraints.</h2>
-
-<p>In testings, we sometimes want to exclude a certain pair (, a triple, or a tuple) from the test cases since there are constraints in the test domain.</p>
-
-<p>For example, suppose there is a software system which has 100 parameters and doesn't accept any larger value than 1,000 for parameter x1.
-And it validates all the parameters and immediately exits if any one of them is invalid at start up.</p>
-
-<p>Combinatorial testing is an effort to cover pairs (or tuples) with test cases as less as possible to find bugs which cannot be found by testing any single input parameter.
-If a test case, which can possibly contain a lot of meaningful pairs, is revoked by a single parameter, it means the coverage of the test suite will be damaged. 
-Below are the links that would be helpful for understanding how much constraint managements are important in combinatorial testing area. </p>
-
-<ul>
-<li><a href="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?reload=true&amp;arnumber=6221818">Combinatorial test cases with constraints in software systems</a></li>
-<li><a href="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?reload=true&amp;arnumber=6569736">An Efficient Algorithm for Constraint Handling in Combinatorial Test Generation</a></li>
-</ul>
-
-<p>(Of course we want to test the behaviors on such illegal inputs. It will be discussed in the next tip.) </p>
-
-<p>For this purpose, JCUnit has a mechanism called 'constraints manager'.
-To use a constraint manager, you can do below</p>
-
-<div class="highlight highlight-source-java"><pre>
-    @RunWith(<span class="pl-smi">JCUnit</span><span class="pl-k">.</span>class)
-    @TestCaseGeneration(
-        constraint <span class="pl-k">=</span> @Constraint(
-            value <span class="pl-k">=</span> <span class="pl-smi">QuadraticEquationSolverTestX</span><span class="pl-k">.</span><span class="pl-smi">CM</span><span class="pl-k">.</span>class ))
-    <span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">QuadraticEquationSolverTestX</span> {
-    <span class="pl-c1">...</span></pre></div>
-
-<p>'CM' is a name of inner class which implements 'ConstraintManager' interface and checks if a given tuple violates any constraints in the test domain or not.
-Unfortunately you cannot use anonymous classes because a value passed to an annotation as its parameter must be a constant and Java's anonymous classes cannot be one.</p>
-
-<p>If you want to exclude test cases that violate a discriminant of the quadratic equation formula and also make sure the given equation is a quadratic, 
-not a linear, the definition of 'CM' would be</p>
-
-<div class="highlight highlight-source-java"><pre>
-    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">class</span> <span class="pl-en">CM</span> <span class="pl-k">extends</span> <span class="pl-e">ConstraintManagerBase</span> {
-        <span class="pl-k">@Override</span>
-        <span class="pl-k">public</span> <span class="pl-k">boolean</span> <span class="pl-en">check</span>(<span class="pl-smi">Tuple</span> <span class="pl-v">tuple</span>) <span class="pl-k">throws</span> <span class="pl-smi">JCUnitSymbolException</span> {
-          <span class="pl-k">if</span> (<span class="pl-k">!</span>tuple<span class="pl-k">.</span>containsKey(<span class="pl-s"><span class="pl-pds">"</span>a<span class="pl-pds">"</span></span>) <span class="pl-k">||</span> <span class="pl-k">!</span>tuple<span class="pl-k">.</span>containsKey(<span class="pl-s"><span class="pl-pds">"</span>b<span class="pl-pds">"</span></span>) <span class="pl-k">||</span> <span class="pl-k">!</span>tuple
-              .containsKey(<span class="pl-s"><span class="pl-pds">"</span>c<span class="pl-pds">"</span></span>)) {
-            <span class="pl-k">throw</span> <span class="pl-k">new</span> <span class="pl-smi">UndefinedSymbol</span>();
-          }
-          <span class="pl-k">int</span> a <span class="pl-k">=</span> (<span class="pl-smi">Integer</span>) tuple<span class="pl-k">.</span>get(<span class="pl-s"><span class="pl-pds">"</span>a<span class="pl-pds">"</span></span>);
-          <span class="pl-k">int</span> b <span class="pl-k">=</span> (<span class="pl-smi">Integer</span>) tuple<span class="pl-k">.</span>get(<span class="pl-s"><span class="pl-pds">"</span>b<span class="pl-pds">"</span></span>);
-          <span class="pl-k">int</span> c <span class="pl-k">=</span> (<span class="pl-smi">Integer</span>) tuple<span class="pl-k">.</span>get(<span class="pl-s"><span class="pl-pds">"</span>c<span class="pl-pds">"</span></span>);
-          <span class="pl-k">return</span> a <span class="pl-k">!=</span> <span class="pl-c1">0</span> <span class="pl-k">&amp;&amp;</span> b <span class="pl-k">*</span> b <span class="pl-k">-</span> <span class="pl-c1">4</span> <span class="pl-k">*</span> c <span class="pl-k">*</span> a <span class="pl-k">&gt;=</span> <span class="pl-c1">0</span>;
-        }
-    }</pre></div>
-
-<p>'ConstraintManagerBase' is a helper class that makes it easy to implement a ConstraintManager.
-All that you need is overriding 'boolean check(Tuple)' method.
-In case the passed tuple violates your constraints, make it return false.
-A test case is passed as a tuple, you need to use 'get' method of it to retrieve the value (level) of it.</p>
-
-<p>"a", "b", or "c" are the names of the fields annotated with '@FactorField'. JCUnit accesses them using 'reflection' techniques of Java.
-JCUnit avoids using tuples for which check method of the specified constraint manager returns 'false'.</p>
-
-<h2>
-<a id="tip-5-writing-test-cases-for-error-handling-negative-tests" class="anchor" href="#tip-5-writing-test-cases-for-error-handling-negative-tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tip 5: Writing test cases for error handling (negative tests)</h2>
-
-<p>That being said, handling errors appropriately is another concern.
-A program must complain of invalid parameters in an appropriate way.
-And this characteristic is another aspect of software under test to be tested.</p>
-
-<p>You can do it by overriding 'getViolations' method of a constraint manager and switching the verification procedures based on a test's 'sub-identifier'.</p>
-
-<p>First, by overriding method, return test cases that explicitly violate the constraint represented by the constraint manager class itself.</p>
-
-<div class="highlight highlight-source-java"><pre>
-    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">class</span> <span class="pl-en">CM</span> <span class="pl-k">extends</span> <span class="pl-e">ConstraintManagerBase</span> {
-        <span class="pl-k">@Override</span>
-        <span class="pl-k">public</span> <span class="pl-k">boolean</span> <span class="pl-en">check</span>(<span class="pl-smi">Tuple</span> <span class="pl-v">tuple</span>) <span class="pl-k">throws</span> <span class="pl-smi">JCUnitSymbolException</span> {
-            <span class="pl-c1">...</span>
-        }
-
-        <span class="pl-k">@Override</span>
-        <span class="pl-k">public</span> <span class="pl-k">List&lt;<span class="pl-smi">Tuple</span>&gt;</span> <span class="pl-en">getViolations</span>() {
-            <span class="pl-k">List&lt;<span class="pl-smi">Tuple</span>&gt;</span> ret <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-k">LinkedList&lt;<span class="pl-smi">Tuple</span>&gt;</span>();
-            ret<span class="pl-k">.</span>add(createTestCase(<span class="pl-s"><span class="pl-pds">"</span>a=0<span class="pl-pds">"</span></span>, createTestCase(<span class="pl-c1">0</span>, <span class="pl-c1">1</span>, <span class="pl-c1">1</span>)));
-            ret<span class="pl-k">.</span>add(createTestCase(<span class="pl-s"><span class="pl-pds">"</span>b*b-4ca&lt;0<span class="pl-pds">"</span></span>, createTestCase(<span class="pl-c1">100</span>, <span class="pl-c1">1</span>, <span class="pl-c1">100</span>)));
-            ret<span class="pl-k">.</span>add(createTestCase(<span class="pl-s"><span class="pl-pds">"</span>nonsense 1=0<span class="pl-pds">"</span></span>, createTestCase(<span class="pl-c1">0</span>, <span class="pl-c1">0</span>, <span class="pl-c1">1</span>)));
-            <span class="pl-k">return</span> ret;
-        }
-
-        <span class="pl-k">private</span> <span class="pl-smi">Tuple</span> <span class="pl-en">createTestCase</span>(<span class="pl-k">int</span> <span class="pl-v">a</span>, <span class="pl-k">int</span> <span class="pl-v">b</span>, <span class="pl-k">int</span> <span class="pl-v">c</span>) {
-            <span class="pl-k">return</span> <span class="pl-k">new</span> <span class="pl-smi">Tuple</span>.<span class="pl-smi">Builder</span>()<span class="pl-k">.</span>put(<span class="pl-s"><span class="pl-pds">"</span>a<span class="pl-pds">"</span></span>, a)<span class="pl-k">.</span>put(<span class="pl-s"><span class="pl-pds">"</span>b<span class="pl-pds">"</span></span>, b)<span class="pl-k">.</span>put(<span class="pl-s"><span class="pl-pds">"</span>c<span class="pl-pds">"</span></span>, c)<span class="pl-k">.</span>build();
-        }
-    }</pre></div>
-
-<p>Now you enhance your test case so that it verifies the software under test behaves correctly in case invalid parameters are given.
-Let's assume that the SUT should return null if one of the parameters 'a', 'b', or 'c' is not valid. </p>
-
-<div class="highlight highlight-source-java"><pre>
-    @<span class="pl-smi">Test</span>
-    <span class="pl-k">public</span> <span class="pl-k">void</span> test() {
-        <span class="pl-k">if</span> (<span class="pl-s"><span class="pl-pds">"</span>a=0<span class="pl-pds">"</span></span><span class="pl-k">.</span>equals(desc<span class="pl-k">.</span>getSubIdentifier())) {
-          assertEquals(<span class="pl-c1">null</span>, s);
-        } <span class="pl-k">else</span> <span class="pl-k">if</span> (<span class="pl-s"><span class="pl-pds">"</span>b*b-4ca&lt;0<span class="pl-pds">"</span></span><span class="pl-k">.</span>equals(desc<span class="pl-k">.</span>getSubIdentifier())) {
-          assertEquals(<span class="pl-c1">null</span>, s);
-        } <span class="pl-k">else</span> <span class="pl-k">if</span> (<span class="pl-s"><span class="pl-pds">"</span>nonsense 1=0<span class="pl-pds">"</span></span><span class="pl-k">.</span>equals(desc<span class="pl-k">.</span>getSubIdentifier())) {
-          assertEquals(<span class="pl-c1">null</span>, s);
-        } <span class="pl-k">else</span> {
-            <span class="pl-smi">QuadraticEquationSolver</span><span class="pl-k">.</span><span class="pl-smi">Solutions</span> s <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">QuadraticEquationSolver</span>(a, b,
-                    c)<span class="pl-k">.</span>solve();
-            assertEquals(<span class="pl-c1">0.0</span>, a <span class="pl-k">*</span> s<span class="pl-k">.</span>x1 <span class="pl-k">*</span> s<span class="pl-k">.</span>x1 <span class="pl-k">+</span> b <span class="pl-k">*</span> s<span class="pl-k">.</span>x1 <span class="pl-k">+</span> c);
-            assertEquals(<span class="pl-c1">0.0</span>, a <span class="pl-k">*</span> s<span class="pl-k">.</span>x2 <span class="pl-k">*</span> s<span class="pl-k">.</span>x2 <span class="pl-k">+</span> b <span class="pl-k">*</span> s<span class="pl-k">.</span>x2 <span class="pl-k">+</span> c);
-        }
-    }</pre></div>
-
-<h2>
-<a id="tip-6-filtering-test-cases" class="anchor" href="#tip-6-filtering-test-cases" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tip 6: Filtering test cases</h2>
-
-<p>From time to time, you want to disable/enable test cases in order to concentrate some among all of them.
-'@Precondition' notation is your friend in this use case.</p>
-
-<p>You can define a method returning boolean and with no parameter like below,</p>
-
-<div class="highlight highlight-source-java"><pre>
-    @FactorField(intLevels <span class="pl-k">=</span> { <span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span> })
-    <span class="pl-k">public</span> <span class="pl-k">int</span> a;
-
-    <span class="pl-c1">...</span>
-
-    @<span class="pl-smi">Precondition</span>
-    <span class="pl-k">public</span> <span class="pl-k">boolean</span> filterMethod() {
-      <span class="pl-k">return</span> <span class="pl-v">this</span><span class="pl-k">.</span>a <span class="pl-k">==</span> <span class="pl-c1">3</span>;
-    }</pre></div>
-
-<p>By defining such a method, you can disable test cases which result in the method's value false.
-In the example above, test cases whose factor 'a' is non 3 will no longer be executed.</p>
-
-<h2>
-<a id="tip-7-executing-test-methods-based-on-given-conditions" class="anchor" href="#tip-7-executing-test-methods-based-on-given-conditions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tip 7: Executing test methods based on given conditions</h2>
-
-<p>Also you sometimes want to let JCUnit decide a certain test method should be executed 
-based on some conditions automatically.</p>
-
-<p>E.g, in case you are testing quadratic equation solver program, if a discriminant of a given
- equation is negative, you want to check if error handling is working correct, 
- but probably you don't want to perform a test to check if the solutions are precise.
- Of course the value is non-negative, you don't need a test for error handling and 
- do need a test for solutions' precision.</p>
-
-<p>For this purpose, JCUnit provides another annotation '<a href="https://github.com/When" class="user-mention">@When</a>'.
-Below is an example to illustrate how this feature should be used.</p>
-
-<div class="highlight highlight-source-java"><pre>
-    @<span class="pl-smi">Test</span>
-    @When( <span class="pl-s"><span class="pl-pds">"</span>discriminantIsNonNegative<span class="pl-pds">"</span></span> )
-    <span class="pl-k">public</span> <span class="pl-k">void</span> thenSolveQuadraticEquation() {
-      <span class="pl-c1">...</span>
-    }</pre></div>
-
-<p>JCUnit will invoke a method whose name is 'discriminantIsNonNegative' and iff its
-return value is true, this test method will be executed.</p>
-
-<p>If the coefficients of an equation, i.e. factors of this test class, are a, b, and c, 
-the method would look like below. </p>
-
-<div class="highlight highlight-source-java"><pre>
-    <span class="pl-k">public</span> <span class="pl-k">boolean</span> discriminantIsNonNegative() {
-        <span class="pl-k">return</span> b <span class="pl-k">*</span> b <span class="pl-k">-</span> <span class="pl-c1">4</span> <span class="pl-k">*</span> c <span class="pl-k">*</span> a <span class="pl-k">&gt;=</span> <span class="pl-c1">0</span>;
-    }</pre></div>
-
-<p>If you want to add another condition you can also do below. </p>
-
-<div class="highlight highlight-source-java"><pre>
-    @<span class="pl-smi">Test</span>
-    @When( <span class="pl-s"><span class="pl-pds">"</span>aIsNonZero&amp;&amp;discriminantIsNonNegative<span class="pl-pds">"</span></span> )
-    <span class="pl-k">public</span> <span class="pl-k">void</span> thenSolveQuadraticEquation() {
-        <span class="pl-c1">...</span>
-    }</pre></div>
-
-<p>In this example, you are making sure that a is not zero AND the discriminant is non-negative
-before this method is executed.</p>
-
-<p>Also you can do</p>
-
-<div class="highlight highlight-source-java"><pre>
-    @<span class="pl-smi">Test</span>
-    @When( <span class="pl-s"><span class="pl-pds">"</span>!discriminantIsNonNegative<span class="pl-pds">"</span></span> )
-    <span class="pl-k">public</span> <span class="pl-k">void</span> thenAnErrorWillBeReported() {
-        <span class="pl-c1">....</span>
-    }</pre></div>
-
-<p>And, to express 'OR', do</p>
-
-<div class="highlight highlight-source-java"><pre>
-    @<span class="pl-smi">Test</span>
-    @When({<span class="pl-s"><span class="pl-pds">"</span>!discriminantIsNonNegative<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>!aIsNonZero<span class="pl-pds">"</span></span>})
-    <span class="pl-k">public</span> <span class="pl-k">void</span> thenAnErrorWillBeReported() {
-        <span class="pl-c1">....</span>
-    }</pre></div>
-
-<p>Unfortunately you cannot use parentheses as of now.</p>
-
-<h2>
-<a id="tip-8-as-a-pairwise-test-generator" class="anchor" href="#tip-8-as-a-pairwise-test-generator" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tip 8: As a pairwise test generator</h2>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h2>
 
 <h3>
-<a id="under-junit-execution-recommended" class="anchor" href="#under-junit-execution-recommended" aria-hidden="true"><span class="octicon octicon-link"></span></a>Under JUnit execution (recommended)</h3>
-
-<p>By creating a test method below, which just prints test case definition, you can use JCUnit as a pairwise (or t-wise) test case generator.</p>
-
-<div class="highlight highlight-source-java"><pre>
-    @<span class="pl-smi">Test</span>
-    <span class="pl-k">public</span> <span class="pl-k">void</span> printTestCase() {
-        <span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(<span class="pl-smi">TupleUtils</span><span class="pl-k">.</span>toString(<span class="pl-smi">TestCaseUtils</span><span class="pl-k">.</span>toTestCase(<span class="pl-v">this</span>)));
-    }</pre></div>
-
-<p>The output will be a text whose lines are JSON objects and look like,</p>
-
-<pre><code>
-    {"browser":"IE","cpuClockInGHz":1.5,"edition":"Home Premium","gramInMB":128,"hddSizeInGB":100,"ramInGB":8}
-    {"browser":"IE","cpuClockInGHz":2.5,"edition":"Enterprise","gramInMB":256,"hddSizeInGB":30,"ramInGB":1}
-    {"browser":"IE","cpuClockInGHz":3.0,"edition":"Home Basic","gramInMB":512,"hddSizeInGB":50,"ramInGB":2}
-    {"browser":"Opera","cpuClockInGHz":1.5,"edition":"Ultimate","gramInMB":512,"hddSizeInGB":20,"ramInGB":1}
-    {"browser":"Opera","cpuClockInGHz":2.0,"edition":"Professional","gramInMB":256,"hddSizeInGB":50,"ramInGB":8}
-    ...
-</code></pre>
-
-<p>You can refer to a following example for this use case. </p>
+<a id="quadratic-equation-solver" class="anchor" href="#quadratic-equation-solver" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quadratic equation solver</h3>
 
 <ul>
-<li><a href="https://github.com/dakusui/jcunit/blob/0.5.x/src/test/java/com/github/dakusui/jcunit/examples/testgen/TestGen.java">TestGen.java</a></li>
+<li>
+<strong><a href="src/test/java/com/github/dakusui/jcunit/examples/quadraticequation/session1/QuadraticEquationSolverTest1.java">session1</a></strong>:
+Test initial version of quadratic equation solver.</li>
+<li>
+<strong><a href="src/test/java/com/github/dakusui/jcunit/examples/quadraticequation/session2/QuadraticEquationSolverTest2.java">session2</a></strong>:
+Exclude invalid test cases, whose <code>a</code> is 0. Because they are not quadratic equations.
+And allow tests to accept solutions which make the equation less than 0.01.</li>
+<li>
+<strong><a href="src/test/java/com/github/dakusui/jcunit/examples/quadraticequation/session3/QuadraticEquationSolverTest3.java">session3</a></strong>:
+Exclude tests cases whose absolute values of <code>a</code>, <code>b</code>, and <code>c</code> because they
+cause overflows.</li>
+<li>
+<strong><a href="src/test/java/com/github/dakusui/jcunit/examples/quadraticequation/session4/QuadraticEquationSolverTest4.java">session4</a></strong>:
+The SUT, <code>QuadraticEquationSolver</code> is now enhanced to throw <code>IllegalArgumentException</code> when solutions become imaginary.
+Tests need to be enhanced to handle this new behaviour, too. <code>@When</code> annotation will be introduced to switch test methods
+to be executed.</li>
+<li>
+<strong><a href="src/test/java/com/github/dakusui/jcunit/examples/quadraticequation/session5/QuadraticEquationSolverTest5.java">session5</a></strong>: How to implement a constraint manager (part - 1). </li>
+<li>
+<strong><a href="src/test/java/com/github/dakusui/jcunit/examples/quadraticequation/session6/QuadraticEquationSolverTest6.java">session6</a></strong>: How to implement a constraint manager (part - 2). Defining negative tests.</li>
 </ul>
 
 <h3>
-<a id="without-junit" class="anchor" href="#without-junit" aria-hidden="true"><span class="octicon octicon-link"></span></a>Without JUnit</h3>
+<a id="reusing-generated-test-suite" class="anchor" href="#reusing-generated-test-suite" aria-hidden="true"><span class="octicon octicon-link"></span></a>Reusing generated test suite</h3>
 
-<p>Apparently people sometimes want to use JCUnit not as a JUnit runner but as a pairwise (t-wise)
-test generator library.</p>
+<p>Generally speaking, pairwise test suite generation is a time consuming process.
+Probably a user wants to reuse a generated test suite later.</p>
 
-<p>You can do it by doing this.</p>
+<p>A mechanism JCUnit has for this purpose is <code>Recorder</code> and <code>Replayer</code>.
+An example for them is found <a href="src/test/java/com/github/dakusui/jcunit/examples/recorderreplayer/ReplayerExample.java">here</a>.</p>
 
-<div class="highlight highlight-source-java"><pre>
-      <span class="pl-k">public</span> <span class="pl-k">void</span> moreFluentStyleRun(<span class="pl-smi">PrintStream</span> ps) {
-        <span class="pl-smi">TupleGenerator</span> tg <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">TupleGenerator</span>.<span class="pl-smi">Builder</span>()<span class="pl-k">.</span>setFactors(
-            <span class="pl-k">new</span> <span class="pl-smi">Factors</span>.<span class="pl-smi">Builder</span>()
-                .add(<span class="pl-s"><span class="pl-pds">"</span>OS<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Windows<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Linux<span class="pl-pds">"</span></span>)
-                .add(<span class="pl-s"><span class="pl-pds">"</span>Browser<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Chrome<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Firefox<span class="pl-pds">"</span></span>)
-                .add(<span class="pl-s"><span class="pl-pds">"</span>Bits<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>32<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>64<span class="pl-pds">"</span></span>)<span class="pl-k">.</span>build()
-        )<span class="pl-k">.</span>build();
-        <span class="pl-k">for</span> (<span class="pl-smi">Tuple</span> each <span class="pl-k">:</span> tg) {
-          ps<span class="pl-k">.</span>println(each);
-        }
-      }</pre></div>
+<h3>
+<a id="nested-factors-grouping-factors" class="anchor" href="#nested-factors-grouping-factors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Nested factors (grouping factors)</h3>
 
-<p>This should print out something like following.</p>
-
-<pre><code>
-    {Bits=32, Browser=Chrome, OS=Windows}
-    {Bits=64, Browser=Firefox, OS=Windows}
-    {Bits=64, Browser=Chrome, OS=Linux}
-    {Bits=32, Browser=Firefox, OS=Linux}
-</code></pre>
-
-<p>You can refer to a following example for this use case. </p>
-
-<ul>
-<li><a href="https://github.com/dakusui/jcunit/blob/0.5.x/src/test/java/com/github/dakusui/jcunit/examples/testgen/TestGenWithoutJUnit.java">TestGenWithoutJUnit.java</a></li>
-</ul>
-
-<p>Above mentioned code doesn't use JUnit's functionality at all and from JCUnit 0.5.4 on, 
-dependency on JUnit is marked optional in pom.xml of JCUnit. Therefore it should even 
-work without having JUnit library in your classpath at all.
-But if you are using earlier version of JCUnit, or somehow unwanted version of JUnit 
-is picked up, probably you need to 'exclude' the dependency. 
-please refer to <a href="https://maven.apache.org/guides/introduction/introduction-to-optional-and-excludes-dependencies.html">Apache Maven Project page</a></p>
+<p>Like <a href="https://github.com/microsoft/pict">PICT</a>, JCUnit is able to group factors and treat them as if one factor.
+An example for this feature is found <a href="src/test/java/com/github/dakusui/jcunit/examples/calc/NestedFieldExample.java">here</a>.</p>
 
 <h2>
-<a id="tip-9-modeling-a-finite-state-machine" class="anchor" href="#tip-9-modeling-a-finite-state-machine" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tip 9: Modeling a finite state machine</h2>
+<a id="tips" class="anchor" href="#tips" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tips</h2>
 
-<p>Probably your SUT might have a specification where users need to follow a certain 
-manner like "1. You will initialize the object, 2. Now you can do A or B, 3.
-If you did A in step 2, you can do A1, A2, or B1. Otherwise you can only do B1.",
-and A, B, etc can take a few parameters respectively.</p>
-
-<p>You might be able to write a constraint manager to describe this sort of specification
- but it would be very complicated, boring, and error prone task.</p>
-
-<p>JCUnit has a feature called "FSM support" and the detail and how to use it are 
-discussed in a separate document. Please refer to <a href="FSM-README.md">FSM/JCUnit</a> </p>
-
-<h1>
-<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h1>
-
-<p>For more examples, see</p>
+<p>When you learn pairwise technique, probably you get excited that "oh I can balance a 
+size of test cases and coverage by this! Nice! Its idea is intuitive and looks 
+straightforward. A test case is essentially attibutes and their values. Nice!"
+But when you start testing your software using the technique, you will come 
+across a lot of questions.</p>
 
 <ul>
-<li><a href="https://github.com/dakusui/jcunit/tree/develop/src/test/java/com/github/dakusui/jcunit/examples/quadraticequation">Examples</a></li>
+<li>"A test case that uses Internet Explorer on Linux platform doesn't make sense. But this test case contributes to cover Linux platform + Apache, Apache + PostgreSQL, etc, at the same time.</li>
+<li>"If expectations for test cases can be different depending on a test case's values, how can I define test methods?"</li>
+<li>etc.</li>
 </ul>
+
+<p>Best practices for problems you encounter might be found <a href="/src/site/markdown/TIPS.md">here</a>.</p>
+
+<p>Also how you can customize how test cases should be generated, e.g., how to configure 
+possible values for a certain parameter, in case you want to use non-primitive values 
+what you can do, etc, can be found.</p>
 
 <h1>
 <a id="refefences" class="anchor" href="#refefences" aria-hidden="true"><span class="octicon octicon-link"></span></a>Refefences</h1>
 
 <ul>
-<li>[1] "Pairwise Testing", A website for pairwise technique</li>
-<li>[2] "PICT", A most known powerful pairwise tool by microsoft, which is now open source.
-[1] <a href="http://www.pairwise.org/">http://www.pairwise.org/</a>
-[2] <a href="https://github.com/microsoft/pict">https://github.com/microsoft/pict</a>
-</li>
+<li>
+<a href="http://www.pairwise.org/">1</a> "Pairwise Testing", A website for pairwise technique</li>
+<li>
+<a href="https://github.com/microsoft/pict">2</a> "PICT", A most known powerful pairwise tool by microsoft, which is now open source.</li>
 </ul>
 
 <h1>
@@ -567,9 +375,12 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.</p>
       </section>
-
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/dakusui">dakusui</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script src="javascripts/scale.fix.js"></script>
     
   </body>
 </html>
