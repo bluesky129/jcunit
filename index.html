@@ -4,32 +4,42 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>JCUnit by dakusui</title>
-
     <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-light.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="stylesheets/github-dark.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
     <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
   </head>
   <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/dakusui/jcunit">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/dakusui/jcunit/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/dakusui/jcunit/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
     <div class="wrapper">
-      <header>
-        <h1>JCUnit</h1>
-        <p>A combinatorial testing framework on top of JUnit + Model-based testing. It makes your testing life a lot easier.</p>
 
-        <p class="view"><a href="https://github.com/dakusui/jcunit">View the Project on GitHub <small>dakusui/jcunit</small></a></p>
-
-
-        <ul>
-          <li><a href="https://github.com/dakusui/jcunit/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/dakusui/jcunit/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/dakusui/jcunit">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
       <section>
+        <div id="title">
+          <h1>JCUnit</h1>
+          <p>A combinatorial testing framework on top of JUnit + Model-based testing. It makes your testing life a lot easier.</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/dakusui">dakusui</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
         <h1>
-<a id="jcunit" class="anchor" href="#jcunit" aria-hidden="true"><span class="octicon octicon-link"></span></a>JCUnit</h1>
+<a id="jcunit" class="anchor" href="#jcunit" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>JCUnit</h1>
 
 <p>JCUnit is a framework to perform combinatorial tests using 'pairwise'(or more generally 't-wise') 
 technique.
@@ -105,18 +115,18 @@ That is, if we ensure to cover "Linux + Jetty", "Jetty + Java SE8", etc (all the
 17 vs 432 sounds impressive, isn't it?</p>
 
 <h1>
-<a id="changes" class="anchor" href="#changes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Changes</h1>
+<a id="changes" class="anchor" href="#changes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Changes</h1>
 
 <p>About changes from previous versions, refer to <a href="RELEASENOTES.md">release notes</a>.</p>
 
 <h1>
-<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h1>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h1>
 
 <p>JCUnit requires Java SE6 or later. 
 It is tested using <code>JUnit</code> (4.12) and <code>mockito-core</code> (1.9.5).</p>
 
 <h2>
-<a id="maven-coordinate" class="anchor" href="#maven-coordinate" aria-hidden="true"><span class="octicon octicon-link"></span></a>Maven coordinate</h2>
+<a id="maven-coordinate" class="anchor" href="#maven-coordinate" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Maven coordinate</h2>
 
 <p>First of all, you will need to link JCUnit to your project.
 Below is a pom.xml fragment to describe jcunit's dependency.
@@ -131,7 +141,7 @@ Please add it to your project's pom.xml </p>
 </pre></div>
 
 <h2>
-<a id="building-from-source" class="anchor" href="#building-from-source" aria-hidden="true"><span class="octicon octicon-link"></span></a>Building from source</h2>
+<a id="building-from-source" class="anchor" href="#building-from-source" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Building from source</h2>
 
 <p>You can build <code>combinatoradix</code> by getting the source code from github.</p>
 
@@ -160,14 +170,14 @@ following dependency in your pom.xml</p>
 </pre></div>
 
 <h1>
-<a id="first-test-with-jcunit" class="anchor" href="#first-test-with-jcunit" aria-hidden="true"><span class="octicon octicon-link"></span></a>First test with JCUnit</h1>
+<a id="first-test-with-jcunit" class="anchor" href="#first-test-with-jcunit" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>First test with JCUnit</h1>
 
 <p>Below is JCUnit's most basic example 'QuadraticEquationSolver.java'.
 Just by running QuadraticEquationSolverTest.java as a usual JUnit test, JCUnit will 
 automatically generate test cases based on '@FactorField' annotations.</p>
 
 <h2>
-<a id="quadraticequationsolver-program-example" class="anchor" href="#quadraticequationsolver-program-example" aria-hidden="true"><span class="octicon octicon-link"></span></a>QuadraticEquationSolver program example</h2>
+<a id="quadraticequationsolver-program-example" class="anchor" href="#quadraticequationsolver-program-example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>QuadraticEquationSolver program example</h2>
 
 <p>To understand JCUnit's functions, let's test 'QuadraticEquationSolver.java' program,
  which solves 'quadratic equations' using a formula.
@@ -185,7 +195,7 @@ The formula it uses is,</p>
 </pre></div>
 
 <h3>
-<a id="quadraticequationsolverjava-main-class-sut" class="anchor" href="#quadraticequationsolverjava-main-class-sut" aria-hidden="true"><span class="octicon octicon-link"></span></a>QuadraticEquationSolver.java (Main class, SUT)</h3>
+<a id="quadraticequationsolverjava-main-class-sut" class="anchor" href="#quadraticequationsolverjava-main-class-sut" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>QuadraticEquationSolver.java (Main class, SUT)</h3>
 
 <p>'QuadraticEquationSolver' is the SUT (Software under test) in this example.
 The class provides a function to solve a quadratic equation using a quadratic
@@ -242,7 +252,7 @@ and prevent overflows from happening.</li>
 <p>Try to find (and reproduce) these bugs using JCUnit and fix them.</p>
 
 <h3>
-<a id="quadraticequationsolvertestjava-test" class="anchor" href="#quadraticequationsolvertestjava-test" aria-hidden="true"><span class="octicon octicon-link"></span></a>QuadraticEquationSolverTest.java (Test)</h3>
+<a id="quadraticequationsolvertestjava-test" class="anchor" href="#quadraticequationsolvertestjava-test" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>QuadraticEquationSolverTest.java (Test)</h3>
 
 <p>QuadraticEquationSolverTest1 is a test class for QuadraticEquationSolver class.</p>
 
@@ -271,10 +281,10 @@ and prevent overflows from happening.</li>
 By default, it generates the test cases by using 'all-pairs' technique.</p>
 
 <h1>
-<a id="features-tips-and-examples" class="anchor" href="#features-tips-and-examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features, tips, and examples</h1>
+<a id="features-tips-and-examples" class="anchor" href="#features-tips-and-examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features, tips, and examples</h1>
 
 <h2>
-<a id="fsm-support-feature" class="anchor" href="#fsm-support-feature" aria-hidden="true"><span class="octicon octicon-link"></span></a>FSM support feature</h2>
+<a id="fsm-support-feature" class="anchor" href="#fsm-support-feature" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>FSM support feature</h2>
 
 <p>FSM support of JCUnit (FSM/JCUnit) is a feature that allows you to model your 
 software as a finite state machine, and JCUnit generates and executes a test suite 
@@ -284,10 +294,10 @@ The test suite generation can be done by JCUnit's tuple generators.</p>
 <p>This is really fun feature. Please try. Documentation is found <a href="/src/site/markdown/FSM.md">here</a>.</p>
 
 <h2>
-<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h2>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h2>
 
 <h3>
-<a id="quadratic-equation-solver" class="anchor" href="#quadratic-equation-solver" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quadratic equation solver</h3>
+<a id="quadratic-equation-solver" class="anchor" href="#quadratic-equation-solver" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Quadratic equation solver</h3>
 
 <ul>
 <li>
@@ -313,7 +323,7 @@ to be executed.</li>
 </ul>
 
 <h3>
-<a id="reusing-generated-test-suite" class="anchor" href="#reusing-generated-test-suite" aria-hidden="true"><span class="octicon octicon-link"></span></a>Reusing generated test suite</h3>
+<a id="reusing-generated-test-suite" class="anchor" href="#reusing-generated-test-suite" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Reusing generated test suite</h3>
 
 <p>Generally speaking, pairwise test suite generation is a time consuming process.
 Probably a user wants to reuse a generated test suite later.</p>
@@ -322,13 +332,13 @@ Probably a user wants to reuse a generated test suite later.</p>
 An example for them is found <a href="src/test/java/com/github/dakusui/jcunit/examples/recorderreplayer/ReplayerExample.java">here</a>.</p>
 
 <h3>
-<a id="nested-factors-grouping-factors" class="anchor" href="#nested-factors-grouping-factors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Nested factors (grouping factors)</h3>
+<a id="nested-factors-grouping-factors" class="anchor" href="#nested-factors-grouping-factors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Nested factors (grouping factors)</h3>
 
 <p>Like <a href="https://github.com/microsoft/pict">PICT</a>, JCUnit is able to group factors and treat them as if one factor.
 An example for this feature is found <a href="src/test/java/com/github/dakusui/jcunit/examples/calc/NestedFieldExample.java">here</a>.</p>
 
 <h2>
-<a id="tips" class="anchor" href="#tips" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tips</h2>
+<a id="tips" class="anchor" href="#tips" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Tips</h2>
 
 <p>When you learn pairwise technique, probably you get excited that "oh I can balance a 
 size of test cases and coverage by this! Nice! Its idea is intuitive and looks 
@@ -349,7 +359,7 @@ possible values for a certain parameter, in case you want to use non-primitive v
 what you can do, etc, can be found.</p>
 
 <h1>
-<a id="refefences" class="anchor" href="#refefences" aria-hidden="true"><span class="octicon octicon-link"></span></a>Refefences</h1>
+<a id="refefences" class="anchor" href="#refefences" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Refefences</h1>
 
 <ul>
 <li>
@@ -359,7 +369,7 @@ what you can do, etc, can be found.</p>
 </ul>
 
 <h1>
-<a id="copyright-and-license" class="anchor" href="#copyright-and-license" aria-hidden="true"><span class="octicon octicon-link"></span></a>Copyright and license</h1>
+<a id="copyright-and-license" class="anchor" href="#copyright-and-license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Copyright and license</h1>
 
 <p>Copyright 2013 Hiroshi Ukai.</p>
 
@@ -375,12 +385,9 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.</p>
       </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/dakusui">dakusui</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+
     </div>
-    <script src="javascripts/scale.fix.js"></script>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     
   </body>
 </html>
