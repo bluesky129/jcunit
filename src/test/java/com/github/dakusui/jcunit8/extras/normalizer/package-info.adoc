@@ -6,7 +6,7 @@ This packages holds classes for the "Abstractive Generator" mechanism.
 == Abstractive Generator
 
 Factor Space Normalization Mechanism provides a way to "abstract" a given factor space.
-With this capability, JCUnit can support external Combinatorial Interaction Testing(CIT) tools, such as ACTS and PICT.
+With this capability, JCUnit can utilize external Combinatorial Interaction Testing(CIT) tools, such as ACTS and PICT as an ordinary generator.
 Not only that, the mechanism to "store" generated covering arrays to reuse them are relying on this.
 
 It creates an object called ```FactorSpaceSpec```, which has information to describe characteristics of the given factor space but omitting concrete aspects.
@@ -48,9 +48,9 @@ AbstractiveGenerator                 Generated Test Suite
 ----
 
 
-=== Abstract Generator
+=== Abstractive Generator (Abstractor)
 
-*Abstract Generator* component reads a raw factor space, which is built by a user and contains concrete information about test cases, such as names of factors and actual values of each levels of theirs and generates a test suite as other generators.
+*Abstractive Generator* (a.k.a *Abstractor*) component reads a raw factor space, which is built by a user and contains concrete information about test cases, such as names of factors and actual values of each levels of theirs and generates a test suite as other generators.
 However, it first generates an intermediate entity called *Normalized Factor Space*, which consists of a *FactorSpaceSpec* and *Denormalizer* and let another module *Generation Engine* generate an abstract test suite.
 
 (t.b.d.)
