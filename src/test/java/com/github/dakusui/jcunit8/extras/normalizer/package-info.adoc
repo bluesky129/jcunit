@@ -23,28 +23,29 @@ Following diagram xref:Pipeline[] illustrates the overall architecture of this m
        +------+-------+
               ^
               |  Reads
-              |                      /--------------------------------------\
-/-------------|-----------------\    |                                      |
-|             |                 |    |        +----------------------+      |
-|   +---------+---------+       |    |        |NormalizedFactorSpace |      |
-|   |   Factor Space    |Creates|    |        +----------+-----------+      |
-|   |    Normalizer     +---------=->+                   |                  |
-|   |                   |       |    |          +--------+---------+        |
-|   +-------------------+       |    |          |                  |        |
-|                               |    |          V                  V        |
-|                          Reads|    |  +---------------+   +------------+  |
-|                           /---------->+FactorSpaceSpec|   |Denormalizer|  |
-|                           |   |    |  +---------------+   +------+-----+  |
-|   +-------------------+   |   |    |                             :        |
-|   |  GeneraionEngine  +---/   |    \---------------------------- | -------/
-|   |                   +---\   |    /---------------------------- V -------\
-|   +-------------------+   |   |    |    +-----------+       +---------+   |
-|                           |   |    |    |  Abstract |       |TestSuite|   |
-|                           \-=+--------->| Test Suite|<------+ Wrapper |   |
-|                      Generates|    |    +-----------+       +---------+   |
-\-------------------------------/    |   (Covering Array)     (Adapter)     |
-                                     \--------------------------------------/
-AbstractiveGenerator                 Generated Test Suite
+              |
+/-------------|-----------------\    /--------------------------------------\
+|             |                 |    |                                      |
+|   +---------+---------+       |    |                                      |
+|   |   Factor Space    |Encodes|    |                                      |
+|   |      Encoder      +---------=->|    +-----------+      +----------+   |
+|   |                   |       |    |    |  Encoded  |      |          |   |
+|   +-------------------+  Reads|    |    |FactorSpace|<>--->| Decoder  |   |
+|                           /------------>|   Spec    |      |          |   |
+|                           |   |    |    +-----------+      +--+--+----+   |
+|                           |   |    |                          |  |        |
+|   +-------------------+   |   |    |          +---------------+  |        |
+|   |  GeneraionEngine  +---/   |    \----------|----------------- | -------/
+|   |                   +---\   |               |                  :
+|   +-------------------+   |   |    /--------- v ---------------- v -------\
+|                           |   |    |    +-----------+       +---------+   |
+|                           |   |    |    |  Encoded  |       |TestSuite|   |
+|                           \-=---------->| Test Suite|<------| Wrapper |   |
+|                               |    |    +-----------+       +---------+   |
+|                      Generates|    |   (Covering Array)     (Adapter)     |
+\-------------------------------/    \--------------------------------------/
+                                     Generated Test Suite
+AbstractiveGenerator
 ----
 
 
@@ -55,17 +56,11 @@ However, it first generates an intermediate entity called *Normalized Factor Spa
 
 (t.b.d.)
 
-==== Factor Space Normalizer
+==== Factor Space Encoder
 
 Factor Space normalizer is a component that directly reads an input, "raw" factor space and it generates a normalized factor space by extracting abstract characteristics of it while generating another entity "denormalizer".
 
 (t.b.d)
-
-
-
-===== Normalized Factor Space
-
-(t.b.d.)
 
 ===== Factor Space Spec
 

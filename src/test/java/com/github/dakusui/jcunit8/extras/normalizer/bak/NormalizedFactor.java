@@ -1,4 +1,4 @@
-package com.github.dakusui.jcunit8.extras.normalizer;
+package com.github.dakusui.jcunit8.extras.normalizer.bak;
 
 import com.github.dakusui.jcunit8.factorspace.Factor;
 
@@ -7,7 +7,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.IntStream;
 
-import static com.github.dakusui.jcunit8.extras.normalizer.NormalizedFactor.Utils.Internal.validateValues;
+import static com.github.dakusui.jcunit8.extras.normalizer.bak.NormalizedFactor.Utils.Internal.validateValues;
 import static java.util.stream.Collectors.toList;
 
 public interface NormalizedFactor extends Factor {

@@ -1,6 +1,6 @@
 package com.github.dakusui.jcunit8.extras.normalizer.compat;
 
-import com.github.dakusui.jcunit8.extras.normalizer.FactorSpaceSpec;
+import com.github.dakusui.jcunit8.extras.normalizer.bak.FactorSpaceSpec;
 import com.github.dakusui.jcunit8.factorspace.Factor;
 import com.github.dakusui.jcunit8.factorspace.FactorSpace;
 

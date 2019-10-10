@@ -1,4 +1,4 @@
-package com.github.dakusui.jcunit8.extras.normalizer;
+package com.github.dakusui.jcunit8.extras.normalizer.bak;
 
 import com.github.dakusui.jcunit8.extras.normalizer.compat.FactorSpaceSpecForExperiments;
 import com.github.dakusui.jcunit8.factorspace.Constraint;
