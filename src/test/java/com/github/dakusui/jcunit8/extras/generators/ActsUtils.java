@@ -17,15 +17,13 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static com.github.dakusui.jcunit.core.utils.Checks.checkcond;
 import static com.github.dakusui.jcunit.core.utils.ProcessStreamerUtils.streamFile;
 import static java.lang.String.format;
-import static java.util.Arrays.asList;
-import static java.util.stream.Collectors.joining;
 
 public enum ActsUtils {
   ;
@@ -46,7 +44,7 @@ public enum ActsUtils {
 
   private static class FactorSpaceAdapter {
     static final Function<Integer, String>                    NAME_RESOLVER =
-        (id) -> String.format("p%d", id);
+        (id) -> format("p%d", id);
     final        Function<Integer, String>                    name;
     final        Function<Integer, String>                    type;
     final        Function<Integer, Factor>                    factor;
@@ -143,10 +141,10 @@ public enum ActsUtils {
    *   </Parameters>
    * </pre>
    *
-   * @param b A string builder with which a given parameter is rendered.
+   * @param b           A string builder with which a given parameter is rendered.
    * @param indentLevel A current indentation level.
    * @param parameterId An identifier of a given parameter as {@code parameter}.
-   * @param parameter A parameter to be rendered.
+   * @param parameter   A parameter to be rendered.
    * @return The indentation level after the given parameter is rendered.
    */
   private static int renderParameter(StringBuilder b, int indentLevel, int parameterId, FactorSpaceAdapter parameter) {
@@ -171,6 +169,68 @@ public enum ActsUtils {
     indentLevel--;
     StringUtils.appendLine(b, indentLevel, "</Parameter>\n");
     return indentLevel;
+  }
+
+  static String fromCsvToXml(Stream<String> in, int strength) {
+    StringBuilder b = new StringBuilder();
+    AtomicBoolean firstLine = new AtomicBoolean(true);
+    b.append(createTestSetElementFromCsv(
+        in.filter(s -> !s.startsWith("#"))
+            .peek(s -> {
+              if (firstLine.get()) {
+                b.append(createHeaderElementFromCsv(s));
+                firstLine.set(false);
+              }
+            })
+            .filter(s -> !firstLine.get()),
+        strength));
+    return b.toString();
+  }
+
+  static String createTestSetElementFromCsv(Stream<String> in, int strength) {
+    AtomicInteger c = new AtomicInteger(0);
+    StringBuilder b = new StringBuilder()
+        .append("  ")
+        .append(format("<Testset doi=\"%s\">%n", strength));
+    in.forEach(
+        s -> {
+          b.append("    ")
+              .append(format("<Testcase TCNo=\"%s\">%n", c.getAndIncrement()));
+          Arrays.stream(s.split(",")).forEach(
+              t -> b.append("      ")
+                  .append("<Value>")
+                  .append(t)
+                  .append("</Value>")
+                  .append(format("%n"))
+          );
+          b.append("    ");
+          b.append("</Testcase>");
+          b.append(format("%n"));
+        }
+    );
+    b.append("  ");
+    b.append("</Testset>");
+    b.append(format("%n"));
+    return b.toString();
+  }
+
+  static String createHeaderElementFromCsv(String in) {
+    StringBuilder b = new StringBuilder();
+    b.append("  ")
+        .append("<Header>")
+        .append("<Value/>")
+        .append(format("%n"));
+    Arrays.stream(in.split(",")).forEach(
+        s -> b.append("    ")
+            .append("<Value>")
+            .append(s)
+            .append("</Value>")
+            .append(format("%n"))
+    );
+    b.append("  ")
+        .append("</Header>")
+        .append(format("%n"));
+    return b.toString();
   }
 
   /**
