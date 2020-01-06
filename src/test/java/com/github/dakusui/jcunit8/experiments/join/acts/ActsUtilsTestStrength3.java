@@ -1,11 +1,18 @@
 package com.github.dakusui.jcunit8.experiments.join.acts;
 
+import com.github.dakusui.jcunit8.extras.normalizer.compat.NormalizedConstraint;
 import com.github.dakusui.jcunit8.testutils.UTUtils;
 import org.junit.Test;
 
 import java.io.File;
+import java.util.List;
 
-public class ActsUtilsTestStrength3 extends ActsUtilsTestBase  {
+public class ActsUtilsTestStrength3 extends ActsUtilsTestBase {
+  @Override
+  public NormalizedConstraint createConstraint(List<String> factorNames) {
+    return ActsConstraints.basicPlus(factorNames);
+  }
+
   @Test
   public void testGenerateAndReportWithConstraintsWithStrength3Factors10() {
     File baseDir = UTUtils.createTempDirectory("target/acts");

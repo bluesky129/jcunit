@@ -11,7 +11,13 @@ factors strength constraint-set  size time                CSP solver
 30      3        basic           266   3.327s
 40      3        basic           296   3.820s
 50      3        basic           319   4.810s
+50      3        basic++         321   5.929s
 60      3        basic           341   7.100s
+60      3        basic++         343   7.563s
+60      3        basic+          320   10.786s
+60      3        basic+3         266   15.601s
+60      3        basic+4         266   18.078s
+60      3        basic+5         177   18.270s
 70      3        basic           357   7.065s
 80      3        basic           373   8.653s
 90      3        basic           389  10.374s
