@@ -5,21 +5,21 @@ import org.junit.Test;
 public class ActsUtilsTestStrength5 extends ActsUtilsTestBase {
   @Test
   public void testGenerateAndReportWithConstraintsWithStrength5Factor10() {
-    generateAndReportWithConstraints(baseDir, 10, 5);
+    executeSession(specBuilder().numFactors(10).strength(5).build());
   }
 
   @Test
   public void testGenerateAndReportWithConstraintsWithStrength5Factor20() {
-    generateAndReportWithConstraints(baseDir, 20, 5);
+    executeSession(specBuilder().numFactors(20).strength(5).build());
   }
 
   @Test
   public void testGenerateAndReportWithConstraintsWithStrength5Factor30() {
-    generateAndReportWithConstraints(baseDir, 30, 5);
+    executeSession(specBuilder().numFactors(30).strength(5).build());
   }
 
   @Test
   public void testGenerateAndReportWithConstraintsWithStrength5Factor40() {
-    generateAndReportWithConstraints(baseDir, 40, 5);
+    executeSession(specBuilder().numFactors(40).strength(5).build());
   }
 }

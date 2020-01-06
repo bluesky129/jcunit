@@ -6,8 +6,10 @@ import com.github.dakusui.jcunit8.testutils.UTUtils;
 import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 
+import static com.github.dakusui.crest.Crest.*;
 import static com.github.dakusui.jcunit8.extras.generators.ActsUtils.generateAndReport;
 
 public abstract class ActsUtilsTestBase {
@@ -30,36 +32,69 @@ public abstract class ActsUtilsTestBase {
 
     int strength();
 
-    ConstraintComposer constraintComposer();
+    Optional<ConstraintComposer> constraintComposer();
+
+    class Builder {
+      File               baseDir;
+      int                numLevels          = -1;
+      int                numFactors         = -1;
+      int                strength           = -1;
+      ConstraintComposer constraintComposer = null;
+
+      Builder() {
+      }
+
+      Builder baseDir(File baseDir) {
+        this.baseDir = baseDir;
+        return this;
+      }
+
+      Builder numLevels(int numLevels) {
+        this.numLevels = numLevels;
+        return this;
+      }
+
+      Builder numFactors(int numFactors) {
+        this.numFactors = numFactors;
+        return this;
+      }
+
+      Builder strength(int strength) {
+        this.strength = strength;
+        return this;
+      }
+
+      Builder constraintComposer(ConstraintComposer constraintComposer) {
+        this.constraintComposer = constraintComposer;
+        return this;
+      }
+
+      TestSpec build() {
+        assertThat(baseDir, asObject().isNotNull().$());
+        assertThat(numFactors, asInteger().ge(0).$());
+        assertThat(numLevels, asInteger().ge(0).$());
+        assertThat(strength, asInteger().ge(0).$());
+        return ActsUtilsTestBase.createSpec(baseDir, numLevels, numFactors, strength, constraintComposer);
+      }
+    }
+  }
+
+  TestSpec.Builder specBuilder() {
+    return new TestSpec.Builder()
+        .baseDir(this.baseDir)
+        .numLevels(4)
+        .constraintComposer(createConstraintComposer());
   }
 
   TestSpec createSpec(int numFactors, int strength) {
-    return createSpec(4, numFactors, strength);
+    return createSpec(baseDir, 4, numFactors, strength);
   }
 
-  TestSpec createSpec(int numLevels, int numFactors, int strength) {
-    return createSpec(numLevels, numFactors, strength, createConstraintComposer());
+  TestSpec createSpec(File baseDir, int numLevels, int numFactors, int strength) {
+    return createSpec(baseDir, numLevels, numFactors, strength, createConstraintComposer());
   }
 
-  TestSpec.ConstraintComposer createConstraintComposer() {
-    return createConstraintComposer("basic", ActsConstraints::basic);
-  }
-
-  static TestSpec.ConstraintComposer createConstraintComposer(final String name, final Function<List<String>, NormalizedConstraint> composer) {
-    return new TestSpec.ConstraintComposer() {
-      @Override
-      public String name() {
-        return name;
-      }
-
-      @Override
-      public NormalizedConstraint apply(List<String> factorNames) {
-        return composer.apply(factorNames);
-      }
-    };
-  }
-
-  TestSpec createSpec(int numLevels, int numFactors, int strength, TestSpec.ConstraintComposer composer) {
+  static TestSpec createSpec(File baseDir, int numLevels, int numFactors, int strength, TestSpec.ConstraintComposer composer) {
     return new TestSpec() {
       @Override
       public File baseDir() {
@@ -82,8 +117,26 @@ public abstract class ActsUtilsTestBase {
       }
 
       @Override
-      public ConstraintComposer constraintComposer() {
-        return composer;
+      public Optional<ConstraintComposer> constraintComposer() {
+        return Optional.ofNullable(composer);
+      }
+    };
+  }
+
+  TestSpec.ConstraintComposer createConstraintComposer() {
+    return createConstraintComposer("basic", ActsConstraints::basic);
+  }
+
+  static TestSpec.ConstraintComposer createConstraintComposer(final String name, final Function<List<String>, NormalizedConstraint> composer) {
+    return new TestSpec.ConstraintComposer() {
+      @Override
+      public String name() {
+        return name;
+      }
+
+      @Override
+      public NormalizedConstraint apply(List<String> factorNames) {
+        return composer.apply(factorNames);
       }
     };
   }
@@ -123,18 +176,30 @@ public abstract class ActsUtilsTestBase {
     return constraintComposer.apply(factorNames);
   }
 
-  void generateAndReportWithConstraints(File baseDir, int numFactors, int strength) {
-    TestSpec spec = createSpec(numFactors, strength);
-    Function<List<String>, NormalizedConstraint>[] constraintComposers = createConstraintComposers(numFactors, spec);
-    generateAndReport(baseDir, 4, numFactors, strength, constraintComposers);
+  void generateAndReportWithConstraints(int numFactors, int strength) {
+    executeSession(createSpec(numFactors, strength));
   }
 
-  private Function<List<String>, NormalizedConstraint>[] createConstraintComposers(int numFactors, TestSpec spec) {
-    List<Function<List<String>, NormalizedConstraint>> constraints = new LinkedList<>();
-    for (int i = 0; i < numFactors / 10; i++) {
-      constraints.add(createConstraint(i * 10, spec.constraintComposer()));
-    }
-    //noinspection unchecked
-    return constraints.toArray((Function<List<String>, NormalizedConstraint>[]) new Function[0]);
+  void executeSession(TestSpec spec) {
+    generateAndReport(
+        spec.baseDir(),
+        spec.numLevels(),
+        spec.numFactors(),
+        spec.strength(),
+        createConstraintComposers(spec)
+    );
+  }
+
+  private Function<List<String>, NormalizedConstraint>[] createConstraintComposers(TestSpec spec) {
+    if (spec.constraintComposer().isPresent()) {
+      List<Function<List<String>, NormalizedConstraint>> constraints = new LinkedList<>();
+      for (int i = 0; i < spec.numFactors() / 10; i++) {
+        constraints.add(createConstraint(i * 10, spec.constraintComposer().get()));
+      }
+      //noinspection unchecked
+      return constraints.toArray((Function<List<String>, NormalizedConstraint>[]) new Function[0]);
+    } else
+      //noinspection unchecked
+      return new Function[0];
   }
 }
