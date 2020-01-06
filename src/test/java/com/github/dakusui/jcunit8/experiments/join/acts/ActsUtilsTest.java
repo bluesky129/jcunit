@@ -3,6 +3,7 @@ package com.github.dakusui.jcunit8.experiments.join.acts;
 import com.github.dakusui.jcunit8.extras.generators.ActsUtils;
 import com.github.dakusui.jcunit8.extras.normalizer.compat.NormalizedConstraint;
 import com.github.dakusui.jcunit8.testutils.UTUtils;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.File;
@@ -17,6 +18,7 @@ import static com.github.dakusui.jcunit8.extras.generators.Acts.readTestSuiteFro
 public class ActsUtilsTest {
 
   @Test
+  @Ignore
   public void testGenerateAndReport() {
     File baseDir = new File("target");
     ActsUtils.generateAndReport(baseDir, 4, 90, 3);
@@ -24,6 +26,7 @@ public class ActsUtilsTest {
   }
 
   @Test
+  @Ignore
   public void testGenerateAndReportWithConstraints() {
     File baseDir = UTUtils.createTempDirectory("target/acts");
     generateAndReportWithConstraints(baseDir, 10, 2);
@@ -39,6 +42,7 @@ public class ActsUtilsTest {
   }
 
   @Test
+  @Ignore
   public void testGenerateAndReportWithConstraintsWithStrength3() {
     File baseDir = UTUtils.createTempDirectory("target/acts");
     generateAndReportWithConstraints(baseDir, 10, 3);
@@ -96,6 +100,7 @@ public class ActsUtilsTest {
     File baseDir = UTUtils.createTempDirectory("target/acts");
     generateAndReportWithConstraints(baseDir, 30, 3);
   }
+
   @Test
   public void testGenerateAndReportWithConstraintsWithStrength3Factors40() {
     File baseDir = UTUtils.createTempDirectory("target/acts");
@@ -217,6 +222,48 @@ public class ActsUtilsTest {
   }
 
   @Test
+  public void testGenerateAndReportWithConstraintsWithStrength4Factor40() {
+    File baseDir = UTUtils.createTempDirectory("target/acts");
+    generateAndReportWithConstraints(baseDir, 40, 4);
+  }
+
+  @Test
+  public void testGenerateAndReportWithConstraintsWithStrength4Factor50() {
+    File baseDir = UTUtils.createTempDirectory("target/acts");
+    generateAndReportWithConstraints(baseDir, 50, 4);
+  }
+
+  @Test
+  public void testGenerateAndReportWithConstraintsWithStrength4Factor60() {
+    File baseDir = UTUtils.createTempDirectory("target/acts");
+    generateAndReportWithConstraints(baseDir, 60, 4);
+  }
+
+  @Test
+  public void testGenerateAndReportWithConstraintsWithStrength4Factor70() {
+    File baseDir = UTUtils.createTempDirectory("target/acts");
+    generateAndReportWithConstraints(baseDir, 70, 4);
+  }
+
+  @Test
+  public void testGenerateAndReportWithConstraintsWithStrength4Factor80() {
+    File baseDir = UTUtils.createTempDirectory("target/acts");
+    generateAndReportWithConstraints(baseDir, 80, 4);
+  }
+
+  @Test
+  public void testGenerateAndReportWithConstraintsWithStrength4Factor90() {
+    File baseDir = UTUtils.createTempDirectory("target/acts");
+    generateAndReportWithConstraints(baseDir, 90, 4);
+  }
+
+  @Test
+  public void testGenerateAndReportWithConstraintsWithStrength4Factor100() {
+    File baseDir = UTUtils.createTempDirectory("target/acts");
+    generateAndReportWithConstraints(baseDir, 100, 4);
+  }
+
+  @Test
   public void testGenerateAndReportWithConstraintsWithStrength5Factor10() {
     File baseDir = UTUtils.createTempDirectory("target/acts");
     generateAndReportWithConstraints(baseDir, 10, 5);
@@ -226,6 +273,18 @@ public class ActsUtilsTest {
   public void testGenerateAndReportWithConstraintsWithStrength5Factor20() {
     File baseDir = UTUtils.createTempDirectory("target/acts");
     generateAndReportWithConstraints(baseDir, 20, 5);
+  }
+
+  @Test
+  public void testGenerateAndReportWithConstraintsWithStrength5Factor30() {
+    File baseDir = UTUtils.createTempDirectory("target/acts");
+    generateAndReportWithConstraints(baseDir, 30, 5);
+  }
+
+  @Test
+  public void testGenerateAndReportWithConstraintsWithStrength5Factor40() {
+    File baseDir = UTUtils.createTempDirectory("target/acts");
+    generateAndReportWithConstraints(baseDir, 40, 5);
   }
 
   @Test

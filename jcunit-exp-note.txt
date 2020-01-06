@@ -9,23 +9,42 @@ factors strength constraint-set  size time                CSP solver
 10      3        basic           162   1.737s
 20      3        basic           227   2.815s
 30      3        basic           266   3.327s
-40      3        basic            
-50      3        basic            
-110     3        basic                17.968s
-120     3        basic                21.434s
-130     3        basic                26.256s
-140     3        basic                33.130s
-150     3        basic           450  40.371s
-160     3        basic           457  50.654s
-170     3        basic           465  60.614s
-180     3        basic           470  76.764s
-190     3        basic           478  92.693s
+40      3        basic           296   3.820s
+50      3        basic           319   4.810s
+60      3        basic           341   7.100s
+70      3        basic           357   7.065s
+80      3        basic           373   8.653s
+90      3        basic           389  10.374s
+100     3        basic           401  12.405s
+110     3        basic           410  15.473s
+120     3        basic           422  19.110s
+130     3        basic           430  23.257s
+140     3        basic           440  28.398s
+150     3        basic           450  35.309s
+160     3        basic           457  43.098s
+170     3        basic           465  53.451s
+180     3        basic           470  65.528s
+190     3        basic           478  91.941s
 200     3        basic           486 117.636s
-10      4        basic           757   4.166s (3939ms)
+10      4        basic           757   3.700s
 20      4        basic          1232  11.430s
 30      4        basic          1526  24.874s
+40      4        basic          1739  53.158s
+50      4        basic          1905  118.998s
+60      4        basic          2035  276.315s
+70      4        basic
+80      4        basic          2253 1,091.049s
+90      4        basic
+100     4        basic          2418 3,110.273s
+120     4        basic
+140     4        basic
+160     4        basic
+180     4        basic
+200     4        basic
 10      5        basic          3231  25.547s
 20      5        basic          6155 179.237s
+30      5        basic          7859 635.392s
+40      5        basic
 10      6        basic         13197>340.2s   (not finished)
 20      6        basic          
 
