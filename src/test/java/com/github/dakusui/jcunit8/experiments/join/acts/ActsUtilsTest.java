@@ -1,315 +1,158 @@
 package com.github.dakusui.jcunit8.experiments.join.acts;
 
+import com.github.dakusui.jcunit.core.tuples.Tuple;
 import com.github.dakusui.jcunit8.extras.generators.ActsUtils;
 import com.github.dakusui.jcunit8.extras.normalizer.compat.NormalizedConstraint;
-import com.github.dakusui.jcunit8.testutils.UTUtils;
-import org.junit.Ignore;
 import org.junit.Test;
 
-import java.io.File;
-import java.util.LinkedList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.github.dakusui.crest.Crest.*;
+import static com.github.dakusui.jcunit.core.utils.Checks.checkcond;
 import static com.github.dakusui.jcunit8.extras.generators.Acts.readTestSuiteFromCsv;
+import static java.util.Arrays.asList;
+import static java.util.stream.Collectors.joining;
 
 public class ActsUtilsTest {
-
-  @Test
-  @Ignore
-  public void testGenerateAndReport() {
-    File baseDir = new File("target");
-    ActsUtils.generateAndReport(baseDir, 4, 90, 3);
-    ActsUtils.generateAndReport(baseDir, 4, 180, 3);
+  /**
+   * <pre>
+   *     <Constraints>
+   *       <Constraint text="l01 &lt;= l02 || l03 &lt;= l04 || l05 &lt;= l06 || l07&lt;= l08 || l09 &lt;= l02">
+   *       <Parameters>
+   *         <Parameter name="l01" />
+   *         <Parameter name="l02" />
+   *         <Parameter name="l03" />
+   *         <Parameter name="l04" />
+   *         <Parameter name="l05" />
+   *         <Parameter name="l06" />
+   *         <Parameter name="l07" />
+   *         <Parameter name="l08" />
+   *         <Parameter name="l09" />
+   *         <Parameter name="l02" />
+   *       </Parameters>
+   *     </Constraint>
+   *   </Constraints>
+   * </pre>
+   * <pre>
+   *   p i,1 > p i,2 ∨ p i,3 > p i,4 ∨ p i,5 > p i,6 ∨ p i,7 > p i,8 ∨ p i,9 > p i,2
+   * </pre>
+   *
+   * @param factorNames A list of factor names.
+   */
+  public static NormalizedConstraint createConstraint(List<String> factorNames) {
+    String[] p = factorNames.toArray(new String[0]);
+    return or(
+        ge(p[0], p[1]),
+        gt(p[2], p[3]),
+        eq(p[4], p[5]),
+        gt(p[6], p[7]),
+        gt(p[8], p[1]));
   }
 
-  @Test
-  @Ignore
-  public void testGenerateAndReportWithConstraints() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 10, 2);
-    generateAndReportWithConstraints(baseDir, 20, 2);
-    generateAndReportWithConstraints(baseDir, 30, 2);
-    generateAndReportWithConstraints(baseDir, 40, 2);
-    generateAndReportWithConstraints(baseDir, 50, 2);
-    generateAndReportWithConstraints(baseDir, 60, 2);
-    generateAndReportWithConstraints(baseDir, 70, 2);
-    generateAndReportWithConstraints(baseDir, 80, 2);
-    generateAndReportWithConstraints(baseDir, 90, 2);
-    generateAndReportWithConstraints(baseDir, 100, 2);
+  private static NormalizedConstraint or(NormalizedConstraint... constraints) {
+    return new NormalizedConstraint() {
+      @Override
+      public String toText(Function<String, String> factorNameToParameterName) {
+        return Arrays.stream(constraints)
+            .map(each -> each.toText(factorNameToParameterName))
+            .collect(joining(" || "));
+      }
+
+      @Override
+      public String getName() {
+        throw new UnsupportedOperationException();
+      }
+
+      @Override
+      public boolean test(Tuple tuple) {
+        for (NormalizedConstraint each : constraints) {
+          if (each.test(tuple))
+            return true;
+        }
+        return false;
+      }
+
+      @Override
+      public List<String> involvedKeys() {
+        return Arrays.stream(constraints)
+            .flatMap(each -> each.involvedKeys().stream())
+            .distinct()
+            .collect(Collectors.toList());
+      }
+    };
   }
 
-  @Test
-  @Ignore
-  public void testGenerateAndReportWithConstraintsWithStrength3() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 10, 3);
-    generateAndReportWithConstraints(baseDir, 20, 3);
-    generateAndReportWithConstraints(baseDir, 30, 3);
-    generateAndReportWithConstraints(baseDir, 40, 3);
+  private static NormalizedConstraint gt(String f, String g) {
+    return new Comp(f, g) {
+
+      @Override
+      public String getName() {
+        throw new UnsupportedOperationException();
+      }
+    };
   }
 
-  @Test
-  public void testGenerateAndReportWithConstraintsStrength1Factors10() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 10, 1);
+  private static NormalizedConstraint ge(String f, String g) {
+    return new NormalizedConstraint() {
+      @Override
+      public String toText(Function<String, String> factorNameNormalizer) {
+        ////
+        // Since ACTS seems not supporting > (&gt;), invert the comparator.
+        return factorNameNormalizer.apply(g) + " &lt;= " + factorNameNormalizer.apply(f);
+      }
+
+      @Override
+      public String getName() {
+        throw new UnsupportedOperationException();
+      }
+
+      @SuppressWarnings("unchecked")
+      @Override
+      public boolean test(Tuple tuple) {
+        checkcond(tuple.get(f) instanceof Comparable);
+        checkcond(tuple.get(g) instanceof Comparable);
+        return ((Comparable) f).compareTo(g) >= 0;
+      }
+
+      @Override
+      public List<String> involvedKeys() {
+        return asList(f, g);
+      }
+    };
   }
 
-  @Test
-  public void testGenerateAndReportWithConstraintsStrength1Factors20() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 20, 1);
-  }
-  @Test
-  public void testGenerateAndReportWithConstraintsStrength1Factors30() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 30, 1);
-  }
-  @Test
-  public void testGenerateAndReportWithConstraintsStrength2Factors10() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 10, 2);
-  }
+  private static NormalizedConstraint eq(String f, String g) {
+    return new NormalizedConstraint() {
+      @Override
+      public String toText(Function<String, String> factorNameNormalizer) {
+        ////
+        // Since ACTS seems not supporting > (&gt;), invert the comparator.
+        return factorNameNormalizer.apply(g) + " &lt;= " + factorNameNormalizer.apply(f);
+      }
 
-  @Test
-  public void testGenerateAndReportWithConstraintsStrength2Factors20() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 20, 2);
-  }
+      @Override
+      public String getName() {
+        throw new UnsupportedOperationException();
+      }
 
-  @Test
-  public void testGenerateAndReportWithConstraintsStrength2Factors30() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 30, 2);
-  }
+      @SuppressWarnings("unchecked")
+      @Override
+      public boolean test(Tuple tuple) {
+        checkcond(tuple.get(f) instanceof Comparable);
+        checkcond(tuple.get(g) instanceof Comparable);
+        return ((Comparable) f).compareTo(g) == 0;
+      }
 
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength3Factors10() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 10, 3);
+      @Override
+      public List<String> involvedKeys() {
+        return asList(f, g);
+      }
+    };
   }
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength3Factors20() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 20, 3);
-  }
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength3Factors30() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 30, 3);
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength3Factors40() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 40, 3);
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength3Factors50() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 50, 3);
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength3Factor60() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 60, 3);
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength3Factor70() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 70, 3);
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength3Factor80() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 80, 3);
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength3Factor90() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 90, 3);
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength3Factor100() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 100, 3);
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength3Factor110() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 110, 3);
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength3Factor120() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 120, 3);
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength3Factor130() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 130, 3);
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength3Factor140() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 140, 3);
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength3Factor150() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 150, 3);
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength3Factor160() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 160, 3);
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength3Factor170() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 170, 3);
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength3Factor180() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 180, 3);
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength3Factor190() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 190, 3);
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength3Factor200() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 200, 3);
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength4Factor10() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 10, 4);
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength4Factor20() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 20, 4);
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength4Factor30() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 30, 4);
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength4Factor40() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 40, 4);
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength4Factor50() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 50, 4);
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength4Factor60() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 60, 4);
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength4Factor70() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 70, 4);
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength4Factor80() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 80, 4);
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength4Factor90() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 90, 4);
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength4Factor100() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 100, 4);
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength5Factor10() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 10, 5);
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength5Factor20() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 20, 5);
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength5Factor30() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 30, 5);
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength5Factor40() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 40, 5);
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength6Factor10() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 10, 6);
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength6Factor20() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
-    generateAndReportWithConstraints(baseDir, 20, 6);
-  }
-
-  @SuppressWarnings("unchecked")
-  private void generateAndReportWithConstraints(File baseDir, int numFactors, int strength) {
-    List<Function<List<String>, NormalizedConstraint>> constraints = new LinkedList<>();
-    for (int i = 0; i < numFactors / 10; i++) {
-      constraints.add(ActsUtils.createConstraint(i * 10));
-    }
-    ActsUtils.generateAndReport(baseDir, 4, numFactors, strength,
-        constraints.toArray(new Function[0])
-    );
-  }
-
 
   @Test
   public void testReadTestSuiteFromCsv() {
@@ -343,4 +186,43 @@ public class ActsUtilsTest {
         "0,1,1,1,1,1,0,1,0,1");
   }
 
+  abstract static class Comp implements NormalizedConstraint {
+    private final String g;
+    private final String f;
+
+    public Comp(String f, String g) {
+      this.g = g;
+      this.f = f;
+    }
+
+    @Override
+    public String toText(Function<String, String> factorNameNormalizer) {
+      ////
+      // Since ACTS seems not supporting > (&gt;), invert the comparator.
+      return toText(factorNameNormalizer.apply(g), factorNameNormalizer.apply(f));
+    }
+
+    public String toText(String normalizedFactorNameForG, String normalizedFactorNameForF) {
+      return normalizedFactorNameForG + " &lt; " + normalizedFactorNameForF;
+    }
+
+    @Override
+    public boolean test(Tuple tuple) {
+      checkcond(tuple.get(f) instanceof Comparable);
+      checkcond(tuple.get(g) instanceof Comparable);
+      return compare(f, g);
+    }
+
+    @SuppressWarnings("unchecked")
+    public static boolean compare(
+        @SuppressWarnings("rawtypes") Comparable f,
+        @SuppressWarnings("rawtypes") Comparable g) {
+      return f.compareTo(g) > 0;
+    }
+
+    @Override
+    public List<String> involvedKeys() {
+      return asList(f, g);
+    }
+  }
 }
