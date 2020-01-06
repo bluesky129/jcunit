@@ -8,19 +8,16 @@ import java.io.File;
 public class ActsUtilsTestStrength2 extends ActsUtilsTestBase {
   @Test
   public void testGenerateAndReportWithConstraintsStrength2Factors10() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
     generateAndReportWithConstraints(baseDir, 10, 2);
   }
 
   @Test
   public void testGenerateAndReportWithConstraintsStrength2Factors20() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
     generateAndReportWithConstraints(baseDir, 20, 2);
   }
 
   @Test
   public void testGenerateAndReportWithConstraintsStrength2Factors30() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
     generateAndReportWithConstraints(baseDir, 30, 2);
   }
 

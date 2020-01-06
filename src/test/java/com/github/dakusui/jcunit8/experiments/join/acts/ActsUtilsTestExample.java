@@ -19,7 +19,6 @@ public class ActsUtilsTestExample extends ActsUtilsTestBase {
   @Test
   @Ignore
   public void testGenerateAndReportWithConstraints() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
     generateAndReportWithConstraints(baseDir, 10, 2);
     generateAndReportWithConstraints(baseDir, 20, 2);
     generateAndReportWithConstraints(baseDir, 30, 2);
@@ -35,7 +34,6 @@ public class ActsUtilsTestExample extends ActsUtilsTestBase {
   @Test
   @Ignore
   public void testGenerateAndReportWithConstraintsWithStrength3() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
     generateAndReportWithConstraints(baseDir, 10, 3);
     generateAndReportWithConstraints(baseDir, 20, 3);
     generateAndReportWithConstraints(baseDir, 30, 3);

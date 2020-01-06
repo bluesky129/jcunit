@@ -12,19 +12,16 @@ import static com.github.dakusui.jcunit8.extras.generators.Acts.readTestSuiteFro
 public class ActsUtilsTestStrength1 extends ActsUtilsTestBase {
   @Test
   public void testGenerateAndReportWithConstraintsStrength1Factors10() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
     generateAndReportWithConstraints(baseDir, 10, 1);
   }
 
   @Test
   public void testGenerateAndReportWithConstraintsStrength1Factors20() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
     generateAndReportWithConstraints(baseDir, 20, 1);
   }
 
   @Test
   public void testGenerateAndReportWithConstraintsStrength1Factors30() {
-    File baseDir = UTUtils.createTempDirectory("target/acts");
     generateAndReportWithConstraints(baseDir, 30, 1);
   }
 }
