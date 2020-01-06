@@ -12,17 +12,35 @@ import java.util.function.Function;
 import static com.github.dakusui.crest.Crest.*;
 import static com.github.dakusui.jcunit8.extras.generators.ActsUtils.generateAndReport;
 
-public abstract class ActsUtilsTestBase {
+public abstract class ActsExperimentsBase {
   final File baseDir = createTempDirectory();
 
   private File createTempDirectory() {
     return UTUtils.createTempDirectory("target/acts");
   }
 
-  interface TestSpec {
+  public interface TestSpec {
+    enum CHandler {
+      NO("no"),
+      SOLVER("solver"),
+      FORBIDDENTUPLES("forbiddentuples");
+
+      private final String actsName;
+
+      CHandler(String actsName) {
+        this.actsName = actsName;
+      }
+
+      public String actsName() {
+        return this.actsName;
+      }
+    }
+
     interface ConstraintComposer extends Function<List<String>, NormalizedConstraint> {
       String name();
     }
+
+    CHandler chandler();
 
     File baseDir();
 
@@ -40,6 +58,7 @@ public abstract class ActsUtilsTestBase {
       int                numFactors         = -1;
       int                strength           = -1;
       ConstraintComposer constraintComposer = null;
+      private CHandler chandler = null;
 
       Builder() {
       }
@@ -74,7 +93,13 @@ public abstract class ActsUtilsTestBase {
         assertThat(numFactors, asInteger().ge(0).$());
         assertThat(numLevels, asInteger().ge(0).$());
         assertThat(strength, asInteger().ge(0).$());
-        return ActsUtilsTestBase.createSpec(baseDir, numLevels, numFactors, strength, constraintComposer);
+        assertThat(chandler, asObject().isNotNull().$());
+        return ActsExperimentsBase.createSpec(baseDir, numLevels, numFactors, strength, constraintComposer, chandler);
+      }
+
+      public Builder chandler(CHandler chandler) {
+        this.chandler = chandler;
+        return this;
       }
     }
   }
@@ -83,19 +108,25 @@ public abstract class ActsUtilsTestBase {
     return new TestSpec.Builder()
         .baseDir(this.baseDir)
         .numLevels(4)
-        .constraintComposer(createConstraintComposer());
+        .constraintComposer(createConstraintComposer())
+        .chandler(constraintHandler());
   }
 
   TestSpec createSpec(int numFactors, int strength) {
-    return createSpec(baseDir, 4, numFactors, strength);
+    return createSpec(baseDir, 4, numFactors, strength, constraintHandler());
   }
 
-  TestSpec createSpec(File baseDir, int numLevels, int numFactors, int strength) {
-    return createSpec(baseDir, numLevels, numFactors, strength, createConstraintComposer());
+  TestSpec createSpec(File baseDir, int numLevels, int numFactors, int strength, TestSpec.CHandler chandler) {
+    return createSpec(baseDir, numLevels, numFactors, strength, createConstraintComposer(), chandler);
   }
 
-  static TestSpec createSpec(File baseDir, int numLevels, int numFactors, int strength, TestSpec.ConstraintComposer composer) {
+  static TestSpec createSpec(File baseDir, int numLevels, int numFactors, int strength, TestSpec.ConstraintComposer composer, TestSpec.CHandler chandler) {
     return new TestSpec() {
+      @Override
+      public CHandler chandler() {
+        return chandler;
+      }
+
       @Override
       public File baseDir() {
         return baseDir;
@@ -125,6 +156,10 @@ public abstract class ActsUtilsTestBase {
 
   TestSpec.ConstraintComposer createConstraintComposer() {
     return createConstraintComposer("basic", ActsConstraints::basic);
+  }
+
+  TestSpec.CHandler constraintHandler() {
+    return TestSpec.CHandler.SOLVER;
   }
 
   static TestSpec.ConstraintComposer createConstraintComposer(final String name, final Function<List<String>, NormalizedConstraint> composer) {
@@ -186,6 +221,7 @@ public abstract class ActsUtilsTestBase {
         spec.numLevels(),
         spec.numFactors(),
         spec.strength(),
+        spec.chandler(),
         createConstraintComposers(spec)
     );
   }

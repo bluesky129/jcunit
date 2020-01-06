@@ -3,6 +3,7 @@ package com.github.dakusui.jcunit8.extras.generators;
 import com.github.dakusui.actionunit.utils.StableTemplatingUtils;
 import com.github.dakusui.jcunit.core.tuples.Tuple;
 import com.github.dakusui.jcunit.core.utils.ProcessStreamerUtils;
+import com.github.dakusui.jcunit8.experiments.join.acts.ActsExperimentsBase;
 import com.github.dakusui.jcunit8.factorspace.FactorSpace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,9 +27,12 @@ public class Acts {
   private       String      algorithm;
   private       String      constraintHandler;
 
-  private static List<Tuple> runActs(File baseDir, FactorSpace factorSpace, int strength) {
+  private static List<Tuple> runActs(File baseDir, FactorSpace factorSpace, int strength, ActsExperimentsBase.TestSpec.CHandler chandler) {
     LOGGER.debug("Directory:{} was created: {}", baseDir, baseDir.mkdirs());
-    return new Acts.Builder().baseDir(baseDir).factorSpace(factorSpace).strength(strength).build().run();
+    return new Acts.Builder().baseDir(baseDir).factorSpace(factorSpace).strength(strength)
+        .constraintHandler(chandler.actsName())
+        .build()
+        .run();
   }
 
   private static final Logger LOGGER = LoggerFactory.getLogger(Acts.class);
@@ -83,8 +87,8 @@ public class Acts {
     return "src/test/resources/bin/acts_3.0.jar";
   }
 
-  public static List<Tuple> generateWithActs(File baseDir, FactorSpace factorSpace, int strength) {
-    return runActs(baseDir, factorSpace, strength);
+  public static List<Tuple> generateWithActs(File baseDir, FactorSpace factorSpace, int strength, ActsExperimentsBase.TestSpec.CHandler chandler) {
+    return runActs(baseDir, factorSpace, strength, chandler);
   }
 
   private List<Tuple> run() {

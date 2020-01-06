@@ -2,7 +2,7 @@ package com.github.dakusui.jcunit8.experiments.join.acts;
 
 import org.junit.Test;
 
-public class ActsUtilsTestStrength4 extends ActsUtilsTestBase {
+public class ActsExperimentsStrength4 extends ActsExperimentsBase {
   @Test
   public void testGenerateAndReportWithConstraintsWithStrength4Factor10() {
     executeSession(specBuilder().numFactors(10).strength(4).build());

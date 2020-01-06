@@ -2,7 +2,7 @@ package com.github.dakusui.jcunit8.experiments.join.acts;
 
 import org.junit.Test;
 
-public class ActsUtilsTestStrength2 extends ActsUtilsTestBase {
+public class ActsExperimentsStrength2 extends ActsExperimentsBase {
   @Test
   public void testGenerateAndReportWithConstraintsStrength2Factors10() {
     generateAndReportWithConstraints(10, 2);

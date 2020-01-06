@@ -6,13 +6,13 @@ import org.junit.Test;
 
 import java.io.File;
 
-public class ActsUtilsTestExample extends ActsUtilsTestBase {
+public class ActsExperimentsExample extends ActsExperimentsBase {
   @Test
   @Ignore
   public void testGenerateAndReport() {
     File baseDir = new File("target");
-    ActsUtils.generateAndReport(baseDir, 4, 90, 3);
-    ActsUtils.generateAndReport(baseDir, 4, 180, 3);
+    ActsUtils.generateAndReport(baseDir, 4, 90, 3, TestSpec.CHandler.SOLVER);
+    ActsUtils.generateAndReport(baseDir, 4, 180, 3, TestSpec.CHandler.SOLVER);
   }
 
   @Test

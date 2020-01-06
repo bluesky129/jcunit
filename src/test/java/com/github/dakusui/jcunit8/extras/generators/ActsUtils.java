@@ -2,6 +2,7 @@ package com.github.dakusui.jcunit8.extras.generators;
 
 import com.github.dakusui.jcunit.core.tuples.Tuple;
 import com.github.dakusui.jcunit.core.utils.StringUtils;
+import com.github.dakusui.jcunit8.experiments.join.acts.ActsExperimentsBase;
 import com.github.dakusui.jcunit8.extras.normalizer.compat.FactorSpaceSpecForExperiments;
 import com.github.dakusui.jcunit8.extras.normalizer.compat.NormalizedConstraint;
 import com.github.dakusui.jcunit8.factorspace.Constraint;
@@ -230,15 +231,15 @@ public enum ActsUtils {
 
 
   @SafeVarargs
-  public static void generateAndReport(File baseDir, int numLevels, int numFactors, int strength, Function<List<String>, NormalizedConstraint>... constraints) {
+  public static void generateAndReport(File baseDir, int numLevels, int numFactors, int strength, ActsExperimentsBase.TestSpec.CHandler chandler, Function<List<String>, NormalizedConstraint>... constraints) {
     CoveringArrayGenerationUtils.StopWatch stopWatch = new CoveringArrayGenerationUtils.StopWatch();
     List<Tuple> generated;
-    generated = generateWithActs(baseDir, numLevels, numFactors, strength, constraints);
+    generated = generateWithActs(baseDir, numLevels, numFactors, strength, chandler, constraints);
     System.out.println("model=" + numLevels + "^" + numFactors + " t=" + strength + " size=" + generated.size() + " time=" + stopWatch.get() + "[msec]");
   }
 
   @SafeVarargs
-  public static List<Tuple> generateWithActs(File baseDir, int numLevels, int numFactors, int strength, Function<List<String>, NormalizedConstraint>... constraints) {
+  public static List<Tuple> generateWithActs(File baseDir, int numLevels, int numFactors, int strength, ActsExperimentsBase.TestSpec.CHandler chandler, Function<List<String>, NormalizedConstraint>... constraints) {
     FactorSpaceSpecForExperiments factorSpaceSpec = new CompatFactorSpaceSpecForExperiments("L").addFactors(numLevels, numFactors);
     for (Function<List<String>, NormalizedConstraint> each : constraints)
       factorSpaceSpec = factorSpaceSpec.addConstraint(each);
@@ -246,7 +247,8 @@ public enum ActsUtils {
     Acts.generateWithActs(
         baseDir,
         factorSpace,
-        strength);
+        strength,
+        chandler);
     List<Tuple> ret = new LinkedList<>();
     try (Stream<String> data = streamFile(Acts.outFile(baseDir)).peek(LOGGER::trace)) {
       ret.addAll(Acts.readTestSuiteFromCsv(data));

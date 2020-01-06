@@ -1,5 +1,6 @@
 package com.github.dakusui.jcunit8.experiments.join.basic;
 
+import com.github.dakusui.jcunit8.experiments.join.acts.ActsExperimentsBase;
 import com.github.dakusui.jcunit8.extras.generators.Acts;
 import com.github.dakusui.jcunit8.experiments.join.JoinExperiment;
 import com.github.dakusui.jcunit8.pipeline.Requirement;
@@ -25,7 +26,7 @@ public class JoinExperimentBase {
         .strength(strength)
         .times(2)
         .joiner(joinerFactory)
-        .generator((factorSpace, t) -> Acts.generateWithActs(new File("target/acts"), factorSpace, t))
+        .generator((factorSpace, t) -> Acts.generateWithActs(new File("target/acts"), factorSpace, t, ActsExperimentsBase.TestSpec.CHandler.SOLVER))
         .verification(false)
         .build();
   }

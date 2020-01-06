@@ -2,9 +2,13 @@ package com.github.dakusui.jcunit8.experiments.join.acts;
 
 import org.junit.Test;
 
-public class ActsUtilsTestStrength3 extends ActsUtilsTestBase {
+public class ActsExperimentsStrength3 extends ActsExperimentsBase {
   TestSpec.ConstraintComposer createConstraintComposer() {
-    return createConstraintComposer("basic+", ActsConstraints::basicPlus);
+    return createConstraintComposer("basic", ActsConstraints::basic);
+  }
+
+  TestSpec.CHandler constraintHandler() {
+    return TestSpec.CHandler.NO;
   }
 
   @Test
