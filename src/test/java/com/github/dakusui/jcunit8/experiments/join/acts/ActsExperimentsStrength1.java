@@ -5,16 +5,16 @@ import org.junit.Test;
 public class ActsExperimentsStrength1 extends ActsExperimentsBase {
   @Test
   public void testGenerateAndReportWithConstraintsStrength1Factors10() {
-    generateAndReportWithConstraints(10, 1);
+    executeSession(createSpec(10, 1));
   }
 
   @Test
   public void testGenerateAndReportWithConstraintsStrength1Factors20() {
-    generateAndReportWithConstraints(20, 1);
+    executeSession(createSpec(20, 1));
   }
 
   @Test
   public void testGenerateAndReportWithConstraintsStrength1Factors30() {
-    generateAndReportWithConstraints(30, 1);
+    executeSession(createSpec(30, 1));
   }
 }
