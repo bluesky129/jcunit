@@ -12,6 +12,7 @@ import java.io.File;
 import java.util.List;
 import java.util.TreeMap;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 import static com.github.dakusui.jcunit.core.utils.ProcessStreamerUtils.streamFile;
@@ -23,13 +24,16 @@ import static java.util.stream.Collectors.toList;
 
 public class Acts {
 
-  private final FactorSpace factorSpace;
-  private       String      algorithm;
-  private       String      constraintHandler;
+  private final FactorSpace             factorSpace;
+  private       String                  algorithm;
+  private       String                  constraintHandler;
+  private       Consumer<StringBuilder> seedComposer;
 
   private static List<Tuple> runActs(File baseDir, FactorSpace factorSpace, int strength, ActsExperimentsBase.TestSpec.CHandler chandler) {
     LOGGER.debug("Directory:{} was created: {}", baseDir, baseDir.mkdirs());
-    return new Acts.Builder().baseDir(baseDir).factorSpace(factorSpace).strength(strength)
+    return new Acts.Builder().baseDir(baseDir)
+        .factorSpace(factorSpace)
+        .strength(strength)
         .constraintHandler(chandler.actsName())
         .build()
         .run();
@@ -39,12 +43,19 @@ public class Acts {
   private final        int    strength;
   private final        File   baseDir;
 
-  private Acts(FactorSpace factorSpace, int strength, File baseDir, String algorithm, String constraintHandler) {
+  private Acts(
+      FactorSpace factorSpace,
+      int strength,
+      File baseDir,
+      String algorithm,
+      String constraintHandler,
+      Consumer<StringBuilder> seedComposer) {
     this.factorSpace = factorSpace;
     this.strength = strength;
     this.baseDir = baseDir;
     this.algorithm = algorithm;
     this.constraintHandler = constraintHandler;
+    this.seedComposer = requireNonNull(seedComposer);
   }
 
   public static List<Tuple> readTestSuiteFromCsv(Stream<String> data) {
@@ -92,7 +103,7 @@ public class Acts {
   }
 
   private List<Tuple> run() {
-    writeTo(inFile(baseDir), buildActsModel(factorSpace, "unknown"));
+    writeTo(inFile(baseDir), buildActsModel(factorSpace, "unknown", seedComposer));
     /*
       ACTS Version: 3.0
       Usage: java [options] -jar jarName <inputFileName> [outputFileName]
@@ -139,16 +150,22 @@ public class Acts {
   }
 
   public static class Builder {
-    private File        baseDir;
-    private int         strength          = 2;
-    private String      algorithm         = "ipog";
-    private String      constraintHandler = "solver";
-    private FactorSpace factorSpace;
+    private File                    baseDir;
+    private int                     strength          = 2;
+    private String                  algorithm         = "ipog";
+    private String                  constraintHandler = "solver";
+    private FactorSpace             factorSpace;
+    private Consumer<StringBuilder> seedComposer      = stringBuilder -> {
+    };
 
     public Acts build() {
       return new Acts(
           requireNonNull(factorSpace),
-          strength, baseDir, algorithm, constraintHandler);
+          strength,
+          baseDir,
+          algorithm,
+          constraintHandler,
+          seedComposer);
     }
 
     public Builder baseDir(File baseDir) {
@@ -193,10 +210,20 @@ public class Acts {
       return this;
     }
 
+    public Builder seedComposer(File seedFile) {
+      return this.seedComposer(stringBuilder -> stringBuilder.append(
+          ActsUtils.fromCsvToXml(streamFile(requireNonNull(seedFile)), Builder.this.strength)
+      ));
+    }
+
+    public Builder seedComposer(Consumer<StringBuilder> seedComposer) {
+      this.seedComposer = requireNonNull(seedComposer);
+      return this;
+    }
+
     public Builder factorSpace(FactorSpace factorSpace) {
       this.factorSpace = requireNonNull(factorSpace);
       return this;
     }
   }
-
 }

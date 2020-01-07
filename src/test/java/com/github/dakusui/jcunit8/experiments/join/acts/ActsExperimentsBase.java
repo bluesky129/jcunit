@@ -1,7 +1,10 @@
 package com.github.dakusui.jcunit8.experiments.join.acts;
 
+import com.github.dakusui.jcunit.core.tuples.Tuple;
+import com.github.dakusui.jcunit8.extras.generators.ActsUtils;
 import com.github.dakusui.jcunit8.extras.normalizer.compat.NormalizedConstraint;
 import com.github.dakusui.jcunit8.testutils.UTUtils;
+import com.github.dakusui.jcunit8.testutils.testsuitequality.CoveringArrayGenerationUtils;
 
 import java.io.File;
 import java.util.LinkedList;
@@ -10,7 +13,6 @@ import java.util.Optional;
 import java.util.function.Function;
 
 import static com.github.dakusui.crest.Crest.*;
-import static com.github.dakusui.jcunit8.extras.generators.ActsUtils.generateAndReport;
 
 public abstract class ActsExperimentsBase {
   final File baseDir = createTempDirectory();
@@ -216,14 +218,13 @@ public abstract class ActsExperimentsBase {
   }
 
   void executeSession(TestSpec spec) {
-    generateAndReport(
-        spec.baseDir(),
-        spec.numLevels(),
-        spec.numFactors(),
-        spec.strength(),
-        spec.chandler(),
-        createConstraintComposers(spec)
-    );
+    int numLevels = spec.numLevels();
+    int numFactors = spec.numFactors();
+    int strength = spec.strength();
+    CoveringArrayGenerationUtils.StopWatch stopWatch = new CoveringArrayGenerationUtils.StopWatch();
+    List<Tuple> generated;
+    generated = ActsUtils.generateWithActs(spec.baseDir(), numLevels, numFactors, strength, spec.chandler(), createConstraintComposers(spec));
+    System.out.println("model=" + numLevels + "^" + numFactors + " t=" + strength + " size=" + generated.size() + " time=" + stopWatch.get() + "[msec]");
   }
 
   private Function<List<String>, NormalizedConstraint>[] createConstraintComposers(TestSpec spec) {

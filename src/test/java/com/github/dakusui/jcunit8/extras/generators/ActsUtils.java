@@ -19,6 +19,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
@@ -29,7 +30,7 @@ public enum ActsUtils {
   ;
   private static Logger LOGGER = LoggerFactory.getLogger(ActsUtils.class);
 
-  static String buildActsModel(FactorSpace factorSpace, String systemName) {
+  static String buildActsModel(FactorSpace factorSpace, String systemName, Consumer<StringBuilder> seedComposer) {
     StringBuilder b = new StringBuilder();
     b.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
     b.append("<System name=\"").append(systemName).append("\">\n");
@@ -37,8 +38,8 @@ public enum ActsUtils {
     renderParameters(b, 1, factorSpaceAdapter);
     renderConstraints(b, 1, factorSpaceAdapter, factorSpace.getConstraints());
     b.append("\n");
+    seedComposer.accept(b);
     b.append("</System>");
-
     return b.toString();
   }
 

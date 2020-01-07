@@ -26,7 +26,8 @@ public class JoinExperimentBase {
         .strength(strength)
         .times(2)
         .joiner(joinerFactory)
-        .generator((factorSpace, t) -> Acts.generateWithActs(new File("target/acts"), factorSpace, t, ActsExperimentsBase.TestSpec.CHandler.SOLVER))
+        .generator((factorSpace, t) ->
+            Acts.generateWithActs(new File("target/acts"), factorSpace, t, ActsExperimentsBase.TestSpec.CHandler.SOLVER))
         .verification(false)
         .build();
   }
