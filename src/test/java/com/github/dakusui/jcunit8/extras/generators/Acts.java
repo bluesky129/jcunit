@@ -3,7 +3,7 @@ package com.github.dakusui.jcunit8.extras.generators;
 import com.github.dakusui.actionunit.utils.StableTemplatingUtils;
 import com.github.dakusui.jcunit.core.tuples.Tuple;
 import com.github.dakusui.jcunit.core.utils.ProcessStreamerUtils;
-import com.github.dakusui.jcunit8.experiments.join.acts.ActsExperimentsBase;
+import com.github.dakusui.jcunit8.extras.normalizer.compat.FactorSpaceSpecForExperiments;
 import com.github.dakusui.jcunit8.factorspace.FactorSpace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +18,7 @@ import java.util.stream.Stream;
 import static com.github.dakusui.jcunit.core.utils.ProcessStreamerUtils.streamFile;
 import static com.github.dakusui.jcunit.core.utils.ProcessStreamerUtils.writeTo;
 import static com.github.dakusui.jcunit8.extras.generators.ActsUtils.buildActsModel;
+import static com.github.dakusui.jcunit8.extras.generators.ActsUtils.loadPregeneratedOrGenerateAndSaveCoveringArrayFor;
 import static java.util.Arrays.asList;
 import static java.util.Objects.requireNonNull;
 import static java.util.stream.Collectors.toList;
@@ -29,12 +30,12 @@ public class Acts {
   private       String                  constraintHandler;
   private       Consumer<StringBuilder> seedComposer;
 
-  private static List<Tuple> runActs(File baseDir, FactorSpace factorSpace, int strength, ActsExperimentsBase.TestSpec.CHandler chandler) {
+  public static List<Tuple> runActs(File baseDir, FactorSpace factorSpace, int strength, String chandlerName) {
     LOGGER.debug("Directory:{} was created: {}", baseDir, baseDir.mkdirs());
     return new Acts.Builder().baseDir(baseDir)
         .factorSpace(factorSpace)
         .strength(strength)
-        .constraintHandler(chandler.actsName())
+        .constraintHandler(chandlerName)
         .build()
         .run();
   }
@@ -86,7 +87,7 @@ public class Acts {
         .collect(toList());
   }
 
-  static File outFile(File baseDir) {
+  public static File outFile(File baseDir) {
     return new File(baseDir, "acts.ca");
   }
 
@@ -98,11 +99,11 @@ public class Acts {
     return "src/test/resources/bin/acts_3.0.jar";
   }
 
-  public static List<Tuple> generateWithActs(File baseDir, FactorSpace factorSpace, int strength, ActsExperimentsBase.TestSpec.CHandler chandler) {
-    return runActs(baseDir, factorSpace, strength, chandler);
+  public static List<Tuple> generateWithActs(File baseDir, FactorSpace factorSpace, int strength, String chandlerName) {
+    return runActs(baseDir, factorSpace, strength, chandlerName);
   }
 
-  private List<Tuple> run() {
+  public List<Tuple> run() {
     writeTo(inFile(baseDir), buildActsModel(factorSpace, "unknown", seedComposer));
     /*
       ACTS Version: 3.0
@@ -210,10 +211,11 @@ public class Acts {
       return this;
     }
 
-    public Builder seedComposer(File seedFile) {
-      return this.seedComposer(stringBuilder -> stringBuilder.append(
-          ActsUtils.fromCsvToXml(streamFile(requireNonNull(seedFile)), Builder.this.strength)
-      ));
+    public Builder seedComposer(FactorSpaceSpecForExperiments spec, int strength) {
+      return this.seedComposer(stringBuilder -> loadPregeneratedOrGenerateAndSaveCoveringArrayFor(
+          spec,
+          strength,
+          (factorSpace, integer) -> generateWithActs(baseDir, spec.build(), strength, constraintHandler)));
     }
 
     public Builder seedComposer(Consumer<StringBuilder> seedComposer) {

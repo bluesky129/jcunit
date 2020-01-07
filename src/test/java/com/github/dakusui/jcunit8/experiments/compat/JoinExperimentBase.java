@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 
-import static com.github.dakusui.jcunit8.experiments.join.JoinExperimentUtils.loadPregeneratedOrGenerateAndSaveCoveringArrayFor;
+import static com.github.dakusui.jcunit8.extras.generators.ActsUtils.loadPregeneratedOrGenerateAndSaveCoveringArrayFor;
 import static com.github.dakusui.jcunit8.testutils.UTUtils.configureStdIOs;
 import static com.github.dakusui.jcunit8.testutils.testsuitequality.CoveringArrayGenerationUtils.assertCoveringArray;
 

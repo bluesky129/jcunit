@@ -1,21 +1,29 @@
 package com.github.dakusui.jcunit8.experiments.join.acts;
 
 import com.github.dakusui.jcunit.core.tuples.Tuple;
-import com.github.dakusui.jcunit8.extras.generators.ActsUtils;
+import com.github.dakusui.jcunit8.extras.generators.Acts;
+import com.github.dakusui.jcunit8.extras.normalizer.compat.FactorSpaceSpecForExperiments;
 import com.github.dakusui.jcunit8.extras.normalizer.compat.NormalizedConstraint;
+import com.github.dakusui.jcunit8.factorspace.FactorSpace;
 import com.github.dakusui.jcunit8.testutils.UTUtils;
+import com.github.dakusui.jcunit8.testutils.testsuitequality.CompatFactorSpaceSpecForExperiments;
 import com.github.dakusui.jcunit8.testutils.testsuitequality.CoveringArrayGenerationUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.stream.Stream;
 
 import static com.github.dakusui.crest.Crest.*;
+import static com.github.dakusui.jcunit.core.utils.ProcessStreamerUtils.streamFile;
 
 public abstract class ActsExperimentsBase {
-  final File baseDir = createTempDirectory();
+  private static Logger LOGGER  = LoggerFactory.getLogger(ActsExperimentsBase.class);
+  final          File   baseDir = createTempDirectory();
 
   private File createTempDirectory() {
     return UTUtils.createTempDirectory("target/acts");
@@ -54,13 +62,16 @@ public abstract class ActsExperimentsBase {
 
     Optional<ConstraintComposer> constraintComposer();
 
+    Optional<FactorSpaceSpecForExperiments> seedSpec();
+
     class Builder {
       File               baseDir;
       int                numLevels          = -1;
       int                numFactors         = -1;
       int                strength           = -1;
       ConstraintComposer constraintComposer = null;
-      private CHandler chandler = null;
+      private CHandler                      chandler = null;
+      private FactorSpaceSpecForExperiments seedSpec = null;
 
       Builder() {
       }
@@ -90,13 +101,18 @@ public abstract class ActsExperimentsBase {
         return this;
       }
 
+      Builder seedSpec(FactorSpaceSpecForExperiments seedSpec) {
+        this.seedSpec = seedSpec;
+        return this;
+      }
+
       TestSpec build() {
         assertThat(baseDir, asObject().isNotNull().$());
         assertThat(numFactors, asInteger().ge(0).$());
         assertThat(numLevels, asInteger().ge(0).$());
         assertThat(strength, asInteger().ge(0).$());
         assertThat(chandler, asObject().isNotNull().$());
-        return ActsExperimentsBase.createSpec(baseDir, numLevels, numFactors, strength, constraintComposer, chandler);
+        return ActsExperimentsBase.createSpec(baseDir, numLevels, numFactors, strength, constraintComposer, chandler, seedSpec);
       }
 
       public Builder chandler(CHandler chandler) {
@@ -115,14 +131,14 @@ public abstract class ActsExperimentsBase {
   }
 
   TestSpec createSpec(int numFactors, int strength) {
-    return createSpec(baseDir, 4, numFactors, strength, constraintHandler());
+    return createSpec(baseDir, 4, numFactors, strength, createConstraintComposer(), constraintHandler(), null);
   }
 
   TestSpec createSpec(File baseDir, int numLevels, int numFactors, int strength, TestSpec.CHandler chandler) {
-    return createSpec(baseDir, numLevels, numFactors, strength, createConstraintComposer(), chandler);
+    return createSpec(baseDir, numLevels, numFactors, strength, createConstraintComposer(), chandler, null);
   }
 
-  static TestSpec createSpec(File baseDir, int numLevels, int numFactors, int strength, TestSpec.ConstraintComposer composer, TestSpec.CHandler chandler) {
+  static TestSpec createSpec(File baseDir, int numLevels, int numFactors, int strength, TestSpec.ConstraintComposer composer, TestSpec.CHandler chandler, FactorSpaceSpecForExperiments seedSpec) {
     return new TestSpec() {
       @Override
       public CHandler chandler() {
@@ -152,6 +168,11 @@ public abstract class ActsExperimentsBase {
       @Override
       public Optional<ConstraintComposer> constraintComposer() {
         return Optional.ofNullable(composer);
+      }
+
+      @Override
+      public Optional<FactorSpaceSpecForExperiments> seedSpec() {
+        return Optional.ofNullable(seedSpec);
       }
     };
   }
@@ -223,7 +244,30 @@ public abstract class ActsExperimentsBase {
     int strength = spec.strength();
     CoveringArrayGenerationUtils.StopWatch stopWatch = new CoveringArrayGenerationUtils.StopWatch();
     List<Tuple> generated;
-    generated = ActsUtils.generateWithActs(spec.baseDir(), numLevels, numFactors, strength, spec.chandler(), createConstraintComposers(spec));
+    File baseDir = spec.baseDir();
+    FactorSpaceSpecForExperiments factorSpaceSpec = new CompatFactorSpaceSpecForExperiments("L").addFactors(numLevels, numFactors);
+    for (Function<List<String>, NormalizedConstraint> each : createConstraintComposers(spec))
+      factorSpaceSpec = factorSpaceSpec.addConstraint(each);
+    Optional<TestSpec.ConstraintComposer> constraintComposerOptional = spec.constraintComposer();
+    if (constraintComposerOptional.isPresent())
+      factorSpaceSpec = factorSpaceSpec.constraintSetName(constraintComposerOptional.get().name());
+    FactorSpace factorSpace = factorSpaceSpec.build();
+    LOGGER.debug("Directory:{} was created: {}", baseDir, baseDir.mkdirs());
+    Acts.Builder actsBuilder = new Acts.Builder().baseDir(baseDir)
+        .factorSpace(factorSpace)
+        .strength(strength)
+        .algorithm("ipog")
+        .constraintHandler(spec.chandler().actsName());
+    if (spec.seedSpec().isPresent())
+      actsBuilder = actsBuilder.seedComposer(spec.seedSpec().get(), strength);
+    actsBuilder
+        .build()
+        .run();
+    List<Tuple> ret = new LinkedList<>();
+    try (Stream<String> data = streamFile(Acts.outFile(baseDir)).peek(LOGGER::trace)) {
+      ret.addAll(Acts.readTestSuiteFromCsv(data));
+    }
+    generated = ret;
     System.out.println("model=" + numLevels + "^" + numFactors + " t=" + strength + " size=" + generated.size() + " time=" + stopWatch.get() + "[msec]");
   }
 

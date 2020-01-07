@@ -2,29 +2,27 @@ package com.github.dakusui.jcunit8.extras.generators;
 
 import com.github.dakusui.jcunit.core.tuples.Tuple;
 import com.github.dakusui.jcunit.core.utils.StringUtils;
-import com.github.dakusui.jcunit8.experiments.join.acts.ActsExperimentsBase;
 import com.github.dakusui.jcunit8.extras.normalizer.compat.FactorSpaceSpecForExperiments;
-import com.github.dakusui.jcunit8.extras.normalizer.compat.NormalizedConstraint;
 import com.github.dakusui.jcunit8.factorspace.Constraint;
 import com.github.dakusui.jcunit8.factorspace.Factor;
 import com.github.dakusui.jcunit8.factorspace.FactorSpace;
 import com.github.dakusui.jcunit8.testutils.testsuitequality.CompatFactorSpaceSpecForExperiments;
-import com.github.dakusui.jcunit8.testutils.testsuitequality.CoveringArrayGenerationUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.util.Arrays;
-import java.util.LinkedList;
+import java.io.*;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
-import java.util.stream.Stream;
+import java.util.function.Predicate;
 
-import static com.github.dakusui.jcunit.core.utils.ProcessStreamerUtils.streamFile;
 import static java.lang.String.format;
+import static java.util.Objects.requireNonNull;
+import static java.util.stream.Collectors.toList;
 
 public enum ActsUtils {
   ;
@@ -41,6 +39,104 @@ public enum ActsUtils {
     seedComposer.accept(b);
     b.append("</System>");
     return b.toString();
+  }
+
+  public static Optional<List<Tuple>> loadPregeneratedCoveringArrayFor(FactorSpaceSpecForExperiments factorSpaceSpec, int strength, File baseDir) {
+    try {
+      LOGGER.debug("Loading pre-generated covering array for " + factorSpaceSpec.createSignature() + ":strength=" + strength);
+      try {
+        return Optional.of(
+            loadFrom(fileFor(factorSpaceSpec, strength, baseDir)).stream()
+                .map(each -> convert(each, factorSpaceSpec.prefix()))
+                .collect(toList()));
+      } finally {
+        LOGGER.debug("Loaded");
+      }
+    } catch (IOException | ClassNotFoundException e) {
+      LOGGER.debug(
+          format("Pregenerated file for '%s' was not available because: %s.",
+              factorSpaceSpec.toString(),
+              e.getMessage()));
+      return Optional.empty();
+    }
+  }
+
+  public static File fileFor(FactorSpaceSpecForExperiments factorSpaceSpec, int strength, File baseDir) {
+    return new File(new File(baseDir, Objects.toString(strength)), signatureOf(factorSpaceSpec));
+  }
+
+  private static String signatureOf(FactorSpaceSpecForExperiments factorSpaceSpec) {
+    return factorSpaceSpec.createSignature();
+  }
+
+  @SuppressWarnings("unchecked")
+  private static List<Tuple> loadFrom(File file) throws IOException, ClassNotFoundException {
+    try (ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)))) {
+      return (List<Tuple>) ois.readObject();
+    }
+  }
+
+  public static Tuple convert(Tuple in, String newPrefix) {
+    Tuple.Builder b = Tuple.builder();
+    in.forEach((k, v) -> b.put(
+        requireArgument(k, key -> key.startsWith("p")).replace("p", newPrefix),
+        v
+    ));
+    return b.build();
+  }
+
+  private static <T> T requireArgument(T value, Predicate<T> cond) {
+    if (!cond.test(value))
+      throw new IllegalArgumentException(format("'%s' must satisfy %s", value, cond));
+    return value;
+  }
+
+  public static List<Tuple> loadPregeneratedOrGenerateAndSaveCoveringArrayFor(
+      FactorSpaceSpecForExperiments factorSpaceSpec,
+      int strength,
+      BiFunction<FactorSpace, Integer, List<Tuple>> factory) {
+    File baseDir = new File("src/test/resources/pregenerated-cas");
+    if (new File(baseDir, Objects.toString(strength)).mkdirs())
+      LOGGER.debug(String.format("Directory '%s/%s' was created.", baseDir, strength));
+    return loadPregeneratedOrGenerateAndSaveCoveringArrayFor(
+        factorSpaceSpec,
+        strength,
+        baseDir,
+        factory);
+  }
+
+  private static List<Tuple> loadPregeneratedOrGenerateAndSaveCoveringArrayFor(
+      FactorSpaceSpecForExperiments factorSpaceSpec,
+      int strength,
+      File baseDir,
+      BiFunction<FactorSpace, Integer, List<Tuple>> factory) {
+    return loadPregeneratedCoveringArrayFor(factorSpaceSpec, strength, baseDir)
+        .orElseGet(() -> {
+          CompatFactorSpaceSpecForExperiments abstractModel = convertToAbstractModel(factorSpaceSpec);
+          LOGGER.debug(String.format("Generating a covering array for %s(strength=%s) ...", factorSpaceSpec, strength));
+          List<Tuple> ret = factory.apply(abstractModel.build(), strength);
+          LOGGER.debug("Generated.");
+          LOGGER.debug("Saving...");
+          saveTo(fileFor(abstractModel, strength, baseDir), ret);
+          LOGGER.debug("Saved.");
+          return ret.stream()
+              .map(t -> convert(t, factorSpaceSpec.prefix()))
+              .collect(toList());
+        });
+  }
+
+  private static CompatFactorSpaceSpecForExperiments convertToAbstractModel(FactorSpaceSpecForExperiments in) {
+    CompatFactorSpaceSpecForExperiments ret = new CompatFactorSpaceSpecForExperiments("PREFIX");
+    in.factorSpecs().forEach(entry -> ret.addFactors(entry.getKey(), entry.getValue()));
+    return ret;
+  }
+
+  private static void saveTo(File file, List<Tuple> tuples) {
+    try (ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(file)))) {
+      oos.writeObject(tuples);
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   private static class FactorSpaceAdapter {
@@ -172,35 +268,27 @@ public enum ActsUtils {
     return indentLevel;
   }
 
-  static String fromCsvToXml(Stream<String> in, int strength) {
-    StringBuilder b = new StringBuilder();
-    AtomicBoolean firstLine = new AtomicBoolean(true);
-    b.append(createTestSetElementFromCsv(
-        in.filter(s -> !s.startsWith("#"))
-            .peek(s -> {
-              if (firstLine.get()) {
-                b.append(createHeaderElementFromCsv(s));
-                firstLine.set(false);
-              }
-            })
-            .filter(s -> !firstLine.get()),
-        strength));
-    return b.toString();
+  static String fromTuplesToXml(List<Tuple> in, int strength) {
+    requireArgument(requireNonNull(in), v -> !v.isEmpty());
+    requireArgument(strength, v -> v > 0);
+    Tuple headerTuple = in.get(0);
+    return createTestSetElementFromTuples(headerTuple, in, strength)
+        + createHeaderElementFromTuple(headerTuple);
   }
 
-  static String createTestSetElementFromCsv(Stream<String> in, int strength) {
+  static String createTestSetElementFromTuples(Tuple headerTuple, List<Tuple> tuples, int strength) {
     AtomicInteger c = new AtomicInteger(0);
     StringBuilder b = new StringBuilder()
         .append("  ")
         .append(format("<Testset doi=\"%s\">%n", strength));
-    in.forEach(
+    tuples.forEach(
         s -> {
           b.append("    ")
               .append(format("<Testcase TCNo=\"%s\">%n", c.getAndIncrement()));
-          Arrays.stream(s.split(",")).forEach(
-              t -> b.append("      ")
+          headerTuple.keySet().stream().sorted().forEach(
+              k -> b.append("      ")
                   .append("<Value>")
-                  .append(t)
+                  .append(s.get(k))
                   .append("</Value>")
                   .append(format("%n"))
           );
@@ -215,13 +303,13 @@ public enum ActsUtils {
     return b.toString();
   }
 
-  static String createHeaderElementFromCsv(String in) {
+  static String createHeaderElementFromTuple(Tuple headerTuple) {
     StringBuilder b = new StringBuilder();
     b.append("  ")
         .append("<Header>")
         .append("<Value/>")
         .append(format("%n"));
-    Arrays.stream(in.split(",")).forEach(
+    headerTuple.keySet().stream().sorted().forEach(
         s -> b.append("    ")
             .append("<Value>")
             .append(s)
@@ -289,32 +377,4 @@ public enum ActsUtils {
     indentLevel--;
     StringUtils.appendLine(b, indentLevel, "</Constraints>");
   }
-
-
-  @SafeVarargs
-  public static void generateAndReport(File baseDir, int numLevels, int numFactors, int strength, ActsExperimentsBase.TestSpec.CHandler chandler, Function<List<String>, NormalizedConstraint>... constraints) {
-    CoveringArrayGenerationUtils.StopWatch stopWatch = new CoveringArrayGenerationUtils.StopWatch();
-    List<Tuple> generated;
-    generated = generateWithActs(baseDir, numLevels, numFactors, strength, chandler, constraints);
-    System.out.println("model=" + numLevels + "^" + numFactors + " t=" + strength + " size=" + generated.size() + " time=" + stopWatch.get() + "[msec]");
-  }
-
-  @SafeVarargs
-  public static List<Tuple> generateWithActs(File baseDir, int numLevels, int numFactors, int strength, ActsExperimentsBase.TestSpec.CHandler chandler, Function<List<String>, NormalizedConstraint>... constraints) {
-    FactorSpaceSpecForExperiments factorSpaceSpec = new CompatFactorSpaceSpecForExperiments("L").addFactors(numLevels, numFactors);
-    for (Function<List<String>, NormalizedConstraint> each : constraints)
-      factorSpaceSpec = factorSpaceSpec.addConstraint(each);
-    FactorSpace factorSpace = factorSpaceSpec.build();
-    Acts.generateWithActs(
-        baseDir,
-        factorSpace,
-        strength,
-        chandler);
-    List<Tuple> ret = new LinkedList<>();
-    try (Stream<String> data = streamFile(Acts.outFile(baseDir)).peek(LOGGER::trace)) {
-      ret.addAll(Acts.readTestSuiteFromCsv(data));
-    }
-    return ret;
-  }
-
 }
