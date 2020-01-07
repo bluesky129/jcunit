@@ -2,6 +2,7 @@ package com.github.dakusui.jcunit8.experiments.join.acts;
 
 import com.github.dakusui.jcunit.core.tuples.Tuple;
 import com.github.dakusui.jcunit8.extras.generators.Acts;
+import com.github.dakusui.jcunit8.extras.generators.ActsUtils;
 import com.github.dakusui.jcunit8.extras.normalizer.compat.FactorSpaceSpecForExperiments;
 import com.github.dakusui.jcunit8.extras.normalizer.compat.NormalizedConstraint;
 import com.github.dakusui.jcunit8.factorspace.FactorSpace;
@@ -265,7 +266,7 @@ public abstract class ActsExperimentsBase {
         .run();
     List<Tuple> ret = new LinkedList<>();
     try (Stream<String> data = streamFile(Acts.outFile(baseDir)).peek(LOGGER::trace)) {
-      ret.addAll(Acts.readTestSuiteFromCsv(data));
+      ret.addAll(ActsUtils.readTestSuiteFromCsv(data));
     }
     generated = ret;
     System.out.println("model=" + numLevels + "^" + numFactors + " t=" + strength + " size=" + generated.size() + " time=" + stopWatch.get() + "[msec]");

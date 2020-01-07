@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.util.List;
 import java.util.TreeMap;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
@@ -19,16 +18,16 @@ import static com.github.dakusui.jcunit.core.utils.ProcessStreamerUtils.streamFi
 import static com.github.dakusui.jcunit.core.utils.ProcessStreamerUtils.writeTo;
 import static com.github.dakusui.jcunit8.extras.generators.ActsUtils.buildActsModel;
 import static com.github.dakusui.jcunit8.extras.generators.ActsUtils.loadPregeneratedOrGenerateAndSaveCoveringArrayFor;
-import static java.util.Arrays.asList;
 import static java.util.Objects.requireNonNull;
-import static java.util.stream.Collectors.toList;
 
 public class Acts {
-
-  private final FactorSpace             factorSpace;
-  private       String                  algorithm;
-  private       String                  constraintHandler;
-  private       Consumer<StringBuilder> seedComposer;
+  private static final Logger                  LOGGER = LoggerFactory.getLogger(Acts.class);
+  private final        int                     strength;
+  private final        File                    baseDir;
+  private final        FactorSpace             factorSpace;
+  private              String                  algorithm;
+  private              String                  constraintHandler;
+  private              Consumer<StringBuilder> seedComposer;
 
   public static List<Tuple> runActs(File baseDir, FactorSpace factorSpace, int strength, String chandlerName) {
     LOGGER.debug("Directory:{} was created: {}", baseDir, baseDir.mkdirs());
@@ -39,10 +38,6 @@ public class Acts {
         .build()
         .run();
   }
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Acts.class);
-  private final        int    strength;
-  private final        File   baseDir;
 
   private Acts(
       FactorSpace factorSpace,
@@ -57,34 +52,6 @@ public class Acts {
     this.algorithm = algorithm;
     this.constraintHandler = constraintHandler;
     this.seedComposer = requireNonNull(seedComposer);
-  }
-
-  public static List<Tuple> readTestSuiteFromCsv(Stream<String> data) {
-    AtomicReference<List<String>> header = new AtomicReference<>();
-    return data.filter(s -> !s.startsWith("#"))
-        .filter(s -> {
-          if (header.get() == null) {
-            header.set(asList(s.split(",")));
-            return false;
-          }
-          return true;
-        })
-        .map(
-            s -> {
-              List<String> record = asList(s.split(","));
-              List<String> h = header.get();
-              if (record.size() != h.size()) {
-                System.out.println("header:" + h);
-                System.out.println("record:" + record);
-                throw new IllegalArgumentException("size(header)=" + h.size() + ", size(record)=" + record.size());
-              }
-              Tuple.Builder b = Tuple.builder();
-              for (int i = 0; i < h.size(); i++)
-                b.put(h.get(i), record.get(i));
-              return b.build();
-            }
-        )
-        .collect(toList());
   }
 
   public static File outFile(File baseDir) {
@@ -146,7 +113,7 @@ public class Acts {
         .forEach(LOGGER::trace);
 
     try (Stream<String> s = streamFile(outFile(baseDir)).peek(LOGGER::trace)) {
-      return readTestSuiteFromCsv(s);
+      return ActsUtils.readTestSuiteFromCsv(s);
     }
   }
 

@@ -5,7 +5,7 @@ import org.junit.Test;
 import java.util.stream.Stream;
 
 import static com.github.dakusui.crest.Crest.*;
-import static com.github.dakusui.jcunit8.extras.generators.Acts.readTestSuiteFromCsv;
+import static com.github.dakusui.jcunit8.extras.generators.ActsUtils.readTestSuiteFromCsv;
 
 public class ActsUtilsTest {
 

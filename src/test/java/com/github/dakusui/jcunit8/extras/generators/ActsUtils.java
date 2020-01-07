@@ -15,12 +15,15 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 import static java.lang.String.format;
+import static java.util.Arrays.asList;
 import static java.util.Objects.requireNonNull;
 import static java.util.stream.Collectors.toList;
 
@@ -137,6 +140,34 @@ public enum ActsUtils {
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
+  }
+
+  public static List<Tuple> readTestSuiteFromCsv(Stream<String> data) {
+    AtomicReference<List<String>> header = new AtomicReference<>();
+    return data.filter(s -> !s.startsWith("#"))
+        .filter(s -> {
+          if (header.get() == null) {
+            header.set(asList(s.split(",")));
+            return false;
+          }
+          return true;
+        })
+        .map(
+            s -> {
+              List<String> record = asList(s.split(","));
+              List<String> h = header.get();
+              if (record.size() != h.size()) {
+                System.out.println("header:" + h);
+                System.out.println("record:" + record);
+                throw new IllegalArgumentException("size(header)=" + h.size() + ", size(record)=" + record.size());
+              }
+              Tuple.Builder b = Tuple.builder();
+              for (int i = 0; i < h.size(); i++)
+                b.put(h.get(i), record.get(i));
+              return b.build();
+            }
+        )
+        .collect(toList());
   }
 
   private static class FactorSpaceAdapter {
