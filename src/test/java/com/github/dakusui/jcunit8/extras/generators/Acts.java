@@ -3,7 +3,7 @@ package com.github.dakusui.jcunit8.extras.generators;
 import com.github.dakusui.actionunit.utils.StableTemplatingUtils;
 import com.github.dakusui.jcunit.core.tuples.Tuple;
 import com.github.dakusui.jcunit.core.utils.ProcessStreamerUtils;
-import com.github.dakusui.jcunit8.extras.normalizer.compat.FactorSpaceSpecForExperiments;
+import com.github.dakusui.jcunit8.extras.normalizer.compat.FactorSpaceSpecWithConstraints;
 import com.github.dakusui.jcunit8.factorspace.FactorSpace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,13 +21,13 @@ import static com.github.dakusui.jcunit8.extras.generators.ActsUtils.loadPregene
 import static java.util.Objects.requireNonNull;
 
 public class Acts {
-  private static final Logger                  LOGGER = LoggerFactory.getLogger(Acts.class);
-  private final        int                     strength;
-  private final        File                    baseDir;
-  private final        FactorSpace             factorSpace;
-  private              String                  algorithm;
-  private              String                  constraintHandler;
-  private              Consumer<StringBuilder> seedComposer;
+  private static final Logger       LOGGER = LoggerFactory.getLogger(Acts.class);
+  private final        int          strength;
+  private final        File         baseDir;
+  private final        FactorSpace  factorSpace;
+  private              String       algorithm;
+  private              String       constraintHandler;
+  private              SeedComposer seedComposer;
 
   public static List<Tuple> runActs(File baseDir, FactorSpace factorSpace, int strength, String chandlerName) {
     LOGGER.debug("Directory:{} was created: {}", baseDir, baseDir.mkdirs());
@@ -45,7 +45,7 @@ public class Acts {
       File baseDir,
       String algorithm,
       String constraintHandler,
-      Consumer<StringBuilder> seedComposer) {
+      SeedComposer seedComposer) {
     this.factorSpace = factorSpace;
     this.strength = strength;
     this.baseDir = baseDir;
@@ -99,12 +99,13 @@ public class Acts {
                forbiddentuples - handle constraints using minimum forbidden tuples (default)
      */
     ProcessStreamerUtils.processStreamer(StableTemplatingUtils.template(
-        "{{JAVA}} -Ddoi={{STRENGTH}} -Dalgo={{ALGORITHM}} -Dchandler={{CHANDLER}} -Doutput=csv -jar {{ACTS_JAR}} {{IN}} {{OUT}}",
+        "{{JAVA}} -Ddoi={{STRENGTH}} -Dalgo={{ALGORITHM}} -Dchandler={{CHANDLER}} -Dmode={{MODE}} -Doutput=csv -jar {{ACTS_JAR}} {{IN}} {{OUT}}",
         new TreeMap<String, Object>() {{
           put("{{JAVA}}", "java");
           put("{{STRENGTH}}", strength);
           put("{{ALGORITHM}}", algorithm);
           put("{{CHANDLER}}", constraintHandler);
+          put("{{MODE}}", seedComposer.mode());
           put("{{ACTS_JAR}}", actsJar());
           put("{{IN}}", inFile(baseDir));
           put("{{OUT}}", outFile(baseDir));
@@ -118,13 +119,12 @@ public class Acts {
   }
 
   public static class Builder {
-    private File                    baseDir;
-    private int                     strength          = 2;
-    private String                  algorithm         = "ipog";
-    private String                  constraintHandler = "solver";
-    private FactorSpace             factorSpace;
-    private Consumer<StringBuilder> seedComposer      = stringBuilder -> {
-    };
+    private File         baseDir;
+    private int          strength          = 2;
+    private String       algorithm         = "ipog";
+    private String       constraintHandler = "solver";
+    private FactorSpace  factorSpace;
+    private SeedComposer seedComposer      = SeedComposer.empty();
 
     public Acts build() {
       return new Acts(
@@ -178,15 +178,18 @@ public class Acts {
       return this;
     }
 
-    public Builder seedComposer(FactorSpaceSpecForExperiments spec, int strength) {
-      return this.seedComposer(stringBuilder -> loadPregeneratedOrGenerateAndSaveCoveringArrayFor(
-          spec,
-          strength,
-          (factorSpace, integer) -> generateWithActs(baseDir, spec.build(), strength, constraintHandler)));
+    public Builder seedComposer(FactorSpaceSpecWithConstraints spec, int strength) {
+      return this.seedComposer(stringBuilder -> stringBuilder.append(
+          ActsUtils.fromTuplesToXml(
+              loadPregeneratedOrGenerateAndSaveCoveringArrayFor(
+                  spec,
+                  strength,
+                  (factorSpace, integer) -> generateWithActs(baseDir, spec.build(), strength, constraintHandler)),
+              strength)));
     }
 
     public Builder seedComposer(Consumer<StringBuilder> seedComposer) {
-      this.seedComposer = requireNonNull(seedComposer);
+      this.seedComposer = SeedComposer.create(requireNonNull(seedComposer));
       return this;
     }
 

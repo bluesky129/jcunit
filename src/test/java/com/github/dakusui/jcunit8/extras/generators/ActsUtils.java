@@ -2,11 +2,11 @@ package com.github.dakusui.jcunit8.extras.generators;
 
 import com.github.dakusui.jcunit.core.tuples.Tuple;
 import com.github.dakusui.jcunit.core.utils.StringUtils;
-import com.github.dakusui.jcunit8.extras.normalizer.compat.FactorSpaceSpecForExperiments;
+import com.github.dakusui.jcunit8.extras.normalizer.compat.FactorSpaceSpecWithConstraints;
 import com.github.dakusui.jcunit8.factorspace.Constraint;
 import com.github.dakusui.jcunit8.factorspace.Factor;
 import com.github.dakusui.jcunit8.factorspace.FactorSpace;
-import com.github.dakusui.jcunit8.testutils.testsuitequality.CompatFactorSpaceSpecForExperiments;
+import com.github.dakusui.jcunit8.testutils.testsuitequality.CompatFactorSpaceSpecWithConstraints;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,7 +44,7 @@ public enum ActsUtils {
     return b.toString();
   }
 
-  public static Optional<List<Tuple>> loadPregeneratedCoveringArrayFor(FactorSpaceSpecForExperiments factorSpaceSpec, int strength, File baseDir) {
+  public static Optional<List<Tuple>> loadPregeneratedCoveringArrayFor(FactorSpaceSpecWithConstraints factorSpaceSpec, int strength, File baseDir) {
     try {
       LOGGER.debug("Loading pre-generated covering array for " + factorSpaceSpec.createSignature() + ":strength=" + strength);
       try {
@@ -64,11 +64,11 @@ public enum ActsUtils {
     }
   }
 
-  public static File fileFor(FactorSpaceSpecForExperiments factorSpaceSpec, int strength, File baseDir) {
+  public static File fileFor(FactorSpaceSpecWithConstraints factorSpaceSpec, int strength, File baseDir) {
     return new File(new File(baseDir, Objects.toString(strength)), signatureOf(factorSpaceSpec));
   }
 
-  private static String signatureOf(FactorSpaceSpecForExperiments factorSpaceSpec) {
+  private static String signatureOf(FactorSpaceSpecWithConstraints factorSpaceSpec) {
     return factorSpaceSpec.createSignature();
   }
 
@@ -95,7 +95,7 @@ public enum ActsUtils {
   }
 
   public static List<Tuple> loadPregeneratedOrGenerateAndSaveCoveringArrayFor(
-      FactorSpaceSpecForExperiments factorSpaceSpec,
+      FactorSpaceSpecWithConstraints factorSpaceSpec,
       int strength,
       BiFunction<FactorSpace, Integer, List<Tuple>> factory) {
     File baseDir = new File("src/test/resources/pregenerated-cas");
@@ -109,13 +109,13 @@ public enum ActsUtils {
   }
 
   private static List<Tuple> loadPregeneratedOrGenerateAndSaveCoveringArrayFor(
-      FactorSpaceSpecForExperiments factorSpaceSpec,
+      FactorSpaceSpecWithConstraints factorSpaceSpec,
       int strength,
       File baseDir,
       BiFunction<FactorSpace, Integer, List<Tuple>> factory) {
     return loadPregeneratedCoveringArrayFor(factorSpaceSpec, strength, baseDir)
         .orElseGet(() -> {
-          CompatFactorSpaceSpecForExperiments abstractModel = convertToAbstractModel(factorSpaceSpec);
+          CompatFactorSpaceSpecWithConstraints abstractModel = convertToAbstractModel(factorSpaceSpec);
           LOGGER.debug(String.format("Generating a covering array for %s(strength=%s) ...", factorSpaceSpec, strength));
           List<Tuple> ret = factory.apply(abstractModel.build(), strength);
           LOGGER.debug("Generated.");
@@ -128,8 +128,8 @@ public enum ActsUtils {
         });
   }
 
-  private static CompatFactorSpaceSpecForExperiments convertToAbstractModel(FactorSpaceSpecForExperiments in) {
-    CompatFactorSpaceSpecForExperiments ret = new CompatFactorSpaceSpecForExperiments("PREFIX");
+  private static CompatFactorSpaceSpecWithConstraints convertToAbstractModel(FactorSpaceSpecWithConstraints in) {
+    CompatFactorSpaceSpecWithConstraints ret = new CompatFactorSpaceSpecWithConstraints("PREFIX");
     in.factorSpecs().forEach(entry -> ret.addFactors(entry.getKey(), entry.getValue()));
     return ret;
   }
@@ -304,7 +304,15 @@ public enum ActsUtils {
     requireArgument(strength, v -> v > 0);
     Tuple headerTuple = in.get(0);
     return createTestSetElementFromTuples(headerTuple, in, strength)
-        + createHeaderElementFromTuple(headerTuple);
+        + createHeaderElementFromTuple(headerTuple)
+        + "  <Stat-Data>\n"
+        + "    <ExecutionTime>1.485</ExecutionTime>\n"
+        + "    <MaxDomainSize>4</MaxDomainSize>\n"
+        + "    <MinDomainSize>4</MinDomainSize>\n"
+        + "    <TotalNoOfCombination>79200</TotalNoOfCombination>\n"
+        + "    <TotalNoOfTests>57</TotalNoOfTests>\n"
+        + "    <Algorithm>IPOG</Algorithm>\n"
+        + "  </Stat-Data>";
   }
 
   static String createTestSetElementFromTuples(Tuple headerTuple, List<Tuple> tuples, int strength) {

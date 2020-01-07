@@ -1,6 +1,6 @@
 package com.github.dakusui.jcunit8.extras.normalizer.bak;
 
-import com.github.dakusui.jcunit8.extras.normalizer.compat.FactorSpaceSpecForExperiments;
+import com.github.dakusui.jcunit8.extras.normalizer.compat.FactorSpaceSpecWithConstraints;
 import com.github.dakusui.jcunit8.factorspace.Constraint;
 import com.github.dakusui.jcunit8.factorspace.Factor;
 import com.github.dakusui.jcunit8.factorspace.FactorSpace;
@@ -13,7 +13,7 @@ public interface NormalizedFactorSpace extends FactorSpace {
   FactorSpace rawFactorSpace();
 
   static NormalizedFactorSpace normalize(FactorSpace factorSpace) {
-    FactorSpaceSpecForExperiments spec = new FactorSpaceSpecForExperiments();
+    FactorSpaceSpecWithConstraints spec = new FactorSpaceSpecWithConstraints();
     for (Factor each : factorSpace.getFactors()) {
       spec.addFactor(each.getLevels().size());
     }

@@ -1,7 +1,7 @@
 package com.github.dakusui.jcunit8.experiments.join;
 
 import com.github.dakusui.jcunit.core.tuples.Tuple;
-import com.github.dakusui.jcunit8.extras.normalizer.compat.FactorSpaceSpecForExperiments;
+import com.github.dakusui.jcunit8.extras.normalizer.compat.FactorSpaceSpecWithConstraints;
 import com.github.dakusui.jcunit8.factorspace.Factor;
 import com.github.dakusui.jcunit8.factorspace.FactorSpace;
 import com.github.dakusui.jcunit8.pipeline.Requirement;
@@ -78,7 +78,7 @@ public class JoinExperiment {
     exerciseJoin(lhs, rhs, this.spec.strength, this.spec.joinerFactory).forEach(System.out::println);
   }
 
-  private String formatCoveringArray(List<Tuple> ca, IntUnaryOperator p, FactorSpaceSpecForExperiments p2) {
+  private String formatCoveringArray(List<Tuple> ca, IntUnaryOperator p, FactorSpaceSpecWithConstraints p2) {
     return String.format("|CA(%s, %s)|=%s", p.applyAsInt(this.spec.strength), p2.createSignature(), ca.size());
   }
 
@@ -92,7 +92,7 @@ public class JoinExperiment {
   }
 
   private static List<Tuple> loadOrGenerateCoveringArray(
-      FactorSpaceSpecForExperiments factorSpaceSpec,
+      FactorSpaceSpecWithConstraints factorSpaceSpec,
       int strength,
       BiFunction<FactorSpace, Integer, List<Tuple>> generator) {
     return loadPregeneratedOrGenerateAndSaveCoveringArrayFor(
@@ -104,8 +104,8 @@ public class JoinExperiment {
 
   public static class Builder implements Cloneable {
     Function<Requirement, Joiner>                 joinerFactory;
-    FactorSpaceSpecForExperiments lhsSpec;
-    FactorSpaceSpecForExperiments rhsSpec;
+    FactorSpaceSpecWithConstraints                lhsSpec;
+    FactorSpaceSpecWithConstraints                rhsSpec;
     BiFunction<FactorSpace, Integer, List<Tuple>> generator   = CoveringArrayGenerationUtils::generateWithIpoGplus;
     int                                           strength    = 2;
     IntUnaryOperator                              lhsStrength = i -> i;
@@ -113,29 +113,29 @@ public class JoinExperiment {
     int                                           times       = 1;
     private boolean verification;
 
-    public Builder lhs(FactorSpaceSpecForExperiments lhs) {
+    public Builder lhs(FactorSpaceSpecWithConstraints lhs) {
       return this.lhs(lhs, i -> i);
     }
 
-    public Builder lhs(FactorSpaceSpecForExperiments lhs, int strength) {
+    public Builder lhs(FactorSpaceSpecWithConstraints lhs, int strength) {
       return this.lhs(lhs, i -> strength);
     }
 
-    public Builder lhs(FactorSpaceSpecForExperiments lhs, IntUnaryOperator strength) {
+    public Builder lhs(FactorSpaceSpecWithConstraints lhs, IntUnaryOperator strength) {
       this.lhsSpec = lhs;
       this.lhsStrength = strength;
       return this;
     }
 
-    public Builder rhs(FactorSpaceSpecForExperiments rhs) {
+    public Builder rhs(FactorSpaceSpecWithConstraints rhs) {
       return this.rhs(rhs, i -> i);
     }
 
-    public Builder rhs(FactorSpaceSpecForExperiments rhs, int strength) {
+    public Builder rhs(FactorSpaceSpecWithConstraints rhs, int strength) {
       return this.rhs(rhs, i -> strength);
     }
 
-    public Builder rhs(FactorSpaceSpecForExperiments rhs, IntUnaryOperator strength) {
+    public Builder rhs(FactorSpaceSpecWithConstraints rhs, IntUnaryOperator strength) {
       this.rhsSpec = rhs;
       this.rhsStrength = strength;
       return this;

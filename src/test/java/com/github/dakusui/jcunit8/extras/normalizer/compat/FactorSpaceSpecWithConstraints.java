@@ -1,15 +1,15 @@
 package com.github.dakusui.jcunit8.extras.normalizer.compat;
 
+import com.github.dakusui.jcunit8.experiments.join.acts.ConstraintComposer;
 import com.github.dakusui.jcunit8.extras.normalizer.bak.FactorSpaceSpec;
 import com.github.dakusui.jcunit8.factorspace.Factor;
 import com.github.dakusui.jcunit8.factorspace.FactorSpace;
 
+import java.util.Collections;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.function.Function;
 import java.util.function.IntSupplier;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -19,41 +19,35 @@ import static java.lang.String.format;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
-public class FactorSpaceSpecForExperiments extends FactorSpaceSpec {
-  protected final List<Function<List<String>, NormalizedConstraint>> constraints = new LinkedList<>();
-  String constraintSetName = null;
+public class FactorSpaceSpecWithConstraints extends FactorSpaceSpec {
+  ConstraintComposer constraintComposer = null;
 
   public String createSignature() {
     String ret = super.createSignature();
-    if (!constraints.isEmpty())
+    if (constraintComposer != null)
       ret = ret + "-" + constraintSetName().orElseThrow(RuntimeException::new);
     return ret;
   }
 
   private Optional<String> constraintSetName() {
-    return Optional.ofNullable(constraintSetName);
+    return Optional.ofNullable(constraintComposer).map(ConstraintComposer::name);
   }
 
-  public FactorSpaceSpecForExperiments addFactors(int numLevels, int numFactors) {
-    FactorSpaceSpecForExperiments ret = this;
+  public FactorSpaceSpecWithConstraints addFactors(int numLevels, int numFactors) {
+    FactorSpaceSpecWithConstraints ret = this;
     for (int i = 0; i < numFactors; i++)
       ret = this.addFactor(numLevels);
     return ret;
   }
 
-  public FactorSpaceSpecForExperiments addFactor(int numLevels) {
+  public FactorSpaceSpecWithConstraints addFactor(int numLevels) {
     this.factorSpecs.putIfAbsent(numLevels, 0);
     this.factorSpecs.put(numLevels, factorSpecs.get(numLevels) + 1);
     return this;
   }
 
-  public FactorSpaceSpecForExperiments addConstraint(Function<List<String>, NormalizedConstraint> constraint) {
-    this.constraints.add(constraint);
-    return this;
-  }
-
-  public FactorSpaceSpecForExperiments constraintSetName(String constraintSetName) {
-    this.constraintSetName = constraintSetName;
+  public FactorSpaceSpecWithConstraints constraintComposer(ConstraintComposer constraintComposer) {
+    this.constraintComposer = constraintComposer;
     return this;
   }
 
@@ -80,9 +74,11 @@ public class FactorSpaceSpecForExperiments extends FactorSpaceSpec {
     }};
     return FactorSpace.create(
         factors,
-        constraints.stream()
+        this.constraintComposer != null
+            ? Stream.of(this.constraintComposer.toConstraintCreatorFunctions(this.numFactors()))
             .map(each -> each.apply(factors.stream().map(Factor::getName).collect(toList())))
             .collect(toList())
+            : Collections.emptyList()
     );
   }
 

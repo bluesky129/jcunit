@@ -1,14 +1,18 @@
 package com.github.dakusui.jcunit8.experiments.join.acts;
 
-import com.github.dakusui.jcunit8.extras.normalizer.compat.FactorSpaceSpecForExperiments;
+import com.github.dakusui.jcunit8.extras.normalizer.compat.FactorSpaceSpecWithConstraints;
+import com.github.dakusui.jcunit8.extras.normalizer.compat.NormalizedConstraint;
 
 import java.io.File;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 
 import static com.github.dakusui.crest.Crest.*;
 
 public interface TestSpec {
-  static TestSpec createSpec(File baseDir, int numLevels, int numFactors, int strength, ConstraintComposer composer, CHandler chandler, FactorSpaceSpecForExperiments seedSpec) {
+  static TestSpec createSpec(File baseDir, int numLevels, int numFactors, int strength, ConstraintComposer composer, CHandler chandler, FactorSpaceSpecWithConstraints seedSpec) {
     return new TestSpec() {
       @Override
       public CHandler chandler() {
@@ -41,7 +45,7 @@ public interface TestSpec {
       }
 
       @Override
-      public Optional<FactorSpaceSpecForExperiments> seedSpec() {
+      public Optional<FactorSpaceSpecWithConstraints> seedSpec() {
         return Optional.ofNullable(seedSpec);
       }
     };
@@ -75,7 +79,7 @@ public interface TestSpec {
 
   Optional<ConstraintComposer> constraintComposer();
 
-  Optional<FactorSpaceSpecForExperiments> seedSpec();
+  Optional<FactorSpaceSpecWithConstraints> seedSpec();
 
   class Builder {
     File               baseDir;
@@ -83,8 +87,8 @@ public interface TestSpec {
     int                numFactors         = -1;
     int                strength           = -1;
     ConstraintComposer constraintComposer = null;
-    private CHandler                      chandler = null;
-    private FactorSpaceSpecForExperiments seedSpec = null;
+    private CHandler                       chandler = null;
+    private FactorSpaceSpecWithConstraints seedSpec = null;
 
     Builder() {
     }
@@ -114,7 +118,7 @@ public interface TestSpec {
       return this;
     }
 
-    Builder seedSpec(FactorSpaceSpecForExperiments seedSpec) {
+    Builder seedSpec(FactorSpaceSpecWithConstraints seedSpec) {
       this.seedSpec = seedSpec;
       return this;
     }

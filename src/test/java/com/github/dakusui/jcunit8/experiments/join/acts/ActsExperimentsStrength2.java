@@ -1,5 +1,6 @@
 package com.github.dakusui.jcunit8.experiments.join.acts;
 
+import com.github.dakusui.jcunit8.testutils.testsuitequality.CompatFactorSpaceSpecWithConstraints;
 import org.junit.Test;
 
 public class ActsExperimentsStrength2 extends ActsExperimentsBase {
@@ -18,4 +19,14 @@ public class ActsExperimentsStrength2 extends ActsExperimentsBase {
     executeSession(createSpec(30, 2));
   }
 
+  @Test
+  public void testGenerateAndReportWithConstraintsWithStrength2Factors20Incrementally() {
+    executeSession(specBuilder()
+        .numFactors(20)
+        .strength(2)
+        .seedSpec(
+            new CompatFactorSpaceSpecWithConstraints("p")
+                .addFactors(4, 10))
+        .build());
+  }
 }

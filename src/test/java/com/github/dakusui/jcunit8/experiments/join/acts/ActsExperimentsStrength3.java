@@ -1,6 +1,6 @@
 package com.github.dakusui.jcunit8.experiments.join.acts;
 
-import com.github.dakusui.jcunit8.extras.normalizer.compat.FactorSpaceSpecForExperiments;
+import com.github.dakusui.jcunit8.testutils.testsuitequality.CompatFactorSpaceSpecWithConstraints;
 import org.junit.Test;
 
 public class ActsExperimentsStrength3 extends ActsExperimentsBase {
@@ -12,17 +12,6 @@ public class ActsExperimentsStrength3 extends ActsExperimentsBase {
   @Test
   public void testGenerateAndReportWithConstraintsWithStrength3Factors20() {
     executeSession(specBuilder().numFactors(20).strength(3).build());
-  }
-
-  @Test
-  public void testGenerateAndReportWithConstraintsWithStrength3Factors20Incrementally() {
-    TestSpec.Builder builder = specBuilder();
-    executeSession(
-        builder.numFactors(20).strength(3)
-            .seedSpec(new FactorSpaceSpecForExperiments()
-                .addFactors(4, 10)
-                .constraintSetName(builder.constraintComposer.name()))
-            .build());
   }
 
   @Test

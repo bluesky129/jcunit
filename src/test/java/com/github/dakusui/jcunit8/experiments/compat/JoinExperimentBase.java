@@ -2,8 +2,8 @@ package com.github.dakusui.jcunit8.experiments.compat;
 
 import com.github.dakusui.jcunit.core.tuples.Tuple;
 import com.github.dakusui.jcunit8.experiments.join.JoinReport;
-import com.github.dakusui.jcunit8.testutils.testsuitequality.CompatFactorSpaceSpecForExperiments;
-import com.github.dakusui.jcunit8.extras.normalizer.compat.FactorSpaceSpecForExperiments;
+import com.github.dakusui.jcunit8.testutils.testsuitequality.CompatFactorSpaceSpecWithConstraints;
+import com.github.dakusui.jcunit8.extras.normalizer.compat.FactorSpaceSpecWithConstraints;
 import com.github.dakusui.jcunit8.factorspace.Factor;
 import com.github.dakusui.jcunit8.factorspace.FactorSpace;
 import com.github.dakusui.jcunit8.pipeline.Requirement;
@@ -34,8 +34,8 @@ public abstract class JoinExperimentBase {
     }
   }
 
-  public static FactorSpaceSpecForExperiments factorSpeceSpec(String r, int numFactors) {
-    return new CompatFactorSpaceSpecForExperiments(r).addFactors(2, numFactors);
+  public static FactorSpaceSpecWithConstraints factorSpeceSpec(String r, int numFactors) {
+    return new CompatFactorSpaceSpecWithConstraints(r).addFactors(2, numFactors);
   }
 
   @Before
@@ -43,7 +43,7 @@ public abstract class JoinExperimentBase {
     synchronized (JoinExperimentRhs2_n.class) {
       if (!initialized) {
         configureStdIOs();
-        FactorSpaceSpecForExperiments lhsSpec = lhsFactorSpaceSpec();
+        FactorSpaceSpecWithConstraints lhsSpec = lhsFactorSpaceSpec();
         lhsFactorSpace = lhsSpec.build();
         lhs = loadPregeneratedOrGenerateAndSaveCoveringArrayFor(
             lhsSpec,
@@ -57,9 +57,9 @@ public abstract class JoinExperimentBase {
 
   protected abstract int strength();
 
-  protected abstract FactorSpaceSpecForExperiments lhsFactorSpaceSpec();
+  protected abstract FactorSpaceSpecWithConstraints lhsFactorSpaceSpec();
 
-  public void exerciseJoin(int times, FactorSpaceSpecForExperiments rhsSpec, List<Tuple> rhs) {
+  public void exerciseJoin(int times, FactorSpaceSpecWithConstraints rhsSpec, List<Tuple> rhs) {
     System.out.println(JoinReport.header());
     List<Tuple> joined = null;
     for (int i = 0; i < times; i++) {
