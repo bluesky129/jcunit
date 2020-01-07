@@ -1,12 +1,9 @@
 package com.github.dakusui.jcunit8.experiments.join.acts;
 
 import com.github.dakusui.jcunit8.extras.normalizer.compat.FactorSpaceSpecForExperiments;
-import com.github.dakusui.jcunit8.extras.normalizer.compat.NormalizedConstraint;
 
 import java.io.File;
-import java.util.List;
 import java.util.Optional;
-import java.util.function.Function;
 
 import static com.github.dakusui.crest.Crest.*;
 
@@ -64,10 +61,6 @@ public interface TestSpec {
     public String actsName() {
       return this.actsName;
     }
-  }
-
-  interface ConstraintComposer extends Function<List<String>, NormalizedConstraint> {
-    String name();
   }
 
   CHandler chandler();
@@ -138,6 +131,14 @@ public interface TestSpec {
     public Builder chandler(CHandler chandler) {
       this.chandler = chandler;
       return this;
+    }
+
+    static Builder create(File baseDir) {
+      return new Builder()
+          .baseDir(baseDir)
+          .numLevels(4)
+          .constraintComposer(ConstraintComposer.createConstraintComposer("basic", ActsConstraints::basic))
+          .chandler(CHandler.SOLVER);
     }
   }
 }

@@ -30,37 +30,11 @@ public abstract class ActsExperimentsBase {
   }
 
   TestSpec.Builder specBuilder() {
-    return new TestSpec.Builder()
-        .baseDir(this.baseDir)
-        .numLevels(4)
-        .constraintComposer(createConstraintComposer())
-        .chandler(TestSpec.CHandler.SOLVER);
+    return TestSpec.Builder.create(baseDir);
   }
 
   TestSpec createSpec(int numFactors, int strength) {
     return specBuilder().numFactors(numFactors).strength(strength).build();
-  }
-
-  TestSpec.ConstraintComposer createConstraintComposer() {
-    return createConstraintComposer("basic", ActsConstraints::basic);
-  }
-
-  static TestSpec.ConstraintComposer createConstraintComposer(final String name, final Function<List<String>, NormalizedConstraint> composer) {
-    return new TestSpec.ConstraintComposer() {
-      @Override
-      public String name() {
-        return name;
-      }
-
-      @Override
-      public NormalizedConstraint apply(List<String> factorNames) {
-        return composer.apply(factorNames);
-      }
-    };
-  }
-
-  public static Function<List<String>, NormalizedConstraint> createConstraint(int offset, TestSpec.ConstraintComposer constraintComposer) {
-    return strings -> createConstraint(strings.subList(offset, offset + 10), constraintComposer);
   }
 
   /**
@@ -90,7 +64,7 @@ public abstract class ActsExperimentsBase {
    * @param constraintComposer A constraint composer, which creates a constraint
    *                           from a list of factor names
    */
-  public static NormalizedConstraint createConstraint(List<String> factorNames, TestSpec.ConstraintComposer constraintComposer) {
+  public static NormalizedConstraint createConstraint(List<String> factorNames, ConstraintComposer constraintComposer) {
     return constraintComposer.apply(factorNames);
   }
 
@@ -104,7 +78,7 @@ public abstract class ActsExperimentsBase {
     FactorSpaceSpecForExperiments factorSpaceSpec = new CompatFactorSpaceSpecForExperiments("L").addFactors(numLevels, numFactors);
     for (Function<List<String>, NormalizedConstraint> each : createConstraintComposers(spec))
       factorSpaceSpec = factorSpaceSpec.addConstraint(each);
-    Optional<TestSpec.ConstraintComposer> constraintComposerOptional = spec.constraintComposer();
+    Optional<ConstraintComposer> constraintComposerOptional = spec.constraintComposer();
     if (constraintComposerOptional.isPresent())
       factorSpaceSpec = factorSpaceSpec.constraintSetName(constraintComposerOptional.get().name());
     FactorSpace factorSpace = factorSpaceSpec.build();
@@ -138,5 +112,9 @@ public abstract class ActsExperimentsBase {
     } else
       //noinspection unchecked
       return new Function[0];
+  }
+
+  private static Function<List<String>, NormalizedConstraint> createConstraint(int offset, ConstraintComposer constraintComposer) {
+    return strings -> createConstraint(strings.subList(offset, offset + 10), constraintComposer);
   }
 }

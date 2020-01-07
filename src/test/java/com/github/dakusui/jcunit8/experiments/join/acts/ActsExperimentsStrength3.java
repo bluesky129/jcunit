@@ -4,10 +4,6 @@ import com.github.dakusui.jcunit8.extras.normalizer.compat.FactorSpaceSpecForExp
 import org.junit.Test;
 
 public class ActsExperimentsStrength3 extends ActsExperimentsBase {
-  TestSpec.ConstraintComposer createConstraintComposer() {
-    return createConstraintComposer("basic", ActsConstraints::basic);
-  }
-
   @Test
   public void testGenerateAndReportWithConstraintsWithStrength3Factors10() {
     executeSession(specBuilder().numFactors(10).strength(3).build());
