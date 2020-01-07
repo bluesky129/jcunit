@@ -182,6 +182,9 @@ public class Acts {
       return this.seedComposer(stringBuilder -> stringBuilder.append(
           ActsUtils.fromTuplesToXml(
               loadPregeneratedOrGenerateAndSaveCoveringArrayFor(
+                            spec,
+                            strength,
+                            (factorSpace, integer) -> generateWithActs(baseDir, spec.build(), strength, constraintHandler)).get(0), loadPregeneratedOrGenerateAndSaveCoveringArrayFor(
                   spec,
                   strength,
                   (factorSpace, integer) -> generateWithActs(baseDir, spec.build(), strength, constraintHandler)),

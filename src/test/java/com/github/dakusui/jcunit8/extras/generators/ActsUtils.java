@@ -299,10 +299,10 @@ public enum ActsUtils {
     return indentLevel;
   }
 
-  static String fromTuplesToXml(List<Tuple> in, int strength) {
+  static String fromTuplesToXml(Tuple headerTuple, List<Tuple> in, int strength) {
     requireArgument(requireNonNull(in), v -> !v.isEmpty());
+    requireNonNull(headerTuple);
     requireArgument(strength, v -> v > 0);
-    Tuple headerTuple = in.get(0);
     return createTestSetElementFromTuples(headerTuple, in, strength)
         + createHeaderElementFromTuple(headerTuple)
         + "  <Stat-Data>\n"
@@ -312,7 +312,7 @@ public enum ActsUtils {
         + "    <TotalNoOfCombination>79200</TotalNoOfCombination>\n"
         + "    <TotalNoOfTests>57</TotalNoOfTests>\n"
         + "    <Algorithm>IPOG</Algorithm>\n"
-        + "  </Stat-Data>";
+        + "  </Stat-Data>\n";
   }
 
   static String createTestSetElementFromTuples(Tuple headerTuple, List<Tuple> tuples, int strength) {
@@ -323,7 +323,9 @@ public enum ActsUtils {
     tuples.forEach(
         s -> {
           b.append("    ")
-              .append(format("<Testcase TCNo=\"%s\">%n", c.getAndIncrement()));
+              .append(format("<Testcase TCNo=\"%s\">%n", c.getAndIncrement()))
+              .append("      ")
+              .append(format("<Value>%s</Value>%n", c.get()));
           headerTuple.keySet().stream().sorted().forEach(
               k -> b.append("      ")
                   .append("<Value>")
@@ -346,6 +348,8 @@ public enum ActsUtils {
     StringBuilder b = new StringBuilder();
     b.append("  ")
         .append("<Header>")
+        .append(format("%n"))
+        .append("    ")
         .append("<Value/>")
         .append(format("%n"));
     headerTuple.keySet().stream().sorted().forEach(
