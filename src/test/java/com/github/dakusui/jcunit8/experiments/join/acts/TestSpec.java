@@ -1,13 +1,9 @@
 package com.github.dakusui.jcunit8.experiments.join.acts;
 
 import com.github.dakusui.jcunit8.extras.normalizer.compat.FactorSpaceSpecWithConstraints;
-import com.github.dakusui.jcunit8.extras.normalizer.compat.NormalizedConstraint;
 
 import java.io.File;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Optional;
-import java.util.function.Function;
 
 import static com.github.dakusui.crest.Crest.*;
 
@@ -141,7 +137,7 @@ public interface TestSpec {
       return new Builder()
           .baseDir(baseDir)
           .numLevels(4)
-          .constraintComposer(ConstraintComposer.createConstraintComposer("basic", ActsConstraints::basic))
+          .constraintComposer(ConstraintComposer.basic())
           .chandler(CHandler.SOLVER);
     }
   }

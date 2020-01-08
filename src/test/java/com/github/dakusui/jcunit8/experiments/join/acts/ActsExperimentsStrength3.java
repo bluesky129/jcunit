@@ -1,6 +1,5 @@
 package com.github.dakusui.jcunit8.experiments.join.acts;
 
-import com.github.dakusui.jcunit8.testutils.testsuitequality.CompatFactorSpaceSpecWithConstraints;
 import org.junit.Test;
 
 public class ActsExperimentsStrength3 extends ActsExperimentsBase {

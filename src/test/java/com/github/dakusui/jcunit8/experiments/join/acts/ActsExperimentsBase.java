@@ -1,7 +1,6 @@
 package com.github.dakusui.jcunit8.experiments.join.acts;
 
 import com.github.dakusui.jcunit.core.tuples.Tuple;
-import com.github.dakusui.jcunit.core.utils.IoUtils;
 import com.github.dakusui.jcunit8.extras.generators.Acts;
 import com.github.dakusui.jcunit8.extras.generators.ActsUtils;
 import com.github.dakusui.jcunit8.extras.normalizer.bak.FactorSpaceSpec;
@@ -21,8 +20,8 @@ import java.util.stream.Stream;
 import static com.github.dakusui.jcunit.core.utils.IoUtils.streamFile;
 
 public abstract class ActsExperimentsBase {
-  private static Logger LOGGER = LoggerFactory.getLogger(ActsExperimentsBase.class);
-  final File baseDir = createTempDirectory();
+  private static Logger LOGGER  = LoggerFactory.getLogger(ActsExperimentsBase.class);
+  final          File   baseDir = createTempDirectory();
 
   private File createTempDirectory() {
     return UTUtils.createTempDirectory("target/acts");
@@ -64,7 +63,11 @@ public abstract class ActsExperimentsBase {
       ret.addAll(ActsUtils.readTestSuiteFromCsv(data));
     }
     generated = ret;
-    System.out.println("model=" + numLevels + "^" + numFactors + " t=" + strength + " size=" + generated.size() + " time=" + stopWatch.get() + "[msec]");
+    System.out.println("model=" + createSignature(spec) + " t=" + strength + " size=" + generated.size() + " time=" + stopWatch.get() + "[msec]");
+  }
+
+  private String createSignature(TestSpec spec) {
+    return spec.numLevels() + "^" + spec.numFactors() + "-" + (spec.constraintComposer().map(ConstraintComposer::name).orElse("(none)"));
   }
 
   private static Tuple headerTuple(FactorSpace factorSpace) {

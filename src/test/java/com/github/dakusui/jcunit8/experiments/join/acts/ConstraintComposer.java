@@ -21,6 +21,18 @@ public interface ConstraintComposer extends Function<List<String>, NormalizedCon
     };
   }
 
+  static ConstraintComposer basic() {
+    return createConstraintComposer("basic", ActsConstraints::basic);
+  }
+
+  static ConstraintComposer basicPlus() {
+    return createConstraintComposer("basic+", ActsConstraints::basicPlus);
+  }
+
+  static ConstraintComposer doubleBasic() {
+    return createConstraintComposer("doubl-basic", ActsConstraints::doubleBasic);
+  }
+
   String name();
 
   default Function<List<String>, NormalizedConstraint>[] toConstraintCreatorFunctions(int numFactors) {

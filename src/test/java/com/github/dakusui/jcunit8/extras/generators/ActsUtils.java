@@ -130,6 +130,7 @@ public enum ActsUtils {
   private static CompatFactorSpaceSpecWithConstraints convertToAbstractModel(FactorSpaceSpecWithConstraints in) {
     CompatFactorSpaceSpecWithConstraints ret = new CompatFactorSpaceSpecWithConstraints("PREFIX");
     in.factorSpecs().forEach(entry -> ret.addFactors(entry.getKey(), entry.getValue()));
+    ret.constraintComposer(in.constraintComposer());
     return ret;
   }
 

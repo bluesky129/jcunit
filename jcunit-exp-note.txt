@@ -51,7 +51,7 @@ factors strength constraint-set  size time                CSP solver
 20      5        basic          6155 179.237s
 30      5        basic          7859 635.392s
 40      5        basic
-10      6        basic         13197>340.2s   (not finished)
+10      6        basic         13197 334.402s
 20      6        basic          
 
 Estimated size by weaken-product method for factors=20

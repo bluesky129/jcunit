@@ -26,6 +26,7 @@ public class ActsExperimentsStrength2 extends ActsExperimentsBase {
         .strength(2)
         .seedSpec(
             new CompatFactorSpaceSpecWithConstraints("p")
+                .constraintComposer(ConstraintComposer.basic())
                 .addFactors(4, 10))
         .build());
   }
