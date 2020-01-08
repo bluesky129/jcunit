@@ -182,7 +182,7 @@ public class Acts {
     public Builder seedComposer(Tuple headerTuple, FactorSpaceSpecWithConstraints spec, int strength) {
       return this.seedComposer(stringBuilder -> stringBuilder.append(
           ActsUtils.fromTuplesToXml(
-              Tuple.builder().build(),
+              headerTuple,
               loadPregeneratedOrGenerateAndSaveCoveringArrayFor(
                   spec,
                   strength,

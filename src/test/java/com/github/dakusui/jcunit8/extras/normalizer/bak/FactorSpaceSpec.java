@@ -16,17 +16,6 @@ public class FactorSpaceSpec {
    */
   protected final SortedMap<Integer, Integer> factorSpecs = new TreeMap<>((o1, o2) -> o2 - o1);
 
-  public Tuple headerTuple() {
-    return headerTuple(this);
-  }
-
-  static Tuple headerTuple(FactorSpaceSpec factorSpaceSpec) {
-    Tuple.Builder builder = Tuple.builder();
-    for (int i = 0; i < factorSpaceSpec.numFactors(); i++)
-      builder.put(FactorSpaceAdapter.NAME_RESOLVER.apply(i), DONT_CARE);
-    return builder.build();
-  }
-
   public String createSignature() {
     return this.factorSpecs.keySet().stream()
         .map(k -> format("%s^%s", k, this.factorSpecs.get(k)))
