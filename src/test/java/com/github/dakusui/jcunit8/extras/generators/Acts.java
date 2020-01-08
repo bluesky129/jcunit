@@ -3,6 +3,7 @@ package com.github.dakusui.jcunit8.extras.generators;
 import com.github.dakusui.actionunit.utils.StableTemplatingUtils;
 import com.github.dakusui.jcunit.core.tuples.Tuple;
 import com.github.dakusui.jcunit.core.utils.ProcessStreamerUtils;
+import com.github.dakusui.jcunit8.extras.normalizer.bak.FactorSpaceSpec;
 import com.github.dakusui.jcunit8.extras.normalizer.compat.FactorSpaceSpecWithConstraints;
 import com.github.dakusui.jcunit8.factorspace.FactorSpace;
 import org.slf4j.Logger;
@@ -21,13 +22,13 @@ import static com.github.dakusui.jcunit8.extras.generators.ActsUtils.loadPregene
 import static java.util.Objects.requireNonNull;
 
 public class Acts {
-  private static final Logger       LOGGER = LoggerFactory.getLogger(Acts.class);
-  private final        int          strength;
-  private final        File         baseDir;
-  private final        FactorSpace  factorSpace;
-  private              String       algorithm;
-  private              String       constraintHandler;
-  private              SeedComposer seedComposer;
+  private static final Logger LOGGER = LoggerFactory.getLogger(Acts.class);
+  private final int strength;
+  private final File baseDir;
+  private final FactorSpace factorSpace;
+  private String algorithm;
+  private String constraintHandler;
+  private SeedComposer seedComposer;
 
   public static List<Tuple> runActs(File baseDir, FactorSpace factorSpace, int strength, String chandlerName) {
     LOGGER.debug("Directory:{} was created: {}", baseDir, baseDir.mkdirs());
@@ -119,12 +120,12 @@ public class Acts {
   }
 
   public static class Builder {
-    private File         baseDir;
-    private int          strength          = 2;
-    private String       algorithm         = "ipog";
-    private String       constraintHandler = "solver";
-    private FactorSpace  factorSpace;
-    private SeedComposer seedComposer      = SeedComposer.empty();
+    private File baseDir;
+    private int strength = 2;
+    private String algorithm = "ipog";
+    private String constraintHandler = "solver";
+    private FactorSpace factorSpace;
+    private SeedComposer seedComposer = SeedComposer.empty();
 
     public Acts build() {
       return new Acts(
@@ -178,20 +179,18 @@ public class Acts {
       return this;
     }
 
-    public Builder seedComposer(FactorSpaceSpecWithConstraints spec, int strength) {
+    public Builder seedComposer(Tuple headerTuple, FactorSpaceSpecWithConstraints spec, int strength) {
       return this.seedComposer(stringBuilder -> stringBuilder.append(
           ActsUtils.fromTuplesToXml(
+              Tuple.builder().build(),
               loadPregeneratedOrGenerateAndSaveCoveringArrayFor(
-                            spec,
-                            strength,
-                            (factorSpace, integer) -> generateWithActs(baseDir, spec.build(), strength, constraintHandler)).get(0), loadPregeneratedOrGenerateAndSaveCoveringArrayFor(
                   spec,
                   strength,
                   (factorSpace, integer) -> generateWithActs(baseDir, spec.build(), strength, constraintHandler)),
               strength)));
     }
 
-    public Builder seedComposer(Consumer<StringBuilder> seedComposer) {
+    Builder seedComposer(Consumer<StringBuilder> seedComposer) {
       this.seedComposer = SeedComposer.create(requireNonNull(seedComposer));
       return this;
     }

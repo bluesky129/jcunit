@@ -18,7 +18,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
-import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
@@ -170,42 +169,6 @@ public enum ActsUtils {
         .collect(toList());
   }
 
-  private static class FactorSpaceAdapter {
-    static final Function<Integer, String>                    NAME_RESOLVER =
-        (id) -> format("p%d", id);
-    final        Function<Integer, String>                    name;
-    final        Function<Integer, String>                    type;
-    final        Function<Integer, Factor>                    factor;
-    final        Function<Integer, Function<Integer, Object>> value;
-    final        int                                          numParameters;
-    final        Function<String, String>                     factorNameToParameterName;
-
-    private FactorSpaceAdapter(
-        Function<Integer, String> name,
-        Function<Integer, String> type,
-        Function<Integer, Factor> factor,
-        Function<Integer, Function<Integer, Object>> value,
-        Function<String, Integer> indexOfFactorName,
-        int numParameters) {
-      this.name = name;
-      this.type = type;
-      this.factor = factor;
-      this.value = value;
-      this.factorNameToParameterName = factorName ->
-          name.apply(indexOfFactorName.apply(factorName));
-      this.numParameters = numParameters;
-    }
-
-    FactorSpaceAdapter(FactorSpace factorSpace) {
-      this(NAME_RESOLVER,
-          (id) -> "0",
-          (id) -> factorSpace.getFactors().get(id),
-          (ii) -> (j) -> factorSpace.getFactors().get(ii).getLevels().get(j),
-          (factorName) -> factorSpace.getFactorNames().indexOf(factorName),
-          factorSpace.getFactors().size());
-    }
-  }
-
   @SuppressWarnings("SameParameterValue")
   private static void renderParameters(StringBuilder b, int indentLevel, FactorSpaceAdapter factorSpaceAdapter) {
     StringUtils.appendLine(b, indentLevel, "<Parameters>");
@@ -305,7 +268,7 @@ public enum ActsUtils {
     requireArgument(strength, v -> v > 0);
     return createTestSetElementFromTuples(headerTuple, in, strength)
         + createHeaderElementFromTuple(headerTuple)
-        + "  <Stat-Data>\n"
+        + "  <Stat-Data>\n"  // A dummy element. Maybe unnecessary.
         + "    <ExecutionTime>1.485</ExecutionTime>\n"
         + "    <MaxDomainSize>4</MaxDomainSize>\n"
         + "    <MinDomainSize>4</MinDomainSize>\n"
@@ -328,9 +291,7 @@ public enum ActsUtils {
               .append(format("<Value>%s</Value>%n", c.get()));
           headerTuple.keySet().stream().sorted().forEach(
               k -> b.append("      ")
-                  .append("<Value>")
-                  .append(s.get(k))
-                  .append("</Value>")
+                  .append(s.containsKey(k) ? format("<Value>%s</Value>", s.get(k)) : "<Value/>")
                   .append(format("%n"))
           );
           b.append("    ");

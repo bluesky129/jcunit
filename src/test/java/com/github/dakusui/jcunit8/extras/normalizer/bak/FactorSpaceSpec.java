@@ -1,5 +1,8 @@
 package com.github.dakusui.jcunit8.extras.normalizer.bak;
 
+import com.github.dakusui.jcunit.core.tuples.Tuple;
+import com.github.dakusui.jcunit8.extras.generators.FactorSpaceAdapter;
+
 import java.util.SortedMap;
 import java.util.TreeMap;
 
@@ -7,10 +10,22 @@ import static java.lang.String.format;
 import static java.util.stream.Collectors.joining;
 
 public class FactorSpaceSpec {
+  public static final Object DONT_CARE = new Object();
   /**
    * Descending order by the number of levels of factors.
    */
   protected final SortedMap<Integer, Integer> factorSpecs = new TreeMap<>((o1, o2) -> o2 - o1);
+
+  public Tuple headerTuple() {
+    return headerTuple(this);
+  }
+
+  static Tuple headerTuple(FactorSpaceSpec factorSpaceSpec) {
+    Tuple.Builder builder = Tuple.builder();
+    for (int i = 0; i < factorSpaceSpec.numFactors(); i++)
+      builder.put(FactorSpaceAdapter.NAME_RESOLVER.apply(i), DONT_CARE);
+    return builder.build();
+  }
 
   public String createSignature() {
     return this.factorSpecs.keySet().stream()

@@ -3,6 +3,7 @@ package com.github.dakusui.jcunit8.experiments.join.acts;
 import com.github.dakusui.jcunit.core.tuples.Tuple;
 import com.github.dakusui.jcunit8.extras.generators.Acts;
 import com.github.dakusui.jcunit8.extras.generators.ActsUtils;
+import com.github.dakusui.jcunit8.extras.normalizer.bak.FactorSpaceSpec;
 import com.github.dakusui.jcunit8.extras.normalizer.compat.FactorSpaceSpecWithConstraints;
 import com.github.dakusui.jcunit8.factorspace.FactorSpace;
 import com.github.dakusui.jcunit8.testutils.UTUtils;
@@ -19,8 +20,8 @@ import java.util.stream.Stream;
 import static com.github.dakusui.jcunit.core.utils.ProcessStreamerUtils.streamFile;
 
 public abstract class ActsExperimentsBase {
-  private static Logger LOGGER  = LoggerFactory.getLogger(ActsExperimentsBase.class);
-  final          File   baseDir = createTempDirectory();
+  private static Logger LOGGER = LoggerFactory.getLogger(ActsExperimentsBase.class);
+  final File baseDir = createTempDirectory();
 
   private File createTempDirectory() {
     return UTUtils.createTempDirectory("target/acts");
@@ -53,7 +54,7 @@ public abstract class ActsExperimentsBase {
         .algorithm("ipog")
         .constraintHandler(spec.chandler().actsName());
     if (spec.seedSpec().isPresent())
-      actsBuilder = actsBuilder.seedComposer(spec.seedSpec().get(), strength);
+      actsBuilder = actsBuilder.seedComposer(headerTuple(factorSpace), spec.seedSpec().get(), strength);
     actsBuilder
         .build()
         .run();
@@ -63,5 +64,13 @@ public abstract class ActsExperimentsBase {
     }
     generated = ret;
     System.out.println("model=" + numLevels + "^" + numFactors + " t=" + strength + " size=" + generated.size() + " time=" + stopWatch.get() + "[msec]");
+  }
+
+  private static Tuple headerTuple(FactorSpace factorSpace) {
+    Tuple.Builder b = Tuple.builder();
+    factorSpace.getFactors().forEach(
+        f -> b.put(f.getName(), FactorSpaceSpec.DONT_CARE)
+    );
+    return b.build();
   }
 }
