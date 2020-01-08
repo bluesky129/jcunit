@@ -56,23 +56,11 @@ public enum ProcessStreamerUtils {
     };
   }
 
-  public static Stream<String> streamFile(File file) {
-    return processStreamer(format("cat %s", file.getAbsolutePath()),
-        Checker.createDefault())
-        .stream();
-  }
-
   public static ProcessStreamer processStreamer(String command, Checker checker) {
     LOGGER.debug("Executing:[{}]", command);
     return new ProcessStreamer.Builder(Shell.local(), command)
         .checker(checker)
         .build();
-  }
-
-  public static void writeTo(File file, String data) {
-    processStreamer(format("echo '%s' > %s", data, file.getAbsolutePath()), Checker.createDefault())
-        .stream()
-        .forEach(LOGGER::debug);
   }
 
   public static class StandardChecker implements Checker {

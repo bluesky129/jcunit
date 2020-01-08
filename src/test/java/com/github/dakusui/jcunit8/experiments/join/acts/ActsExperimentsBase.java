@@ -1,6 +1,7 @@
 package com.github.dakusui.jcunit8.experiments.join.acts;
 
 import com.github.dakusui.jcunit.core.tuples.Tuple;
+import com.github.dakusui.jcunit.core.utils.IoUtils;
 import com.github.dakusui.jcunit8.extras.generators.Acts;
 import com.github.dakusui.jcunit8.extras.generators.ActsUtils;
 import com.github.dakusui.jcunit8.extras.normalizer.bak.FactorSpaceSpec;
@@ -17,7 +18,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static com.github.dakusui.jcunit.core.utils.ProcessStreamerUtils.streamFile;
+import static com.github.dakusui.jcunit.core.utils.IoUtils.streamFile;
 
 public abstract class ActsExperimentsBase {
   private static Logger LOGGER = LoggerFactory.getLogger(ActsExperimentsBase.class);
