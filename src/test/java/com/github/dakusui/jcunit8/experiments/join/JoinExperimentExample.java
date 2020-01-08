@@ -6,7 +6,7 @@ import com.github.dakusui.jcunit8.pipeline.stages.Joiner;
 import com.github.dakusui.jcunit8.testutils.testsuitequality.CompatFactorSpaceSpecWithConstraints;
 import org.junit.Test;
 
-import static com.github.dakusui.jcunit8.experiments.join.acts.ConstraintComposer.basicPlus;
+import static com.github.dakusui.jcunit8.experiments.join.acts.ConstraintComposer.*;
 
 public class JoinExperimentExample {
   @Test
@@ -35,11 +35,11 @@ public class JoinExperimentExample {
 
   @Test
   public void exerciseSession() {
-    int numLevels = 16;
-    int numFactors = 50;
-    int strength = 2;
+    int numLevels = 4;
+    int strength = 4;
     ConstraintComposer constraintModel = basicPlus();
-    exerciseSession(numLevels, numFactors, constraintModel, strength);
+    for (int numFactors = 10; numFactors <= 10; numFactors += 10)
+      exerciseSession(numLevels, numFactors, constraintModel, strength);
   }
 
   @Test

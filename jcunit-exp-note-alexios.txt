@@ -1,0 +1,325 @@
+model=8^10-basic+ t=2 size=98 time=2688[msec]
+model=8^20-basic+ t=2 size=133 time=5183[msec]
+model=8^30-basic+ t=2 size=143 time=6547[msec]
+model=8^40-basic+ t=2 size=158 time=8924[msec]
+model=8^50-basic+ t=2 size=167 time=11155[msec]
+model=8^60-basic+ t=2 size=173 time=13456[msec]
+model=8^70-basic+ t=2 size=178 time=15777[msec]
+model=8^80-basic+ t=2 size=187 time=19061[msec]
+model=8^90-basic+ t=2 size=188 time=21251[msec]
+model=8^100-basic+ t=2 size=192 time=24958[msec]
+model=8^110-basic++ t=2 size=240 time=14216[msec]
+model=8^130-basic++ t=2 size=245 time=15949[msec]
+model=8^150-basic++ t=2 size=253 time=21181[msec]
+model=8^170-basic++ t=2 size=259 time=24336[msec]
+model=8^190-basic++ t=2 size=263 time=26407[msec]
+model=8^20-basic t=2 size=144 time=1720[msec](from seed:'8^10-basic')
+model=8^40-basic t=2 size=172 time=3209[msec](from seed:'8^20-basic')
+model=8^60-basic t=2 size=188 time=3728[msec](from seed:'8^30-basic')
+model=8^80-basic t=2 size=200 time=4354[msec](from seed:'8^40-basic')
+model=8^100-basic t=2 size=210 time=5799[msec](from seed:'8^50-basic')
+model=8^120-basic t=2 size=218 time=6762[msec](from seed:'8^60-basic')
+model=8^140-basic t=2 size=224 time=7062[msec](from seed:'8^70-basic')
+model=8^160-basic t=2 size=230 time=7853[msec](from seed:'8^80-basic')
+model=8^180-basic t=2 size=235 time=9159[msec](from seed:'8^90-basic')
+model=8^200-basic t=2 size=241 time=11169[msec](from seed:'8^100-basic')
+model=8^20-basic+ t=2 size=126 time=3622[msec](from seed:'8^10-basic+')
+model=8^40-basic+ t=2 size=160 time=7185[msec](from seed:'8^20-basic+')
+model=8^60-basic+ t=2 size=170 time=11926[msec](from seed:'8^30-basic+')
+model=8^80-basic+ t=2 size=185 time=17390[msec](from seed:'8^40-basic+')
+model=8^100-basic+ t=2 size=194 time=24671[msec](from seed:'8^50-basic+')
+model=8^120-basic+ t=2 size=203 time=28085[msec](from seed:'8^60-basic+')
+model=8^140-basic+ t=2 size=207 time=34414[msec](from seed:'8^70-basic+')
+model=8^160-basic+ t=2 size=213 time=40614[msec](from seed:'8^80-basic+')
+model=8^180-basic+ t=2 size=217 time=46120[msec](from seed:'8^90-basic+')
+model=8^200-basic+ t=2 size=220 time=51678[msec](from seed:'8^100-basic+')
+model=8^20-basic++ t=2 size=155 time=3153[msec](from seed:'8^10-basic++')
+model=8^20-basic++ t=2 size=155 time=3051[msec](from seed:'8^10-basic++')
+model=8^40-basic++ t=2 size=192 time=4536[msec](from seed:'8^20-basic++')
+model=8^60-basic++ t=2 size=208 time=6712[msec](from seed:'8^30-basic++')
+model=8^80-basic++ t=2 size=223 time=9153[msec](from seed:'8^40-basic++')
+model=8^100-basic++ t=2 size=235 time=11545[msec](from seed:'8^50-basic++')
+model=8^120-basic++ t=2 size=240 time=13566[msec](from seed:'8^60-basic++')
+model=8^140-basic++ t=2 size=249 time=15959[msec](from seed:'8^70-basic++')
+model=8^160-basic++ t=2 size=255 time=17711[msec](from seed:'8^80-basic++')
+model=8^180-basic++ t=2 size=264 time=22028[msec](from seed:'8^90-basic++')
+model=8^200-basic++ t=2 size=267 time=23474[msec](from seed:'8^100-basic++')
+model=4^20-basic++ t=2 size=48 time=1595[msec]
+model=4^40-basic++ t=2 size=55 time=1903[msec]
+model=4^60-basic++ t=2 size=59 time=2420[msec]
+model=4^80-basic++ t=2 size=62 time=3188[msec]
+model=4^100-basic++ t=2 size=64 time=3194[msec]
+model=4^120-basic++ t=2 size=65 time=3555[msec]
+model=4^140-basic++ t=2 size=68 time=3878[msec]
+model=4^160-basic++ t=2 size=71 time=4380[msec]
+model=4^180-basic++ t=2 size=71 time=4821[msec]
+model=4^200-basic++ t=2 size=71 time=5199[msec]
+model=4^20-basic++ t=2 size=46 time=1337[msec](from seed:'4^10-basic++')
+model=4^40-basic++ t=2 size=55 time=1894[msec](from seed:'4^20-basic++')
+model=4^60-basic++ t=2 size=59 time=2288[msec](from seed:'4^30-basic++')
+model=4^80-basic++ t=2 size=62 time=2906[msec](from seed:'4^40-basic++')
+model=4^100-basic++ t=2 size=65 time=3586[msec](from seed:'4^50-basic++')
+model=4^120-basic++ t=2 size=66 time=3693[msec](from seed:'4^60-basic++')
+model=4^140-basic++ t=2 size=68 time=4053[msec](from seed:'4^70-basic++')
+model=4^160-basic++ t=2 size=70 time=4415[msec](from seed:'4^80-basic++')
+model=4^180-basic++ t=2 size=71 time=4799[msec](from seed:'4^90-basic++')
+model=4^200-basic++ t=2 size=71 time=5324[msec](from seed:'4^100-basic++')
+model=4^20-basic+ t=2 size=24 time=1322[msec](from seed:'4^10-basic+')
+model=4^40-basic+ t=2 size=29 time=2275[msec](from seed:'4^20-basic+')
+model=4^60-basic+ t=2 size=31 time=2586[msec](from seed:'4^30-basic+')
+model=4^80-basic+ t=2 size=34 time=3082[msec](from seed:'4^40-basic+')
+model=4^100-basic+ t=2 size=35 time=3150[msec](from seed:'4^50-basic+')
+model=4^120-basic+ t=2 size=36 time=4098[msec](from seed:'4^60-basic+')
+model=4^140-basic+ t=2 size=37 time=4132[msec](from seed:'4^70-basic+')
+model=4^160-basic+ t=2 size=40 time=5106[msec](from seed:'4^80-basic+')
+model=4^180-basic+ t=2 size=40 time=4651[msec](from seed:'4^90-basic+')
+model=4^200-basic+ t=2 size=40 time=4934[msec](from seed:'4^100-basic+')
+model=4^20-(none) t=2 size=41 time=381[msec](from seed:'4^10')
+model=4^40-(none) t=2 size=46 time=304[msec](from seed:'4^20')
+model=4^60-(none) t=2 size=52 time=416[msec](from seed:'4^30')
+model=4^80-(none) t=2 size=55 time=392[msec](from seed:'4^40')
+model=4^100-(none) t=2 size=57 time=413[msec](from seed:'4^50')
+model=4^120-(none) t=2 size=59 time=502[msec](from seed:'4^60')
+model=4^140-(none) t=2 size=61 time=557[msec](from seed:'4^70')
+model=4^160-(none) t=2 size=62 time=617[msec](from seed:'4^80')
+model=4^180-(none) t=2 size=63 time=748[msec](from seed:'4^90')
+model=4^200-(none) t=2 size=64 time=731[msec](from seed:'4^100')
+model=8^20-(none) t=2 size=145 time=392[msec](from seed:'8^10')
+model=8^40-(none) t=2 size=169 time=454[msec](from seed:'8^20')
+model=8^60-(none) t=2 size=184 time=579[msec](from seed:'8^30')
+model=8^80-(none) t=2 size=198 time=666[msec](from seed:'8^40')
+model=8^100-(none) t=2 size=204 time=729[msec](from seed:'8^50')
+model=8^120-(none) t=2 size=212 time=879[msec](from seed:'8^60')
+model=8^140-(none) t=2 size=219 time=982[msec](from seed:'8^70')
+model=8^160-(none) t=2 size=224 time=1053[msec](from seed:'8^80')
+model=8^180-(none) t=2 size=230 time=1413[msec](from seed:'8^90')
+model=8^200-(none) t=2 size=234 time=1460[msec](from seed:'8^100')
+model=4^20-(none) t=2 size=41 time=315[msec]
+model=4^40-(none) t=2 size=46 time=329[msec]
+model=4^60-(none) t=2 size=52 time=313[msec]
+model=4^80-(none) t=2 size=55 time=313[msec]
+model=4^100-(none) t=2 size=57 time=363[msec]
+model=4^120-(none) t=2 size=59 time=444[msec]
+model=4^140-(none) t=2 size=61 time=547[msec]
+model=4^160-(none) t=2 size=62 time=577[msec]
+model=4^180-(none) t=2 size=63 time=533[msec]
+model=4^200-(none) t=2 size=64 time=563[msec]
+model=8^20-(none) t=2 size=145 time=373[msec]
+model=8^40-(none) t=2 size=169 time=423[msec]
+model=8^60-(none) t=2 size=184 time=483[msec]
+model=8^80-(none) t=2 size=198 time=535[msec]
+model=8^100-(none) t=2 size=204 time=596[msec]
+model=8^120-(none) t=2 size=212 time=772[msec]
+model=8^140-(none) t=2 size=219 time=829[msec]
+model=8^160-(none) t=2 size=224 time=988[msec]
+model=8^180-(none) t=2 size=230 time=1107[msec]
+model=8^200-(none) t=2 size=234 time=1396[msec]
+
+model=4^20-(none) t=2 size=41 time=459[msec](from seed:'4^10')
+model=4^40-(none) t=2 size=46 time=390[msec](from seed:'4^20')
+model=4^60-(none) t=2 size=52 time=385[msec](from seed:'4^30')
+model=4^80-(none) t=2 size=55 time=494[msec](from seed:'4^40')
+model=4^100-(none) t=2 size=57 time=516[msec](from seed:'4^50')
+model=4^120-(none) t=2 size=59 time=559[msec](from seed:'4^60')
+model=4^140-(none) t=2 size=61 time=664[msec](from seed:'4^70')
+model=4^160-(none) t=2 size=62 time=1036[msec](from seed:'4^80')
+model=4^180-(none) t=2 size=63 time=818[msec](from seed:'4^90')
+model=4^200-(none) t=2 size=64 time=812[msec](from seed:'4^100')
+model=4^20-(none) t=3 size=208 time=432[msec]
+model=4^40-(none) t=3 size=288 time=676[msec]
+model=4^60-(none) t=3 size=336 time=1327[msec]
+model=4^80-(none) t=3 size=369 time=2892[msec]
+model=4^100-(none) t=3 size=396 time=6202[msec]
+model=4^120-(none) t=3 size=417 time=15512[msec]
+model=4^140-(none) t=3 size=436 time=33395[msec]
+model=4^160-(none) t=3 size=452 time=62725[msec]
+model=4^180-(none) t=3 size=467 time=102842[msec]
+model=4^200-(none) t=3 size=482 time=161287[msec]
+model=4^20-(none) t=3 size=209 time=414[msec](from seed:'4^10')
+model=4^40-(none) t=3 size=290 time=693[msec](from seed:'4^20')
+model=4^60-(none) t=3 size=335 time=1362[msec](from seed:'4^30')
+model=4^80-(none) t=3 size=368 time=2793[msec](from seed:'4^40')
+model=4^100-(none) t=3 size=397 time=6569[msec](from seed:'4^50')
+model=4^120-(none) t=3 size=420 time=15658[msec](from seed:'4^60')
+model=4^140-(none) t=3 size=439 time=33592[msec](from seed:'4^70')
+model=4^160-(none) t=3 size=454 time=62886[msec](from seed:'4^80')
+model=4^180-(none) t=3 size=469 time=104093[msec](from seed:'4^90')
+model=4^200-(none) t=3 size=481 time=154604[msec](from seed:'4^100')
+
+
+t,lhs,rhs,time,size
+2,|CA(2, 4^10-basic+)|=19,|CA(2, 4^10-basic+)|=19,39,39
+2,|CA(2, 4^20-basic+)|=23,|CA(2, 4^20-basic+)|=23,11,43
+2,|CA(2, 4^30-basic+)|=27,|CA(2, 4^30-basic+)|=27,11,47
+2,|CA(2, 4^40-basic+)|=28,|CA(2, 4^40-basic+)|=28,10,48
+2,|CA(2, 4^50-basic+)|=30,|CA(2, 4^50-basic+)|=30,11,50
+2,|CA(2, 4^60-basic+)|=32,|CA(2, 4^60-basic+)|=32,18,52
+2,|CA(2, 4^70-basic+)|=32,|CA(2, 4^70-basic+)|=32,19,52
+2,|CA(2, 4^80-basic+)|=34,|CA(2, 4^80-basic+)|=34,19,54
+2,|CA(2, 4^90-basic+)|=34,|CA(2, 4^90-basic+)|=34,20,54
+2,|CA(2, 4^100-basic+)|=35,|CA(2, 4^100-basic+)|=35,35,55
+t,lhs,rhs,time,size
+3,|CA(3, 4^10-basic+)|=76,|CA(3, 4^10-basic+)|=76,92,365
+3,|CA(3, 4^20-basic+)|=118,|CA(3, 4^20-basic+)|=118,153,511
+3,|CA(3, 4^30-basic+)|=139,|CA(3, 4^30-basic+)|=139,400,636
+3,|CA(3, 4^40-basic+)|=156,|CA(3, 4^40-basic+)|=156,860,796
+3,|CA(3, 4^50-basic+)|=167,|CA(3, 4^50-basic+)|=167,1843,846
+3,|CA(3, 4^60-basic+)|=177,|CA(3, 4^60-basic+)|=177,2790,908
+3,|CA(3, 4^70-basic+)|=187,|CA(3, 4^70-basic+)|=187,5097,970
+3,|CA(3, 4^80-basic+)|=196,|CA(3, 4^80-basic+)|=196,9016,1031
+3,|CA(3, 4^10-basic+)|=76,|CA(3, 4^10-basic+)|=76,92,365
+3,|CA(3, 4^20-basic+)|=118,|CA(3, 4^20-basic+)|=118,153,511
+3,|CA(3, 4^30-basic+)|=139,|CA(3, 4^30-basic+)|=139,400,636
+3,|CA(3, 4^40-basic+)|=156,|CA(3, 4^40-basic+)|=156,860,796
+3,|CA(3, 4^50-basic+)|=167,|CA(3, 4^50-basic+)|=167,1843,846
+3,|CA(3, 4^60-basic+)|=177,|CA(3, 4^60-basic+)|=177,2790,908
+3,|CA(3, 4^70-basic+)|=187,|CA(3, 4^70-basic+)|=187,5097,970
+3,|CA(3, 4^80-basic+)|=196,|CA(3, 4^80-basic+)|=196,9016,1031
+3,|CA(3, 4^90-basic+)|=204,|CA(3, 4^90-basic+)|=204,11422,1078
+3,|CA(3, 4^100-basic+)|=210,|CA(3, 4^100-basic+)|=210,17193,1123
+2,|CA(2, 4^10)|=33,|CA(2, 4^10)|=33,55,75
+2,|CA(2, 4^20)|=41,|CA(2, 4^20)|=41,13,83
+2,|CA(2, 4^30)|=43,|CA(2, 4^30)|=43,12,85
+2,|CA(2, 4^40)|=46,|CA(2, 4^40)|=46,18,88
+2,|CA(2, 4^50)|=50,|CA(2, 4^50)|=50,31,92
+2,|CA(2, 4^60)|=52,|CA(2, 4^60)|=52,25,94
+2,|CA(2, 4^70)|=53,|CA(2, 4^70)|=53,49,95
+2,|CA(2, 4^80)|=55,|CA(2, 4^80)|=55,29,97
+2,|CA(2, 4^90)|=55,|CA(2, 4^90)|=55,37,97
+2,|CA(2, 4^100)|=57,|CA(2, 4^100)|=57,61,99
+2,|CA(2, 4^10-basic++)|=38,|CA(2, 4^10-basic++)|=38,56,94
+2,|CA(2, 4^20-basic++)|=48,|CA(2, 4^20-basic++)|=48,22,104
+2,|CA(2, 4^30-basic++)|=50,|CA(2, 4^30-basic++)|=50,24,106
+2,|CA(2, 4^40-basic++)|=55,|CA(2, 4^40-basic++)|=55,29,127
+2,|CA(2, 4^50-basic++)|=57,|CA(2, 4^50-basic++)|=57,33,129
+2,|CA(2, 4^60-basic++)|=59,|CA(2, 4^60-basic++)|=59,36,131
+2,|CA(2, 4^70-basic++)|=59,|CA(2, 4^70-basic++)|=59,42,131
+2,|CA(2, 4^80-basic++)|=62,|CA(2, 4^80-basic++)|=62,46,134
+2,|CA(2, 4^90-basic++)|=64,|CA(2, 4^90-basic++)|=64,49,136
+2,|CA(2, 4^100-basic++)|=64,|CA(2, 4^100-basic++)|=64,50,136
+t,lhs,rhs,time,size
+3,|CA(3, 4^10-basic++)|=205,|CA(3, 4^10-basic++)|=205,183,1218
+3,|CA(3, 4^20-basic++)|=290,|CA(3, 4^20-basic++)|=290,456,1687
+3,|CA(3, 4^30-basic++)|=345,|CA(3, 4^30-basic++)|=345,1139,1972
+3,|CA(3, 4^40-basic++)|=379,|CA(3, 4^40-basic++)|=379,3069,2305
+3,|CA(3, 4^50-basic++)|=416,|CA(3, 4^50-basic++)|=416,4891,2672
+3,|CA(3, 4^60-basic++)|=432,|CA(3, 4^60-basic++)|=432,9143,3044
+3,|CA(3, 4^70-basic++)|=458,|CA(3, 4^70-basic++)|=458,15187,3394
+3,|CA(3, 4^80-basic++)|=475,|CA(3, 4^80-basic++)|=475,26568,3573
+3,|CA(3, 4^90-basic++)|=490,|CA(3, 4^90-basic++)|=490,40362,3696
+3,|CA(3, 4^100-basic++)|=505,|CA(3, 4^100-basic++)|=505,65574,3954
+t,lhs,rhs,time,size
+2,|CA(2, 8^10-basic++)|=128,|CA(2, 8^10-basic++)|=128,74,368
+2,|CA(2, 8^20-basic++)|=155,|CA(2, 8^20-basic++)|=155,55,395
+2,|CA(2, 8^30-basic++)|=178,|CA(2, 8^30-basic++)|=178,50,418
+2,|CA(2, 8^40-basic++)|=189,|CA(2, 8^40-basic++)|=189,42,429
+2,|CA(2, 8^50-basic++)|=199,|CA(2, 8^50-basic++)|=199,72,439
+2,|CA(2, 8^60-basic++)|=204,|CA(2, 8^60-basic++)|=204,88,444
+2,|CA(2, 8^70-basic++)|=216,|CA(2, 8^70-basic++)|=216,120,456
+2,|CA(2, 8^80-basic++)|=221,|CA(2, 8^80-basic++)|=221,140,493
+2,|CA(2, 8^90-basic++)|=227,|CA(2, 8^90-basic++)|=227,105,499
+2,|CA(2, 8^100-basic++)|=232,|CA(2, 8^100-basic++)|=232,131,504
+t,lhs,rhs,time,size
+3,|CA(3, 4^10-basic+)|=76,|CA(3, 4^10-basic+)|=76,128,365
+3,|CA(3, 4^20-basic+)|=118,|CA(3, 4^20-basic+)|=118,278,511
+3,|CA(3, 4^30-basic+)|=139,|CA(3, 4^30-basic+)|=139,495,636
+3,|CA(3, 4^40-basic+)|=156,|CA(3, 4^40-basic+)|=156,826,796
+3,|CA(3, 4^50-basic+)|=167,|CA(3, 4^50-basic+)|=167,1684,846
+3,|CA(3, 4^10-basic)|=162,|CA(3, 4^10-basic)|=162,154,1069
+3,|CA(3, 4^20-basic)|=227,|CA(3, 4^20-basic)|=227,307,1229
+3,|CA(3, 4^30-basic)|=266,|CA(3, 4^30-basic)|=266,963,1363
+3,|CA(3, 4^40-basic)|=296,|CA(3, 4^40-basic)|=296,1917,1507
+3,|CA(3, 4^50-basic)|=319,|CA(3, 4^50-basic)|=319,4265,1644
+4,|CA(4, 4^10-basic)|=757,|CA(4, 4^10-basic)|=757,3761,10713
+
+3C2=3*2/2*1=3,4C2=4*3/2*1=6,5C2=5*4/2*1=10
+processor       : 0
+vendor_id       : AuthenticAMD
+cpu family      : 23
+model           : 24
+model name      : AMD Ryzen 5 3400G with Radeon Vega Graphics
+stepping        : 1
+microcode       : 0x8108109
+cpu MHz         : 1252.523
+cache size      : 512 KB
+physical id     : 0
+siblings        : 8
+core id         : 0
+cpu cores       : 4
+apicid          : 0
+initial apicid  : 0
+fpu             : yes
+fpu_exception   : yes
+cpuid level     : 13
+wp              : yes
+flags           : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl nonstop_tsc cpuid extd_apicid aperfmperf pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb hw_pstate sme ssbd sev ibpb vmmcall fsgsbase bmi1 avx2 smep bmi2 rdseed adx smap clflushopt sha_ni xsaveopt xsavec xgetbv1 xsaves clzero irperf xsaveerptr arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold avic v_vmsave_vmload vgif overflow_recov succor smca
+bugs            : sysret_ss_attrs null_seg spectre_v1 spectre_v2 spec_store_bypass
+bogomips        : 7386.28
+TLB size        : 2560 4K pages
+clflush size    : 64
+cache_alignment : 64
+address sizes   : 43 bits physical, 48 bits virtual
+power management: ts ttp tm hwpstate eff_freq_ro [13] [14]
+
+$ less /proc/cpuinfo  | grep processor
+processor	: 0
+processor	: 1
+processor	: 2
+processor	: 3
+processor	: 4
+processor	: 5
+processor	: 6
+processor	: 7
+
+$ cat /proc/meminfo
+MemTotal:       14352408 kB
+MemFree:         1323792 kB
+MemAvailable:    1710700 kB
+Buffers:           46508 kB
+Cached:           767608 kB
+SwapCached:        30840 kB
+Active:         10638468 kB
+Inactive:        1520680 kB
+Active(anon):   10378056 kB
+Inactive(anon):  1217276 kB
+Active(file):     260412 kB
+Inactive(file):   303404 kB
+Unevictable:       13596 kB
+Mlocked:           13596 kB
+SwapTotal:       1003516 kB
+SwapFree:             44 kB
+Dirty:              4064 kB
+Writeback:             0 kB
+AnonPages:      11328240 kB
+Mapped:           449020 kB
+Shmem:            236864 kB
+KReclaimable:     149580 kB
+Slab:             370976 kB
+SReclaimable:     149580 kB
+SUnreclaim:       221396 kB
+KernelStack:       29696 kB
+PageTables:       113296 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     8179720 kB
+Committed_AS:   25703320 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:           0 kB
+VmallocChunk:          0 kB
+Percpu:            25856 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:         0 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+CmaTotal:              0 kB
+CmaFree:               0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+Hugetlb:               0 kB
+DirectMap4k:     1141096 kB
+DirectMap2M:    12423168 kB
+DirectMap1G:     2097152 kB
