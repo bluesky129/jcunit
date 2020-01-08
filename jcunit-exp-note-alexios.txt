@@ -145,7 +145,34 @@ model=4^140-(none) t=3 size=439 time=33592[msec](from seed:'4^70')
 model=4^160-(none) t=3 size=454 time=62886[msec](from seed:'4^80')
 model=4^180-(none) t=3 size=469 time=104093[msec](from seed:'4^90')
 model=4^200-(none) t=3 size=481 time=154604[msec](from seed:'4^100')
-
+model=4^20-(none) t=3 size=209 time=475[msec](from seed:'4^10')
+model=4^20-basic t=3 size=224 time=2344[msec](from seed:'4^10-basic')
+model=4^20-basic+ t=3 size=118 time=6563[msec](from seed:'4^10-basic+')
+model=4^20-basic++ t=3 size=294 time=6339[msec](from seed:'4^10-basic++')
+model=4^20-(none) t=4 size=1138 time=1105[msec](from seed:'4^10')
+model=4^20-basic t=4 size=1232 time=12307[msec](from seed:'4^10-basic')
+model=4^20-basic+ t=4 size=527 time=307764[msec](from seed:'4^10-basic+')
+model=4^10-(none) t=2 size=33 time=311[msec]
+model=4^20-(none) t=2 size=41 time=386[msec]
+model=4^10-basic t=2 size=32 time=743[msec]
+model=4^20-basic t=2 size=39 time=940[msec]
+model=4^10-basic+ t=2 size=19 time=1059[msec]
+model=4^20-basic+ t=2 size=23 time=1472[msec]
+model=4^10-basic++ t=2 size=38 time=1094[msec]
+model=4^20-basic++ t=2 size=48 time=1592[msec]
+model=4^10-(none) t=3 size=151 time=303[msec]
+model=4^20-(none) t=3 size=208 time=367[msec]
+model=4^10-basic t=3 size=162 time=1497[msec]
+model=4^20-basic t=3 size=227 time=2596[msec]
+model=4^10-basic+ t=3 size=76 time=4551[msec]
+model=4^20-basic+ t=3 size=118 time=9066[msec]
+model=4^10-basic++ t=3 size=205 time=3474[msec]
+model=4^20-basic++ t=3 size=290 time=8667[msec]
+model=4^10-(none) t=4 size=709 time=363[msec]
+model=4^20-(none) t=4 size=1134 time=1229[msec]
+model=4^10-basic t=4 size=757 time=4939[msec]
+model=4^20-basic t=4 size=1232 time=16088[msec]
+model=4^10-basic+ t=4 size=285 time=110173[msec]
 
 t,lhs,rhs,time,size
 2,|CA(2, 4^10-basic+)|=19,|CA(2, 4^10-basic+)|=19,39,39
@@ -231,6 +258,7 @@ t,lhs,rhs,time,size
 3,|CA(3, 4^40-basic)|=296,|CA(3, 4^40-basic)|=296,1917,1507
 3,|CA(3, 4^50-basic)|=319,|CA(3, 4^50-basic)|=319,4265,1644
 4,|CA(4, 4^10-basic)|=757,|CA(4, 4^10-basic)|=757,3761,10713
+4,|CA(4, 4^10-basic+)|=285,|CA(4, 4^10-basic+)|=285,593,3069
 
 3C2=3*2/2*1=3,4C2=4*3/2*1=6,5C2=5*4/2*1=10
 processor       : 0
