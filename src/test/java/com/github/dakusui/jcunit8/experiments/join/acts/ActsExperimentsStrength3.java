@@ -44,6 +44,11 @@ public class ActsExperimentsStrength3 extends ActsExperimentsBase {
   }
 
   @Test
+  public void testGenerateAndReportWithConstraintsWithStrength3Factor80Levels8() {
+    executeSession(specBuilder().numLevels(8).numFactors(80).strength(3).build());
+  }
+
+  @Test
   public void testGenerateAndReportWithConstraintsWithStrength3Factor90() {
     executeSession(specBuilder().numFactors(90).strength(3).build());
   }

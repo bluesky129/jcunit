@@ -39,7 +39,6 @@ public abstract class ActsExperimentsBase {
     int numLevels = spec.numLevels();
     int numFactors = spec.numFactors();
     int strength = spec.strength();
-    CoveringArrayGenerationUtils.StopWatch stopWatch = new CoveringArrayGenerationUtils.StopWatch();
     List<Tuple> generated;
     File baseDir = spec.baseDir();
     FactorSpaceSpecWithConstraints factorSpaceSpec =
@@ -55,15 +54,19 @@ public abstract class ActsExperimentsBase {
         .constraintHandler(spec.chandler().actsName());
     if (spec.seedSpec().isPresent())
       actsBuilder = actsBuilder.seedComposer(headerTuple(factorSpace), spec.seedSpec().get(), strength);
-    actsBuilder
-        .build()
-        .run();
+    Acts acts = actsBuilder.build();
+    String actsModel = acts.composeActsModel();
+    CoveringArrayGenerationUtils.StopWatch stopWatch = new CoveringArrayGenerationUtils.StopWatch();
+    acts.run(actsModel);
     List<Tuple> ret = new LinkedList<>();
     try (Stream<String> data = streamFile(Acts.outFile(baseDir)).peek(LOGGER::trace)) {
       ret.addAll(ActsUtils.readTestSuiteFromCsv(data));
     }
     generated = ret;
-    System.out.println("model=" + createSignature(spec) + " t=" + strength + " size=" + generated.size() + " time=" + stopWatch.get() + "[msec]");
+    System.out.print("model=" + createSignature(spec) + " t=" + strength + " size=" + generated.size() + " time=" + stopWatch.get() + "[msec]");
+    if (spec.seedSpec().isPresent())
+      System.out.printf("(from seed:'%s')", spec.seedSpec().get().createSignature());
+    System.out.println();
   }
 
   private String createSignature(TestSpec spec) {

@@ -70,8 +70,16 @@ public class Acts {
     return runActs(baseDir, factorSpace, strength, chandlerName);
   }
 
+  public String composeActsModel() {
+    return buildActsModel(factorSpace, "unknown", seedComposer);
+  }
+
   public List<Tuple> run() {
-    writeTo(inFile(baseDir), buildActsModel(factorSpace, "unknown", seedComposer));
+    return run(composeActsModel());
+  }
+
+  public List<Tuple> run(String actsModel) {
+    writeTo(inFile(baseDir), actsModel);
     /*
       ACTS Version: 3.0
       Usage: java [options] -jar jarName <inputFileName> [outputFileName]

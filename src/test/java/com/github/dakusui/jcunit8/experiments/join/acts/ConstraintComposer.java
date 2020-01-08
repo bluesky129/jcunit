@@ -30,7 +30,7 @@ public interface ConstraintComposer extends Function<List<String>, NormalizedCon
   }
 
   static ConstraintComposer doubleBasic() {
-    return createConstraintComposer("doubl-basic", ActsConstraints::doubleBasic);
+    return createConstraintComposer("double-basic", ActsConstraints::doubleBasic);
   }
 
   String name();

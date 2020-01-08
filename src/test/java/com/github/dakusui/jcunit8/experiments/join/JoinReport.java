@@ -5,8 +5,10 @@ public class JoinReport {
   private final String rhsDesc;
   private final long   time;
   private final int    size;
+  private final int    strength;
 
-  public JoinReport(String lhsDesc, String rhdDesc, int size, long time) {
+  public JoinReport(int strength, String lhsDesc, String rhdDesc, int size, long time) {
+    this.strength = strength;
     this.lhsDesc = lhsDesc;
     this.rhsDesc = rhdDesc;
     this.size = size;
@@ -14,10 +16,10 @@ public class JoinReport {
   }
 
   public static String header() {
-    return "lhs,rhs,time,size";
+    return "t,lhs,rhs,time,size";
   }
 
   public String toString() {
-    return String.format("%s,%s,%s,%s", lhsDesc, rhsDesc, time, size);
+    return String.format("%s,%s,%s,%s,%s", strength, lhsDesc, rhsDesc, time, size);
   }
 }

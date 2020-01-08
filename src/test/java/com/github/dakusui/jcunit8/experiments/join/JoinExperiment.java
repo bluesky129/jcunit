@@ -47,6 +47,7 @@ public class JoinExperiment {
       System.out.printf(
           "%s%n",
           new JoinReport(
+              this.spec.strength,
               formatCoveringArray(lhs, this.spec.lhsStrength, this.spec.lhsSpec),
               formatCoveringArray(rhs, this.spec.rhsStrength, this.spec.rhsSpec),
               joined.size(),

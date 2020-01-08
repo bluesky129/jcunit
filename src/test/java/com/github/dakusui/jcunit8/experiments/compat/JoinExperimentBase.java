@@ -2,12 +2,12 @@ package com.github.dakusui.jcunit8.experiments.compat;
 
 import com.github.dakusui.jcunit.core.tuples.Tuple;
 import com.github.dakusui.jcunit8.experiments.join.JoinReport;
-import com.github.dakusui.jcunit8.testutils.testsuitequality.CompatFactorSpaceSpecWithConstraints;
 import com.github.dakusui.jcunit8.extras.normalizer.compat.FactorSpaceSpecWithConstraints;
 import com.github.dakusui.jcunit8.factorspace.Factor;
 import com.github.dakusui.jcunit8.factorspace.FactorSpace;
 import com.github.dakusui.jcunit8.pipeline.Requirement;
 import com.github.dakusui.jcunit8.pipeline.stages.Joiner;
+import com.github.dakusui.jcunit8.testutils.testsuitequality.CompatFactorSpaceSpecWithConstraints;
 import com.github.dakusui.jcunit8.testutils.testsuitequality.CoveringArrayGenerationUtils;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -68,6 +68,7 @@ public abstract class JoinExperimentBase {
       System.out.printf(
           "%s%n",
           new JoinReport(
+              strength(),
               Integer.toString(lhsFactorSpace.getFactorNames().size()),
               Objects.toString(rhsSpec.numFactors()),
               joined.size(),

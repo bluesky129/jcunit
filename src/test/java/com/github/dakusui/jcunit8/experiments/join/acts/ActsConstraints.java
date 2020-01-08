@@ -46,21 +46,11 @@ public enum ActsConstraints {
             gt(p[6], p[7]),
             gt(p[8], p[1])
         ),
-        or(
-            gt(p[9], p[0])
-        ),
-        or(
-            gt(p[8], p[1])
-        ),
-        or(
-            gt(p[7], p[2])
-        ),
-        or(
-            gt(p[6], p[3])
-        ),
-        or(
-            gt(p[5], p[4])
-        )
+        gt(p[9], p[0]),
+        gt(p[8], p[1]),
+        gt(p[7], p[2]),
+        gt(p[6], p[3]),
+        gt(p[5], p[4])
     );
   }
 

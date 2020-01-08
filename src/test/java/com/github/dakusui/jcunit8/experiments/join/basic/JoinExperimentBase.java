@@ -1,8 +1,10 @@
 package com.github.dakusui.jcunit8.experiments.join.basic;
 
+import com.github.dakusui.jcunit.core.tuples.Tuple;
 import com.github.dakusui.jcunit8.experiments.join.JoinExperiment;
 import com.github.dakusui.jcunit8.experiments.join.acts.TestSpec;
 import com.github.dakusui.jcunit8.extras.generators.Acts;
+import com.github.dakusui.jcunit8.factorspace.FactorSpace;
 import com.github.dakusui.jcunit8.pipeline.Requirement;
 import com.github.dakusui.jcunit8.pipeline.stages.Joiner;
 import com.github.dakusui.jcunit8.testutils.UTUtils;
@@ -12,6 +14,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import java.io.File;
+import java.util.List;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 @RunWith(Parameterized.class)
@@ -26,14 +30,18 @@ public class JoinExperimentBase {
         .strength(strength)
         .times(2)
         .joiner(joinerFactory)
-        .generator((factorSpace, t) ->
-            Acts.generateWithActs(
-                new File("target/acts"),
-                factorSpace,
-                t,
-                TestSpec.CHandler.SOLVER.actsName()))
+        .generator(actsGenerator())
         .verification(false)
         .build();
+  }
+
+  public static BiFunction<FactorSpace, Integer, List<Tuple>> actsGenerator() {
+    return (factorSpace, t) ->
+        Acts.generateWithActs(
+            new File("target/acts"),
+            factorSpace,
+            t,
+            TestSpec.CHandler.SOLVER.actsName());
   }
 
   JoinExperimentBase(JoinExperiment experiment) {
