@@ -87,6 +87,22 @@ t,lhs,rhs,time,size
 2,|CA(3, 4^10-basic+)|=76,|CA(3, 4^10-basic+)|=76,70,118
 2,|CA(2, 16^50-basic+)|=751,|CA(2, 16^50-basic+)|=751,483,1563
 
+t,lhs,rhs,time,size
+2,|CA(2, 4^10)|=33,|CA(2, 4^10)|=33,59,75
+2,|CA(2, 4^10-basic)|=32,|CA(2, 4^10-basic)|=32,11,74
+2,|CA(2, 4^10-basic+)|=19,|CA(2, 4^10-basic+)|=19,6,39
+2,|CA(2, 4^10-basic++)|=38,|CA(2, 4^10-basic++)|=38,10,94
+3,|CA(3, 4^10)|=151,|CA(3, 4^10)|=151,140,754
+3,|CA(3, 4^10-basic)|=162,|CA(3, 4^10-basic)|=162,106,1069
+3,|CA(3, 4^10-basic+)|=76,|CA(3, 4^10-basic+)|=76,31,365
+3,|CA(3, 4^10-basic++)|=205,|CA(3, 4^10-basic++)|=205,103,1218
+4,|CA(4, 4^10)|=709,|CA(4, 4^10)|=709,4863,7831
+4,|CA(4, 4^10-basic)|=757,|CA(4, 4^10-basic)|=757,6706,10713
+4,|CA(4, 4^10-basic+)|=285,|CA(4, 4^10-basic+)|=285,711,3069
+4,|CA(4, 4^10-basic++)|=975,|CA(4, 4^10-basic++)|=975,9107,15746
+5,|CA(5, 4^10)|=3067,|CA(5, 4^10)|=3067,303003,83722
+5,|CA(5, 4^10-basic)|=3231,|CA(5, 4^10-basic)|=3231,370428,110664
+
 ACTS
 model=8^80-basic+ t=2 size=187 time=16942[msec]
 model=8^20-basic t=2 size=140 time=2755[msec]
@@ -114,6 +130,69 @@ model=16^20-basic+ t=2 size=579 time=102232[msec](from seed:'16^10-basic+')
 model=6^10-basic+ t=4 size=2428 time=4704679[msec]
 model=16^100-basic+ t=2 size=888 time=1106875[msec](from seed:'16^50-basic+')
 model=16^50-basic+ t=2 size=751 time=379844[msec]
+model=4^10-(none) t=2 size=33 time=543[msec]
+model=4^20-(none) t=2 size=41 time=367[msec]
+model=4^10-basic t=2 size=32 time=722[msec]
+model=4^20-basic t=2 size=39 time=801[msec]
+model=4^10-basic+ t=2 size=19 time=881[msec]
+model=4^20-basic+ t=2 size=23 time=1177[msec]
+model=4^10-basic++ t=2 size=38 time=987[msec]
+model=4^20-basic++ t=2 size=48 time=1294[msec]
+model=4^10-(none) t=3 size=151 time=293[msec]
+model=4^20-(none) t=3 size=208 time=359[msec]
+model=4^10-basic t=3 size=162 time=1093[msec]
+model=4^20-basic t=3 size=227 time=1786[msec]
+model=4^10-basic+ t=3 size=76 time=2809[msec]
+model=4^20-basic+ t=3 size=118 time=5225[msec]
+model=4^10-basic++ t=3 size=205 time=2534[msec]
+model=4^20-basic++ t=3 size=290 time=5408[msec]
+model=4^10-(none) t=4 size=709 time=415[msec]
+model=4^20-(none) t=4 size=1134 time=1025[msec]
+model=4^10-basic t=4 size=757 time=3055[msec]
+model=4^20-basic t=4 size=1232 time=9747[msec]
+model=4^10-(none) t=2 size=33 time=543[msec]
+model=4^20-(none) t=2 size=41 time=367[msec]
+model=4^10-basic t=2 size=32 time=722[msec]
+model=4^20-basic t=2 size=39 time=801[msec]
+model=4^10-basic+ t=2 size=19 time=881[msec]
+model=4^20-basic+ t=2 size=23 time=1177[msec]
+model=4^10-basic++ t=2 size=38 time=987[msec]
+model=4^20-basic++ t=2 size=48 time=1294[msec]
+model=4^10-(none) t=3 size=151 time=293[msec]
+model=4^20-(none) t=3 size=208 time=359[msec]
+model=4^10-basic t=3 size=162 time=1093[msec]
+model=4^20-basic t=3 size=227 time=1786[msec]
+model=4^10-basic+ t=3 size=76 time=2809[msec]
+model=4^20-basic+ t=3 size=118 time=5225[msec]
+model=4^10-basic++ t=3 size=205 time=2534[msec]
+model=4^20-basic++ t=3 size=290 time=5408[msec]
+model=4^10-(none) t=4 size=709 time=415[msec]
+model=4^20-(none) t=4 size=1134 time=1025[msec]
+model=4^10-basic t=4 size=757 time=3055[msec]
+model=4^20-basic t=4 size=1232 time=9747[msec]
+model=4^10-basic+ t=4 size=285 time=77348[msec]
+model=4^20-basic+ t=4 size=537 time=312634[msec]
+model=4^10-basic++ t=4 size=975 time=55115[msec]
+model=4^20-basic++ t=4 size=1794 time=348253[msec]
+model=4^20-(none) t=2 size=41 time=456[msec](from seed:'4^10')
+model=4^20-basic t=2 size=39 time=1302[msec](from seed:'4^10-basic')
+model=4^20-basic+ t=2 size=24 time=1687[msec](from seed:'4^10-basic+')
+model=4^20-basic++ t=2 size=46 time=1654[msec](from seed:'4^10-basic++')
+model=4^20-(none) t=3 size=209 time=494[msec](from seed:'4^10')
+model=4^20-basic t=3 size=224 time=2234[msec](from seed:'4^10-basic')
+model=4^20-basic+ t=3 size=118 time=6967[msec](from seed:'4^10-basic+')
+model=4^20-basic++ t=3 size=294 time=7482[msec](from seed:'4^10-basic++')
+model=4^20-(none) t=4 size=1138 time=1382[msec](from seed:'4^10')
+model=4^20-basic t=4 size=1232 time=12840[msec](from seed:'4^10-basic')
+model=4^20-basic+ t=4 size=527 time=319722[msec](from seed:'4^10-basic+')
+model=4^20-basic++ t=4 size=1786 time=309370[msec](from seed:'4^10-basic++')
+model=4^20-(none) t=5 size=5724 time=18390[msec](from seed:'4^10')
+model=4^20-basic t=5 size=6151 time=223208[msec](from seed:'4^10-basic')
+model=4^20-basic+ t=5 size=- time=-[msec](from seed:'4^10-basic') did not finish over 40min
+model=4^10-(none) t=5 size=3067 time=1063[msec]
+model=4^20-(none) t=5 size=5746 time=18010[msec]
+model=4^10-(none) t=6 size=13136 time=2977[msec]
+model=4^20-(none) t=6 size=26898 time=262442[msec]
 
 Generating Variable Strength Covering Array for Combinatorial Software Testing with Greedy Strategy:
 http://www.jsoftware.us/vol8/jsw0812-26.pdf

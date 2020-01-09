@@ -31,20 +31,34 @@ public class GeneralActsExperiments extends ActsExperimentsBase {
 
   @Test
   public void exercise() {
-    for (int numLevels : new int[] { 4 })
-      for (int strength : new int[] { 2, 3, 4 })
-        for (ConstraintComposer constraintModel : new ConstraintComposer[] { null, basic(), basicPlus(), basicPlusPlus() })
+    for (int numLevels : new int[] { 4, 6, 8, 10, 16 })
+      for (int strength : new int[] { 5, 6 })
+        for (ConstraintComposer constraintModel :
+            new ConstraintComposer[] {
+                null,
+//                basic(),
+//                basicPlus(),
+//                basicPlusPlus()
+            })
           for (int numFactors = 10; numFactors <= 20; numFactors += 10)
-            executeSession(numLevels, numFactors, constraintModel, strength);
+            if (condition(numLevels, numFactors, constraintModel, strength))
+              executeSession(numLevels, numFactors, constraintModel, strength);
+  }
+
+  private static boolean condition(int numLevels, int strength, @SuppressWarnings("unused") ConstraintComposer constraintModel, int numFactors) {
+    if (numLevels > 4)
+      return strength == 2 && numFactors <= 20;
+    return true;
   }
 
   @Test
   public void exerciseIncrementally() {
-    int numLevels = 4;
-    int strength = 4;
-    for (ConstraintComposer constraintModel : new ConstraintComposer[] { null, basic(), basicPlus(), basicPlusPlus() })
-      for (int numFactors = 20; numFactors <= 20; numFactors += 20)
-        executeIncrementalSession(numLevels, numFactors / 2, numFactors, constraintModel, strength);
+    for (int numLevels : new int[] { 4 })
+      for (int strength : new int[] { 5, 6 })
+        for (ConstraintComposer constraintModel : new ConstraintComposer[] { null, basic(), basicPlus(), basicPlusPlus() })
+          for (int numFactors = 20; numFactors <= 20; numFactors += 20)
+            if (condition(numLevels, numFactors, constraintModel, strength))
+              executeIncrementalSession(numLevels, numFactors / 2, numFactors, constraintModel, strength);
   }
 
   void executeSession(int numLevels, int numFactors, ConstraintComposer constraintModel, int strength) {
