@@ -4,8 +4,10 @@ import com.github.dakusui.combinatoradix.Combinator;
 import com.github.dakusui.jcunit.core.utils.Checks;
 
 import java.util.*;
+import java.util.stream.StreamSupport;
 
 import static java.util.Objects.requireNonNull;
+import static java.util.stream.Collectors.toList;
 
 public enum TupleUtils {
   ;
@@ -14,10 +16,18 @@ public enum TupleUtils {
       Tuple tuple, int strength) {
     Checks.checknotnull(tuple);
     Checks.checkcond(strength >= 0 && strength <= tuple.size());
+    List<List<String>> subtupleKeyLists = subtupleKeyListsOf(strength, tuple.keySet());
+    return subtuplesOf(tuple, subtupleKeyLists);
+  }
+
+  public static List<List<String>> subtupleKeyListsOf(int strength, Set<String> keys) {
+    return StreamSupport.stream(new Combinator<>(
+        new LinkedList<>(keys), strength).spliterator(), false).collect(toList());
+  }
+
+  public static Set<Tuple> subtuplesOf(Tuple tuple, List<List<String>> keyLists) {
     Set<Tuple> ret = new LinkedHashSet<>();
-    Combinator<String> c = new Combinator<>(
-        new LinkedList<>(tuple.keySet()), strength);
-    for (List<String> keys : c) {
+    for (List<String> keys : keyLists) {
       Tuple cur = new Tuple.Impl();
       for (String k : keys) {
         cur.put(k, tuple.get(k));

@@ -5,7 +5,8 @@ import com.github.dakusui.jcunit8.testutils.testsuitequality.CompatFactorSpaceSp
 import org.junit.Test;
 
 import static com.github.dakusui.crest.utils.InternalUtils.requireArgument;
-import static com.github.dakusui.jcunit8.experiments.join.acts.ConstraintComposer.*;
+import static com.github.dakusui.jcunit8.experiments.join.acts.ConstraintComposer.basic;
+import static com.github.dakusui.jcunit8.experiments.join.acts.ConstraintComposer.basicPlus;
 
 public class GeneralActsExperiments extends ActsExperimentsBase {
   @Test
@@ -31,14 +32,14 @@ public class GeneralActsExperiments extends ActsExperimentsBase {
 
   @Test
   public void exercise() {
-    for (int numLevels : new int[] { 4, 6, 8, 10, 16 })
-      for (int strength : new int[] { 5, 6 })
+    for (int numLevels : new int[] { 4/*, 6, 8, 10, 16*/ })
+      for (int strength : new int[] { 5 })
         for (ConstraintComposer constraintModel :
             new ConstraintComposer[] {
-                null,
-//                basic(),
-//                basicPlus(),
-//                basicPlusPlus()
+                //                null,
+                basic(),
+                //basicPlus(),
+                //                basicPlusPlus()
             })
           for (int numFactors = 10; numFactors <= 20; numFactors += 10)
             if (condition(numLevels, numFactors, constraintModel, strength))
@@ -54,8 +55,8 @@ public class GeneralActsExperiments extends ActsExperimentsBase {
   @Test
   public void exerciseIncrementally() {
     for (int numLevels : new int[] { 4 })
-      for (int strength : new int[] { 5, 6 })
-        for (ConstraintComposer constraintModel : new ConstraintComposer[] { null, basic(), basicPlus(), basicPlusPlus() })
+      for (int strength : new int[] { 5 })
+        for (ConstraintComposer constraintModel : new ConstraintComposer[] { basic() })
           for (int numFactors = 20; numFactors <= 20; numFactors += 20)
             if (condition(numLevels, numFactors, constraintModel, strength))
               executeIncrementalSession(numLevels, numFactors / 2, numFactors, constraintModel, strength);

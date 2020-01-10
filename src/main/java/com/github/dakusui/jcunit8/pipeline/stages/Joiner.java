@@ -17,9 +17,10 @@ import static com.github.dakusui.jcunit.core.tuples.TupleUtils.*;
 import static com.github.dakusui.jcunit.core.utils.Checks.checkcond;
 import static com.github.dakusui.jcunit8.core.Utils.memoize;
 import static com.github.dakusui.jcunit8.core.Utils.sizeOfIntersection;
-import static com.github.dakusui.jcunit8.pipeline.stages.Joiner.JoinerUtils.connect;
+import static com.github.dakusui.jcunit8.pipeline.stages.JoinerUtils.*;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
+import static java.lang.String.format;
 import static java.util.stream.Collectors.toList;
 
 public interface Joiner extends BinaryOperator<SchemafulTupleSet> {
@@ -203,42 +204,69 @@ public interface Joiner extends BinaryOperator<SchemafulTupleSet> {
     protected SchemafulTupleSet doJoin(SchemafulTupleSet lhs, SchemafulTupleSet rhs) {
       if (rhs.isEmpty() || lhs.isEmpty())
         return lhs;
-
+      Stopwatch stopwatch = new Stopwatch();
       SchemafulTupleSet.Builder b = new SchemafulTupleSet.Builder(new ArrayList<String>() {{
         addAll(lhs.getAttributeNames());
         addAll(rhs.getAttributeNames());
       }});
+      stopwatch.print("check-1");
       Set<Tuple> leftoverWorkForLhs = new LinkedHashSet<>(lhs.size());
       Set<Tuple> leftoverWorkForRhs = new LinkedHashSet<>(lhs.size());
       leftoverWorkForLhs.addAll(lhs);
       leftoverWorkForRhs.addAll(rhs);
+      stopwatch.print("check-2");
       LinkedHashSet<Tuple> work = new LinkedHashSet<>();
       {
         Function<Function<SchemafulTupleSet, Function<Integer, Set<Tuple>>>, Function<SchemafulTupleSet, Function<Integer, SchemafulTupleSet>>> weakener
-            = memoize(tupletsFinder -> memoize(in -> memoize(strength -> JoinerUtils.weakenTo(in, strength, tupletsFinder))));
+            = memoize(tupletsFinder -> memoize(in -> memoize(strength -> weakenTo(in, strength, tupletsFinder))));
+        Function<SchemafulTupleSet, Function<Integer, List<List<String>>>> keySetsIdentifier
+            = memoize((SchemafulTupleSet in) ->
+            memoize((Integer strength) -> {
+              Stopwatch s = new Stopwatch();
+              try {
+                return subtupleKeyListsOf(strength, new TreeSet<>(in.getAttributeNames()));
+              } finally {
+                s.print("subtupleKeyListsOf");
+              }
+            }));
         Function<SchemafulTupleSet, Function<Integer, Set<Tuple>>> tupletsFinder
-            = memoize(in -> memoize(strength -> JoinerUtils.tupletsCoveredBy(in, strength)));
+            = memoize((SchemafulTupleSet in) ->
+            memoize((Integer strength) ->
+                tupletsCoveredBy(in, keySetsIdentifier.apply(in).apply(strength))));
+        stopwatch.print("check-2a");
+        Function<Integer, SchemafulTupleSet> lhsWeakener = weakener.apply(tupletsFinder).apply(lhs);
+        Function<Integer, SchemafulTupleSet> rhsWeakener = weakener.apply(tupletsFinder).apply(rhs);
         for (int i = 1; i < requirement().strength(); i++) {
-          SchemafulTupleSet weakenedLhs = weakener.apply(tupletsFinder).apply(lhs).apply(i);
-          SchemafulTupleSet weakenedRhs = weakener.apply(tupletsFinder).apply(rhs).apply(requirement().strength() - i);
+          SchemafulTupleSet weakenedLhs = lhsWeakener.apply(i);
+          stopwatch.print("check-2a(" + i + ")-0");
+          SchemafulTupleSet weakenedRhs = rhsWeakener.apply(requirement().strength() - i);
+          stopwatch.print("check-2a(" + i + ")-1");
           addConnectedTuples(work, weakenedLhs, weakenedRhs);
+          stopwatch.print("check-2a(" + i + ")-2");
           leftoverWorkForLhs.removeAll(weakenedLhs);
           leftoverWorkForRhs.removeAll(weakenedRhs);
+          stopwatch.print("check-2a(" + i + ")-3");
         }
+        stopwatch.print("check-2b");
       }
+      stopwatch.print("check-3");
 
       ensureLeftoversArePresent(work,
           leftoverWorkForLhs, leftoverWorkForRhs,
           lhs.get(0), rhs.get(0));
       b.addAll(new ArrayList<>(work));
+      stopwatch.print("check-4");
       return b.build();
     }
 
     void addConnectedTuples(LinkedHashSet<Tuple> work, SchemafulTupleSet weakenedLhs, SchemafulTupleSet weakenedRhs) {
-      work.addAll(
-          JoinerUtils.cartesianProduct(
-              weakenedLhs,
-              weakenedRhs));
+      Stopwatch stopwatch = new Stopwatch();
+      List<Tuple> c = cartesianProduct(
+          weakenedLhs,
+          weakenedRhs);
+      stopwatch.print(format("cartesian product %sx%s=%s", weakenedLhs.size(), weakenedRhs.size(), c.size()));
+      work.addAll(c);
+      stopwatch.print("add cartesian product to work");
     }
 
     private void ensureLeftoversArePresent(
@@ -280,7 +308,7 @@ public interface Joiner extends BinaryOperator<SchemafulTupleSet> {
     }
   }
 
-  public static class WeakenProduct2 extends WeakenProduct {
+  class WeakenProduct2 extends WeakenProduct {
     private final Function<Integer, Function<List<String>, Function<List<String>, Set<List<String>>>>> composeColumnSelections;
     Set<Tuple> coveredCrossingTuplets = new HashSet<>();
 
@@ -328,41 +356,6 @@ public interface Joiner extends BinaryOperator<SchemafulTupleSet> {
             .forEach(columnSelections::add);
       }
       return columnSelections;
-    }
-  }
-
-  enum JoinerUtils {
-    ;
-
-    static Tuple connect(Tuple tuple1, Tuple tuple2) {
-      return new Tuple.Builder().putAll(tuple1).putAll(tuple2).build();
-    }
-
-    private static SchemafulTupleSet weakenTo(SchemafulTupleSet in, int strength, Function<SchemafulTupleSet, Function<Integer, Set<Tuple>>> coveredTupletsFinder) {
-      SchemafulTupleSet.Builder b = new SchemafulTupleSet.Builder(in.getAttributeNames());
-      Set<Tuple> tupletsToBeCovered = coveredTupletsFinder.apply(in).apply(strength);
-      for (Tuple each : in) {
-        int before = tupletsToBeCovered.size();
-        tupletsToBeCovered.removeAll(subtuplesOf(each, strength));
-        if (tupletsToBeCovered.size() < before)
-          b.add(each);
-        if (tupletsToBeCovered.isEmpty())
-          break;
-      }
-      return b.build();
-    }
-
-    private static Set<Tuple> tupletsCoveredBy(SchemafulTupleSet in, int strength) {
-      Set<Tuple> ret = new HashSet<>();
-      in.forEach(tuple -> ret.addAll(subtuplesOf(tuple, strength)));
-      return ret;
-    }
-
-    private static List<Tuple> cartesianProduct(List<Tuple> lhs, List<Tuple> rhs) {
-      return lhs.stream()
-          .flatMap((Function<Tuple, Stream<Tuple>>) l -> rhs.stream()
-              .map(r -> connect(l, r)))
-          .collect(toList());
     }
   }
 }

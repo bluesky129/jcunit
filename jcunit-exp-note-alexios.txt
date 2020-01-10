@@ -173,7 +173,19 @@ model=4^20-(none) t=4 size=1134 time=1229[msec]
 model=4^10-basic t=4 size=757 time=4939[msec]
 model=4^20-basic t=4 size=1232 time=16088[msec]
 model=4^10-basic+ t=4 size=285 time=110173[msec]
-
+model=4^10-(none) t=2 size=33 time=311[msec]
+model=4^10-basic t=2 size=32 time=746[msec]
+model=4^10-(none) t=3 size=151 time=239[msec]
+model=4^10-basic t=3 size=162 time=1180[msec]
+model=4^10-(none) t=4 size=709 time=319[msec]
+model=4^10-basic t=4 size=757 time=3979[msec]
+model=4^10-(none) t=5 size=3067 time=523[msec]
+model=4^10-basic t=5 size=3231 time=34225[msec]
+model=4^10-(none) t=6 size=13136 time=2324[msec]
+model=4^10-basic t=6 size=13197 time=431403[msec]
+model=4^10-basic+ t=2 size=19 time=1417[msec]
+model=4^10-basic+ t=3 size=76 time=3812[msec]
+model=4^10-basic+ t=4 size=285 time=92226[msec]
 t,lhs,rhs,time,size
 2,|CA(2, 4^10-basic+)|=19,|CA(2, 4^10-basic+)|=19,39,39
 2,|CA(2, 4^20-basic+)|=23,|CA(2, 4^20-basic+)|=23,11,43
@@ -259,6 +271,11 @@ t,lhs,rhs,time,size
 3,|CA(3, 4^50-basic)|=319,|CA(3, 4^50-basic)|=319,4265,1644
 4,|CA(4, 4^10-basic)|=757,|CA(4, 4^10-basic)|=757,3761,10713
 4,|CA(4, 4^10-basic+)|=285,|CA(4, 4^10-basic+)|=285,593,3069
+5,|CA(5, 4^10)|=3067,|CA(5, 4^10)|=3067,246347,83722
+4,|CA(4, 4^10)|=709,|CA(4, 4^10)|=709,3121,7831
+5,|CA(5, 4^10)|=3067,|CA(5, 4^10)|=3067,114221,86102
+4,|CA(4, 4^10)|=709,|CA(4, 4^10)|=709,2388,7831
+5,|CA(5, 4^10)|=3067,|CA(5, 4^10)|=3067,124283,83722
 
 3C2=3*2/2*1=3,4C2=4*3/2*1=6,5C2=5*4/2*1=10
 processor       : 0
