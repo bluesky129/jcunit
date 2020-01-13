@@ -3,6 +3,7 @@ package com.github.dakusui.jcunit8.pipeline.stages;
 import com.github.dakusui.jcunit.core.tuples.Tuple;
 import com.github.dakusui.jcunit8.testsuite.SchemafulTupleSet;
 
+import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.*;
 import java.util.function.Function;
@@ -14,6 +15,12 @@ import static java.util.stream.Collectors.toSet;
 public enum JoinerUtils {
   ;
 
+  private static final PrintStream DEFAULT_PRINT_STREAM = new PrintStream(new OutputStream() {
+    @Override
+    public void write(int b) {
+    }
+  });
+
   static Tuple connect(Tuple tuple1, Tuple tuple2) {
     return new Tuple.Builder().putAll(tuple1).putAll(tuple2).build();
   }
@@ -23,7 +30,6 @@ public enum JoinerUtils {
     Stopwatch stopwatch = new Stopwatch();
     Set<Tuple> tupletsToBeCovered = coveredTupletsFinder.apply(in).apply(strength);
     stopwatch.print("Identify tuplets to be covered:" + tupletsToBeCovered.size());
-    System.err.println("  in:" + in.size());
     List<List<String>> keyLists = subtupleKeyListsOf(strength, new TreeSet<>(in.getAttributeNames()));
     stopwatch.print("  keys");
     for (Tuple each : in) {
@@ -64,6 +70,10 @@ public enum JoinerUtils {
 
   static class Stopwatch {
     long from = System.nanoTime();
+    private final PrintStream ps = DEFAULT_PRINT_STREAM;
+
+    public Stopwatch() {
+    }
 
     long get() {
       long n = System.nanoTime();
@@ -75,7 +85,7 @@ public enum JoinerUtils {
     }
 
     void print(String message) {
-      print(message, System.err);
+      print(message, this.ps);
     }
 
     void print(String message, PrintStream ps) {

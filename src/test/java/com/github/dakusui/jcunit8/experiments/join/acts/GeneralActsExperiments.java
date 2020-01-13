@@ -5,8 +5,7 @@ import com.github.dakusui.jcunit8.testutils.testsuitequality.CompatFactorSpaceSp
 import org.junit.Test;
 
 import static com.github.dakusui.crest.utils.InternalUtils.requireArgument;
-import static com.github.dakusui.jcunit8.experiments.join.acts.ConstraintComposer.basic;
-import static com.github.dakusui.jcunit8.experiments.join.acts.ConstraintComposer.basicPlus;
+import static com.github.dakusui.jcunit8.experiments.join.acts.ConstraintComposer.*;
 
 public class GeneralActsExperiments extends ActsExperimentsBase {
   @Test
@@ -32,31 +31,19 @@ public class GeneralActsExperiments extends ActsExperimentsBase {
 
   @Test
   public void exercise() {
-    for (int numLevels : new int[] { 4/*, 6, 8, 10, 16*/ })
-      for (int strength : new int[] { 5 })
-        for (ConstraintComposer constraintModel :
-            new ConstraintComposer[] {
-                //                null,
-                basic(),
-                //basicPlus(),
-                //                basicPlusPlus()
-            })
-          for (int numFactors = 10; numFactors <= 20; numFactors += 10)
+    for (ConstraintComposer constraintModel : new ConstraintComposer[] { null, basic(), basicPlus(), basicPlusPlus() })
+      for (int numFactors = 10; numFactors <= 20; numFactors += 10)
+        for (int strength : new int[] { 2 })
+          for (int numLevels : new int[] { 6, 8, 10, 16 })
             if (condition(numLevels, numFactors, constraintModel, strength))
               executeSession(numLevels, numFactors, constraintModel, strength);
   }
 
-  private static boolean condition(int numLevels, int strength, @SuppressWarnings("unused") ConstraintComposer constraintModel, int numFactors) {
-    if (numLevels > 4)
-      return strength == 2 && numFactors <= 20;
-    return true;
-  }
-
   @Test
   public void exerciseIncrementally() {
-    for (int numLevels : new int[] { 4 })
-      for (int strength : new int[] { 5 })
-        for (ConstraintComposer constraintModel : new ConstraintComposer[] { basic() })
+    for (int strength : new int[] { 2 })
+      for (ConstraintComposer constraintModel : new ConstraintComposer[] { null })
+        for (int numLevels : new int[] { 4 })
           for (int numFactors = 20; numFactors <= 20; numFactors += 20)
             if (condition(numLevels, numFactors, constraintModel, strength))
               executeIncrementalSession(numLevels, numFactors / 2, numFactors, constraintModel, strength);
@@ -74,6 +61,12 @@ public class GeneralActsExperiments extends ActsExperimentsBase {
         .numFactors(numFactors)
         .numLevels(numLevels)
         .build());
+  }
+
+  private static boolean condition(int numLevels, int strength, @SuppressWarnings("unused") ConstraintComposer constraintModel, int numFactors) {
+    //    if (numLevels > 4)
+    //      return strength == 2 && numFactors <= 20;
+    return true;
   }
 
   static FactorSpaceSpecWithConstraints seedSpec(int numLevels, int numFactors, ConstraintComposer constraintModel) {

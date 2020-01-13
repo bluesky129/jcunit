@@ -16,10 +16,10 @@ public class JoinReport {
   }
 
   public static String header() {
-    return "t,lhs,rhs,time,size";
+    return "t\tlhs\t|lhs|\trhs\t|rhs|\tsize\ttime[msec]";
   }
 
   public String toString() {
-    return String.format("%s,%s,%s,%s,%s", strength, lhsDesc, rhsDesc, time, size);
+    return String.format("%s\t%s\t%s\t%s\t%s", strength, lhsDesc, rhsDesc, size, time);
   }
 }

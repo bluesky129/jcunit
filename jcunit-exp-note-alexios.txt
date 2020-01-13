@@ -368,3 +368,729 @@ Hugetlb:               0 kB
 DirectMap4k:     1141096 kB
 DirectMap2M:    12423168 kB
 DirectMap1G:     2097152 kB
+
+
+----
+model=4^10-(none) t=2 size=33 time=307[msec]
+model=4^20-(none) t=2 size=41 time=309[msec]
+model=4^30-(none) t=2 size=43 time=274[msec]
+model=4^40-(none) t=2 size=46 time=287[msec]
+model=4^50-(none) t=2 size=50 time=284[msec]
+model=4^60-(none) t=2 size=52 time=276[msec]
+model=4^70-(none) t=2 size=53 time=328[msec]
+model=4^80-(none) t=2 size=55 time=369[msec]
+model=4^90-(none) t=2 size=55 time=372[msec]
+model=4^100-(none) t=2 size=57 time=369[msec]
+model=4^110-(none) t=2 size=58 time=397[msec]
+model=4^120-(none) t=2 size=59 time=411[msec]
+model=4^130-(none) t=2 size=61 time=431[msec]
+model=4^140-(none) t=2 size=61 time=479[msec]
+model=4^150-(none) t=2 size=62 time=491[msec]
+model=4^160-(none) t=2 size=62 time=461[msec]
+model=4^170-(none) t=2 size=63 time=511[msec]
+model=4^180-(none) t=2 size=63 time=553[msec]
+model=4^190-(none) t=2 size=64 time=538[msec]
+model=4^200-(none) t=2 size=64 time=566[msec]
+model=4^10-basic t=2 size=33 time=634[msec]
+model=4^20-basic t=2 size=41 time=859[msec]
+model=4^30-basic t=2 size=43 time=1007[msec]
+model=4^40-basic t=2 size=47 time=1182[msec]
+model=4^50-basic t=2 size=49 time=1374[msec]
+model=4^60-basic t=2 size=50 time=1442[msec]
+model=4^70-basic t=2 size=53 time=1757[msec]
+model=4^80-basic t=2 size=53 time=1752[msec]
+model=4^90-basic t=2 size=55 time=1834[msec]
+model=4^100-basic t=2 size=56 time=2017[msec]
+model=4^110-basic t=2 size=58 time=2065[msec]
+model=4^120-basic t=2 size=58 time=2284[msec]
+model=4^130-basic t=2 size=59 time=2217[msec]
+model=4^140-basic t=2 size=60 time=2444[msec]
+model=4^150-basic t=2 size=61 time=2442[msec]
+model=4^160-basic t=2 size=61 time=2658[msec]
+model=4^170-basic t=2 size=61 time=2563[msec]
+model=4^180-basic t=2 size=63 time=2787[msec]
+model=4^190-basic t=2 size=63 time=2728[msec]
+model=4^200-basic t=2 size=64 time=2984[msec]
+model=4^10-basic+ t=2 size=29 time=761[msec]
+model=4^20-basic+ t=2 size=43 time=1255[msec]
+model=4^30-basic+ t=2 size=48 time=1579[msec]
+model=4^40-basic+ t=2 size=52 time=1832[msec]
+model=4^50-basic+ t=2 size=56 time=2346[msec]
+model=4^60-basic+ t=2 size=58 time=2425[msec]
+model=4^70-basic+ t=2 size=60 time=2896[msec]
+model=4^80-basic+ t=2 size=61 time=2575[msec]
+model=4^90-basic+ t=2 size=63 time=3305[msec]
+model=4^100-basic+ t=2 size=64 time=3008[msec]
+model=4^110-basic+ t=2 size=66 time=3236[msec]
+model=4^120-basic+ t=2 size=67 time=3590[msec]
+model=4^130-basic+ t=2 size=67 time=3804[msec]
+model=4^140-basic+ t=2 size=68 time=3689[msec]
+model=4^150-basic+ t=2 size=69 time=3917[msec]
+model=4^160-basic+ t=2 size=69 time=4199[msec]
+model=4^170-basic+ t=2 size=70 time=4245[msec]
+model=4^180-basic+ t=2 size=71 time=4431[msec]
+model=4^190-basic+ t=2 size=71 time=4779[msec]
+model=4^200-basic+ t=2 size=72 time=5010[msec]
+model=4^10-basic++ t=2 size=34 time=757[msec]
+model=4^20-basic++ t=2 size=40 time=1117[msec]
+model=4^30-basic++ t=2 size=45 time=1347[msec]
+model=4^40-basic++ t=2 size=47 time=1542[msec]
+model=4^50-basic++ t=2 size=49 time=1762[msec]
+model=4^60-basic++ t=2 size=51 time=1868[msec]
+model=4^70-basic++ t=2 size=53 time=1988[msec]
+model=4^80-basic++ t=2 size=54 time=2200[msec]
+model=4^90-basic++ t=2 size=56 time=2339[msec]
+model=4^100-basic++ t=2 size=57 time=2737[msec]
+model=4^110-basic++ t=2 size=57 time=2929[msec]
+model=4^120-basic++ t=2 size=58 time=3002[msec]
+model=4^130-basic++ t=2 size=60 time=3125[msec]
+model=4^140-basic++ t=2 size=61 time=3278[msec]
+model=4^150-basic++ t=2 size=61 time=3149[msec]
+model=4^160-basic++ t=2 size=62 time=3176[msec]
+model=4^170-basic++ t=2 size=62 time=3532[msec]
+model=4^180-basic++ t=2 size=63 time=3527[msec]
+model=4^190-basic++ t=2 size=63 time=3794[msec]
+model=4^200-basic++ t=2 size=64 time=4097[msec]
+model=4^10-(none) t=3 size=151 time=227[msec]
+model=4^20-(none) t=3 size=208 time=308[msec]
+model=4^30-(none) t=3 size=254 time=375[msec]
+model=4^40-(none) t=3 size=288 time=593[msec]
+model=4^50-(none) t=3 size=312 time=797[msec]
+model=4^60-(none) t=3 size=336 time=1288[msec]
+model=4^70-(none) t=3 size=355 time=1943[msec]
+model=4^80-(none) t=3 size=369 time=2886[msec]
+model=4^90-(none) t=3 size=382 time=4037[msec]
+model=4^100-(none) t=3 size=396 time=7278[msec]
+model=4^110-(none) t=3 size=408 time=9997[msec]
+model=4^120-(none) t=3 size=417 time=17557[msec]
+model=4^130-(none) t=3 size=426 time=23891[msec]
+model=4^140-(none) t=3 size=436 time=34723[msec]
+model=4^150-(none) t=3 size=443 time=45734[msec]
+model=4^160-(none) t=3 size=452 time=57702[msec]
+model=4^170-(none) t=3 size=459 time=82893[msec]
+model=4^180-(none) t=3 size=467 time=112705[msec]
+model=4^190-(none) t=3 size=474 time=147925[msec]
+model=4^200-(none) t=3 size=482 time=174044[msec]
+model=4^10-basic t=3 size=148 time=1207[msec]
+model=4^20-basic t=3 size=217 time=2350[msec]
+model=4^30-basic t=3 size=261 time=3238[msec]
+model=4^40-basic t=3 size=294 time=4255[msec]
+model=4^50-basic t=3 size=319 time=4614[msec]
+model=4^60-basic t=3 size=339 time=5822[msec]
+model=4^70-basic t=3 size=358 time=6704[msec]
+model=4^80-basic t=3 size=373 time=9156[msec]
+model=4^90-basic t=3 size=385 time=11417[msec]
+model=4^100-basic t=3 size=398 time=15152[msec]
+model=4^110-basic t=3 size=410 time=20001[msec]
+model=4^120-basic t=3 size=422 time=25740[msec]
+model=4^130-basic t=3 size=429 time=35317[msec]
+model=4^140-basic t=3 size=439 time=45515[msec]
+model=4^150-basic t=3 size=447 time=58156[msec]
+model=4^160-basic t=3 size=455 time=76633[msec]
+model=4^170-basic t=3 size=464 time=95171[msec]
+model=4^180-basic t=3 size=471 time=112733[msec]
+model=4^190-basic t=3 size=477 time=139293[msec]
+model=4^200-basic t=3 size=485 time=166456[msec]
+model=4^10-basic+ t=3 size=176 time=2445[msec]
+model=4^20-basic+ t=3 size=280 time=6535[msec]
+model=4^30-basic+ t=3 size=339 time=11592[msec]
+model=4^40-basic+ t=3 size=383 time=17338[msec]
+model=4^50-basic+ t=3 size=413 time=24706[msec]
+model=4^60-basic+ t=3 size=439 time=31401[msec]
+model=4^70-basic+ t=3 size=459 time=41410[msec]
+model=4^80-basic+ t=3 size=479 time=49178[msec]
+model=4^90-basic+ t=3 size=496 time=62448[msec]
+model=4^100-basic+ t=3 size=512 time=73176[msec]
+model=4^110-basic+ t=3 size=527 time=90577[msec]
+model=4^120-basic+ t=3 size=543 time=104109[msec]
+model=4^130-basic+ t=3 size=553 time=123031[msec]
+model=4^140-basic+ t=3 size=564 time=147005[msec]
+model=4^150-basic+ t=3 size=574 time=170097[msec]
+model=4^160-basic+ t=3 size=585 time=196184[msec]
+model=4^170-basic+ t=3 size=594 time=234136[msec]
+model=4^180-basic+ t=3 size=602 time=266871[msec]
+model=4^190-basic+ t=3 size=612 time=299213[msec]
+model=4^200-basic+ t=3 size=621 time=356268[msec]
+model=4^10-basic++ t=3 size=160 time=1565[msec]
+model=4^20-basic++ t=3 size=229 time=2566[msec]
+model=4^30-basic++ t=3 size=271 time=3634[msec]
+model=4^40-basic++ t=3 size=302 time=4909[msec]
+model=4^50-basic++ t=3 size=326 time=5932[msec]
+model=4^60-basic++ t=3 size=343 time=8234[msec]
+model=4^70-basic++ t=3 size=363 time=11053[msec]
+model=4^80-basic++ t=3 size=378 time=12699[msec]
+model=4^90-basic++ t=3 size=393 time=16407[msec]
+model=4^100-basic++ t=3 size=406 time=19710[msec]
+model=4^110-basic++ t=3 size=415 time=25073[msec]
+model=4^120-basic++ t=3 size=427 time=32392[msec]
+model=4^130-basic++ t=3 size=436 time=40858[msec]
+model=4^140-basic++ t=3 size=444 time=52047[msec]
+model=4^150-basic++ t=3 size=455 time=67056[msec]
+model=4^160-basic++ t=3 size=464 time=84623[msec]
+model=4^170-basic++ t=3 size=470 time=103597[msec]
+model=4^180-basic++ t=3 size=478 time=130585[msec]
+model=4^190-basic++ t=3 size=483 time=160695[msec]
+model=4^200-basic++ t=3 size=490 time=196508[msec]
+model=4^10-(none) t=4 size=709 time=472[msec]
+model=4^20-(none) t=4 size=1134 time=1396[msec]
+model=4^30-(none) t=4 size=1485 time=8471[msec]
+model=4^40-(none) t=4 size=1721 time=48988[msec]
+model=4^50-(none) t=4 size=1893 time=165060[msec]
+model=4^60-(none) t=4 size=2027 time=395657[msec]
+model=4^70-(none) t=4 size=2145 time=787447[msec]
+model=4^80-(none) t=4 size=2244 time=1501710[msec]
+model=4^90-(none) t=4 size=2329 time=2559039[msec]
+model=4^100-(none) t=4 size=2411 time=3796127[msec]
+
+
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.github.dakusui.jcunit8.experiments.join.acts.GeneralActsExperiments
+model=4^20-(none) t=2 size=41 time=280[msec](from seed:'4^10')
+model=4^40-(none) t=2 size=46 time=334[msec](from seed:'4^20')
+model=4^60-(none) t=2 size=52 time=399[msec](from seed:'4^30')
+model=4^80-(none) t=2 size=55 time=422[msec](from seed:'4^40')
+model=4^100-(none) t=2 size=57 time=487[msec](from seed:'4^50')
+model=4^120-(none) t=2 size=59 time=476[msec](from seed:'4^60')
+model=4^140-(none) t=2 size=61 time=548[msec](from seed:'4^70')
+model=4^160-(none) t=2 size=62 time=637[msec](from seed:'4^80')
+model=4^180-(none) t=2 size=63 time=729[msec](from seed:'4^90')
+model=4^200-(none) t=2 size=64 time=807[msec](from seed:'4^100')
+model=4^20-basic t=2 size=40 time=987[msec](from seed:'4^10-basic')
+model=4^40-basic t=2 size=46 time=1286[msec](from seed:'4^20-basic')
+model=4^60-basic t=2 size=50 time=1779[msec](from seed:'4^30-basic')
+model=4^80-basic t=2 size=54 time=2141[msec](from seed:'4^40-basic')
+model=4^100-basic t=2 size=56 time=2679[msec](from seed:'4^50-basic')
+model=4^120-basic t=2 size=58 time=2893[msec](from seed:'4^60-basic')
+model=4^140-basic t=2 size=59 time=3197[msec](from seed:'4^70-basic')
+model=4^160-basic t=2 size=62 time=2899[msec](from seed:'4^80-basic')
+model=4^180-basic t=2 size=62 time=3349[msec](from seed:'4^90-basic')
+model=4^200-basic t=2 size=63 time=3432[msec](from seed:'4^100-basic')
+model=4^20-basic+ t=2 size=43 time=1487[msec](from seed:'4^10-basic+')
+model=4^40-basic+ t=2 size=52 time=2415[msec](from seed:'4^20-basic+')
+model=4^60-basic+ t=2 size=58 time=2689[msec](from seed:'4^30-basic+')
+model=4^80-basic+ t=2 size=61 time=3132[msec](from seed:'4^40-basic+')
+model=4^100-basic+ t=2 size=64 time=3596[msec](from seed:'4^50-basic+')
+model=4^120-basic+ t=2 size=67 time=3949[msec](from seed:'4^60-basic+')
+model=4^140-basic+ t=2 size=68 time=4425[msec](from seed:'4^70-basic+')
+model=4^160-basic+ t=2 size=69 time=5272[msec](from seed:'4^80-basic+')
+model=4^180-basic+ t=2 size=71 time=5405[msec](from seed:'4^90-basic+')
+model=4^200-basic+ t=2 size=72 time=5725[msec](from seed:'4^100-basic+')
+model=4^20-basic++ t=2 size=39 time=1237[msec](from seed:'4^10-basic++')
+model=4^40-basic++ t=2 size=46 time=1805[msec](from seed:'4^20-basic++')
+model=4^60-basic++ t=2 size=51 time=2640[msec](from seed:'4^30-basic++')
+model=4^80-basic++ t=2 size=54 time=2661[msec](from seed:'4^40-basic++')
+model=4^100-basic++ t=2 size=57 time=3294[msec](from seed:'4^50-basic++')
+model=4^120-basic++ t=2 size=59 time=3482[msec](from seed:'4^60-basic++')
+model=4^140-basic++ t=2 size=60 time=3741[msec](from seed:'4^70-basic++')
+model=4^160-basic++ t=2 size=62 time=4141[msec](from seed:'4^80-basic++')
+model=4^180-basic++ t=2 size=63 time=4783[msec](from seed:'4^90-basic++')
+model=4^200-basic++ t=2 size=64 time=4716[msec](from seed:'4^100-basic++')
+model=4^20-(none) t=3 size=209 time=434[msec](from seed:'4^10')
+model=4^40-(none) t=3 size=290 time=687[msec](from seed:'4^20')
+model=4^60-(none) t=3 size=335 time=1457[msec](from seed:'4^30')
+model=4^80-(none) t=3 size=368 time=3251[msec](from seed:'4^40')
+model=4^100-(none) t=3 size=397 time=8930[msec](from seed:'4^50')
+model=4^120-(none) t=3 size=420 time=21132[msec](from seed:'4^60')
+model=4^140-(none) t=3 size=439 time=42960[msec](from seed:'4^70')
+model=4^160-(none) t=3 size=454 time=74985[msec](from seed:'4^80')
+model=4^180-(none) t=3 size=469 time=117909[msec](from seed:'4^90')
+model=4^200-(none) t=3 size=481 time=181225[msec](from seed:'4^100')
+model=4^20-basic t=3 size=215 time=2830[msec](from seed:'4^10-basic')
+model=4^40-basic t=3 size=293 time=4664[msec](from seed:'4^20-basic')
+model=4^60-basic t=3 size=344 time=8186[msec](from seed:'4^30-basic')
+model=4^80-basic t=3 size=372 time=12918[msec](from seed:'4^40-basic')
+model=4^100-basic t=3 size=399 time=23539[msec](from seed:'4^50-basic')
+model=4^120-basic t=3 size=421 time=42560[msec](from seed:'4^60-basic')
+model=4^140-basic t=3 size=440 time=75341[msec](from seed:'4^70-basic')
+model=4^160-basic t=3 size=457 time=104932[msec](from seed:'4^80-basic')
+model=4^180-basic t=3 size=471 time=147825[msec](from seed:'4^90-basic')
+model=4^200-basic t=3 size=483 time=201260[msec](from seed:'4^100-basic')
+model=4^20-basic+ t=3 size=280 time=8443[msec](from seed:'4^10-basic+')
+model=4^40-basic+ t=3 size=380 time=21799[msec](from seed:'4^20-basic+')
+model=4^60-basic+ t=3 size=439 time=39218[msec](from seed:'4^30-basic+')
+model=4^80-basic+ t=3 size=479 time=61129[msec](from seed:'4^40-basic+')
+model=4^100-basic+ t=3 size=513 time=90462[msec](from seed:'4^50-basic+')
+model=4^120-basic+ t=3 size=540 time=128149[msec](from seed:'4^60-basic+')
+model=4^140-basic+ t=3 size=564 time=178863[msec](from seed:'4^70-basic+')
+model=4^160-basic+ t=3 size=586 time=239888[msec](from seed:'4^80-basic+')
+model=4^180-basic+ t=3 size=606 time=320443[msec](from seed:'4^90-basic+')
+model=4^200-basic+ t=3 size=621 time=410264[msec](from seed:'4^100-basic+')
+model=4^20-basic++ t=3 size=233 time=3281[msec](from seed:'4^10-basic++')
+model=4^40-basic++ t=3 size=304 time=7175[msec](from seed:'4^20-basic++')
+model=4^60-basic++ t=3 size=346 time=9956[msec](from seed:'4^30-basic++')
+model=4^80-basic++ t=3 size=380 time=16925[msec](from seed:'4^40-basic++')
+model=4^100-basic++ t=3 size=405 time=28406[msec](from seed:'4^50-basic++')
+model=4^120-basic++ t=3 size=428 time=47728[msec](from seed:'4^60-basic++')
+model=4^140-basic++ t=3 size=446 time=75673[msec](from seed:'4^70-basic++')
+model=4^160-basic++ t=3 size=462 time=113846[msec](from seed:'4^80-basic++')
+model=4^180-basic++ t=3 size=478 time=160397[msec](from seed:'4^90-basic++')
+model=4^200-basic++ t=3 size=491 time=224368[msec](from seed:'4^100-basic++')
+model=4^20-(none) t=4 size=1138 time=1230[msec](from seed:'4^10')
+model=4^40-(none) t=4 size=1722 time=52836[msec](from seed:'4^20')
+model=4^60-(none) t=4 size=2029 time=394966[msec](from seed:'4^30')
+model=4^80-(none) t=4 size=2244 time=1418709[msec](from seed:'4^40')
+model=4^100-(none) t=4 size=2410 time=3918244[msec](from seed:'4^50')
+model=4^120-(none) t=4 size=2546 time=8517680[msec](from seed:'4^60')
+model=4^10-(none) t=2 size=33 time=307[msec]
+model=4^20-(none) t=2 size=41 time=309[msec]
+model=4^30-(none) t=2 size=43 time=274[msec]
+model=4^40-(none) t=2 size=46 time=287[msec]
+model=4^50-(none) t=2 size=50 time=284[msec]
+model=4^60-(none) t=2 size=52 time=276[msec]
+model=4^70-(none) t=2 size=53 time=328[msec]
+model=4^80-(none) t=2 size=55 time=369[msec]
+model=4^90-(none) t=2 size=55 time=372[msec]
+model=4^100-(none) t=2 size=57 time=369[msec]
+model=4^110-(none) t=2 size=58 time=397[msec]
+model=4^120-(none) t=2 size=59 time=411[msec]
+model=4^130-(none) t=2 size=61 time=431[msec]
+model=4^140-(none) t=2 size=61 time=479[msec]
+model=4^150-(none) t=2 size=62 time=491[msec]
+model=4^160-(none) t=2 size=62 time=461[msec]
+model=4^170-(none) t=2 size=63 time=511[msec]
+model=4^180-(none) t=2 size=63 time=553[msec]
+model=4^190-(none) t=2 size=64 time=538[msec]
+model=4^200-(none) t=2 size=64 time=566[msec]
+model=4^10-basic t=2 size=33 time=634[msec]
+model=4^20-basic t=2 size=41 time=859[msec]
+model=4^30-basic t=2 size=43 time=1007[msec]
+model=4^40-basic t=2 size=47 time=1182[msec]
+model=4^50-basic t=2 size=49 time=1374[msec]
+model=4^60-basic t=2 size=50 time=1442[msec]
+model=4^70-basic t=2 size=53 time=1757[msec]
+model=4^80-basic t=2 size=53 time=1752[msec]
+model=4^90-basic t=2 size=55 time=1834[msec]
+model=4^100-basic t=2 size=56 time=2017[msec]
+model=4^110-basic t=2 size=58 time=2065[msec]
+model=4^120-basic t=2 size=58 time=2284[msec]
+model=4^130-basic t=2 size=59 time=2217[msec]
+model=4^140-basic t=2 size=60 time=2444[msec]
+model=4^150-basic t=2 size=61 time=2442[msec]
+model=4^160-basic t=2 size=61 time=2658[msec]
+model=4^170-basic t=2 size=61 time=2563[msec]
+model=4^180-basic t=2 size=63 time=2787[msec]
+model=4^190-basic t=2 size=63 time=2728[msec]
+model=4^200-basic t=2 size=64 time=2984[msec]
+model=4^10-basic+ t=2 size=29 time=761[msec]
+model=4^20-basic+ t=2 size=43 time=1255[msec]
+model=4^30-basic+ t=2 size=48 time=1579[msec]
+model=4^40-basic+ t=2 size=52 time=1832[msec]
+model=4^50-basic+ t=2 size=56 time=2346[msec]
+model=4^60-basic+ t=2 size=58 time=2425[msec]
+model=4^70-basic+ t=2 size=60 time=2896[msec]
+model=4^80-basic+ t=2 size=61 time=2575[msec]
+model=4^90-basic+ t=2 size=63 time=3305[msec]
+model=4^100-basic+ t=2 size=64 time=3008[msec]
+model=4^110-basic+ t=2 size=66 time=3236[msec]
+model=4^120-basic+ t=2 size=67 time=3590[msec]
+model=4^130-basic+ t=2 size=67 time=3804[msec]
+model=4^140-basic+ t=2 size=68 time=3689[msec]
+model=4^150-basic+ t=2 size=69 time=3917[msec]
+model=4^160-basic+ t=2 size=69 time=4199[msec]
+model=4^170-basic+ t=2 size=70 time=4245[msec]
+model=4^180-basic+ t=2 size=71 time=4431[msec]
+model=4^190-basic+ t=2 size=71 time=4779[msec]
+model=4^200-basic+ t=2 size=72 time=5010[msec]
+model=4^10-basic++ t=2 size=34 time=757[msec]
+model=4^20-basic++ t=2 size=40 time=1117[msec]
+model=4^30-basic++ t=2 size=45 time=1347[msec]
+model=4^40-basic++ t=2 size=47 time=1542[msec]
+model=4^50-basic++ t=2 size=49 time=1762[msec]
+model=4^60-basic++ t=2 size=51 time=1868[msec]
+model=4^70-basic++ t=2 size=53 time=1988[msec]
+model=4^80-basic++ t=2 size=54 time=2200[msec]
+model=4^90-basic++ t=2 size=56 time=2339[msec]
+model=4^100-basic++ t=2 size=57 time=2737[msec]
+model=4^110-basic++ t=2 size=57 time=2929[msec]
+model=4^120-basic++ t=2 size=58 time=3002[msec]
+model=4^130-basic++ t=2 size=60 time=3125[msec]
+model=4^140-basic++ t=2 size=61 time=3278[msec]
+model=4^150-basic++ t=2 size=61 time=3149[msec]
+model=4^160-basic++ t=2 size=62 time=3176[msec]
+model=4^170-basic++ t=2 size=62 time=3532[msec]
+model=4^180-basic++ t=2 size=63 time=3527[msec]
+model=4^190-basic++ t=2 size=63 time=3794[msec]
+model=4^200-basic++ t=2 size=64 time=4097[msec]
+model=4^10-(none) t=3 size=151 time=227[msec]
+model=4^20-(none) t=3 size=208 time=308[msec]
+model=4^30-(none) t=3 size=254 time=375[msec]
+model=4^40-(none) t=3 size=288 time=593[msec]
+model=4^50-(none) t=3 size=312 time=797[msec]
+model=4^60-(none) t=3 size=336 time=1288[msec]
+model=4^70-(none) t=3 size=355 time=1943[msec]
+model=4^80-(none) t=3 size=369 time=2886[msec]
+model=4^90-(none) t=3 size=382 time=4037[msec]
+model=4^100-(none) t=3 size=396 time=7278[msec]
+model=4^110-(none) t=3 size=408 time=9997[msec]
+model=4^120-(none) t=3 size=417 time=17557[msec]
+model=4^130-(none) t=3 size=426 time=23891[msec]
+model=4^140-(none) t=3 size=436 time=34723[msec]
+model=4^150-(none) t=3 size=443 time=45734[msec]
+model=4^160-(none) t=3 size=452 time=57702[msec]
+model=4^170-(none) t=3 size=459 time=82893[msec]
+model=4^180-(none) t=3 size=467 time=112705[msec]
+model=4^190-(none) t=3 size=474 time=147925[msec]
+model=4^200-(none) t=3 size=482 time=174044[msec]
+model=4^10-basic t=3 size=148 time=1207[msec]
+model=4^20-basic t=3 size=217 time=2350[msec]
+model=4^30-basic t=3 size=261 time=3238[msec]
+model=4^40-basic t=3 size=294 time=4255[msec]
+model=4^50-basic t=3 size=319 time=4614[msec]
+model=4^60-basic t=3 size=339 time=5822[msec]
+model=4^70-basic t=3 size=358 time=6704[msec]
+model=4^80-basic t=3 size=373 time=9156[msec]
+model=4^90-basic t=3 size=385 time=11417[msec]
+model=4^100-basic t=3 size=398 time=15152[msec]
+model=4^110-basic t=3 size=410 time=20001[msec]
+model=4^120-basic t=3 size=422 time=25740[msec]
+model=4^130-basic t=3 size=429 time=35317[msec]
+model=4^140-basic t=3 size=439 time=45515[msec]
+model=4^150-basic t=3 size=447 time=58156[msec]
+model=4^160-basic t=3 size=455 time=76633[msec]
+model=4^170-basic t=3 size=464 time=95171[msec]
+model=4^180-basic t=3 size=471 time=112733[msec]
+model=4^190-basic t=3 size=477 time=139293[msec]
+model=4^200-basic t=3 size=485 time=166456[msec]
+model=4^10-basic+ t=3 size=176 time=2445[msec]
+model=4^20-basic+ t=3 size=280 time=6535[msec]
+model=4^30-basic+ t=3 size=339 time=11592[msec]
+model=4^40-basic+ t=3 size=383 time=17338[msec]
+model=4^50-basic+ t=3 size=413 time=24706[msec]
+model=4^60-basic+ t=3 size=439 time=31401[msec]
+model=4^70-basic+ t=3 size=459 time=41410[msec]
+model=4^80-basic+ t=3 size=479 time=49178[msec]
+model=4^90-basic+ t=3 size=496 time=62448[msec]
+model=4^100-basic+ t=3 size=512 time=73176[msec]
+model=4^110-basic+ t=3 size=527 time=90577[msec]
+model=4^120-basic+ t=3 size=543 time=104109[msec]
+model=4^130-basic+ t=3 size=553 time=123031[msec]
+model=4^140-basic+ t=3 size=564 time=147005[msec]
+model=4^150-basic+ t=3 size=574 time=170097[msec]
+model=4^160-basic+ t=3 size=585 time=196184[msec]
+model=4^170-basic+ t=3 size=594 time=234136[msec]
+model=4^180-basic+ t=3 size=602 time=266871[msec]
+model=4^190-basic+ t=3 size=612 time=299213[msec]
+model=4^200-basic+ t=3 size=621 time=356268[msec]
+model=4^10-basic++ t=3 size=160 time=1565[msec]
+model=4^20-basic++ t=3 size=229 time=2566[msec]
+model=4^30-basic++ t=3 size=271 time=3634[msec]
+model=4^40-basic++ t=3 size=302 time=4909[msec]
+model=4^50-basic++ t=3 size=326 time=5932[msec]
+model=4^60-basic++ t=3 size=343 time=8234[msec]
+model=4^70-basic++ t=3 size=363 time=11053[msec]
+model=4^80-basic++ t=3 size=378 time=12699[msec]
+model=4^90-basic++ t=3 size=393 time=16407[msec]
+model=4^100-basic++ t=3 size=406 time=19710[msec]
+model=4^110-basic++ t=3 size=415 time=25073[msec]
+model=4^120-basic++ t=3 size=427 time=32392[msec]
+model=4^130-basic++ t=3 size=436 time=40858[msec]
+model=4^140-basic++ t=3 size=444 time=52047[msec]
+model=4^150-basic++ t=3 size=455 time=67056[msec]
+model=4^160-basic++ t=3 size=464 time=84623[msec]
+model=4^170-basic++ t=3 size=470 time=103597[msec]
+model=4^180-basic++ t=3 size=478 time=130585[msec]
+model=4^190-basic++ t=3 size=483 time=160695[msec]
+model=4^200-basic++ t=3 size=490 time=196508[msec]
+model=4^10-(none) t=4 size=709 time=472[msec]
+model=4^20-(none) t=4 size=1134 time=1396[msec]
+model=4^30-(none) t=4 size=1485 time=8471[msec]
+model=4^40-(none) t=4 size=1721 time=48988[msec]
+model=4^50-(none) t=4 size=1893 time=165060[msec]
+model=4^60-(none) t=4 size=2027 time=395657[msec]
+model=4^70-(none) t=4 size=2145 time=787447[msec]
+model=4^80-(none) t=4 size=2244 time=1501710[msec]
+model=4^90-(none) t=4 size=2329 time=2559039[msec]
+model=4^100-(none) t=4 size=2411 time=3796127[msec]
+model=4^110-(none) t=4 size=2482 time=5963281[msec]
+model=4^120-(none) t=4 size=2546 time=8871295[msec]
+OutOfMemory
+
+model=4^10-(none) t=2 size=33 time=307[msec]
+model=4^20-(none) t=2 size=41 time=309[msec]
+model=4^30-(none) t=2 size=43 time=274[msec]
+model=4^40-(none) t=2 size=46 time=287[msec]
+model=4^50-(none) t=2 size=50 time=284[msec]
+model=4^60-(none) t=2 size=52 time=276[msec]
+model=4^70-(none) t=2 size=53 time=328[msec]
+model=4^80-(none) t=2 size=55 time=369[msec]
+model=4^90-(none) t=2 size=55 time=372[msec]
+model=4^100-(none) t=2 size=57 time=369[msec]
+model=4^110-(none) t=2 size=58 time=397[msec]
+model=4^120-(none) t=2 size=59 time=411[msec]
+model=4^130-(none) t=2 size=61 time=431[msec]
+model=4^140-(none) t=2 size=61 time=479[msec]
+model=4^150-(none) t=2 size=62 time=491[msec]
+model=4^160-(none) t=2 size=62 time=461[msec]
+model=4^170-(none) t=2 size=63 time=511[msec]
+model=4^180-(none) t=2 size=63 time=553[msec]
+model=4^190-(none) t=2 size=64 time=538[msec]
+model=4^200-(none) t=2 size=64 time=566[msec]
+model=4^10-basic t=2 size=33 time=634[msec]
+model=4^20-basic t=2 size=41 time=859[msec]
+model=4^30-basic t=2 size=43 time=1007[msec]
+model=4^40-basic t=2 size=47 time=1182[msec]
+model=4^50-basic t=2 size=49 time=1374[msec]
+model=4^60-basic t=2 size=50 time=1442[msec]
+model=4^70-basic t=2 size=53 time=1757[msec]
+model=4^80-basic t=2 size=53 time=1752[msec]
+model=4^90-basic t=2 size=55 time=1834[msec]
+model=4^100-basic t=2 size=56 time=2017[msec]
+model=4^110-basic t=2 size=58 time=2065[msec]
+model=4^120-basic t=2 size=58 time=2284[msec]
+model=4^130-basic t=2 size=59 time=2217[msec]
+model=4^140-basic t=2 size=60 time=2444[msec]
+model=4^150-basic t=2 size=61 time=2442[msec]
+model=4^160-basic t=2 size=61 time=2658[msec]
+model=4^170-basic t=2 size=61 time=2563[msec]
+model=4^180-basic t=2 size=63 time=2787[msec]
+model=4^190-basic t=2 size=63 time=2728[msec]
+model=4^200-basic t=2 size=64 time=2984[msec]
+model=4^10-basic+ t=2 size=29 time=761[msec]
+model=4^20-basic+ t=2 size=43 time=1255[msec]
+model=4^30-basic+ t=2 size=48 time=1579[msec]
+model=4^40-basic+ t=2 size=52 time=1832[msec]
+model=4^50-basic+ t=2 size=56 time=2346[msec]
+model=4^60-basic+ t=2 size=58 time=2425[msec]
+model=4^70-basic+ t=2 size=60 time=2896[msec]
+model=4^80-basic+ t=2 size=61 time=2575[msec]
+model=4^90-basic+ t=2 size=63 time=3305[msec]
+model=4^100-basic+ t=2 size=64 time=3008[msec]
+model=4^110-basic+ t=2 size=66 time=3236[msec]
+model=4^120-basic+ t=2 size=67 time=3590[msec]
+model=4^130-basic+ t=2 size=67 time=3804[msec]
+model=4^140-basic+ t=2 size=68 time=3689[msec]
+model=4^150-basic+ t=2 size=69 time=3917[msec]
+model=4^160-basic+ t=2 size=69 time=4199[msec]
+model=4^170-basic+ t=2 size=70 time=4245[msec]
+model=4^180-basic+ t=2 size=71 time=4431[msec]
+model=4^190-basic+ t=2 size=71 time=4779[msec]
+model=4^200-basic+ t=2 size=72 time=5010[msec]
+model=4^10-basic++ t=2 size=34 time=757[msec]
+model=4^20-basic++ t=2 size=40 time=1117[msec]
+model=4^30-basic++ t=2 size=45 time=1347[msec]
+model=4^40-basic++ t=2 size=47 time=1542[msec]
+model=4^50-basic++ t=2 size=49 time=1762[msec]
+model=4^60-basic++ t=2 size=51 time=1868[msec]
+model=4^70-basic++ t=2 size=53 time=1988[msec]
+model=4^80-basic++ t=2 size=54 time=2200[msec]
+model=4^90-basic++ t=2 size=56 time=2339[msec]
+model=4^100-basic++ t=2 size=57 time=2737[msec]
+model=4^110-basic++ t=2 size=57 time=2929[msec]
+model=4^120-basic++ t=2 size=58 time=3002[msec]
+model=4^130-basic++ t=2 size=60 time=3125[msec]
+model=4^140-basic++ t=2 size=61 time=3278[msec]
+model=4^150-basic++ t=2 size=61 time=3149[msec]
+model=4^160-basic++ t=2 size=62 time=3176[msec]
+model=4^170-basic++ t=2 size=62 time=3532[msec]
+model=4^180-basic++ t=2 size=63 time=3527[msec]
+model=4^190-basic++ t=2 size=63 time=3794[msec]
+model=4^200-basic++ t=2 size=64 time=4097[msec]
+model=4^10-(none) t=3 size=151 time=227[msec]
+model=4^20-(none) t=3 size=208 time=308[msec]
+model=4^30-(none) t=3 size=254 time=375[msec]
+model=4^40-(none) t=3 size=288 time=593[msec]
+model=4^50-(none) t=3 size=312 time=797[msec]
+model=4^60-(none) t=3 size=336 time=1288[msec]
+model=4^70-(none) t=3 size=355 time=1943[msec]
+model=4^80-(none) t=3 size=369 time=2886[msec]
+model=4^90-(none) t=3 size=382 time=4037[msec]
+model=4^100-(none) t=3 size=396 time=7278[msec]
+model=4^110-(none) t=3 size=408 time=9997[msec]
+model=4^120-(none) t=3 size=417 time=17557[msec]
+model=4^130-(none) t=3 size=426 time=23891[msec]
+model=4^140-(none) t=3 size=436 time=34723[msec]
+model=4^150-(none) t=3 size=443 time=45734[msec]
+model=4^160-(none) t=3 size=452 time=57702[msec]
+model=4^170-(none) t=3 size=459 time=82893[msec]
+model=4^180-(none) t=3 size=467 time=112705[msec]
+model=4^190-(none) t=3 size=474 time=147925[msec]
+model=4^200-(none) t=3 size=482 time=174044[msec]
+model=4^10-basic t=3 size=148 time=1207[msec]
+model=4^20-basic t=3 size=217 time=2350[msec]
+model=4^30-basic t=3 size=261 time=3238[msec]
+model=4^40-basic t=3 size=294 time=4255[msec]
+model=4^50-basic t=3 size=319 time=4614[msec]
+model=4^60-basic t=3 size=339 time=5822[msec]
+model=4^70-basic t=3 size=358 time=6704[msec]
+model=4^80-basic t=3 size=373 time=9156[msec]
+model=4^90-basic t=3 size=385 time=11417[msec]
+model=4^100-basic t=3 size=398 time=15152[msec]
+model=4^110-basic t=3 size=410 time=20001[msec]
+model=4^120-basic t=3 size=422 time=25740[msec]
+model=4^130-basic t=3 size=429 time=35317[msec]
+model=4^140-basic t=3 size=439 time=45515[msec]
+model=4^150-basic t=3 size=447 time=58156[msec]
+model=4^160-basic t=3 size=455 time=76633[msec]
+model=4^170-basic t=3 size=464 time=95171[msec]
+model=4^180-basic t=3 size=471 time=112733[msec]
+model=4^190-basic t=3 size=477 time=139293[msec]
+model=4^200-basic t=3 size=485 time=166456[msec]
+model=4^10-basic+ t=3 size=176 time=2445[msec]
+model=4^20-basic+ t=3 size=280 time=6535[msec]
+model=4^30-basic+ t=3 size=339 time=11592[msec]
+model=4^40-basic+ t=3 size=383 time=17338[msec]
+model=4^50-basic+ t=3 size=413 time=24706[msec]
+model=4^60-basic+ t=3 size=439 time=31401[msec]
+model=4^70-basic+ t=3 size=459 time=41410[msec]
+model=4^80-basic+ t=3 size=479 time=49178[msec]
+model=4^90-basic+ t=3 size=496 time=62448[msec]
+model=4^100-basic+ t=3 size=512 time=73176[msec]
+model=4^110-basic+ t=3 size=527 time=90577[msec]
+model=4^120-basic+ t=3 size=543 time=104109[msec]
+model=4^130-basic+ t=3 size=553 time=123031[msec]
+model=4^140-basic+ t=3 size=564 time=147005[msec]
+model=4^150-basic+ t=3 size=574 time=170097[msec]
+model=4^160-basic+ t=3 size=585 time=196184[msec]
+model=4^170-basic+ t=3 size=594 time=234136[msec]
+model=4^180-basic+ t=3 size=602 time=266871[msec]
+model=4^190-basic+ t=3 size=612 time=299213[msec]
+model=4^200-basic+ t=3 size=621 time=356268[msec]
+model=4^10-basic++ t=3 size=160 time=1565[msec]
+model=4^20-basic++ t=3 size=229 time=2566[msec]
+model=4^30-basic++ t=3 size=271 time=3634[msec]
+model=4^40-basic++ t=3 size=302 time=4909[msec]
+model=4^50-basic++ t=3 size=326 time=5932[msec]
+model=4^60-basic++ t=3 size=343 time=8234[msec]
+model=4^70-basic++ t=3 size=363 time=11053[msec]
+model=4^80-basic++ t=3 size=378 time=12699[msec]
+model=4^90-basic++ t=3 size=393 time=16407[msec]
+model=4^100-basic++ t=3 size=406 time=19710[msec]
+model=4^110-basic++ t=3 size=415 time=25073[msec]
+model=4^120-basic++ t=3 size=427 time=32392[msec]
+model=4^130-basic++ t=3 size=436 time=40858[msec]
+model=4^140-basic++ t=3 size=444 time=52047[msec]
+model=4^150-basic++ t=3 size=455 time=67056[msec]
+model=4^160-basic++ t=3 size=464 time=84623[msec]
+model=4^170-basic++ t=3 size=470 time=103597[msec]
+model=4^180-basic++ t=3 size=478 time=130585[msec]
+model=4^190-basic++ t=3 size=483 time=160695[msec]
+model=4^200-basic++ t=3 size=490 time=196508[msec]
+model=4^10-(none) t=4 size=709 time=472[msec]
+model=4^20-(none) t=4 size=1134 time=1396[msec]
+model=4^30-(none) t=4 size=1485 time=8471[msec]
+model=4^40-(none) t=4 size=1721 time=48988[msec]
+model=4^50-(none) t=4 size=1893 time=165060[msec]
+model=4^60-(none) t=4 size=2027 time=395657[msec]
+model=4^70-(none) t=4 size=2145 time=787447[msec]
+model=4^80-(none) t=4 size=2244 time=1501710[msec]
+model=4^90-(none) t=4 size=2329 time=2559039[msec]
+model=4^100-(none) t=4 size=2411 time=3796127[msec]
+model=4^110-(none) t=4 size=2482 time=5963281[msec]
+model=4^120-(none) t=4 size=2546 time=8871295[msec]
+Did not finish in 9 hours
+
+
+
+----
+t,lhs,rhs,time,size
+2,|CA(2, 4^10)|=33,|CA(2, 4^10)|=33,57,75
+2,|CA(2, 6^10)|=72,|CA(2, 6^10)|=72,26,182
+2,|CA(2, 8^10)|=110,|CA(2, 8^10)|=110,20,320
+2,|CA(2, 10^10)|=157,|CA(2, 10^10)|=157,29,499
+2,|CA(2, 16^10)|=398,|CA(2, 16^10)|=398,51,1328
+2,|CA(2, 4^10-basic)|=33,|CA(2, 4^10-basic)|=33,4,75
+2,|CA(2, 6^10-basic)|=72,|CA(2, 6^10-basic)|=72,6,182
+2,|CA(2, 8^10-basic)|=111,|CA(2, 8^10-basic)|=111,8,321
+2,|CA(2, 10^10-basic)|=162,|CA(2, 10^10-basic)|=162,11,504
+2,|CA(2, 16^10-basic)|=402,|CA(2, 16^10-basic)|=402,24,1332
+2,|CA(2, 4^10-basic+)|=29,|CA(2, 4^10-basic+)|=29,4,71
+2,|CA(2, 6^10-basic+)|=72,|CA(2, 6^10-basic+)|=72,5,182
+2,|CA(2, 8^10-basic+)|=128,|CA(2, 8^10-basic+)|=128,12,338
+2,|CA(2, 10^10-basic+)|=197,|CA(2, 10^10-basic+)|=197,13,539
+2,|CA(2, 16^10-basic+)|=508,|CA(2, 16^10-basic+)|=508,26,1438
+2,|CA(2, 4^10-basic++)|=34,|CA(2, 4^10-basic++)|=34,3,76
+2,|CA(2, 6^10-basic++)|=67,|CA(2, 6^10-basic++)|=67,5,177
+2,|CA(2, 8^10-basic++)|=115,|CA(2, 8^10-basic++)|=115,8,325
+2,|CA(2, 10^10-basic++)|=177,|CA(2, 10^10-basic++)|=177,13,519
+2,|CA(2, 16^10-basic++)|=427,|CA(2, 16^10-basic++)|=427,28,1357
+3,|CA(3, 4^10)|=151,|CA(3, 4^10)|=151,50,754
+3,|CA(3, 4^10-basic)|=148,|CA(3, 4^10-basic)|=148,48,827
+3,|CA(3, 4^10-basic+)|=176,|CA(3, 4^10-basic+)|=176,55,1197
+3,|CA(3, 4^10-basic++)|=160,|CA(3, 4^10-basic++)|=160,53,1048
+4,|CA(4, 4^10)|=709,|CA(4, 4^10)|=709,1899,7831
+4,|CA(4, 4^10-basic)|=721,|CA(4, 4^10-basic)|=721,1306,7918
+4,|CA(4, 4^10-basic+)|=935,|CA(4, 4^10-basic+)|=935,2774,16987
+4,|CA(4, 4^10-basic++)|=783,|CA(4, 4^10-basic++)|=783,2096,13214
+
+t,lhs,rhs,time,size
+2,|CA(2, 4^20)|=41,|CA(2, 4^20)|=41,57,83
+2,|CA(2, 4^20-basic)|=41,|CA(2, 4^20-basic)|=41,14,83
+2,|CA(2, 4^20-basic+)|=43,|CA(2, 4^20-basic+)|=43,21,85
+2,|CA(2, 4^20-basic++)|=40,|CA(2, 4^20-basic++)|=40,8,82
+2,|CA(2, 4^30)|=43,|CA(2, 4^30)|=43,11,85
+2,|CA(2, 4^30-basic)|=43,|CA(2, 4^30-basic)|=43,12,85
+2,|CA(2, 4^30-basic+)|=48,|CA(2, 4^30-basic+)|=48,11,90
+2,|CA(2, 4^30-basic++)|=45,|CA(2, 4^30-basic++)|=45,12,87
+2,|CA(2, 4^40)|=46,|CA(2, 4^40)|=46,9,88
+2,|CA(2, 4^40-basic)|=47,|CA(2, 4^40-basic)|=47,12,89
+2,|CA(2, 4^40-basic+)|=52,|CA(2, 4^40-basic+)|=52,11,94
+2,|CA(2, 4^40-basic++)|=47,|CA(2, 4^40-basic++)|=47,9,89
+2,|CA(2, 4^50)|=50,|CA(2, 4^50)|=50,18,92
+2,|CA(2, 4^50-basic)|=49,|CA(2, 4^50-basic)|=49,16,91
+2,|CA(2, 4^50-basic+)|=56,|CA(2, 4^50-basic+)|=56,14,98
+2,|CA(2, 4^50-basic++)|=49,|CA(2, 4^50-basic++)|=49,10,91
+2,|CA(2, 4^60)|=52,|CA(2, 4^60)|=52,13,94
+2,|CA(2, 4^60-basic)|=50,|CA(2, 4^60-basic)|=50,15,92
+2,|CA(2, 4^60-basic+)|=58,|CA(2, 4^60-basic+)|=58,20,100
+2,|CA(2, 4^60-basic++)|=51,|CA(2, 4^60-basic++)|=51,11,93
+2,|CA(2, 4^70)|=53,|CA(2, 4^70)|=53,14,95
+2,|CA(2, 4^70-basic)|=53,|CA(2, 4^70-basic)|=53,13,95
+2,|CA(2, 4^70-basic+)|=60,|CA(2, 4^70-basic+)|=60,15,102
+2,|CA(2, 4^70-basic++)|=53,|CA(2, 4^70-basic++)|=53,11,95
+2,|CA(2, 4^80)|=55,|CA(2, 4^80)|=55,15,97
+2,|CA(2, 4^80-basic)|=53,|CA(2, 4^80-basic)|=53,13,95
+2,|CA(2, 4^80-basic+)|=61,|CA(2, 4^80-basic+)|=61,21,103
+2,|CA(2, 4^80-basic++)|=54,|CA(2, 4^80-basic++)|=54,14,96
+2,|CA(2, 4^90)|=55,|CA(2, 4^90)|=55,14,97
+2,|CA(2, 4^90-basic)|=55,|CA(2, 4^90-basic)|=55,13,97
+2,|CA(2, 4^90-basic+)|=63,|CA(2, 4^90-basic+)|=63,15,105
+2,|CA(2, 4^90-basic++)|=56,|CA(2, 4^90-basic++)|=56,13,98
+2,|CA(2, 4^100)|=57,|CA(2, 4^100)|=57,18,99
+2,|CA(2, 4^100-basic)|=56,|CA(2, 4^100-basic)|=56,18,98
+2,|CA(2, 4^100-basic+)|=64,|CA(2, 4^100-basic+)|=64,14,106
+2,|CA(2, 4^100-basic++)|=57,|CA(2, 4^100-basic++)|=57,12,99
+3,|CA(3, 4^20)|=208,|CA(3, 4^20)|=208,176,1077
+3,|CA(3, 4^20-basic)|=217,|CA(3, 4^20-basic)|=217,136,1124
+3,|CA(3, 4^20-basic+)|=280,|CA(3, 4^20-basic+)|=280,168,1548
+3,|CA(3, 4^20-basic++)|=229,|CA(3, 4^20-basic++)|=229,153,1250
+3,|CA(3, 4^30)|=254,|CA(3, 4^30)|=254,357,1541
+3,|CA(3, 4^30-basic)|=261,|CA(3, 4^30-basic)|=261,358,1415
+3,|CA(3, 4^30-basic+)|=339,|CA(3, 4^30-basic+)|=339,410,1778
+3,|CA(3, 4^30-basic++)|=271,|CA(3, 4^30-basic++)|=271,320,1349
+3,|CA(3, 4^40)|=288,|CA(3, 4^40)|=288,738,1613
+3,|CA(3, 4^40-basic)|=294,|CA(3, 4^40-basic)|=294,742,1562
+3,|CA(3, 4^40-basic+)|=383,|CA(3, 4^40-basic+)|=383,897,2050
+3,|CA(3, 4^40-basic++)|=302,|CA(3, 4^40-basic++)|=302,845,1532
+3,|CA(3, 4^50)|=312,|CA(3, 4^50)|=312,1421,1884
+3,|CA(3, 4^50-basic)|=319,|CA(3, 4^50-basic)|=319,1287,1644
+3,|CA(3, 4^50-basic+)|=413,|CA(3, 4^50-basic+)|=413,1859,2270
+3,|CA(3, 4^50-basic++)|=326,|CA(3, 4^50-basic++)|=326,1582,1765
+3,|CA(3, 4^60)|=336,|CA(3, 4^60)|=336,2894,2079
+3,|CA(3, 4^60-basic)|=339,|CA(3, 4^60-basic)|=339,2855,1759
+3,|CA(3, 4^60-basic+)|=439,|CA(3, 4^60-basic+)|=439,3752,2486
+3,|CA(3, 4^60-basic++)|=343,|CA(3, 4^60-basic++)|=343,2812,1801
+3,|CA(3, 4^70)|=355,|CA(3, 4^70)|=355,4816,2174
+3,|CA(3, 4^70-basic)|=358,|CA(3, 4^70-basic)|=358,4363,1835
+3,|CA(3, 4^70-basic+)|=459,|CA(3, 4^70-basic+)|=459,5658,2620
+3,|CA(3, 4^70-basic++)|=363,|CA(3, 4^70-basic++)|=363,4866,1859
+3,|CA(3, 4^80)|=369,|CA(3, 4^80)|=369,7511,2302
+3,|CA(3, 4^80-basic)|=373,|CA(3, 4^80-basic)|=373,7658,1907
+3,|CA(3, 4^80-basic+)|=479,|CA(3, 4^80-basic+)|=479,9479,2811
+3,|CA(3, 4^80-basic++)|=378,|CA(3, 4^80-basic++)|=378,8068,1950
+3,|CA(3, 4^90)|=382,|CA(3, 4^90)|=382,10871,2372
+3,|CA(3, 4^90-basic)|=385,|CA(3, 4^90-basic)|=385,10586,1995
+3,|CA(3, 4^90-basic+)|=496,|CA(3, 4^90-basic+)|=496,13637,2961
+3,|CA(3, 4^90-basic++)|=393,|CA(3, 4^90-basic++)|=393,11564,1984
+3,|CA(3, 4^100)|=396,|CA(3, 4^100)|=396,17544,2462
+3,|CA(3, 4^100-basic)|=398,|CA(3, 4^100-basic)|=398,16267,2065
+3,|CA(3, 4^100-basic+)|=512,|CA(3, 4^100-basic+)|=512,20400,3167
+3,|CA(3, 4^100-basic++)|=406,|CA(3, 4^100-basic++)|=406,16585,2073
+4,|CA(4, 4^20)|=1134,|CA(4, 4^20)|=1134,35034,12231
+4,|CA(4, 4^20-basic)|=1168,|CA(4, 4^20-basic)|=1168,38126,15760
+4,|CA(4, 4^20-basic+)|=1760,|CA(4, 4^20-basic+)|=1760,44845,26341
+4,|CA(4, 4^20-basic++)|=1262,|CA(4, 4^20-basic++)|=1262,39015,17093
+4,|CA(4, 4^30)|=1485,|CA(4, 4^30)|=1485,267107,19177
+4,|CA(4, 4^30-basic)|=1519,|CA(4, 4^30-basic)|=1519,255512,20761

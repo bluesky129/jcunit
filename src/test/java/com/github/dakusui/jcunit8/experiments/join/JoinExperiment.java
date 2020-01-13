@@ -40,7 +40,6 @@ public class JoinExperiment {
         this.spec.rhsSpec,
         this.spec.rhsStrength.applyAsInt(this.spec.strength),
         this.spec.generator);
-    System.out.println(JoinReport.header());
     for (int i = 0; i < spec.times; i++) {
       CoveringArrayGenerationUtils.StopWatch stopWatch = new CoveringArrayGenerationUtils.StopWatch();
       joined = exerciseJoin(lhs, rhs, this.spec.strength, this.spec.joinerFactory);
@@ -80,7 +79,7 @@ public class JoinExperiment {
   }
 
   private String formatCoveringArray(List<Tuple> ca, IntUnaryOperator p, FactorSpaceSpecWithConstraints p2) {
-    return String.format("|CA(%s, %s)|=%s", p.applyAsInt(this.spec.strength), p2.createSignature(), ca.size());
+    return String.format("CA(%s, %s)\t%s", p.applyAsInt(this.spec.strength), p2.createSignature(), ca.size());
   }
 
   private static List<Tuple> exerciseJoin(List<Tuple> lhs, List<Tuple> rhs, int strength, Function<Requirement, Joiner> joinerFactory) {

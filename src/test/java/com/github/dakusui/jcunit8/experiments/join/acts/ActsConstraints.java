@@ -164,8 +164,24 @@ public enum ActsConstraints {
     };
   }
 
+  static NormalizedConstraint lt(String f, String g) {
+    return new Comp(f, g) {
+      public String toText(String normalizedFactorNameForG, String normalizedFactorNameForF) {
+        return normalizedFactorNameForG + " &lt; " + normalizedFactorNameForF;
+      }
+
+      @Override
+      public String getName() {
+        throw new UnsupportedOperationException();
+      }
+    };
+  }
+
   static NormalizedConstraint gt(String f, String g) {
     return new Comp(f, g) {
+      public String toText(String normalizedFactorNameForG, String normalizedFactorNameForF) {
+        return "!(" + normalizedFactorNameForG + " &lt; " + normalizedFactorNameForF + ")";
+      }
 
       @Override
       public String getName() {
@@ -180,7 +196,7 @@ public enum ActsConstraints {
       public String toText(Function<String, String> factorNameNormalizer) {
         ////
         // Since ACTS seems not supporting > (&gt;), invert the comparator.
-        return factorNameNormalizer.apply(g) + " &lt;= " + factorNameNormalizer.apply(f);
+        return "!(" + factorNameNormalizer.apply(g) + " &lt;" + factorNameNormalizer.apply(f) + ")";
       }
 
       @Override
@@ -207,9 +223,7 @@ public enum ActsConstraints {
     return new NormalizedConstraint() {
       @Override
       public String toText(Function<String, String> factorNameNormalizer) {
-        ////
-        // Since ACTS seems not supporting > (&gt;), invert the comparator.
-        return factorNameNormalizer.apply(g) + " &lt;= " + factorNameNormalizer.apply(f);
+        return factorNameNormalizer.apply(g) + " == " + factorNameNormalizer.apply(f);
       }
 
       @Override
@@ -243,14 +257,10 @@ public enum ActsConstraints {
 
     @Override
     public String toText(Function<String, String> factorNameNormalizer) {
-      ////
-      // Since ACTS seems not supporting > (&gt;), invert the comparator.
       return toText(factorNameNormalizer.apply(g), factorNameNormalizer.apply(f));
     }
 
-    public String toText(String normalizedFactorNameForG, String normalizedFactorNameForF) {
-      return normalizedFactorNameForG + " &lt; " + normalizedFactorNameForF;
-    }
+    public abstract String toText(String normalizedFactorNameForG, String normalizedFactorNameForF);
 
     @Override
     public boolean test(Tuple tuple) {
