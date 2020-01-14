@@ -22,7 +22,7 @@ public class GeneralJoinExperiments {
   public void exerciseMixed() {
     System.out.println(JoinReport.header());
     for (int strength : new int[] { 2 })
-      for (int numFactors = 100; numFactors <= 200; numFactors += 10)
+      for (int numFactors = 130; numFactors <= 200; numFactors += 10)
         for (ConstraintComposer constraintModel : new ConstraintComposer[] { basic() })
           for (int numLevels : new int[] { 4 })
             if (condition(numLevels, strength, constraintModel, numFactors))
