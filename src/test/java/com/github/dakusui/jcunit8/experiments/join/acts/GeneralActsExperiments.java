@@ -5,7 +5,8 @@ import com.github.dakusui.jcunit8.testutils.testsuitequality.CompatFactorSpaceSp
 import org.junit.Test;
 
 import static com.github.dakusui.crest.utils.InternalUtils.requireArgument;
-import static com.github.dakusui.jcunit8.experiments.join.acts.ConstraintComposer.*;
+import static com.github.dakusui.jcunit8.experiments.join.acts.ConstraintComposer.basic;
+import static com.github.dakusui.jcunit8.experiments.join.acts.ConstraintComposer.basicPlus;
 
 public class GeneralActsExperiments extends ActsExperimentsBase {
   @Test
@@ -31,10 +32,20 @@ public class GeneralActsExperiments extends ActsExperimentsBase {
 
   @Test
   public void exercise() {
-    for (ConstraintComposer constraintModel : new ConstraintComposer[] { null, basic(), basicPlus(), basicPlusPlus() })
-      for (int numFactors = 10; numFactors <= 20; numFactors += 10)
+    for (ConstraintComposer constraintModel : new ConstraintComposer[] { basic() })
+      for (int numFactors = 20; numFactors <= 200; numFactors += 10)
         for (int strength : new int[] { 2 })
-          for (int numLevels : new int[] { 6, 8, 10, 16 })
+          for (int numLevels : new int[] { 4 })
+            if (condition(numLevels, numFactors, constraintModel, strength))
+              executeSession(numLevels, numFactors, constraintModel, strength);
+  }
+
+  @Test
+  public void exerciseMixed() {
+    for (ConstraintComposer constraintModel : new ConstraintComposer[] { basic() })
+      for (int numFactors = 200; numFactors <= 400; numFactors += 20)
+        for (int strength : new int[] { -2 })
+          for (int numLevels : new int[] { 4 })
             if (condition(numLevels, numFactors, constraintModel, strength))
               executeSession(numLevels, numFactors, constraintModel, strength);
   }

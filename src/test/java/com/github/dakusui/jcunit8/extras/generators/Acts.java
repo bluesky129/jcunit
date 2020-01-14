@@ -71,7 +71,7 @@ public class Acts {
   }
 
   public String composeActsModel() {
-    return buildActsModel(factorSpace, "unknown", seedComposer);
+    return buildActsModel(factorSpace, "unknown", seedComposer, strength);
   }
 
   public List<Tuple> run() {
@@ -110,7 +110,7 @@ public class Acts {
         "{{JAVA}} -Ddoi={{STRENGTH}} -Dalgo={{ALGORITHM}} -Dchandler={{CHANDLER}} -Dmode={{MODE}} -Doutput=csv -jar {{ACTS_JAR}} {{IN}} {{OUT}}",
         new TreeMap<String, Object>() {{
           put("{{JAVA}}", "java");
-          put("{{STRENGTH}}", strength);
+          put("{{STRENGTH}}", strength >= 0 ? strength : -1);
           put("{{ALGORITHM}}", algorithm);
           put("{{CHANDLER}}", constraintHandler);
           put("{{MODE}}", seedComposer.mode());

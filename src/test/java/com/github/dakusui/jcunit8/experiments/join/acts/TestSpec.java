@@ -123,7 +123,6 @@ public interface TestSpec {
       assertThat(baseDir, asObject().isNotNull().$());
       assertThat(numFactors, asInteger().ge(0).$());
       assertThat(numLevels, asInteger().ge(0).$());
-      assertThat(strength, asInteger().ge(0).$());
       assertThat(chandler, asObject().isNotNull().$());
       return createSpec(baseDir, numLevels, numFactors, strength, constraintComposer, chandler, seedSpec);
     }

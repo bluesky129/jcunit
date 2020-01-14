@@ -927,7 +927,18 @@ model=4^160-basic t=3 size=455 time=76633[msec]
 model=4^170-basic t=3 size=464 time=95171[msec]
 model=4^180-basic t=3 size=471 time=112733[msec]
 model=4^190-basic t=3 size=477 time=139293[msec]
-model=4^200-basic t=3 size=485 time=166456[msec]
+model=4^200-basic t=3 size=485 time=106568[msec]
+model=4^220-basic t=3 size=497 time=156477[msec]
+model=4^240-basic t=3 size=507 time=231319[msec]
+model=4^260-basic t=3 size=517 time=299972[msec]
+model=4^280-basic t=3 size=526 time=417211[msec]
+model=4^300-basic t=3 size=536 time=583061[msec]
+model=4^320-basic t=3 size=544 time=724320[msec]
+model=4^340-basic t=3 size=551 time=889601[msec]
+model=4^360-basic t=3 size=560 time=1122393[msec]
+model=4^380-basic t=3 size=566 time=1422264[msec]
+model=4^400-basic t=3 size=573 time=1739698[msec]
+
 model=4^10-basic+ t=3 size=176 time=2445[msec]
 model=4^20-basic+ t=3 size=280 time=6535[msec]
 model=4^30-basic+ t=3 size=339 time=11592[msec]
@@ -968,6 +979,7 @@ model=4^170-basic++ t=3 size=470 time=103597[msec]
 model=4^180-basic++ t=3 size=478 time=130585[msec]
 model=4^190-basic++ t=3 size=483 time=160695[msec]
 model=4^200-basic++ t=3 size=490 time=196508[msec]
+
 model=4^10-(none) t=4 size=709 time=472[msec]
 model=4^20-(none) t=4 size=1134 time=1396[msec]
 model=4^30-(none) t=4 size=1485 time=8471[msec]
@@ -1094,3 +1106,52 @@ t,lhs,rhs,time,size
 4,|CA(4, 4^20-basic++)|=1262,|CA(4, 4^20-basic++)|=1262,39015,17093
 4,|CA(4, 4^30)|=1485,|CA(4, 4^30)|=1485,267107,19177
 4,|CA(4, 4^30-basic)|=1519,|CA(4, 4^30-basic)|=1519,255512,20761
+
+
+
+====
+model=4^20-basic t=-2 size=160 time=2380[msec]
+model=4^40-basic t=-2 size=224 time=3082[msec]
+model=4^60-basic t=-2 size=265 time=4021[msec]
+model=4^80-basic t=-2 size=299 time=5340[msec]
+model=4^100-basic t=-2 size=322 time=7155[msec]
+model=4^120-basic t=-2 size=341 time=9362[msec]
+model=4^140-basic t=-2 size=358 time=12227[msec]
+model=4^160-basic t=-2 size=374 time=20089[msec]
+model=4^180-basic t=-2 size=388 time=19695[msec]
+model=4^200-basic t=-2 size=399 time=26259[msec]
+model=4^200-basic t=-2 size=399 time=29957[msec]
+model=4^220-basic t=-2 size=412 time=30725[msec]
+model=4^240-basic t=-2 size=422 time=39045[msec]
+model=4^260-basic t=-2 size=432 time=49298[msec]
+model=4^280-basic t=-2 size=440 time=62994[msec]
+model=4^300-basic t=-2 size=448 time=78245[msec]
+model=4^320-basic t=-2 size=457 time=99659[msec]
+model=4^340-basic t=-2 size=465 time=120408[msec]
+model=4^360-basic t=-2 size=472 time=156793[msec]
+model=4^380-basic t=-2 size=479 time=189272[msec]
+model=4^400-basic t=-2 size=486 time=236625[msec]
+
+----
+t	lhs	|lhs|	rhs	|rhs|	size	time[msec]
+2	CA(3, 4^10-basic)	162	CA(3, 4^10-basic)	162	252	87
+2	CA(3, 4^20-basic)	227	CA(3, 4^20-basic)	227	317	41
+2	CA(3, 4^30-basic)	261	CA(3, 4^30-basic)	261	351	32
+2	CA(3, 4^40-basic)	294	CA(3, 4^40-basic)	294	384	33
+2	CA(3, 4^50-basic)	319	CA(3, 4^50-basic)	319	409	46
+2	CA(3, 4^60-basic)	339	CA(3, 4^60-basic)	339	429	37
+2	CA(3, 4^70-basic)	358	CA(3, 4^70-basic)	358	448	65
+2	CA(3, 4^80-basic)	373	CA(3, 4^80-basic)	373	463	44
+2	CA(3, 4^90-basic)	385	CA(3, 4^90-basic)	385	475	78
+2	CA(3, 4^100-basic)	398	CA(3, 4^100-basic)	398	488	90
+2	CA(3, 4^100-basic)	398	CA(3, 4^100-basic)	398	488	254
+2	CA(3, 4^110-basic)	410	CA(3, 4^110-basic)	410	500	66
+2	CA(3, 4^120-basic)	422	CA(3, 4^120-basic)	422	512	81
+2	CA(3, 4^130-basic)	429	CA(3, 4^130-basic)	429	519	73
+2	CA(3, 4^140-basic)	439	CA(3, 4^140-basic)	439	529	112
+2	CA(3, 4^150-basic)	447	CA(3, 4^150-basic)	447	537	127
+2	CA(3, 4^160-basic)	455	CA(3, 4^160-basic)	455	545	123
+2	CA(3, 4^170-basic)	464	CA(3, 4^170-basic)	464	554	130
+2	CA(3, 4^180-basic)	471	CA(3, 4^180-basic)	471	561	111
+2	CA(3, 4^190-basic)	477	CA(3, 4^190-basic)	477	567	155
+2	CA(3, 4^200-basic)	485	CA(3, 4^200-basic)	485	575	161
