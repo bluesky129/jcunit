@@ -9,13 +9,22 @@ public enum JoinExperimentUtils {
   ;
 
   public static void exerciseSession(int numLevels, int numFactors, ConstraintComposer constraintModel, int lhsStrength, int rhsStrength, int strength) {
+    exerciseSession(numLevels, numFactors, numFactors, constraintModel, lhsStrength, rhsStrength, strength);
+  }
+
+  public static void exerciseSession(int numLevels, int numLhsFactors, int numRhsFactors, ConstraintComposer constraintModel, int strength) {
+    exerciseSession(numLevels, numLhsFactors, numRhsFactors, constraintModel, strength, strength, strength);
+  }
+
+
+  static void exerciseSession(int numLevels, int numLhsFactors, int numRhsFactors, ConstraintComposer constraintModel, int lhsStrength, int rhsStrength, int strength) {
     new JoinExperiment.Builder()
         .lhs(new CompatFactorSpaceSpecWithConstraints("L")
-                .addFactors(numLevels, numFactors)
+                .addFactors(numLevels, numLhsFactors)
                 .constraintComposer(constraintModel),
             lhsStrength)
         .rhs(new CompatFactorSpaceSpecWithConstraints("R")
-                .addFactors(numLevels, numFactors)
+                .addFactors(numLevels, numRhsFactors)
                 .constraintComposer(constraintModel),
             rhsStrength)
         .strength(strength)

@@ -201,3 +201,83 @@ model=4^20-basic t=6 size= time=[msec](from seed:'4^10-basic') - Did not finish 
 
 Generating Variable Strength Covering Array for Combinatorial Software Testing with Greedy Strategy:
 http://www.jsoftware.us/vol8/jsw0812-26.pdf
+
+
+----
+t	lhs	|lhs|	rhs	|rhs|	size	time[msec]
+2	CA(2, 4^100-basic)	56	CA(2, 4^10-basic)	32	98	21
+2	CA(2, 4^100-basic)	56	CA(2, 4^20-basic)	41	98	21
+2	CA(2, 4^100-basic)	56	CA(2, 4^30-basic)	43	98	19
+2	CA(2, 4^100-basic)	56	CA(2, 4^40-basic)	47	98	22
+2	CA(2, 4^100-basic)	56	CA(2, 4^50-basic)	49	98	19
+2	CA(2, 4^100-basic)	56	CA(2, 4^60-basic)	50	98	27
+2	CA(2, 4^100-basic)	56	CA(2, 4^70-basic)	53	98	37
+2	CA(2, 4^100-basic)	56	CA(2, 4^80-basic)	53	98	27
+2	CA(2, 4^100-basic)	56	CA(2, 4^90-basic)	55	98	38
+2	CA(2, 4^100-basic)	56	CA(2, 4^100-basic)	56	98	50
+3	CA(3, 4^100-basic)	398	CA(3, 4^10-basic)	162	1665	8520
+3	CA(3, 4^100-basic)	398	CA(3, 4^20-basic)	227	1715	7934
+3	CA(3, 4^100-basic)	398	CA(3, 4^30-basic)	261	1795	7858
+3	CA(3, 4^100-basic)	398	CA(3, 4^40-basic)	294	1855	8228
+3	CA(3, 4^100-basic)	398	CA(3, 4^50-basic)	319	1885	8413
+3	CA(3, 4^100-basic)	398	CA(3, 4^60-basic)	339	1935	9094
+3	CA(3, 4^100-basic)	398	CA(3, 4^70-basic)	358	1965	9388
+3	CA(3, 4^100-basic)	398	CA(3, 4^80-basic)	373	1995	10826
+3	CA(3, 4^100-basic)	398	CA(3, 4^90-basic)	385	2035	11979
+3	CA(3, 4^100-basic)	398	CA(3, 4^100-basic)	398	2065	15028
+
+
+model=4^90-(none) t=2 size=55 time=603[msec](from seed:'4^10')
+model=4^80-(none) t=2 size=55 time=676[msec](from seed:'4^20')
+model=4^70-(none) t=2 size=53 time=502[msec](from seed:'4^30')
+model=4^60-(none) t=2 size=52 time=445[msec](from seed:'4^40')
+model=4^50-(none) t=2 size=50 time=424[msec](from seed:'4^50')
+model=4^90-(none) t=3 size=383 time=4497[msec](from seed:'4^10')
+model=4^80-(none) t=3 size=368 time=3067[msec](from seed:'4^20')
+model=4^70-(none) t=3 size=356 time=2216[msec](from seed:'4^30')
+model=4^60-(none) t=3 size=335 time=1611[msec](from seed:'4^40')
+model=4^50-(none) t=3 size=316 time=1224[msec](from seed:'4^50')
+
+t	lhs	|lhs|	rhs	|rhs|	size	time[msec]
+2	CA(2, 4^190)	64	CA(2, 4^10)	33	106	36
+2	CA(2, 4^180)	63	CA(2, 4^20)	41	105	24
+2	CA(2, 4^170)	63	CA(2, 4^30)	43	105	23
+2	CA(2, 4^160)	62	CA(2, 4^40)	46	104	16
+2	CA(2, 4^150)	62	CA(2, 4^50)	50	104	23
+2	CA(2, 4^140)	61	CA(2, 4^60)	52	103	15
+2	CA(2, 4^130)	61	CA(2, 4^70)	53	103	16
+2	CA(2, 4^120)	59	CA(2, 4^80)	55	101	28
+2	CA(2, 4^110)	58	CA(2, 4^90)	55	100	14
+2	CA(2, 4^100)	57	CA(2, 4^100)	57	99	9
+3	CA(3, 4^190)	474	CA(3, 4^10)	151	1887	80973
+3	CA(3, 4^180)	467	CA(3, 4^20)	208	2020	52632
+3	CA(3, 4^170)	459	CA(3, 4^30)	254	2223	45063
+3	CA(3, 4^160)	452	CA(3, 4^40)	288	2209	38444
+3	CA(3, 4^150)	443	CA(3, 4^50)	312	2330	27026
+3	CA(3, 4^140)	436	CA(3, 4^60)	336	2395	20453
+3	CA(3, 4^130)	426	CA(3, 4^70)	355	2407	18339
+3	CA(3, 4^120)	417	CA(3, 4^80)	369	2449	14855
+3	CA(3, 4^110)	408	CA(3, 4^90)	382	2461	14467
+3	CA(3, 4^100)	396	CA(3, 4^100)	396	2462	16359
+
+model=4^190-(none) t=2 size=64 time=1075[msec](from seed:'4^10')
+model=4^180-(none) t=2 size=63 time=947[msec](from seed:'4^20')
+model=4^170-(none) t=2 size=63 time=914[msec](from seed:'4^30')
+model=4^160-(none) t=2 size=62 time=801[msec](from seed:'4^40')
+model=4^150-(none) t=2 size=62 time=717[msec](from seed:'4^50')
+model=4^140-(none) t=2 size=61 time=745[msec](from seed:'4^60')
+model=4^130-(none) t=2 size=61 time=681[msec](from seed:'4^70')
+model=4^120-(none) t=2 size=59 time=669[msec](from seed:'4^80')
+model=4^110-(none) t=2 size=58 time=592[msec](from seed:'4^90')
+model=4^100-(none) t=2 size=57 time=548[msec](from seed:'4^100')
+model=4^190-(none) t=3 size=476 time=79214[msec](from seed:'4^10')
+model=4^180-(none) t=3 size=469 time=66451[msec](from seed:'4^20')
+model=4^170-(none) t=3 size=462 time=49540[msec](from seed:'4^30')
+model=4^160-(none) t=3 size=454 time=38909[msec](from seed:'4^40')
+model=4^150-(none) t=3 size=445 time=36278[msec](from seed:'4^50')
+model=4^140-(none) t=3 size=439 time=25513[msec](from seed:'4^60')
+model=4^130-(none) t=3 size=428 time=16745[msec](from seed:'4^70')
+model=4^120-(none) t=3 size=420 time=13261[msec](from seed:'4^80')
+model=4^110-(none) t=3 size=408 time=10045[msec](from seed:'4^90')
+model=4^100-(none) t=3 size=397 time=6110[msec](from seed:'4^100')
+

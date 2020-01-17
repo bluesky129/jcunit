@@ -2,6 +2,7 @@ package com.github.dakusui.jcunit8.experiments.join.acts;
 
 import com.github.dakusui.jcunit8.extras.normalizer.compat.FactorSpaceSpecWithConstraints;
 import com.github.dakusui.jcunit8.testutils.testsuitequality.CompatFactorSpaceSpecWithConstraints;
+import org.junit.Before;
 import org.junit.Test;
 
 import static com.github.dakusui.crest.utils.InternalUtils.requireArgument;
@@ -9,6 +10,14 @@ import static com.github.dakusui.jcunit8.experiments.join.acts.ConstraintCompose
 import static com.github.dakusui.jcunit8.experiments.join.acts.ConstraintComposer.basicPlus;
 
 public class GeneralActsExperiments extends ActsExperimentsBase {
+  @Before
+  public void warmUp() {
+    System.out.print("Warming up...");
+    for (int strength : new int[] { 2, 3 })
+      executeSession(2, 10, null, strength);
+    System.out.println("done");
+  }
+
   @Test
   public void testGenerateAndReportWithConstraintsWithStrength2Factor20Levels16Incrementally() {
     ConstraintComposer constraintModel = basicPlus();
@@ -33,7 +42,7 @@ public class GeneralActsExperiments extends ActsExperimentsBase {
   @Test
   public void exercise() {
     for (ConstraintComposer constraintModel : new ConstraintComposer[] { basic() })
-      for (int numFactors = 20; numFactors <= 200; numFactors += 10)
+      for (int numFactors = 10; numFactors <= 20; numFactors += 10)
         for (int strength : new int[] { 2 })
           for (int numLevels : new int[] { 4 })
             if (condition(numLevels, numFactors, constraintModel, strength))
@@ -52,12 +61,13 @@ public class GeneralActsExperiments extends ActsExperimentsBase {
 
   @Test
   public void exerciseIncrementally() {
-    for (int strength : new int[] { 2 })
+    int numTotalFactors = 200;
+    for (int strength : new int[] { 2, 3 })
       for (ConstraintComposer constraintModel : new ConstraintComposer[] { null })
         for (int numLevels : new int[] { 4 })
-          for (int numFactors = 20; numFactors <= 20; numFactors += 20)
+          for (int numFactors = 10; numFactors <= numTotalFactors / 2; numFactors += 10)
             if (condition(numLevels, numFactors, constraintModel, strength))
-              executeIncrementalSession(numLevels, numFactors / 2, numFactors, constraintModel, strength);
+              executeIncrementalSession(numLevels, numFactors, numTotalFactors - numFactors, constraintModel, strength);
   }
 
   void executeSession(int numLevels, int numFactors, ConstraintComposer constraintModel, int strength) {
@@ -65,7 +75,7 @@ public class GeneralActsExperiments extends ActsExperimentsBase {
   }
 
   void executeIncrementalSession(int numLevels, int numSeedFactors, int numFactors, ConstraintComposer constraintModel, int strength) {
-    requireArgument(numFactors, i -> i > numSeedFactors);
+    requireArgument(numFactors, i -> i >= numSeedFactors);
     executeSession(specBuilder().seedSpec(seedSpec(numLevels, numSeedFactors, constraintModel))
         .constraintComposer(constraintModel)
         .strength(strength)
