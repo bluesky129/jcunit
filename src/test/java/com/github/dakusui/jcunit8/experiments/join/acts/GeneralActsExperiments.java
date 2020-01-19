@@ -5,7 +5,6 @@ import com.github.dakusui.jcunit8.testutils.testsuitequality.CompatFactorSpaceSp
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.github.dakusui.crest.utils.InternalUtils.requireArgument;
 import static com.github.dakusui.jcunit8.experiments.join.acts.ConstraintComposer.basic;
 import static com.github.dakusui.jcunit8.experiments.join.acts.ConstraintComposer.basicPlus;
 
@@ -51,12 +50,36 @@ public class GeneralActsExperiments extends ActsExperimentsBase {
 
   @Test
   public void exerciseMixed() {
-    for (ConstraintComposer constraintModel : new ConstraintComposer[] { basic() })
-      for (int numFactors = 200; numFactors <= 400; numFactors += 20)
+    for (ConstraintComposer constraintModel : new ConstraintComposer[] { null, basic(), basicPlus() })
+      for (int numFactors = 20; numFactors <= 400; numFactors += 20)
         for (int strength : new int[] { -2 })
           for (int numLevels : new int[] { 4 })
             if (condition(numLevels, numFactors, constraintModel, strength))
               executeSession(numLevels, numFactors, constraintModel, strength);
+  }
+
+  @Test
+  public void exerciseUneven() {
+    for (ConstraintComposer constraintModel : new ConstraintComposer[] { null, basic() })
+      for (int strength : new int[] { 2, 3 })
+        for (int numTotalFactors : new int[] { 100, 200 })
+          for (int numSeedFactors = 10; numSeedFactors <= numTotalFactors; numSeedFactors += 10)
+            for (int numLevels : new int[] { 4 })
+              executeIncrementalSession(numLevels, numSeedFactors, numTotalFactors, constraintModel, strength);
+  }
+
+  @Test
+  public void exerciseUneven_basicPlus() {
+    for (ConstraintComposer constraintModel : new ConstraintComposer[] { basicPlus() })
+      for (int strength : new int[] { 2, 3 })
+        for (int numTotalFactors : new int[] { 100, 200 })
+          for (int numSeedFactors = 10; numSeedFactors <= numTotalFactors; numSeedFactors += 10)
+            for (int numLevels : new int[] { 4 })
+              executeIncrementalSession(numLevels, numSeedFactors, numTotalFactors, constraintModel, strength);
+  }
+
+  void executeSession(int numLevels, int numFactors, ConstraintComposer constraintModel, int strength) {
+    executeSession(specBuilder().constraintComposer(constraintModel).strength(strength).numFactors(numFactors).numLevels(numLevels).build());
   }
 
   @Test
@@ -70,12 +93,18 @@ public class GeneralActsExperiments extends ActsExperimentsBase {
               executeIncrementalSession(numLevels, numFactors, numTotalFactors - numFactors, constraintModel, strength);
   }
 
-  void executeSession(int numLevels, int numFactors, ConstraintComposer constraintModel, int strength) {
-    executeSession(specBuilder().constraintComposer(constraintModel).strength(strength).numFactors(numFactors).numLevels(numLevels).build());
+  @Test
+  public void exerciseMixed_incrementally() {
+    for (ConstraintComposer constraintModel : new ConstraintComposer[] { null, basic(), basicPlus() })
+      for (int numFactors = 20; numFactors <= 400; numFactors += 20)
+        for (int strength : new int[] { -2 })
+          for (int numLevels : new int[] { 4 })
+            if (condition(numLevels, numFactors, constraintModel, strength))
+              executeIncrementalSession(numLevels, numFactors / 2, numFactors, constraintModel, strength);
   }
 
+
   void executeIncrementalSession(int numLevels, int numSeedFactors, int numFactors, ConstraintComposer constraintModel, int strength) {
-    requireArgument(numFactors, i -> i >= numSeedFactors);
     executeSession(specBuilder().seedSpec(seedSpec(numLevels, numSeedFactors, constraintModel))
         .constraintComposer(constraintModel)
         .strength(strength)

@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static com.github.dakusui.jcunit8.experiments.join.acts.ConstraintComposer.basic;
+import static com.github.dakusui.jcunit8.experiments.join.acts.ConstraintComposer.basicPlus;
 
 public class GeneralJoinExperiments {
   @Before
@@ -30,9 +31,9 @@ public class GeneralJoinExperiments {
   @Test
   public void exerciseMixed() {
     System.out.println(JoinReport.header());
-    for (int strength : new int[] { 2 })
-      for (int numFactors = 130; numFactors <= 200; numFactors += 10)
-        for (ConstraintComposer constraintModel : new ConstraintComposer[] { basic() })
+    for (ConstraintComposer constraintModel : new ConstraintComposer[] { null, basic(), basicPlus() })
+      for (int strength : new int[] { 2 })
+        for (int numFactors = 10; numFactors <= 200; numFactors += 10)
           for (int numLevels : new int[] { 4 })
             if (condition(numLevels, strength, constraintModel, numFactors))
               JoinExperimentUtils.exerciseSession(numLevels, numFactors, constraintModel, strength + 1, strength + 1, strength);
@@ -41,12 +42,12 @@ public class GeneralJoinExperiments {
   @Test
   public void exerciseUneven() {
     System.out.println(JoinReport.header());
-    int numTotalFactors = 200;
-    for (int strength : new int[] { 2, 3 })
-      for (int numRhsFactors = 10; numRhsFactors <= numTotalFactors / 2; numRhsFactors += 10)
-        for (ConstraintComposer constraintModel : new ConstraintComposer[] { null })
-          for (int numLevels : new int[] { 4 })
-            JoinExperimentUtils.exerciseSession(numLevels, numTotalFactors - numRhsFactors, numRhsFactors, constraintModel, strength);
+    for (int numTotalFactors : new int[] { 100, 200 })
+      for (int strength : new int[] { 2, 3 })
+        for (int numRhsFactors = 10; numRhsFactors <= numTotalFactors - 10; numRhsFactors += 10)
+          for (ConstraintComposer constraintModel : new ConstraintComposer[] { basicPlus() })
+            for (int numLevels : new int[] { 4 })
+              JoinExperimentUtils.exerciseSession(numLevels, numTotalFactors - numRhsFactors, numRhsFactors, constraintModel, strength);
   }
 
   private static boolean condition(int numLevels, int strength, @SuppressWarnings("unused") ConstraintComposer constraintModel, int numFactors) {

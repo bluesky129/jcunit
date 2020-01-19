@@ -187,14 +187,15 @@ public class Acts {
     }
 
     public Builder seedComposer(Tuple headerTuple, FactorSpaceSpecWithConstraints spec, int strength) {
+      int t = Math.abs(strength);
       return this.seedComposer(stringBuilder -> stringBuilder.append(
           ActsUtils.fromTuplesToXml(
               headerTuple,
               loadPregeneratedOrGenerateAndSaveCoveringArrayFor(
                   spec,
-                  strength,
+                  t,
                   (factorSpace, integer) -> generateWithActs(baseDir, spec.build(), strength, constraintHandler)),
-              strength)));
+              t)));
     }
 
     Builder seedComposer(Consumer<StringBuilder> seedComposer) {

@@ -1220,3 +1220,495 @@ model=4^340-basic t=-2 size=465 time=213877[msec]
 model=4^360-basic t=-2 size=472 time=261044[msec]
 model=4^380-basic t=-2 size=479 time=365586[msec]
 model=4^400-basic t=-2 size=486 time=391143[msec]
+
+Uneven
+
+100 null:
+t	lhs	|lhs|	rhs	|rhs|	size	time[msec]
+2	CA(2, 4^90)	55	CA(2, 4^10)	33	97	19
+2	CA(2, 4^80)	55	CA(2, 4^20)	41	97	15
+2	CA(2, 4^70)	53	CA(2, 4^30)	43	95	14
+2	CA(2, 4^60)	52	CA(2, 4^40)	46	94	16
+2	CA(2, 4^50)	50	CA(2, 4^50)	50	92	19
+3	CA(3, 4^90)	382	CA(3, 4^10)	151	1642	5807
+3	CA(3, 4^80)	369	CA(3, 4^20)	208	1742	4147
+3	CA(3, 4^70)	355	CA(3, 4^30)	254	1894	3203
+3	CA(3, 4^60)	336	CA(3, 4^40)	288	1859	1851
+3	CA(3, 4^50)	312	CA(3, 4^50)	312	1884	1425
+200 null:
+2	CA(2, 4^190)	64	CA(2, 4^10)	33	106	61
+2	CA(2, 4^180)	63	CA(2, 4^20)	41	105	47
+2	CA(2, 4^170)	63	CA(2, 4^30)	43	105	35
+2	CA(2, 4^160)	62	CA(2, 4^40)	46	104	30
+2	CA(2, 4^150)	62	CA(2, 4^50)	50	104	27
+2	CA(2, 4^140)	61	CA(2, 4^60)	52	103	23
+2	CA(2, 4^130)	61	CA(2, 4^70)	53	103	25
+2	CA(2, 4^120)	59	CA(2, 4^80)	55	101	37
+2	CA(2, 4^110)	58	CA(2, 4^90)	55	100	37
+2	CA(2, 4^100)	57	CA(2, 4^100)	57	99	31
+3	CA(3, 4^190)	474	CA(3, 4^10)	151	1887	64153
+3	CA(3, 4^180)	467	CA(3, 4^20)	208	2020	54135
+3	CA(3, 4^170)	459	CA(3, 4^30)	254	2223	42412
+3	CA(3, 4^160)	452	CA(3, 4^40)	288	2209	33040
+3	CA(3, 4^150)	443	CA(3, 4^50)	312	2330	27227
+3	CA(3, 4^140)	436	CA(3, 4^60)	336	2395	19734
+3	CA(3, 4^130)	426	CA(3, 4^70)	355	2407	17082
+3	CA(3, 4^120)	417	CA(3, 4^80)	369	2449	15626
+3	CA(3, 4^110)	408	CA(3, 4^90)	382	2461	15711
+3	CA(3, 4^100)	396	CA(3, 4^100)	396	2462	17473
+
+100 basic:
+2	CA(2, 4^90-basic)	55	CA(2, 4^10-basic)	33	97	32
+2	CA(2, 4^80-basic)	53	CA(2, 4^20-basic)	41	95	36
+2	CA(2, 4^70-basic)	53	CA(2, 4^30-basic)	43	95	15
+2	CA(2, 4^60-basic)	50	CA(2, 4^40-basic)	47	92	17
+2	CA(2, 4^50-basic)	49	CA(2, 4^50-basic)	49	91	21
+3	CA(3, 4^90-basic)	385	CA(3, 4^10-basic)	148	1505	6284
+3	CA(3, 4^80-basic)	373	CA(3, 4^20-basic)	217	1577	3869
+3	CA(3, 4^70-basic)	358	CA(3, 4^30-basic)	261	1665	2479
+3	CA(3, 4^60-basic)	339	CA(3, 4^40-basic)	294	1679	1902
+3	CA(3, 4^50-basic)	319	CA(3, 4^50-basic)	319	1644	1593
+
+200 basic:
+t	lhs	|lhs|	rhs	|rhs|	size	time[msec]
+2	CA(2, 4^190-basic)	63	CA(2, 4^10-basic)	33	105	33
+2	CA(2, 4^180-basic)	63	CA(2, 4^20-basic)	41	105	28
+2	CA(2, 4^170-basic)	61	CA(2, 4^30-basic)	43	103	25
+2	CA(2, 4^160-basic)	61	CA(2, 4^40-basic)	47	103	25
+2	CA(2, 4^150-basic)	61	CA(2, 4^50-basic)	49	103	17
+2	CA(2, 4^140-basic)	60	CA(2, 4^60-basic)	50	102	15
+2	CA(2, 4^130-basic)	59	CA(2, 4^70-basic)	53	101	21
+2	CA(2, 4^120-basic)	58	CA(2, 4^80-basic)	53	100	9
+2	CA(2, 4^110-basic)	58	CA(2, 4^90-basic)	55	100	19
+2	CA(2, 4^100-basic)	56	CA(2, 4^100-basic)	56	98	17
+3	CA(3, 4^190-basic)	477	CA(3, 4^10-basic)	148	1759	65801
+3	CA(3, 4^180-basic)	471	CA(3, 4^20-basic)	217	1873	57240
+3	CA(3, 4^170-basic)	464	CA(3, 4^30-basic)	261	1987	39226
+3	CA(3, 4^160-basic)	455	CA(3, 4^40-basic)	294	2011	30826
+3	CA(3, 4^150-basic)	447	CA(3, 4^50-basic)	319	2015	23608
+3	CA(3, 4^140-basic)	439	CA(3, 4^60-basic)	339	2057	19023
+3	CA(3, 4^130-basic)	429	CA(3, 4^70-basic)	358	2059	16329
+3	CA(3, 4^120-basic)	422	CA(3, 4^80-basic)	373	2055	14909
+3	CA(3, 4^110-basic)	410	CA(3, 4^90-basic)	385	2056	14256
+3	CA(3, 4^100-basic)	398	CA(3, 4^100-basic)	398	2065	15884
+
+100: basic+
+t	lhs	|lhs|	rhs	|rhs|	size	time[msec]
+2	CA(2, 4^90-basic+)	63	CA(2, 4^10-basic+)	29	105	21
+2	CA(2, 4^80-basic+)	61	CA(2, 4^20-basic+)	43	103	18
+2	CA(2, 4^70-basic+)	60	CA(2, 4^30-basic+)	48	102	22
+2	CA(2, 4^60-basic+)	58	CA(2, 4^40-basic+)	52	100	21
+2	CA(2, 4^50-basic+)	56	CA(2, 4^50-basic+)	56	98	23
+2	CA(2, 4^40-basic+)	52	CA(2, 4^60-basic+)	58	100	18
+2	CA(2, 4^30-basic+)	48	CA(2, 4^70-basic+)	60	102	14
+2	CA(2, 4^20-basic+)	43	CA(2, 4^80-basic+)	61	103	19
+2	CA(2, 4^10-basic+)	29	CA(2, 4^90-basic+)	63	105	25
+3	CA(3, 4^90-basic+)	496	CA(3, 4^10-basic+)	176	2201	8109
+3	CA(3, 4^80-basic+)	479	CA(3, 4^20-basic+)	280	2251	5648
+3	CA(3, 4^70-basic+)	459	CA(3, 4^30-basic+)	339	2240	3305
+3	CA(3, 4^60-basic+)	439	CA(3, 4^40-basic+)	383	2286	2564
+3	CA(3, 4^50-basic+)	413	CA(3, 4^50-basic+)	413	2270	1979
+3	CA(3, 4^40-basic+)	383	CA(3, 4^60-basic+)	439	2286	2421
+3	CA(3, 4^30-basic+)	339	CA(3, 4^70-basic+)	459	2240	3593
+3	CA(3, 4^20-basic+)	280	CA(3, 4^80-basic+)	479	2251	5335
+3	CA(3, 4^10-basic+)	176	CA(3, 4^90-basic+)	496	2201	7837
+
+
+200: basic+
+t	lhs	|lhs|	rhs	|rhs|	size	time[msec]
+2	CA(2, 4^190-basic+)	71	CA(2, 4^10-basic+)	29	113	14
+2	CA(2, 4^180-basic+)	71	CA(2, 4^20-basic+)	43	113	17
+2	CA(2, 4^170-basic+)	70	CA(2, 4^30-basic+)	48	112	18
+2	CA(2, 4^160-basic+)	69	CA(2, 4^40-basic+)	52	111	15
+2	CA(2, 4^150-basic+)	69	CA(2, 4^50-basic+)	56	111	17
+2	CA(2, 4^140-basic+)	68	CA(2, 4^60-basic+)	58	110	13
+2	CA(2, 4^130-basic+)	67	CA(2, 4^70-basic+)	60	109	13
+2	CA(2, 4^120-basic+)	67	CA(2, 4^80-basic+)	61	109	15
+2	CA(2, 4^110-basic+)	66	CA(2, 4^90-basic+)	63	108	20
+2	CA(2, 4^100-basic+)	64	CA(2, 4^100-basic+)	64	106	16
+2	CA(2, 4^90-basic+)	63	CA(2, 4^110-basic+)	66	108	15
+2	CA(2, 4^80-basic+)	61	CA(2, 4^120-basic+)	67	109	19
+2	CA(2, 4^70-basic+)	60	CA(2, 4^130-basic+)	67	109	14
+2	CA(2, 4^60-basic+)	58	CA(2, 4^140-basic+)	68	110	14
+2	CA(2, 4^50-basic+)	56	CA(2, 4^150-basic+)	69	111	15
+2	CA(2, 4^40-basic+)	52	CA(2, 4^160-basic+)	69	111	17
+2	CA(2, 4^30-basic+)	48	CA(2, 4^170-basic+)	70	112	14
+2	CA(2, 4^20-basic+)	43	CA(2, 4^180-basic+)	71	113	17
+2	CA(2, 4^10-basic+)	29	CA(2, 4^190-basic+)	71	113	19
+3	CA(3, 4^190-basic+)	612	CA(3, 4^10-basic+)	176	3010	82769
+3	CA(3, 4^180-basic+)	602	CA(3, 4^20-basic+)	280	3094	63251
+3	CA(3, 4^170-basic+)	594	CA(3, 4^30-basic+)	339	3095	47768
+3	CA(3, 4^160-basic+)	585	CA(3, 4^40-basic+)	383	3170	38218
+3	CA(3, 4^150-basic+)	574	CA(3, 4^50-basic+)	413	3169	30622
+3	CA(3, 4^140-basic+)	564	CA(3, 4^60-basic+)	439	3196	23850
+3	CA(3, 4^130-basic+)	553	CA(3, 4^70-basic+)	459	3173	20738
+3	CA(3, 4^120-basic+)	543	CA(3, 4^80-basic+)	479	3154	19777
+3	CA(3, 4^110-basic+)	527	CA(3, 4^90-basic+)	496	3136	18017
+3	CA(3, 4^100-basic+)	512	CA(3, 4^100-basic+)	512	3167	19484
+3	CA(3, 4^90-basic+)	496	CA(3, 4^110-basic+)	527	3136	17908
+3	CA(3, 4^80-basic+)	479	CA(3, 4^120-basic+)	543	3154	18389
+3	CA(3, 4^70-basic+)	459	CA(3, 4^130-basic+)	553	3173	20497
+3	CA(3, 4^60-basic+)	439	CA(3, 4^140-basic+)	564	3196	23671
+3	CA(3, 4^50-basic+)	413	CA(3, 4^150-basic+)	574	3169	30985
+3	CA(3, 4^40-basic+)	383	CA(3, 4^160-basic+)	585	3170	39375
+3	CA(3, 4^30-basic+)	339	CA(3, 4^170-basic+)	594	3095	48626
+3	CA(3, 4^20-basic+)	280	CA(3, 4^180-basic+)	602	3094	63421
+3	CA(3, 4^10-basic+)	176	CA(3, 4^190-basic+)	612	3010	73131
+
+100: null
+model=4^100-(none) t=2 size=57 time=439[msec](from seed:'4^10')
+model=4^100-(none) t=2 size=57 time=456[msec](from seed:'4^20')
+model=4^100-(none) t=2 size=57 time=395[msec](from seed:'4^30')
+model=4^100-(none) t=2 size=57 time=400[msec](from seed:'4^40')
+model=4^100-(none) t=2 size=57 time=427[msec](from seed:'4^50')
+model=4^100-(none) t=2 size=57 time=442[msec](from seed:'4^60')
+model=4^100-(none) t=2 size=57 time=455[msec](from seed:'4^70')
+model=4^100-(none) t=2 size=57 time=400[msec](from seed:'4^80')
+model=4^100-(none) t=2 size=57 time=396[msec](from seed:'4^90')
+model=4^100-(none) t=2 size=57 time=442[msec](from seed:'4^100')
+model=4^100-(none) t=3 size=397 time=5741[msec](from seed:'4^10')
+model=4^100-(none) t=3 size=397 time=5605[msec](from seed:'4^20')
+model=4^100-(none) t=3 size=397 time=6453[msec](from seed:'4^30')
+model=4^100-(none) t=3 size=397 time=6423[msec](from seed:'4^40')
+model=4^100-(none) t=3 size=397 time=7388[msec](from seed:'4^50')
+model=4^100-(none) t=3 size=397 time=7120[msec](from seed:'4^60')
+model=4^100-(none) t=3 size=397 time=8533[msec](from seed:'4^70')
+model=4^100-(none) t=3 size=397 time=7533[msec](from seed:'4^80')
+model=4^100-(none) t=3 size=397 time=7043[msec](from seed:'4^90')
+model=4^100-(none) t=3 size=397 time=7010[msec](from seed:'4^100')
+200: null
+model=4^200-(none) t=2 size=64 time=579[msec](from seed:'4^10')
+model=4^200-(none) t=2 size=64 time=589[msec](from seed:'4^20')
+model=4^200-(none) t=2 size=64 time=647[msec](from seed:'4^30')
+model=4^200-(none) t=2 size=64 time=635[msec](from seed:'4^40')
+model=4^200-(none) t=2 size=64 time=613[msec](from seed:'4^50')
+model=4^200-(none) t=2 size=64 time=633[msec](from seed:'4^60')
+model=4^200-(none) t=2 size=64 time=608[msec](from seed:'4^70')
+model=4^200-(none) t=2 size=64 time=660[msec](from seed:'4^80')
+model=4^200-(none) t=2 size=64 time=676[msec](from seed:'4^90')
+model=4^200-(none) t=2 size=64 time=605[msec](from seed:'4^100')
+model=4^200-(none) t=2 size=64 time=649[msec](from seed:'4^110')
+model=4^200-(none) t=2 size=64 time=659[msec](from seed:'4^120')
+model=4^200-(none) t=2 size=64 time=665[msec](from seed:'4^130')
+model=4^200-(none) t=2 size=64 time=678[msec](from seed:'4^140')
+model=4^200-(none) t=2 size=64 time=659[msec](from seed:'4^150')
+model=4^200-(none) t=2 size=64 time=647[msec](from seed:'4^160')
+model=4^200-(none) t=2 size=64 time=691[msec](from seed:'4^170')
+model=4^200-(none) t=2 size=64 time=645[msec](from seed:'4^180')
+model=4^200-(none) t=2 size=64 time=713[msec](from seed:'4^190')
+model=4^200-(none) t=2 size=64 time=696[msec](from seed:'4^200')
+model=4^200-(none) t=3 size=481 time=157638[msec](from seed:'4^10')
+model=4^200-(none) t=3 size=481 time=150956[msec](from seed:'4^20')
+model=4^200-(none) t=3 size=481 time=153925[msec](from seed:'4^30')
+model=4^200-(none) t=3 size=481 time=150279[msec](from seed:'4^40')
+model=4^200-(none) t=3 size=481 time=147483[msec](from seed:'4^50')
+model=4^200-(none) t=3 size=481 time=151724[msec](from seed:'4^60')
+model=4^200-(none) t=3 size=481 time=171308[msec](from seed:'4^70')
+model=4^200-(none) t=3 size=481 time=167077[msec](from seed:'4^80')
+model=4^200-(none) t=3 size=481 time=143772[msec](from seed:'4^90')
+model=4^200-(none) t=3 size=481 time=147970[msec](from seed:'4^100')
+model=4^200-(none) t=3 size=481 time=148814[msec](from seed:'4^110')
+model=4^200-(none) t=3 size=481 time=142053[msec](from seed:'4^120')
+model=4^200-(none) t=3 size=481 time=149443[msec](from seed:'4^130')
+model=4^200-(none) t=3 size=481 time=144613[msec](from seed:'4^140')
+model=4^200-(none) t=3 size=481 time=142676[msec](from seed:'4^150')
+model=4^200-(none) t=3 size=481 time=148557[msec](from seed:'4^160')
+model=4^200-(none) t=3 size=481 time=150115[msec](from seed:'4^170')
+model=4^200-(none) t=3 size=481 time=157721[msec](from seed:'4^180')
+model=4^200-(none) t=3 size=481 time=155878[msec](from seed:'4^190')
+model=4^200-(none) t=3 size=482 time=148439[msec](from seed:'4^200')
+100: basic
+model=4^100-basic t=2 size=56 time=2005[msec](from seed:'4^10-basic')
+model=4^100-basic t=2 size=56 time=2036[msec](from seed:'4^20-basic')
+model=4^100-basic t=2 size=56 time=2249[msec](from seed:'4^30-basic')
+model=4^100-basic t=2 size=56 time=1838[msec](from seed:'4^40-basic')
+model=4^100-basic t=2 size=56 time=1966[msec](from seed:'4^50-basic')
+model=4^100-basic t=2 size=56 time=1808[msec](from seed:'4^60-basic')
+model=4^100-basic t=2 size=56 time=1846[msec](from seed:'4^70-basic')
+model=4^100-basic t=2 size=56 time=2274[msec](from seed:'4^80-basic')
+model=4^100-basic t=2 size=56 time=2009[msec](from seed:'4^90-basic')
+model=4^100-basic t=2 size=56 time=2045[msec](from seed:'4^100-basic')
+model=4^100-basic t=3 size=399 time=14028[msec](from seed:'4^10-basic')
+model=4^100-basic t=3 size=399 time=16198[msec](from seed:'4^20-basic')
+model=4^100-basic t=3 size=399 time=16952[msec](from seed:'4^30-basic')
+model=4^100-basic t=3 size=399 time=20182[msec](from seed:'4^40-basic')
+model=4^100-basic t=3 size=399 time=18220[msec](from seed:'4^50-basic')
+model=4^100-basic t=3 size=399 time=16102[msec](from seed:'4^60-basic')
+model=4^100-basic t=3 size=399 time=16391[msec](from seed:'4^70-basic')
+model=4^100-basic t=3 size=399 time=15379[msec](from seed:'4^80-basic')
+model=4^100-basic t=3 size=399 time=16728[msec](from seed:'4^90-basic')
+model=4^100-basic t=3 size=399 time=17036[msec](from seed:'4^100-basic')
+
+200: basic
+
+model=4^200-basic t=2 size=63 time=2702[msec](from seed:'4^10-basic')
+model=4^200-basic t=2 size=63 time=2742[msec](from seed:'4^20-basic')
+model=4^200-basic t=2 size=63 time=2716[msec](from seed:'4^30-basic')
+model=4^200-basic t=2 size=63 time=2827[msec](from seed:'4^40-basic')
+model=4^200-basic t=2 size=63 time=2670[msec](from seed:'4^50-basic')
+model=4^200-basic t=2 size=63 time=2727[msec](from seed:'4^60-basic')
+model=4^200-basic t=2 size=63 time=2875[msec](from seed:'4^70-basic')
+model=4^200-basic t=2 size=63 time=2622[msec](from seed:'4^80-basic')
+model=4^200-basic t=2 size=63 time=3217[msec](from seed:'4^90-basic')
+model=4^200-basic t=2 size=63 time=3130[msec](from seed:'4^100-basic')
+model=4^200-basic t=2 size=63 time=3211[msec](from seed:'4^110-basic')
+model=4^200-basic t=2 size=63 time=3175[msec](from seed:'4^120-basic')
+model=4^200-basic t=2 size=63 time=3260[msec](from seed:'4^130-basic')
+model=4^200-basic t=2 size=63 time=3387[msec](from seed:'4^140-basic')
+model=4^200-basic t=2 size=63 time=2887[msec](from seed:'4^150-basic')
+model=4^200-basic t=2 size=63 time=2745[msec](from seed:'4^160-basic')
+model=4^200-basic t=2 size=63 time=3451[msec](from seed:'4^170-basic')
+model=4^200-basic t=2 size=63 time=3164[msec](from seed:'4^180-basic')
+model=4^200-basic t=2 size=63 time=3436[msec](from seed:'4^190-basic')
+model=4^200-basic t=2 size=64 time=2977[msec](from seed:'4^200-basic')
+model=4^200-basic t=3 size=483 time=180544[msec](from seed:'4^10-basic')
+model=4^200-basic t=3 size=483 time=160748[msec](from seed:'4^20-basic')
+model=4^200-basic t=3 size=483 time=159302[msec](from seed:'4^30-basic')
+model=4^200-basic t=3 size=483 time=159646[msec](from seed:'4^40-basic')
+model=4^200-basic t=3 size=483 time=167790[msec](from seed:'4^50-basic')
+model=4^200-basic t=3 size=483 time=156606[msec](from seed:'4^60-basic')
+model=4^200-basic t=3 size=483 time=158546[msec](from seed:'4^70-basic')
+model=4^200-basic t=3 size=483 time=171799[msec](from seed:'4^80-basic')
+model=4^200-basic t=3 size=483 time=186956[msec](from seed:'4^90-basic')
+model=4^200-basic t=3 size=483 time=229394[msec](from seed:'4^100-basic')
+model=4^200-basic t=3 size=483 time=204018[msec](from seed:'4^110-basic')
+model=4^200-basic t=3 size=483 time=229565[msec](from seed:'4^120-basic')
+model=4^200-basic t=3 size=483 time=241776[msec](from seed:'4^130-basic')
+model=4^200-basic t=3 size=483 time=207933[msec](from seed:'4^140-basic')
+model=4^200-basic t=3 size=483 time=198764[msec](from seed:'4^150-basic')
+model=4^200-basic t=3 size=483 time=197398[msec](from seed:'4^160-basic')
+model=4^200-basic t=3 size=483 time=239560[msec](from seed:'4^170-basic')
+model=4^200-basic t=3 size=483 time=228137[msec](from seed:'4^180-basic')
+model=4^200-basic t=3 size=483 time=209276[msec](from seed:'4^190-basic')
+model=4^200-basic t=3 size=485 time=207960[msec](from seed:'4^200-basic')
+
+100:basic+
+model=4^100-basic+ t=2 size=64 time=2695[msec](from seed:'4^10-basic+')
+model=4^100-basic+ t=2 size=64 time=2752[msec](from seed:'4^20-basic+')
+model=4^100-basic+ t=2 size=64 time=2755[msec](from seed:'4^30-basic+')
+model=4^100-basic+ t=2 size=64 time=2653[msec](from seed:'4^40-basic+')
+model=4^100-basic+ t=2 size=64 time=3087[msec](from seed:'4^50-basic+')
+model=4^100-basic+ t=2 size=64 time=2784[msec](from seed:'4^60-basic+')
+model=4^100-basic+ t=2 size=64 time=2714[msec](from seed:'4^70-basic+')
+model=4^100-basic+ t=2 size=64 time=2815[msec](from seed:'4^80-basic+')
+model=4^100-basic+ t=2 size=64 time=2801[msec](from seed:'4^90-basic+')
+model=4^100-basic+ t=2 size=64 time=2866[msec](from seed:'4^100-basic+')
+model=4^100-basic+ t=3 size=513 time=80010[msec](from seed:'4^10-basic+')
+model=4^100-basic+ t=3 size=513 time=75388[msec](from seed:'4^20-basic+')
+model=4^100-basic+ t=3 size=513 time=73503[msec](from seed:'4^30-basic+')
+model=4^100-basic+ t=3 size=513 time=74661[msec](from seed:'4^40-basic+')
+model=4^100-basic+ t=3 size=513 time=74861[msec](from seed:'4^50-basic+')
+model=4^100-basic+ t=3 size=513 time=74176[msec](from seed:'4^60-basic+')
+model=4^100-basic+ t=3 size=513 time=74781[msec](from seed:'4^70-basic+')
+model=4^100-basic+ t=3 size=513 time=73893[msec](from seed:'4^80-basic+')
+model=4^100-basic+ t=3 size=513 time=73913[msec](from seed:'4^90-basic+')
+model=4^100-basic+ t=3 size=513 time=73686[msec](from seed:'4^100-basic+')
+
+200:basic+
+model=4^200-basic+ t=2 size=72 time=4327[msec](from seed:'4^10-basic+')
+model=4^200-basic+ t=2 size=72 time=4457[msec](from seed:'4^20-basic+')
+model=4^200-basic+ t=2 size=72 time=4460[msec](from seed:'4^30-basic+')
+model=4^200-basic+ t=2 size=72 time=4452[msec](from seed:'4^40-basic+')
+model=4^200-basic+ t=2 size=72 time=4520[msec](from seed:'4^50-basic+')
+model=4^200-basic+ t=2 size=72 time=4302[msec](from seed:'4^60-basic+')
+model=4^200-basic+ t=2 size=72 time=4535[msec](from seed:'4^70-basic+')
+model=4^200-basic+ t=2 size=72 time=4681[msec](from seed:'4^80-basic+')
+model=4^200-basic+ t=2 size=72 time=4503[msec](from seed:'4^90-basic+')
+model=4^200-basic+ t=2 size=72 time=4354[msec](from seed:'4^100-basic+')
+model=4^200-basic+ t=2 size=72 time=4697[msec](from seed:'4^110-basic+')
+model=4^200-basic+ t=2 size=72 time=5093[msec](from seed:'4^120-basic+')
+model=4^200-basic+ t=2 size=72 time=4638[msec](from seed:'4^130-basic+')
+model=4^200-basic+ t=2 size=72 time=6557[msec](from seed:'4^140-basic+')
+model=4^200-basic+ t=2 size=72 time=5518[msec](from seed:'4^150-basic+')
+model=4^200-basic+ t=2 size=72 time=5258[msec](from seed:'4^160-basic+')
+model=4^200-basic+ t=2 size=72 time=5167[msec](from seed:'4^170-basic+')
+model=4^200-basic+ t=2 size=72 time=4844[msec](from seed:'4^180-basic+')
+model=4^200-basic+ t=2 size=72 time=4835[msec](from seed:'4^190-basic+')
+model=4^200-basic+ t=2 size=72 time=5355[msec](from seed:'4^200-basic+')
+
+
+// MIXED
+t	lhs	|lhs|	rhs	|rhs|	size	time[msec]
+2	CA(3, 4^10)	151	CA(3, 4^10)	151	241	16
+2	CA(3, 4^20)	208	CA(3, 4^20)	208	298	29
+2	CA(3, 4^30)	254	CA(3, 4^30)	254	344	35
+2	CA(3, 4^40)	288	CA(3, 4^40)	288	378	43
+2	CA(3, 4^50)	312	CA(3, 4^50)	312	402	76
+2	CA(3, 4^60)	336	CA(3, 4^60)	336	426	60
+2	CA(3, 4^70)	355	CA(3, 4^70)	355	445	67
+2	CA(3, 4^80)	369	CA(3, 4^80)	369	459	62
+2	CA(3, 4^90)	382	CA(3, 4^90)	382	472	65
+2	CA(3, 4^100)	396	CA(3, 4^100)	396	486	70
+2	CA(3, 4^110)	408	CA(3, 4^110)	408	498	90
+2	CA(3, 4^120)	417	CA(3, 4^120)	417	507	80
+2	CA(3, 4^130)	426	CA(3, 4^130)	426	516	107
+2	CA(3, 4^140)	436	CA(3, 4^140)	436	526	78
+2	CA(3, 4^150)	443	CA(3, 4^150)	443	533	112
+2	CA(3, 4^160)	452	CA(3, 4^160)	452	542	92
+2	CA(3, 4^170)	459	CA(3, 4^170)	459	549	121
+2	CA(3, 4^180)	467	CA(3, 4^180)	467	557	153
+2	CA(3, 4^190)	474	CA(3, 4^190)	474	564	134
+2	CA(3, 4^200)	482	CA(3, 4^200)	482	572	161
+2	CA(3, 4^10-basic)	148	CA(3, 4^10-basic)	148	238	4
+2	CA(3, 4^20-basic)	217	CA(3, 4^20-basic)	217	307	9
+2	CA(3, 4^30-basic)	261	CA(3, 4^30-basic)	261	351	18
+2	CA(3, 4^40-basic)	294	CA(3, 4^40-basic)	294	384	23
+2	CA(3, 4^50-basic)	319	CA(3, 4^50-basic)	319	409	22
+2	CA(3, 4^60-basic)	339	CA(3, 4^60-basic)	339	429	40
+2	CA(3, 4^70-basic)	358	CA(3, 4^70-basic)	358	448	53
+2	CA(3, 4^80-basic)	373	CA(3, 4^80-basic)	373	463	59
+2	CA(3, 4^90-basic)	385	CA(3, 4^90-basic)	385	475	56
+2	CA(3, 4^100-basic)	398	CA(3, 4^100-basic)	398	488	84
+2	CA(3, 4^110-basic)	410	CA(3, 4^110-basic)	410	500	80
+2	CA(3, 4^120-basic)	422	CA(3, 4^120-basic)	422	512	102
+2	CA(3, 4^130-basic)	429	CA(3, 4^130-basic)	429	519	115
+2	CA(3, 4^140-basic)	439	CA(3, 4^140-basic)	439	529	93
+2	CA(3, 4^150-basic)	447	CA(3, 4^150-basic)	447	537	110
+2	CA(3, 4^160-basic)	455	CA(3, 4^160-basic)	455	545	143
+2	CA(3, 4^170-basic)	464	CA(3, 4^170-basic)	464	554	178
+2	CA(3, 4^180-basic)	471	CA(3, 4^180-basic)	471	561	208
+2	CA(3, 4^190-basic)	477	CA(3, 4^190-basic)	477	567	158
+2	CA(3, 4^200-basic)	485	CA(3, 4^200-basic)	485	575	175
+2	CA(3, 4^10-basic+)	176	CA(3, 4^10-basic+)	176	266	6
+2	CA(3, 4^20-basic+)	280	CA(3, 4^20-basic+)	280	370	12
+2	CA(3, 4^30-basic+)	339	CA(3, 4^30-basic+)	339	429	19
+2	CA(3, 4^40-basic+)	383	CA(3, 4^40-basic+)	383	473	29
+2	CA(3, 4^50-basic+)	413	CA(3, 4^50-basic+)	413	503	43
+2	CA(3, 4^60-basic+)	439	CA(3, 4^60-basic+)	439	529	60
+2	CA(3, 4^70-basic+)	459	CA(3, 4^70-basic+)	459	549	57
+2	CA(3, 4^80-basic+)	479	CA(3, 4^80-basic+)	479	569	47
+2	CA(3, 4^90-basic+)	496	CA(3, 4^90-basic+)	496	586	85
+2	CA(3, 4^100-basic+)	512	CA(3, 4^100-basic+)	512	602	87
+2	CA(3, 4^110-basic+)	527	CA(3, 4^110-basic+)	527	617	105
+2	CA(3, 4^120-basic+)	543	CA(3, 4^120-basic+)	543	633	106
+2	CA(3, 4^130-basic+)	553	CA(3, 4^130-basic+)	553	643	129
+2	CA(3, 4^140-basic+)	564	CA(3, 4^140-basic+)	564	654	112
+2	CA(3, 4^150-basic+)	574	CA(3, 4^150-basic+)	574	664	134
+2	CA(3, 4^160-basic+)	585	CA(3, 4^160-basic+)	585	675	146
+2	CA(3, 4^170-basic+)	594	CA(3, 4^170-basic+)	594	684	165
+2	CA(3, 4^180-basic+)	602	CA(3, 4^180-basic+)	602	692	168
+2	CA(3, 4^190-basic+)	612	CA(3, 4^190-basic+)	612	702	187
+2	CA(3, 4^200-basic+)	621	CA(3, 4^200-basic+)	621	711	223
+
+// MIXED (scratch)
+model=4^20-(none) t=-2 size=162 time=273[msec]
+model=4^40-(none) t=-2 size=224 time=387[msec]
+model=4^60-(none) t=-2 size=265 time=535[msec]
+model=4^80-(none) t=-2 size=295 time=849[msec]
+model=4^100-(none) t=-2 size=318 time=1413[msec]
+model=4^120-(none) t=-2 size=339 time=2138[msec]
+model=4^140-(none) t=-2 size=357 time=3336[msec]
+model=4^160-(none) t=-2 size=372 time=4828[msec]
+model=4^180-(none) t=-2 size=386 time=8279[msec]
+model=4^200-(none) t=-2 size=399 time=11592[msec]
+model=4^220-(none) t=-2 size=411 time=17211[msec]
+model=4^240-(none) t=-2 size=424 time=27409[msec]
+model=4^260-(none) t=-2 size=433 time=42453[msec]
+model=4^280-(none) t=-2 size=441 time=74619[msec]
+model=4^300-(none) t=-2 size=450 time=90482[msec]
+model=4^320-(none) t=-2 size=458 time=119209[msec]
+model=4^340-(none) t=-2 size=464 time=168949[msec]
+model=4^360-(none) t=-2 size=471 time=235322[msec]
+model=4^380-(none) t=-2 size=478 time=286384[msec]
+model=4^400-(none) t=-2 size=484 time=319362[msec]
+model=4^20-basic t=-2 size=160 time=1604[msec]
+model=4^40-basic t=-2 size=224 time=3041[msec]
+model=4^60-basic t=-2 size=265 time=4019[msec]
+model=4^80-basic t=-2 size=299 time=5039[msec]
+model=4^100-basic t=-2 size=322 time=7484[msec]
+model=4^120-basic t=-2 size=341 time=8648[msec]
+model=4^140-basic t=-2 size=358 time=12380[msec]
+model=4^160-basic t=-2 size=374 time=17498[msec]
+model=4^180-basic t=-2 size=388 time=21363[msec]
+model=4^200-basic t=-2 size=399 time=25360[msec]
+model=4^220-basic t=-2 size=412 time=35248[msec]
+model=4^240-basic t=-2 size=422 time=48242[msec]
+model=4^260-basic t=-2 size=432 time=65776[msec]
+model=4^280-basic t=-2 size=440 time=98675[msec]
+model=4^300-basic t=-2 size=448 time=129704[msec]
+model=4^320-basic t=-2 size=457 time=168133[msec]
+model=4^340-basic t=-2 size=465 time=204771[msec]
+model=4^360-basic t=-2 size=472 time=250756[msec]
+model=4^380-basic t=-2 size=479 time=301369[msec]
+model=4^400-basic t=-2 size=486 time=359886[msec]
+model=4^20-basic+ t=-2 size=189 time=4338[msec]
+model=4^40-basic+ t=-2 size=284 time=12569[msec]
+model=4^60-basic+ t=-2 size=341 time=20586[msec]
+model=4^80-basic+ t=-2 size=380 time=30616[msec]
+model=4^100-basic+ t=-2 size=414 time=52481[msec]
+model=4^120-basic+ t=-2 size=439 time=67917[msec]
+model=4^140-basic+ t=-2 size=461 time=91810[msec]
+model=4^160-basic+ t=-2 size=480 time=102866[msec]
+model=4^180-basic+ t=-2 size=498 time=123086[msec]
+model=4^200-basic+ t=-2 size=514 time=170296[msec]
+model=4^220-basic+ t=-2 size=528 time=166870[msec]
+model=4^240-basic+ t=-2 size=541 time=198795[msec]
+model=4^260-basic+ t=-2 size=551 time=239241[msec]
+model=4^280-basic+ t=-2 size=563 time=294127[msec]
+model=4^300-basic+ t=-2 size=574 time=401377[msec]
+model=4^320-basic+ t=-2 size=584 time=524641[msec]
+model=4^340-basic+ t=-2 size=594 time=602481[msec]
+model=4^360-basic+ t=-2 size=604 time=670637[msec]
+model=4^380-basic+ t=-2 size=612 time=760804[msec]
+model=4^400-basic+ t=-2 size=619 time=876907[msec]
+
+// MIXED (extend)
+model=4^20-(none) t=-2 size=158 time=350[msec](from seed:'4^10')
+model=4^40-(none) t=-2 size=227 time=520[msec](from seed:'4^20')
+model=4^60-(none) t=-2 size=266 time=859[msec](from seed:'4^30')
+model=4^80-(none) t=-2 size=297 time=1108[msec](from seed:'4^40')
+model=4^100-(none) t=-2 size=319 time=1651[msec](from seed:'4^50')
+model=4^120-(none) t=-2 size=341 time=2702[msec](from seed:'4^60')
+model=4^140-(none) t=-2 size=359 time=3864[msec](from seed:'4^70')
+model=4^160-(none) t=-2 size=373 time=6612[msec](from seed:'4^80')
+model=4^180-(none) t=-2 size=387 time=11281[msec](from seed:'4^90')
+model=4^200-(none) t=-2 size=399 time=18188[msec](from seed:'4^100')
+model=4^220-(none) t=-2 size=413 time=30497[msec](from seed:'4^110')
+model=4^240-(none) t=-2 size=419 time=46763[msec](from seed:'4^120')
+model=4^260-(none) t=-2 size=431 time=69622[msec](from seed:'4^130')
+model=4^280-(none) t=-2 size=440 time=101775[msec](from seed:'4^140')
+model=4^300-(none) t=-2 size=449 time=131583[msec](from seed:'4^150')
+model=4^320-(none) t=-2 size=456 time=170419[msec](from seed:'4^160')
+model=4^340-(none) t=-2 size=465 time=266075[msec](from seed:'4^170')
+model=4^360-(none) t=-2 size=472 time=282607[msec](from seed:'4^180')
+model=4^380-(none) t=-2 size=478 time=322704[msec](from seed:'4^190')
+model=4^400-(none) t=-2 size=485 time=391669[msec](from seed:'4^200')
+model=4^20-basic t=-2 size=159 time=2036[msec](from seed:'4^10-basic')
+model=4^40-basic t=-2 size=225 time=3553[msec](from seed:'4^20-basic')
+model=4^60-basic t=-2 size=267 time=5045[msec](from seed:'4^30-basic')
+model=4^80-basic t=-2 size=296 time=6574[msec](from seed:'4^40-basic')
+model=4^100-basic t=-2 size=319 time=7951[msec](from seed:'4^50-basic')
+model=4^120-basic t=-2 size=341 time=11093[msec](from seed:'4^60-basic')
+model=4^140-basic t=-2 size=359 time=15096[msec](from seed:'4^70-basic')
+model=4^160-basic t=-2 size=373 time=19877[msec](from seed:'4^80-basic')
+model=4^180-basic t=-2 size=390 time=28731[msec](from seed:'4^90-basic')
+model=4^200-basic t=-2 size=400 time=42462[msec](from seed:'4^100-basic')
+model=4^220-basic t=-2 size=412 time=58845[msec](from seed:'4^110-basic')
+model=4^240-basic t=-2 size=421 time=76915[msec](from seed:'4^120-basic')
+model=4^260-basic t=-2 size=432 time=99763[msec](from seed:'4^130-basic')
+model=4^280-basic t=-2 size=441 time=128772[msec](from seed:'4^140-basic')
+model=4^300-basic t=-2 size=449 time=163795[msec](from seed:'4^150-basic')
+model=4^320-basic t=-2 size=459 time=202532[msec](from seed:'4^160-basic')
+model=4^340-basic t=-2 size=465 time=253113[msec](from seed:'4^170-basic')
+model=4^360-basic t=-2 size=472 time=295820[msec](from seed:'4^180-basic')
+model=4^380-basic t=-2 size=478 time=379358[msec](from seed:'4^190-basic')
+model=4^400-basic t=-2 size=486 time=353344[msec](from seed:'4^200-basic')
+model=4^20-basic+ t=-2 size=192 time=4928[msec](from seed:'4^10-basic+')
+model=4^40-basic+ t=-2 size=286 time=11235[msec](from seed:'4^20-basic+')
+model=4^60-basic+ t=-2 size=339 time=19612[msec](from seed:'4^30-basic+')
+model=4^80-basic+ t=-2 size=382 time=31316[msec](from seed:'4^40-basic+')
+model=4^100-basic+ t=-2 size=414 time=44825[msec](from seed:'4^50-basic+')
+model=4^120-basic+ t=-2 size=439 time=60364[msec](from seed:'4^60-basic+')
+model=4^140-basic+ t=-2 size=460 time=77380[msec](from seed:'4^70-basic+')
+model=4^160-basic+ t=-2 size=481 time=95519[msec](from seed:'4^80-basic+')
+model=4^180-basic+ t=-2 size=499 time=132149[msec](from seed:'4^90-basic+')
+model=4^200-basic+ t=-2 size=513 time=169335[msec](from seed:'4^100-basic+')
+model=4^220-basic+ t=-2 size=529 time=176539[msec](from seed:'4^110-basic+')
+model=4^260-basic+ t=-2 size=553 time=249080[msec](from seed:'4^130-basic+')
+model=4^280-basic+ t=-2 size=563 time=310328[msec](from seed:'4^140-basic+')
+model=4^300-basic+ t=-2 size=576 time=391987[msec](from seed:'4^150-basic+')
+model=4^320-basic+ t=-2 size=585 time=512413[msec](from seed:'4^160-basic+')
+model=4^340-basic+ t=-2 size=594 time=730627[msec](from seed:'4^170-basic+')
+model=4^360-basic+ t=-2 size=605 time=722482[msec](from seed:'4^180-basic+')
+model=4^380-basic+ t=-2 size=612 time=645703[msec](from seed:'4^190-basic+')
+model=4^400-basic+ t=-2 size=621 time=729090[msec](from seed:'4^200-basic+')
