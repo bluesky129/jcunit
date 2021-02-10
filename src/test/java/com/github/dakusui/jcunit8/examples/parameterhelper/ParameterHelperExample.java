@@ -1,10 +1,14 @@
 package com.github.dakusui.jcunit8.examples.parameterhelper;
 
-import com.github.dakusui.jcunit8.examples.flyingspaghettimonster.FlyingSpaghettiMonsterSpec;
 import com.github.dakusui.jcunit8.factorspace.Parameter;
 import com.github.dakusui.jcunit8.runners.junit4.JCUnit8;
+import com.github.dakusui.jcunit8.runners.junit4.annotations.From;
 import com.github.dakusui.jcunit8.runners.junit4.annotations.ParameterSource;
+import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.util.List;
+import java.util.Map;
 
 import static com.github.dakusui.jcunit8.runners.helpers.ParameterUtils.*;
 
@@ -55,5 +59,16 @@ public class ParameterHelperExample {
   @ParameterSource
   public Parameter.Factory seq() {
     return sequence("gallia", "est", "omnis", "divisa").withRepetition().size(4).build();
+  }
+
+  @Test
+  public void test(@From("scenario") List<String> scenario, @From("transferAmount") int transferAmount, @From("depositAmount") int depositAmount, @From("withdrawAmount") int withdrawAmount, @From("group") Map<?,?> group, @From("seq") List<String> seq) {
+    System.out.print("scenario=" + scenario);
+    System.out.print(" transferAmount=" + transferAmount);
+    System.out.print(" depositAmount=" + depositAmount);
+    System.out.print(" withdrawAmount=" + withdrawAmount);
+    System.out.print(" group=" + group);
+    System.out.print(" seq=" + seq);
+    System.out.println();
   }
 }
