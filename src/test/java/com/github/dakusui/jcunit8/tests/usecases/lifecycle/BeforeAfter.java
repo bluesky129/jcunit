@@ -1,9 +1,9 @@
 package com.github.dakusui.jcunit8.tests.usecases.lifecycle;
 
-import com.github.dakusui.jcunit8.factorspace.Parameter;
-import com.github.dakusui.jcunit8.runners.junit4.JCUnit8;
-import com.github.dakusui.jcunit8.runners.junit4.annotations.From;
-import com.github.dakusui.jcunit8.runners.junit4.annotations.ParameterSource;
+import com.github.dakusui.jcunitx.model.Parameter;
+import com.github.dakusui.jcunitx.engine.junit4.JCUnit8;
+import com.github.dakusui.jcunitx.annotations.From;
+import com.github.dakusui.jcunitx.annotations.ParameterSource;
 import org.junit.*;
 import org.junit.runner.RunWith;
 

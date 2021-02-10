@@ -1,7 +1,7 @@
 package com.github.dakusui.jcunit8.examples.join;
 
-import com.github.dakusui.jcunit.core.tuples.Tuple;
-import com.github.dakusui.jcunit8.pipeline.stages.Joiner;
+import com.github.dakusui.jcunitx.core.tuples.Tuple;
+import com.github.dakusui.jcunitx.pipeline.stages.Joiner;
 import com.github.dakusui.jcunit8.testutils.testsuitequality.CompatFactorSpaceSpecForExperiments;
 import org.junit.Test;
 

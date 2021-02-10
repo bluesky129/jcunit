@@ -1,7 +1,7 @@
 package com.github.dakusui.jcunit8.tests.features.pipeline.parameters;
 
-import com.github.dakusui.jcunit8.factorspace.Parameter;
-import com.github.dakusui.jcunit8.testsuite.TestCase;
+import com.github.dakusui.jcunitx.model.Parameter;
+import com.github.dakusui.jcunitx.testsuite.TestCase;
 import com.github.dakusui.jcunit8.testutils.PipelineTestBase;
 import com.github.dakusui.jcunit8.testutils.TestSuiteUtils;
 import com.github.dakusui.jcunit8.testutils.UTUtils;

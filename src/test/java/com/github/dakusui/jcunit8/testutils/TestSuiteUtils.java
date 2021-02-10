@@ -1,6 +1,6 @@
 package com.github.dakusui.jcunit8.testutils;
 
-import com.github.dakusui.jcunit8.testsuite.TestSuite;
+import com.github.dakusui.jcunitx.testsuite.TestSuite;
 import org.hamcrest.Matcher;
 
 import static org.junit.Assert.assertThat;

@@ -1,8 +1,8 @@
 package com.github.dakusui.jcunit8.tests.components.condition;
 
 import com.github.dakusui.jcunit8.examples.quadraticequation.QuadraticEquationExample;
-import com.github.dakusui.jcunit8.factorspace.Constraint;
-import com.github.dakusui.jcunit8.runners.core.NodeUtils;
+import com.github.dakusui.jcunitx.model.Constraint;
+import com.github.dakusui.jcunitx.engine.core.NodeUtils;
 import com.github.dakusui.jcunit8.testutils.UTUtils;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,6 +1,6 @@
 package com.github.dakusui.jcunit8.testutils;
 
-import com.github.dakusui.jcunit8.testsuite.SchemafulTupleSet;
+import com.github.dakusui.jcunitx.testsuite.SchemafulTupleSet;
 import org.hamcrest.Matcher;
 
 import static org.junit.Assert.assertThat;

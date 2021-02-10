@@ -1,4 +1,6 @@
 package com.github.dakusui.jcunitx.model;
 
-public interface Row {
+import java.util.Map;
+
+public interface Row extends Map<String, Object> {
 }

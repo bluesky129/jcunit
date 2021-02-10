@@ -2,17 +2,17 @@ package com.github.dakusui.jcunit8.testutils.testsuitequality;
 
 import com.github.dakusui.combinatoradix.Combinator;
 import com.github.dakusui.crest.matcherbuilders.primitives.AsBoolean;
-import com.github.dakusui.jcunit.core.tuples.Tuple;
-import com.github.dakusui.jcunit8.core.StreamableCartesianator;
-import com.github.dakusui.jcunit8.core.Utils;
-import com.github.dakusui.jcunit8.factorspace.*;
-import com.github.dakusui.jcunit8.pipeline.Config;
-import com.github.dakusui.jcunit8.pipeline.Pipeline;
-import com.github.dakusui.jcunit8.pipeline.Requirement;
-import com.github.dakusui.jcunit8.pipeline.stages.Joiner;
-import com.github.dakusui.jcunit8.pipeline.stages.generators.IpoGplus;
-import com.github.dakusui.jcunit8.testsuite.SchemafulTupleSet;
-import com.github.dakusui.jcunit8.testsuite.TestSuite;
+import com.github.dakusui.jcunitx.core.tuples.Tuple;
+import com.github.dakusui.jcunitx.core.StreamableCartesianator;
+import com.github.dakusui.jcunitx.core.Utils;
+import com.github.dakusui.jcunitx.pipeline.Config;
+import com.github.dakusui.jcunitx.pipeline.Pipeline;
+import com.github.dakusui.jcunitx.pipeline.Requirement;
+import com.github.dakusui.jcunitx.pipeline.stages.Joiner;
+import com.github.dakusui.jcunitx.pipeline.stages.generators.IpoGplus;
+import com.github.dakusui.jcunitx.testsuite.SchemafulTupleSet;
+import com.github.dakusui.jcunitx.testsuite.TestSuite;
+import com.github.dakusui.jcunitx.model.*;
 import com.github.dakusui.thincrest_pcond.functions.Printable;
 
 import java.util.*;
@@ -23,7 +23,7 @@ import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 import static com.github.dakusui.crest.Crest.*;
-import static com.github.dakusui.jcunit.core.tuples.TupleUtils.subtuplesOf;
+import static com.github.dakusui.jcunitx.core.tuples.TupleUtils.subtuplesOf;
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.toList;
 

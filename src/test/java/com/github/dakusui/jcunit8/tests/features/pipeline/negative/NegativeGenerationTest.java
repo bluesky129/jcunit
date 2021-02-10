@@ -1,9 +1,9 @@
 package com.github.dakusui.jcunit8.tests.features.pipeline.negative;
 
-import com.github.dakusui.jcunit8.factorspace.Constraint;
-import com.github.dakusui.jcunit8.pipeline.Requirement;
-import com.github.dakusui.jcunit8.testsuite.TestCase;
-import com.github.dakusui.jcunit8.testsuite.TestSuite;
+import com.github.dakusui.jcunitx.model.Constraint;
+import com.github.dakusui.jcunitx.pipeline.Requirement;
+import com.github.dakusui.jcunitx.testsuite.TestCase;
+import com.github.dakusui.jcunitx.testsuite.TestSuite;
 import com.github.dakusui.jcunit8.testutils.PipelineTestBase;
 import com.github.dakusui.jcunit8.testutils.TestSuiteUtils;
 import com.github.dakusui.jcunit8.testutils.UTUtils;

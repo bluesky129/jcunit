@@ -1,8 +1,8 @@
 package com.github.dakusui.jcunit8.tests.components.utils;
 
-import com.github.dakusui.jcunit.core.tuples.Tuple;
-import com.github.dakusui.jcunit8.core.StreamableTupleCartesianator;
-import com.github.dakusui.jcunit8.factorspace.Factor;
+import com.github.dakusui.jcunitx.core.tuples.Tuple;
+import com.github.dakusui.jcunitx.core.StreamableTupleCartesianator;
+import com.github.dakusui.jcunitx.model.Factor;
 import org.junit.Test;
 
 import java.util.List;

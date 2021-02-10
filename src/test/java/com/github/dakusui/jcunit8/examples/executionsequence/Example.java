@@ -1,7 +1,7 @@
 package com.github.dakusui.jcunit8.examples.executionsequence;
 
-import com.github.dakusui.jcunit8.runners.junit4.JCUnit8;
-import com.github.dakusui.jcunit8.runners.junit4.annotations.*;
+import com.github.dakusui.jcunitx.engine.junit4.JCUnit8;
+import com.github.dakusui.jcunitx.annotations.*;
 import org.junit.*;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.RunWith;

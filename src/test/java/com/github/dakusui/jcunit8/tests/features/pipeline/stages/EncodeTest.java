@@ -1,7 +1,7 @@
 package com.github.dakusui.jcunit8.tests.features.pipeline.stages;
 
-import com.github.dakusui.jcunit8.factorspace.Constraint;
-import com.github.dakusui.jcunit8.factorspace.Factor;
+import com.github.dakusui.jcunitx.model.Constraint;
+import com.github.dakusui.jcunitx.model.Factor;
 import com.github.dakusui.jcunit8.testutils.PipelineTestBase;
 import com.github.dakusui.jcunit8.testutils.UTUtils;
 import org.junit.Test;

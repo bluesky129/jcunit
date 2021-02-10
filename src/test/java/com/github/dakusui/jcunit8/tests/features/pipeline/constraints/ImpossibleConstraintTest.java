@@ -1,13 +1,13 @@
 package com.github.dakusui.jcunit8.tests.features.pipeline.constraints;
 
-import com.github.dakusui.jcunit.core.tuples.Tuple;
-import com.github.dakusui.jcunit8.factorspace.Constraint;
-import com.github.dakusui.jcunit8.factorspace.Factor;
-import com.github.dakusui.jcunit8.factorspace.FactorSpace;
-import com.github.dakusui.jcunit8.factorspace.ParameterSpace;
-import com.github.dakusui.jcunit8.pipeline.stages.generators.Cartesian;
-import com.github.dakusui.jcunit8.pipeline.stages.generators.IpoGplus;
-import com.github.dakusui.jcunit8.testsuite.SchemafulTupleSet;
+import com.github.dakusui.jcunitx.core.tuples.Tuple;
+import com.github.dakusui.jcunitx.model.Constraint;
+import com.github.dakusui.jcunitx.model.Factor;
+import com.github.dakusui.jcunitx.model.FactorSpace;
+import com.github.dakusui.jcunitx.model.ParameterSpace;
+import com.github.dakusui.jcunitx.pipeline.stages.generators.Cartesian;
+import com.github.dakusui.jcunitx.pipeline.stages.generators.IpoGplus;
+import com.github.dakusui.jcunitx.testsuite.SchemafulTupleSet;
 import com.github.dakusui.jcunit8.testutils.ParameterSpaceUtils;
 import com.github.dakusui.jcunit8.testutils.PipelineTestBase;
 import com.github.dakusui.jcunit8.testutils.SchemafulTupleSetUtils;

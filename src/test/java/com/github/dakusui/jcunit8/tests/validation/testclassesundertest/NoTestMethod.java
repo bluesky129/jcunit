@@ -1,8 +1,8 @@
 package com.github.dakusui.jcunit8.tests.validation.testclassesundertest;
 
-import com.github.dakusui.jcunit8.factorspace.Parameter;
-import com.github.dakusui.jcunit8.runners.junit4.JCUnit8;
-import com.github.dakusui.jcunit8.runners.junit4.annotations.ParameterSource;
+import com.github.dakusui.jcunitx.model.Parameter;
+import com.github.dakusui.jcunitx.engine.junit4.JCUnit8;
+import com.github.dakusui.jcunitx.annotations.ParameterSource;
 import org.junit.runner.RunWith;
 
 import static java.util.Arrays.asList;

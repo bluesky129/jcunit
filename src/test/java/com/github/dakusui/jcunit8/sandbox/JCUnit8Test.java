@@ -1,10 +1,10 @@
 package com.github.dakusui.jcunit8.sandbox;
 
 import com.github.dakusui.jcunit8.examples.executionsequence.ExampleParameterSpace;
-import com.github.dakusui.jcunit8.pipeline.stages.ConfigFactory;
-import com.github.dakusui.jcunit8.runners.junit4.JCUnit8;
-import com.github.dakusui.jcunit8.testsuite.TestCase;
-import com.github.dakusui.jcunit8.testsuite.TestSuite;
+import com.github.dakusui.jcunitx.pipeline.stages.ConfigFactory;
+import com.github.dakusui.jcunitx.engine.junit4.JCUnit8;
+import com.github.dakusui.jcunitx.testsuite.TestCase;
+import com.github.dakusui.jcunitx.testsuite.TestSuite;
 import com.github.dakusui.thincrest_pcond.functions.Printable;
 import org.junit.Test;
 import org.junit.runners.model.TestClass;

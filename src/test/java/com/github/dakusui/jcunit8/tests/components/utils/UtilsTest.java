@@ -1,6 +1,6 @@
 package com.github.dakusui.jcunit8.tests.components.utils;
 
-import com.github.dakusui.jcunit8.core.Utils;
+import com.github.dakusui.jcunitx.core.Utils;
 import com.github.dakusui.jcunit8.testutils.UTUtils;
 import org.junit.Before;
 import org.junit.Test;

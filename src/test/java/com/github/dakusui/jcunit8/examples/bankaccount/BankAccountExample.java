@@ -1,12 +1,12 @@
 package com.github.dakusui.jcunit8.examples.bankaccount;
 
-import com.github.dakusui.jcunit8.factorspace.Parameter.Regex;
-import com.github.dakusui.jcunit8.factorspace.Parameter.Simple;
-import com.github.dakusui.jcunit8.runners.junit4.JCUnit8;
-import com.github.dakusui.jcunit8.runners.junit4.annotations.Condition;
-import com.github.dakusui.jcunit8.runners.junit4.annotations.From;
-import com.github.dakusui.jcunit8.runners.junit4.annotations.Given;
-import com.github.dakusui.jcunit8.runners.junit4.annotations.ParameterSource;
+import com.github.dakusui.jcunitx.model.Parameter.Regex;
+import com.github.dakusui.jcunitx.model.Parameter.Simple;
+import com.github.dakusui.jcunitx.engine.junit4.JCUnit8;
+import com.github.dakusui.jcunitx.annotations.Condition;
+import com.github.dakusui.jcunitx.annotations.From;
+import com.github.dakusui.jcunitx.annotations.Given;
+import com.github.dakusui.jcunitx.annotations.ParameterSource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

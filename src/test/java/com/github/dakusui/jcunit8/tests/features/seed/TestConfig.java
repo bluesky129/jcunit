@@ -1,8 +1,8 @@
 package com.github.dakusui.jcunit8.tests.features.seed;
 
-import com.github.dakusui.jcunit.core.tuples.Tuple;
-import com.github.dakusui.jcunit8.pipeline.Requirement;
-import com.github.dakusui.jcunit8.pipeline.stages.ConfigFactory;
+import com.github.dakusui.jcunitx.core.tuples.Tuple;
+import com.github.dakusui.jcunitx.pipeline.Requirement;
+import com.github.dakusui.jcunitx.pipeline.stages.ConfigFactory;
 
 public abstract class TestConfig extends ConfigFactory.Base {
   public static class SeedNone$NegativeTestEnabled extends Base {

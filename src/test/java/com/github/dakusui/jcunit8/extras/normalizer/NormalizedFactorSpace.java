@@ -1,9 +1,9 @@
 package com.github.dakusui.jcunit8.extras.normalizer;
 
 import com.github.dakusui.jcunit8.extras.normalizer.compat.FactorSpaceSpecForExperiments;
-import com.github.dakusui.jcunit8.factorspace.Constraint;
-import com.github.dakusui.jcunit8.factorspace.Factor;
-import com.github.dakusui.jcunit8.factorspace.FactorSpace;
+import com.github.dakusui.jcunitx.model.Constraint;
+import com.github.dakusui.jcunitx.model.Factor;
+import com.github.dakusui.jcunitx.model.FactorSpace;
 
 import java.util.List;
 

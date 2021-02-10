@@ -1,10 +1,10 @@
 package com.github.dakusui.jcunit8.extras.normalizer;
 
-import com.github.dakusui.jcunit8.factorspace.Factor;
+import com.github.dakusui.jcunitx.model.Factor;
 
 import java.util.*;
 
-import static com.github.dakusui.jcunit.core.utils.Checks.checkcond;
+import static com.github.dakusui.jcunitx.core.utils.Checks.checkcond;
 import static java.lang.String.format;
 import static java.util.Objects.requireNonNull;
 import static java.util.stream.Collectors.joining;

@@ -1,6 +1,6 @@
 package com.github.dakusui.jcunit8.tests.validation.testresources;
 
-import com.github.dakusui.jcunit8.runners.junit4.JCUnit8;
+import com.github.dakusui.jcunitx.engine.junit4.JCUnit8;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

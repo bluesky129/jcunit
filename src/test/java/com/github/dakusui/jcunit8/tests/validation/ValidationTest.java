@@ -1,7 +1,7 @@
 package com.github.dakusui.jcunit8.tests.validation;
 
-import com.github.dakusui.jcunit8.exceptions.TestDefinitionException;
-import com.github.dakusui.jcunit8.runners.junit4.annotations.ParameterSource;
+import com.github.dakusui.jcunitx.exceptions.TestDefinitionException;
+import com.github.dakusui.jcunitx.annotations.ParameterSource;
 import com.github.dakusui.jcunit8.tests.validation.testresources.*;
 import com.github.dakusui.jcunit8.tests.validation.testresources.seedfeature.MissingParameter;
 import com.github.dakusui.jcunit8.tests.validation.testresources.seedfeature.TypeMismatch;

@@ -1,12 +1,12 @@
 package com.github.dakusui.jcunit8.tests.features.seed;
 
-import com.github.dakusui.jcunit.core.tuples.Tuple;
-import com.github.dakusui.jcunit8.factorspace.Parameter;
-import com.github.dakusui.jcunit8.runners.junit4.JCUnit8;
-import com.github.dakusui.jcunit8.runners.junit4.annotations.Condition;
-import com.github.dakusui.jcunit8.runners.junit4.annotations.ConfigureWith;
-import com.github.dakusui.jcunit8.runners.junit4.annotations.From;
-import com.github.dakusui.jcunit8.runners.junit4.annotations.ParameterSource;
+import com.github.dakusui.jcunitx.core.tuples.Tuple;
+import com.github.dakusui.jcunitx.model.Parameter;
+import com.github.dakusui.jcunitx.engine.junit4.JCUnit8;
+import com.github.dakusui.jcunitx.annotations.Condition;
+import com.github.dakusui.jcunitx.annotations.ConfigureWith;
+import com.github.dakusui.jcunitx.annotations.From;
+import com.github.dakusui.jcunitx.annotations.ParameterSource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

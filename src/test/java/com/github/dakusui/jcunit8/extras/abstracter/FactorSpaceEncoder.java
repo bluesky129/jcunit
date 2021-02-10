@@ -1,15 +1,15 @@
 package com.github.dakusui.jcunit8.extras.abstracter;
 
 import com.github.dakusui.jcunit8.extras.normalizer.compat.FactorSpaceSpecForExperiments;
-import com.github.dakusui.jcunit8.factorspace.Constraint;
-import com.github.dakusui.jcunit8.factorspace.Factor;
-import com.github.dakusui.jcunit8.factorspace.FactorSpace;
+import com.github.dakusui.jcunitx.model.Constraint;
+import com.github.dakusui.jcunitx.model.Factor;
+import com.github.dakusui.jcunitx.model.FactorSpace;
 
 import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-import static com.github.dakusui.jcunit.core.utils.Checks.checkcond;
+import static com.github.dakusui.jcunitx.core.utils.Checks.checkcond;
 
 public class FactorSpaceEncoder {
   private final List<Constraint>           constraints        = new LinkedList<>();

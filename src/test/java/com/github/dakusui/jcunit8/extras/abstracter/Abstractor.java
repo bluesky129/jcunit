@@ -1,7 +1,7 @@
 package com.github.dakusui.jcunit8.extras.abstracter;
 
 import com.github.dakusui.jcunit8.extras.normalizer.compat.FactorSpaceSpecForExperiments;
-import com.github.dakusui.jcunit8.factorspace.FactorSpace;
+import com.github.dakusui.jcunitx.model.FactorSpace;
 
 import java.util.ArrayList;
 import java.util.List;

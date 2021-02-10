@@ -1,8 +1,8 @@
 package com.github.dakusui.jcunit8.tests.features.pipeline.stages;
 
-import com.github.dakusui.jcunit.core.tuples.Tuple;
-import com.github.dakusui.jcunit8.factorspace.Constraint;
-import com.github.dakusui.jcunit8.factorspace.Parameter;
+import com.github.dakusui.jcunitx.core.tuples.Tuple;
+import com.github.dakusui.jcunitx.model.Constraint;
+import com.github.dakusui.jcunitx.model.Parameter;
 import com.github.dakusui.jcunit8.testutils.CustomParameter;
 import com.github.dakusui.jcunit8.testutils.PipelineTestBase;
 import com.github.dakusui.jcunit8.testutils.UTUtils;

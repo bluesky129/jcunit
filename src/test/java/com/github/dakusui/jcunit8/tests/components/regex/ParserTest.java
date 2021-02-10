@@ -1,11 +1,11 @@
 package com.github.dakusui.jcunit8.tests.components.regex;
 
-import com.github.dakusui.jcunit.core.utils.StringUtils;
-import com.github.dakusui.jcunit.regex.Expr;
-import com.github.dakusui.jcunit.regex.Parser;
-import com.github.dakusui.jcunit8.factorspace.Parameter;
-import com.github.dakusui.jcunit8.testsuite.TestCase;
-import com.github.dakusui.jcunit8.testsuite.TestSuite;
+import com.github.dakusui.jcunitx.core.utils.StringUtils;
+import com.github.dakusui.jcunitx.model.regex.Expr;
+import com.github.dakusui.jcunitx.model.regex.Parser;
+import com.github.dakusui.jcunitx.model.Parameter;
+import com.github.dakusui.jcunitx.testsuite.TestCase;
+import com.github.dakusui.jcunitx.testsuite.TestSuite;
 import com.github.dakusui.jcunit8.testutils.PipelineTestBase;
 import com.github.dakusui.jcunit8.testutils.UTUtils;
 import org.hamcrest.CoreMatchers;

@@ -1,6 +1,6 @@
 package com.github.dakusui.jcunit8.tests.components.regex;
 
-import com.github.dakusui.jcunit.regex.Expr;
+import com.github.dakusui.jcunitx.model.regex.Expr;
 
 import java.io.PrintStream;
 

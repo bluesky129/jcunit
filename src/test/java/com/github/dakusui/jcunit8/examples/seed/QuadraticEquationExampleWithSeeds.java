@@ -1,10 +1,10 @@
 package com.github.dakusui.jcunit8.examples.seed;
 
-import com.github.dakusui.jcunit.core.tuples.Tuple;
+import com.github.dakusui.jcunitx.core.tuples.Tuple;
 import com.github.dakusui.jcunit8.examples.quadraticequation.QuadraticEquationExample;
-import com.github.dakusui.jcunit8.pipeline.Requirement;
-import com.github.dakusui.jcunit8.pipeline.stages.ConfigFactory;
-import com.github.dakusui.jcunit8.runners.junit4.annotations.ConfigureWith;
+import com.github.dakusui.jcunitx.pipeline.Requirement;
+import com.github.dakusui.jcunitx.pipeline.stages.ConfigFactory;
+import com.github.dakusui.jcunitx.annotations.ConfigureWith;
 
 @ConfigureWith(QuadraticEquationExampleWithSeeds.Config.class)
 public class QuadraticEquationExampleWithSeeds extends QuadraticEquationExample {

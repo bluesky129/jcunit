@@ -1,16 +1,16 @@
 package com.github.dakusui.jcunit8.examples.parameterhelper;
 
-import com.github.dakusui.jcunit8.factorspace.Parameter;
-import com.github.dakusui.jcunit8.runners.junit4.JCUnit8;
-import com.github.dakusui.jcunit8.runners.junit4.annotations.From;
-import com.github.dakusui.jcunit8.runners.junit4.annotations.ParameterSource;
+import com.github.dakusui.jcunitx.model.Parameter;
+import com.github.dakusui.jcunitx.engine.junit4.JCUnit8;
+import com.github.dakusui.jcunitx.annotations.From;
+import com.github.dakusui.jcunitx.annotations.ParameterSource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.List;
 import java.util.Map;
 
-import static com.github.dakusui.jcunit8.runners.helpers.ParameterUtils.*;
+import static com.github.dakusui.jcunitx.engine.helpers.ParameterUtils.*;
 
 /**
  * By using {@code Parameters.simple}, {@code regex}, or {@code fsm} methods,

@@ -1,11 +1,11 @@
 package com.github.dakusui.jcunit8.tests.features.generators;
 
-import com.github.dakusui.jcunit.core.tuples.Tuple;
-import com.github.dakusui.jcunit8.core.StreamableTupleCartesianator;
-import com.github.dakusui.jcunit8.core.Utils;
-import com.github.dakusui.jcunit8.factorspace.Constraint;
-import com.github.dakusui.jcunit8.factorspace.Factor;
-import com.github.dakusui.jcunit8.pipeline.stages.generators.IpoGplus;
+import com.github.dakusui.jcunitx.core.tuples.Tuple;
+import com.github.dakusui.jcunitx.core.StreamableTupleCartesianator;
+import com.github.dakusui.jcunitx.core.Utils;
+import com.github.dakusui.jcunitx.model.Constraint;
+import com.github.dakusui.jcunitx.model.Factor;
+import com.github.dakusui.jcunitx.pipeline.stages.generators.IpoGplus;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
@@ -14,7 +14,7 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-import static com.github.dakusui.jcunit8.pipeline.stages.Generator.DontCare;
+import static com.github.dakusui.jcunitx.pipeline.stages.Generator.DontCare;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;

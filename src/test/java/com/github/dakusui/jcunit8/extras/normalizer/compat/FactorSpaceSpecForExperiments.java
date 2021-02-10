@@ -1,8 +1,8 @@
 package com.github.dakusui.jcunit8.extras.normalizer.compat;
 
 import com.github.dakusui.jcunit8.extras.normalizer.FactorSpaceSpec;
-import com.github.dakusui.jcunit8.factorspace.Factor;
-import com.github.dakusui.jcunit8.factorspace.FactorSpace;
+import com.github.dakusui.jcunitx.model.Factor;
+import com.github.dakusui.jcunitx.model.FactorSpace;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.function.IntSupplier;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import static com.github.dakusui.jcunit.core.utils.Checks.checkcond;
+import static com.github.dakusui.jcunitx.core.utils.Checks.checkcond;
 import static java.lang.String.format;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;

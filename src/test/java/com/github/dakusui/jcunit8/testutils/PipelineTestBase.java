@@ -1,12 +1,12 @@
 package com.github.dakusui.jcunit8.testutils;
 
-import com.github.dakusui.jcunit.core.tuples.Tuple;
-import com.github.dakusui.jcunit8.factorspace.*;
-import com.github.dakusui.jcunit8.pipeline.Config;
-import com.github.dakusui.jcunit8.pipeline.Pipeline;
-import com.github.dakusui.jcunit8.pipeline.Requirement;
-import com.github.dakusui.jcunit8.testsuite.SchemafulTupleSet;
-import com.github.dakusui.jcunit8.testsuite.TestSuite;
+import com.github.dakusui.jcunitx.core.tuples.Tuple;
+import com.github.dakusui.jcunitx.pipeline.Config;
+import com.github.dakusui.jcunitx.pipeline.Pipeline;
+import com.github.dakusui.jcunitx.pipeline.Requirement;
+import com.github.dakusui.jcunitx.testsuite.SchemafulTupleSet;
+import com.github.dakusui.jcunitx.testsuite.TestSuite;
+import com.github.dakusui.jcunitx.model.*;
 
 import java.util.Collections;
 import java.util.List;

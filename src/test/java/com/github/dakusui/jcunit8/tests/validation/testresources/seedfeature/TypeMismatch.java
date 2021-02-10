@@ -1,9 +1,9 @@
 package com.github.dakusui.jcunit8.tests.validation.testresources.seedfeature;
 
-import com.github.dakusui.jcunit.core.tuples.Tuple;
-import com.github.dakusui.jcunit8.pipeline.Requirement;
-import com.github.dakusui.jcunit8.pipeline.stages.ConfigFactory;
-import com.github.dakusui.jcunit8.runners.junit4.annotations.ConfigureWith;
+import com.github.dakusui.jcunitx.core.tuples.Tuple;
+import com.github.dakusui.jcunitx.pipeline.Requirement;
+import com.github.dakusui.jcunitx.pipeline.stages.ConfigFactory;
+import com.github.dakusui.jcunitx.annotations.ConfigureWith;
 
 @ConfigureWith(TypeMismatch.Config.class)
 public class TypeMismatch extends SeedBase {
