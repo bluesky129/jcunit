@@ -104,7 +104,8 @@
             <version>${junit-platform.version}</version>
             <scope>test</scope>
         </dependency>
-        <!--- TESTING DEPENDENCIES -->
+
+        <!-- BEGIN: TESTING DEPENDENCIES -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -125,7 +126,7 @@
         </dependency>
         <dependency>
             <!--
-            We intentionally use junit4 to test JCUnit itself.
+            We intentionally use JUnit4 to test JCUnit itself.
             Because an introduction of a bug into a test engine may make all the
             tests ignored and result in "false passing" of the tests.
             -->
@@ -134,6 +135,9 @@
             <version>${junit4.version}</version>
             <!-- scope>test</scope -->
         </dependency>
+        <!-- END: TESTING DEPENDENCIES -->
+
+        <!-- BEGIN: DEPRECATED DEPENDENCIES -->
         <dependency>
             <groupId>com.github.dakusui</groupId>
             <artifactId>processstreamer</artifactId>
@@ -158,6 +162,7 @@
             <version>2.13.2</version>
             <scope>test</scope>
         </dependency>
+        <!-- END: DEPRECATED DEPENDENCIES -->
 
     </dependencies>
 
@@ -262,11 +267,22 @@
                         <configuration>
                             <artifactSet>
                                 <includes>
+                                    <iinclude>
+                                        com.github.dakusui:combinatoradix
+                                    </iinclude>
                                     <include>com.github.dakusui:pcond
                                     </include> <!-- the.group.id:the-artifact-id -->
                                 </includes>
                             </artifactSet>
                             <relocations>
+                                <relocation>
+                                    <pattern>com.github.dakusui.combinatoradix
+                                    </pattern>
+                                    <shadedPattern>
+                                        com.github.dakusui.jcunit_combinatoradix
+                                    </shadedPattern>
+                                </relocation>
+
                                 <relocation>
                                     <pattern>com.github.dakusui.pcond
                                     </pattern>
@@ -307,9 +323,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <!-- configuration>
-                    <argLine>-ea</argLine>
-                </configuration -->
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.surefire</groupId>
+                        <artifactId>surefire-junit4</artifactId>
+                        <version>${maven-surefire-plugin.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
             <plugin>
                 <!-- Run with mvn org.pitest:pitest-maven:mutationCoverage -->
