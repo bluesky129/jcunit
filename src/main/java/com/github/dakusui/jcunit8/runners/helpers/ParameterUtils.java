@@ -26,10 +26,6 @@ public enum ParameterUtils {
     return regex(regex, Function.identity());
   }
 
-  public static <T> Parameter.Fsm.Factory<T> fsm(Class<? extends FsmSpec<T>> fsmSpecClass, int scenarioLength) {
-    return Parameter.Fsm.Factory.of(fsmSpecClass, scenarioLength);
-  }
-
   @SafeVarargs
   public static <T> SequenceParameterFactoryBuilder<T> sequence(T... args) {
     return new SequenceParameterFactoryBuilder<>(asList(args));

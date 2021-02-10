@@ -7,7 +7,7 @@ import org.junit.runner.notification.Failure;
 import java.util.List;
 import java.util.function.Function;
 
-import static com.github.dakusui.crest.utils.printable.Printable.function;
+import static com.github.dakusui.thincrest_pcond.functions.Printable.function;
 import static java.lang.String.format;
 
 public enum JUnit4TestUtils {

@@ -4,7 +4,6 @@ import com.github.dakusui.jcunit8.examples.bankaccount.BankAccountExample;
 import com.github.dakusui.jcunit8.examples.beforesandafters.BeforeAfter;
 import com.github.dakusui.jcunit8.examples.beforesandafters.UnusedParameter;
 import com.github.dakusui.jcunit8.examples.config.ConfigExample;
-import com.github.dakusui.jcunit8.examples.flyingspaghettimonster.FlyingSpaghettiMonsterExample;
 import com.github.dakusui.jcunit8.examples.parameterhelper.ParameterHelperExample;
 import com.github.dakusui.jcunit8.examples.parameterizedconstraint.ParameterizedConstraintExample;
 import com.github.dakusui.jcunit8.examples.quadraticequation.QuadraticEquationExample;
@@ -28,16 +27,6 @@ public class ExamplesTest {
   public void quadraticEquationSolver() {
     assertThat(
         JUnitCore.runClasses(QuadraticEquationExample.class),
-        allOf(
-            asBoolean("wasSuccessful").isTrue().$(),
-            asInteger("getRunCount").gt(0).$()
-        ));
-  }
-
-  @Test
-  public void flyingSpaghettiMonster() {
-    assertThat(
-        JUnitCore.runClasses(FlyingSpaghettiMonsterExample.class),
         allOf(
             asBoolean("wasSuccessful").isTrue().$(),
             asInteger("getRunCount").gt(0).$()

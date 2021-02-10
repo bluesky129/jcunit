@@ -47,6 +47,8 @@
         <pcond.version>2.0.2</pcond.version>
         <junit-platform.version>1.7.1</junit-platform.version>
         <junit-jupiter.version>5.7.1</junit-jupiter.version>
+        <junit4.version>4.12</junit4.version>
+        <thincrest.version>5.0.0</thincrest.version>
         <asciidoclet.version>1.5.6</asciidoclet.version>
         <asciidoctor.maven.plugin.version>2.0.0-RC.1
         </asciidoctor.maven.plugin.version>
@@ -93,6 +95,11 @@
         </dependency>
         <dependency>
             <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-commons</artifactId>
+            <version>${junit-platform.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-reporting</artifactId>
             <version>${junit-platform.version}</version>
             <scope>test</scope>
@@ -106,26 +113,52 @@
         </dependency>
         <dependency>
             <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-commons</artifactId>
-            <version>${junit-platform.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-launcher</artifactId>
             <version>${junit-platform.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>com.github.dakusui</groupId>
+            <artifactId>thincrest</artifactId>
+            <version>${thincrest.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <!--
-            We intentionally use junit-vintage to test JCUnit itself.
+            We intentionally use junit4 to test JCUnit itself.
             Because an introduction of a bug into a test engine may make all the
             tests ignored and result in "false passing" of the tests.
             -->
-            <groupId>org.junit.vintage</groupId>
-            <artifactId>junit-vintage-engine</artifactId>
-            <version>${junit-jupiter.version}</version>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit4.version}</version>
+            <!-- scope>test</scope -->
+        </dependency>
+        <dependency>
+            <groupId>com.github.dakusui</groupId>
+            <artifactId>processstreamer</artifactId>
+            <version>1.0.3</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.25</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.7</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.13.2</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>

@@ -8,6 +8,7 @@ import com.github.dakusui.jcunit8.runners.junit4.utils.InternalUtils;
 import com.github.dakusui.jcunit8.testsuite.TestOracle;
 import com.github.dakusui.jcunit8.testsuite.TestScenario;
 import com.github.dakusui.jcunit8.testsuite.TupleConsumer;
+import org.junit.*;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.TestClass;
 

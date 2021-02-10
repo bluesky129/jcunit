@@ -1,20 +1,21 @@
 package com.github.dakusui.jcunit8.testutils.testsuitequality;
 
-import com.github.dakusui.crest.utils.printable.Printable;
 import com.github.dakusui.jcunit.core.tuples.Tuple;
 import com.github.dakusui.jcunit8.factorspace.Constraint;
 import com.github.dakusui.jcunit8.factorspace.Parameter;
 import com.github.dakusui.jcunit8.testsuite.TestCase;
 import com.github.dakusui.jcunit8.testsuite.TestSuite;
 import com.github.dakusui.jcunit8.testutils.UTUtils;
+import com.github.dakusui.pcond.functions.Printables;
+import com.github.dakusui.thincrest_pcond.functions.Printable;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
 
 import static com.github.dakusui.crest.Crest.*;
-import static com.github.dakusui.crest.utils.printable.Predicates.isEmpty;
 import static com.github.dakusui.jcunit8.testutils.testsuitequality.CoveringArrayGenerationUtils.*;
+import static com.github.dakusui.thincrest_pcond.functions.Predicates.isEmpty;
 import static java.util.stream.Collectors.toList;
 
 public class CombinatorialCoverageTest {
@@ -124,7 +125,7 @@ public class CombinatorialCoverageTest {
             ).containsAll(
                 CoveringArrayGenerationUtils.allPossibleTuples(strength, parameters)
             ).check(
-                Printable.function(
+                Printables.function(
                     "tuplesNotCoveredByTestSuite",
                     (List<Tuple> coveredTuples) -> CoveringArrayGenerationUtils.subtract(CoveringArrayGenerationUtils.allPossibleTuples(strength, parameters), coveredTuples)
                 ),

@@ -10,6 +10,7 @@ import com.github.dakusui.jcunit8.runners.junit4.annotations.From;
 import com.github.dakusui.jcunit8.runners.junit4.annotations.Given;
 import com.github.dakusui.jcunit8.testsuite.TestOracle;
 import com.github.dakusui.jcunit8.testsuite.TupleConsumer;
+import org.junit.*;
 import org.junit.internal.runners.statements.RunAfters;
 import org.junit.internal.runners.statements.RunBefores;
 import org.junit.runners.model.FrameworkMethod;
@@ -23,6 +24,7 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import static com.github.dakusui.jcunit8.exceptions.TestDefinitionException.parameterWithoutAnnotation;
+import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
@@ -248,7 +250,7 @@ public enum InternalUtils {
 
                 ).orElseThrow(
                     () -> parameterWithoutAnnotation(
-                        format(
+                        String.format(
                             "%s.%s",
                             method.getDeclaringClass().getCanonicalName(),
                             method.getName()

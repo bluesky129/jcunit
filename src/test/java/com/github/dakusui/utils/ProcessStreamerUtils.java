@@ -1,9 +1,9 @@
 package com.github.dakusui.utils;
 
-import com.github.dakusui.printables.PrintablePredicate;
 import com.github.dakusui.processstreamer.core.process.ProcessStreamer;
 import com.github.dakusui.processstreamer.core.process.ProcessStreamer.Checker;
 import com.github.dakusui.processstreamer.core.process.Shell;
+import com.github.dakusui.thincrest_pcond.functions.Printable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -97,7 +97,7 @@ public enum ProcessStreamerUtils {
 
     @Override
     public Predicate<Integer> exitCodeChecker() {
-      return new PrintablePredicate.Builder<Integer>(i -> Objects.equals(i, 0)).describe("==[0]");
+      return Printable.predicate("==[0]", i-> Objects.equals(i, 0));
     }
   }
 }

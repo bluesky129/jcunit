@@ -8,8 +8,9 @@ import com.github.dakusui.jcunit8.runners.junit4.annotations.Given;
 import com.github.dakusui.jcunit8.runners.junit4.annotations.ParameterSource;
 import org.junit.*;
 import org.junit.runner.RunWith;
-import org.mockito.internal.matchers.LessThan;
 
+import static com.github.dakusui.crest.Crest.asDouble;
+import static com.github.dakusui.crest.Crest.assertThat;
 import static java.util.Arrays.asList;
 
 @RunWith(JCUnit8.class)
@@ -62,7 +63,7 @@ public class QuadraticEquationExample {
       @From("c") int c
   ) {
     double x1 = sut1(a, b, c);
-    assertThat(Math.abs(a * x1 * x1 + b * x1 + c), new LessThan<>(0.01));
+    assertThat(Math.abs(a * x1 * x1 + b * x1 + c), asDouble().lt(0.01).$());
   }
 
   @SuppressWarnings("unused")
@@ -74,7 +75,7 @@ public class QuadraticEquationExample {
       @From("c") int c
   ) {
     double x2 = sut2(a, b, c);
-    assertThat(Math.abs(a * x2 * x2 + b * x2 + c), new LessThan<>(0.01));
+    assertThat(Math.abs(a * x2 * x2 + b * x2 + c), asDouble().lt(0.01).$());
   }
 
   @After

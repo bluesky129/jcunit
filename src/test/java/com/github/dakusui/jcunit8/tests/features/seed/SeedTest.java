@@ -1,7 +1,7 @@
 package com.github.dakusui.jcunit8.tests.features.seed;
 
-import com.github.dakusui.crest.utils.printable.Functions;
 import com.github.dakusui.jcunit.core.tuples.Tuple;
+import com.github.dakusui.thincrest_pcond.functions.Functions;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.JUnitCore;

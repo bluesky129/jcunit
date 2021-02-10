@@ -1,11 +1,11 @@
 package com.github.dakusui.jcunit8.sandbox;
 
-import com.github.dakusui.crest.utils.printable.Printable;
 import com.github.dakusui.jcunit8.examples.executionsequence.ExampleParameterSpace;
 import com.github.dakusui.jcunit8.pipeline.stages.ConfigFactory;
 import com.github.dakusui.jcunit8.runners.junit4.JCUnit8;
 import com.github.dakusui.jcunit8.testsuite.TestCase;
 import com.github.dakusui.jcunit8.testsuite.TestSuite;
+import com.github.dakusui.thincrest_pcond.functions.Printable;
 import org.junit.Test;
 import org.junit.runners.model.TestClass;
 
@@ -17,8 +17,8 @@ import java.util.function.Function;
 
 import static com.github.dakusui.crest.Crest.asListOf;
 import static com.github.dakusui.crest.Crest.assertThat;
-import static com.github.dakusui.crest.utils.printable.Functions.size;
-import static com.github.dakusui.crest.utils.printable.Predicates.equalTo;
+import static com.github.dakusui.thincrest_pcond.functions.Functions.size;
+import static com.github.dakusui.thincrest_pcond.functions.Predicates.equalTo;
 
 public class JCUnit8Test {
   @Test

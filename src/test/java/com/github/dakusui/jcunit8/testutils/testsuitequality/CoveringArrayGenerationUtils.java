@@ -2,7 +2,6 @@ package com.github.dakusui.jcunit8.testutils.testsuitequality;
 
 import com.github.dakusui.combinatoradix.Combinator;
 import com.github.dakusui.crest.matcherbuilders.primitives.AsBoolean;
-import com.github.dakusui.crest.utils.printable.Printable;
 import com.github.dakusui.jcunit.core.tuples.Tuple;
 import com.github.dakusui.jcunit8.core.StreamableCartesianator;
 import com.github.dakusui.jcunit8.core.Utils;
@@ -14,6 +13,7 @@ import com.github.dakusui.jcunit8.pipeline.stages.Joiner;
 import com.github.dakusui.jcunit8.pipeline.stages.generators.IpoGplus;
 import com.github.dakusui.jcunit8.testsuite.SchemafulTupleSet;
 import com.github.dakusui.jcunit8.testsuite.TestSuite;
+import com.github.dakusui.thincrest_pcond.functions.Printable;
 
 import java.util.*;
 import java.util.function.Function;
