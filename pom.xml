@@ -47,7 +47,6 @@
         <pcond.version>2.0.2</pcond.version>
         <junit-platform.version>1.7.1</junit-platform.version>
         <junit-jupiter.version>5.7.1</junit-jupiter.version>
-        <junit4.version>4.13.1</junit4.version>
         <asciidoclet.version>1.5.6</asciidoclet.version>
         <asciidoctor.maven.plugin.version>2.0.0-RC.1
         </asciidoctor.maven.plugin.version>
@@ -118,13 +117,13 @@
         </dependency>
         <dependency>
             <!--
-            We intentionally use JUnit4 to test JCUnit itself.
-            Because an introduction of a but to a test engine may make all the
+            We intentionally use junit-vintage to test JCUnit itself.
+            Because an introduction of a bug into a test engine may make all the
             tests ignored and result in "false passing" of the tests.
             -->
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit4.version}</version>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>${junit-jupiter.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -297,7 +296,7 @@
                         <jvmArg>-Dunderpitest=yes</jvmArg>
                     </jvmArgs>
                     <targetClasses>
-                        <param>com.github.dakusui.jcunit.*</param>
+                        <param>com.github.dakusui.jcunitx.*</param>
                     </targetClasses>
                     <targetTests>
                         <param>*Test</param>
