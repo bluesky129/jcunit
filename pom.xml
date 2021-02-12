@@ -343,6 +343,24 @@
                         </configuration>
                     </execution>
                     <execution><!-- Run our version calculation script -->
+                        <id>attributes.adoc generation</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>bash</executable>
+                            <arguments>
+                                <argument>
+                                    -eu
+                                </argument>
+                                <argument>
+                                    ${basedir}/src/main/build_tools/update-attributes-adoc.sh
+                                </argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution><!-- Run our version calculation script -->
                         <id>asciidoctor-diagram-installation</id>
                         <phase>prepare-package</phase>
                         <goals>
