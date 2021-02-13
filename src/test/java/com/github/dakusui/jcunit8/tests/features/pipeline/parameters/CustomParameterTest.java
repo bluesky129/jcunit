@@ -1,7 +1,7 @@
 package com.github.dakusui.jcunit8.tests.features.pipeline.parameters;
 
-import com.github.dakusui.jcunitx.model.Constraint;
-import com.github.dakusui.jcunitx.model.Parameter;
+import com.github.dakusui.jcunitx.model.condition.Constraint;
+import com.github.dakusui.jcunitx.model.parameter.Parameter;
 import com.github.dakusui.jcunitx.pipeline.stages.generators.IpoGplus;
 import com.github.dakusui.jcunitx.testsuite.SchemafulTupleSet;
 import com.github.dakusui.jcunit8.testutils.*;

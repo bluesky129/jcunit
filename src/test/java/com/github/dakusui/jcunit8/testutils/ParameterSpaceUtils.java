@@ -1,7 +1,8 @@
 package com.github.dakusui.jcunit8.testutils;
 
-import com.github.dakusui.jcunitx.model.Parameter;
-import com.github.dakusui.jcunitx.model.ParameterSpace;
+
+import com.github.dakusui.jcunitx.model.parameter.Parameter;
+import com.github.dakusui.jcunitx.model.parameter.ParameterSpace;
 import org.hamcrest.Matcher;
 
 import java.util.List;

@@ -1,6 +1,7 @@
-package com.github.dakusui.jcunitx.model;
+package com.github.dakusui.jcunitx.model.parameter;
 
 import com.github.dakusui.jcunitx.core.tuples.Tuple;
+import com.github.dakusui.jcunitx.model.condition.Constraint;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -59,7 +60,7 @@ public interface ParameterSpace {
     }
 
     public ParameterSpace build() {
-      return new ParameterSpace() {
+      ParameterSpace parameterSpace = new ParameterSpace() {
         @Override
         public List<String> getParameterNames() {
           return parameters.stream().map(Parameter::getName).collect(toList());
@@ -92,6 +93,7 @@ public interface ParameterSpace {
           return format("parameters:%s,constraints:%s", parameters, constraints);
         }
       };
+      return parameterSpace;
     }
   }
 }

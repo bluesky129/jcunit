@@ -3,7 +3,7 @@ package com.github.dakusui.jcunit8.tests.features.generators;
 import com.github.dakusui.jcunitx.core.tuples.Tuple;
 import com.github.dakusui.jcunitx.core.StreamableTupleCartesianator;
 import com.github.dakusui.jcunitx.core.Utils;
-import com.github.dakusui.jcunitx.model.Constraint;
+import com.github.dakusui.jcunitx.model.condition.Constraint;
 import com.github.dakusui.jcunitx.model.Factor;
 import com.github.dakusui.jcunitx.pipeline.stages.generators.IpoGplus;
 import org.junit.Test;

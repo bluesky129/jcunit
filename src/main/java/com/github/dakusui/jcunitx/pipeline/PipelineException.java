@@ -1,9 +1,9 @@
 package com.github.dakusui.jcunitx.pipeline;
 
 import com.github.dakusui.jcunitx.exceptions.FrameworkException;
-import com.github.dakusui.jcunitx.model.Constraint;
-import com.github.dakusui.jcunitx.model.Parameter;
-import com.github.dakusui.jcunitx.model.ParameterSpace;
+import com.github.dakusui.jcunitx.model.condition.Constraint;
+import com.github.dakusui.jcunitx.model.parameter.Parameter;
+import com.github.dakusui.jcunitx.model.parameter.ParameterSpace;
 
 import java.util.List;
 import java.util.Set;

@@ -1,5 +1,6 @@
 package com.github.dakusui.jcunit8.examples.executionsequence;
 
+import com.github.dakusui.jcunitx.annotations.compat.ConfigureWith;
 import com.github.dakusui.jcunitx.engine.junit4.JCUnit8;
 import com.github.dakusui.jcunitx.annotations.*;
 import org.junit.*;

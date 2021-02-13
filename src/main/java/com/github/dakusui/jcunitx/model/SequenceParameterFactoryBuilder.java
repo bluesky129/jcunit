@@ -3,6 +3,8 @@ package com.github.dakusui.jcunitx.model;
 import com.github.dakusui.jcunitx.core.tuples.Tuple;
 import com.github.dakusui.jcunitx.core.utils.Checks;
 import com.github.dakusui.jcunitx.core.Utils;
+import com.github.dakusui.jcunitx.model.condition.Constraint;
+import com.github.dakusui.jcunitx.model.parameter.Parameter;
 
 import java.util.LinkedList;
 import java.util.List;

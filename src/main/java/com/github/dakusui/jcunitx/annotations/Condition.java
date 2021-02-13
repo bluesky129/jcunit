@@ -31,7 +31,7 @@ public @interface Condition {
     @Override
     public List<Exception> validateAnnotatedMethod(FrameworkMethod method) {
       List<Exception> errors = new LinkedList<Exception>();
-      Class testClass = method.getDeclaringClass();
+      Class<?> testClass = method.getDeclaringClass();
       if (!method.isPublic()) {
         errors.add(new Exception(String.format(
             "The method '%s' must be public. (in %s)", method.getName(), testClass.getCanonicalName()

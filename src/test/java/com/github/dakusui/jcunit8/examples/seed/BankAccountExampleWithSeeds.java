@@ -4,7 +4,7 @@ import com.github.dakusui.jcunitx.core.tuples.Tuple;
 import com.github.dakusui.jcunit8.examples.bankaccount.BankAccountExample;
 import com.github.dakusui.jcunitx.pipeline.Requirement;
 import com.github.dakusui.jcunitx.pipeline.stages.ConfigFactory;
-import com.github.dakusui.jcunitx.annotations.ConfigureWith;
+import com.github.dakusui.jcunitx.annotations.compat.ConfigureWith;
 
 @ConfigureWith(BankAccountExampleWithSeeds.Config.class)
 public class BankAccountExampleWithSeeds extends BankAccountExample {

@@ -5,6 +5,9 @@ import com.github.dakusui.crest.matcherbuilders.primitives.AsBoolean;
 import com.github.dakusui.jcunitx.core.tuples.Tuple;
 import com.github.dakusui.jcunitx.core.StreamableCartesianator;
 import com.github.dakusui.jcunitx.core.Utils;
+import com.github.dakusui.jcunitx.model.condition.Constraint;
+import com.github.dakusui.jcunitx.model.parameter.Parameter;
+import com.github.dakusui.jcunitx.model.parameter.ParameterSpace;
 import com.github.dakusui.jcunitx.pipeline.Config;
 import com.github.dakusui.jcunitx.pipeline.Pipeline;
 import com.github.dakusui.jcunitx.pipeline.Requirement;
@@ -56,7 +59,7 @@ public enum CoveringArrayGenerationUtils {
 
   public static ParameterSpace parameterSpace(List<Parameter> parameters, List<Constraint> constraints) {
     return new ParameterSpace.Builder()
-        .addAllParameters(parameters)
+        .addAllParameters((Collection<? extends com.github.dakusui.jcunitx.model.parameter.Parameter>) parameters)
         .addAllConstraints(constraints)
         .build();
   }

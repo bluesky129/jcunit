@@ -2,6 +2,7 @@ package com.github.dakusui.jcunitx.model;
 
 import com.github.dakusui.jcunitx.core.tuples.Tuple;
 import com.github.dakusui.jcunitx.core.StreamableTupleCartesianator;
+import com.github.dakusui.jcunitx.model.condition.Constraint;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

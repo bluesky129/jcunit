@@ -1,7 +1,7 @@
 package com.github.dakusui.jcunit8.examples.config;
 
 
-import com.github.dakusui.jcunitx.model.Parameter;
+import com.github.dakusui.jcunitx.model.parameter.Parameter;
 import com.github.dakusui.jcunitx.engine.helpers.ParameterUtils;
 import com.github.dakusui.jcunitx.engine.junit4.JCUnit8;
 import com.github.dakusui.jcunitx.annotations.From;

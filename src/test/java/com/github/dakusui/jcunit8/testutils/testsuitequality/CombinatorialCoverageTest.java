@@ -1,8 +1,8 @@
 package com.github.dakusui.jcunit8.testutils.testsuitequality;
 
 import com.github.dakusui.jcunitx.core.tuples.Tuple;
-import com.github.dakusui.jcunitx.model.Constraint;
-import com.github.dakusui.jcunitx.model.Parameter;
+import com.github.dakusui.jcunitx.model.condition.Constraint;
+import com.github.dakusui.jcunitx.model.parameter.Parameter;
 import com.github.dakusui.jcunitx.testsuite.TestCase;
 import com.github.dakusui.jcunitx.testsuite.TestSuite;
 import com.github.dakusui.jcunit8.testutils.UTUtils;

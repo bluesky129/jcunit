@@ -1,6 +1,6 @@
 package com.github.dakusui.jcunit8.tests.validation.testresources;
 
-import com.github.dakusui.jcunitx.model.Parameter.Simple;
+import com.github.dakusui.jcunitx.model.parameter.Parameter.Simple;
 import com.github.dakusui.jcunitx.engine.junit4.JCUnit8;
 import com.github.dakusui.jcunitx.annotations.ParameterSource;
 import org.junit.Test;

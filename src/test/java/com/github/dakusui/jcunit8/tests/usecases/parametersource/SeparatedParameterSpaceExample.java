@@ -1,7 +1,7 @@
 package com.github.dakusui.jcunit8.tests.usecases.parametersource;
 
 import com.github.dakusui.jcunitx.engine.junit4.JCUnit8;
-import com.github.dakusui.jcunitx.annotations.ConfigureWith;
+import com.github.dakusui.jcunitx.annotations.compat.ConfigureWith;
 import com.github.dakusui.jcunitx.annotations.From;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,7 +1,9 @@
-package com.github.dakusui.jcunitx.annotations;
+package com.github.dakusui.jcunitx.annotations.compat;
 
+import com.github.dakusui.jcunitx.annotations.Condition;
+import com.github.dakusui.jcunitx.annotations.ParameterSource;
+import com.github.dakusui.jcunitx.model.parameter.ParameterSpace;
 import com.github.dakusui.jcunitx.pipeline.stages.ConfigFactory;
-import com.github.dakusui.jcunitx.model.ParameterSpace;
 
 import java.lang.annotation.Annotation;
 import java.lang.annotation.Inherited;

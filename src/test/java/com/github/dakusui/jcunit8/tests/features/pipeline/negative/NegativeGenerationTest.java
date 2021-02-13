@@ -1,6 +1,6 @@
 package com.github.dakusui.jcunit8.tests.features.pipeline.negative;
 
-import com.github.dakusui.jcunitx.model.Constraint;
+import com.github.dakusui.jcunitx.model.condition.Constraint;
 import com.github.dakusui.jcunitx.pipeline.Requirement;
 import com.github.dakusui.jcunitx.testsuite.TestCase;
 import com.github.dakusui.jcunitx.testsuite.TestSuite;

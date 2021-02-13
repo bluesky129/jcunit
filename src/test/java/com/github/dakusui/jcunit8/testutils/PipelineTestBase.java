@@ -1,6 +1,9 @@
 package com.github.dakusui.jcunit8.testutils;
 
 import com.github.dakusui.jcunitx.core.tuples.Tuple;
+import com.github.dakusui.jcunitx.model.condition.Constraint;
+import com.github.dakusui.jcunitx.model.parameter.Parameter;
+import com.github.dakusui.jcunitx.model.parameter.ParameterSpace;
 import com.github.dakusui.jcunitx.pipeline.Config;
 import com.github.dakusui.jcunitx.pipeline.Pipeline;
 import com.github.dakusui.jcunitx.pipeline.Requirement;

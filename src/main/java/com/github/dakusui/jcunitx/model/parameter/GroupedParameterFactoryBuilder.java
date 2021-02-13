@@ -1,6 +1,9 @@
-package com.github.dakusui.jcunitx.model;
+package com.github.dakusui.jcunitx.model.parameter;
 
 import com.github.dakusui.jcunitx.core.tuples.Tuple;
+import com.github.dakusui.jcunitx.model.Factor;
+import com.github.dakusui.jcunitx.model.FactorSpace;
+import com.github.dakusui.jcunitx.model.condition.Constraint;
 import com.github.dakusui.jcunitx.pipeline.Requirement;
 import com.github.dakusui.jcunitx.pipeline.stages.Generator;
 
@@ -16,7 +19,7 @@ import static java.util.stream.Collectors.toList;
 
 public class GroupedParameterFactoryBuilder<T> {
   private final Function<Tuple, T> translator;
-  private       int                strength;
+  private       int        strength;
   private List<Constraint>  constraints      = new LinkedList<>();
   private List<Factor>      factors          = new LinkedList<>();
   private Generator.Factory generatorFactory = new Generator.Factory.Standard();

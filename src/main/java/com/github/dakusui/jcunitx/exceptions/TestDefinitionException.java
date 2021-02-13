@@ -1,7 +1,7 @@
 package com.github.dakusui.jcunitx.exceptions;
 
 import com.github.dakusui.jcunitx.core.tuples.Tuple;
-import com.github.dakusui.jcunitx.model.Constraint;
+import com.github.dakusui.jcunitx.model.condition.Constraint;
 
 import java.util.List;
 import java.util.function.Predicate;

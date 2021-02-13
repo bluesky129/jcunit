@@ -1,10 +1,10 @@
 package com.github.dakusui.jcunit8.tests.features.pipeline.constraints;
 
 import com.github.dakusui.jcunitx.core.tuples.Tuple;
-import com.github.dakusui.jcunitx.model.Constraint;
+import com.github.dakusui.jcunitx.model.condition.Constraint;
 import com.github.dakusui.jcunitx.model.Factor;
 import com.github.dakusui.jcunitx.model.FactorSpace;
-import com.github.dakusui.jcunitx.model.ParameterSpace;
+import com.github.dakusui.jcunitx.model.parameter.ParameterSpace;
 import com.github.dakusui.jcunitx.pipeline.stages.generators.Cartesian;
 import com.github.dakusui.jcunitx.pipeline.stages.generators.IpoGplus;
 import com.github.dakusui.jcunitx.testsuite.SchemafulTupleSet;

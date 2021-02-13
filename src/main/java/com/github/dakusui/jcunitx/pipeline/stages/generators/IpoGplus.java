@@ -7,7 +7,7 @@ import com.github.dakusui.jcunitx.core.StreamableTupleCartesianator;
 import com.github.dakusui.jcunitx.core.Utils;
 import com.github.dakusui.jcunitx.exceptions.FrameworkException;
 import com.github.dakusui.jcunitx.exceptions.TestDefinitionException;
-import com.github.dakusui.jcunitx.model.Constraint;
+import com.github.dakusui.jcunitx.model.condition.Constraint;
 import com.github.dakusui.jcunitx.model.Factor;
 import com.github.dakusui.jcunitx.model.FactorSpace;
 import com.github.dakusui.jcunitx.model.FactorUtils;

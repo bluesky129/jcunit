@@ -1,7 +1,7 @@
 package com.github.dakusui.jcunit8.tests.usecases.pipeline;
 
 import com.github.dakusui.jcunitx.model.FactorSpace;
-import com.github.dakusui.jcunitx.model.Parameter;
+import com.github.dakusui.jcunitx.model.parameter.Parameter;
 import org.junit.Test;
 
 import static java.util.Arrays.asList;

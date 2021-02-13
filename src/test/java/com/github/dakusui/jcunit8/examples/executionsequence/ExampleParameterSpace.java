@@ -1,6 +1,6 @@
 package com.github.dakusui.jcunit8.examples.executionsequence;
 
-import com.github.dakusui.jcunitx.model.Parameter;
+import com.github.dakusui.jcunitx.model.parameter.Parameter;
 import com.github.dakusui.jcunitx.engine.helpers.ParameterUtils;
 import com.github.dakusui.jcunitx.annotations.Condition;
 import com.github.dakusui.jcunitx.annotations.From;

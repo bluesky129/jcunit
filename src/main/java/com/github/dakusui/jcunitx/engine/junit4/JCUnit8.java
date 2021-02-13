@@ -1,12 +1,14 @@
 package com.github.dakusui.jcunitx.engine.junit4;
 
 import com.github.dakusui.jcunitx.annotations.*;
+import com.github.dakusui.jcunitx.annotations.compat.ConfigureWith;
 import com.github.dakusui.jcunitx.core.Utils;
 import com.github.dakusui.jcunitx.core.tuples.Tuple;
 import com.github.dakusui.jcunitx.core.utils.Checks;
 import com.github.dakusui.jcunitx.exceptions.TestDefinitionException;
-import com.github.dakusui.jcunitx.model.Constraint;
-import com.github.dakusui.jcunitx.model.ParameterSpace;
+import com.github.dakusui.jcunitx.model.condition.Constraint;
+import com.github.dakusui.jcunitx.model.parameter.Parameter;
+import com.github.dakusui.jcunitx.model.parameter.ParameterSpace;
 import com.github.dakusui.jcunitx.testsuite.*;
 
 import com.github.dakusui.jcunitx.pipeline.Config;
@@ -112,7 +114,7 @@ public class JCUnit8 extends org.junit.runners.Parameterized {
     };
   }
 
-  private static ParameterSpace buildParameterSpace(List<com.github.dakusui.jcunitx.model.Parameter> parameters, List<Constraint> constraints) {
+  private static ParameterSpace buildParameterSpace(List<com.github.dakusui.jcunitx.model.parameter.Parameter> parameters, List<Constraint> constraints) {
     return new ParameterSpace.Builder()
         .addAllParameters(parameters)
         .addAllConstraints(constraints)
@@ -123,8 +125,8 @@ public class JCUnit8 extends org.junit.runners.Parameterized {
     return Pipeline.Standard.<Tuple>create().execute(config, parameterSpace, testScenario);
   }
 
-  private static SortedMap<String, com.github.dakusui.jcunitx.model.Parameter> buildParameterMap(TestClass parameterSpaceDefinitionTestClass) {
-    return new TreeMap<String, com.github.dakusui.jcunitx.model.Parameter>() {
+  private static SortedMap<String, com.github.dakusui.jcunitx.model.parameter.Parameter> buildParameterMap(TestClass parameterSpaceDefinitionTestClass) {
+    return new TreeMap<String, com.github.dakusui.jcunitx.model.parameter.Parameter>() {
       {
         parameterSpaceDefinitionTestClass.getAnnotatedMethods(ParameterSource.class).forEach(
             frameworkMethod -> put(frameworkMethod.getName(),
@@ -136,10 +138,10 @@ public class JCUnit8 extends org.junit.runners.Parameterized {
     };
   }
 
-  private static Function<Object, com.github.dakusui.jcunitx.model.Parameter.Factory> buildParameterFactoryCreatorFrom(FrameworkMethod method) {
+  private static Function<Object, com.github.dakusui.jcunitx.model.parameter.Parameter.Factory> buildParameterFactoryCreatorFrom(FrameworkMethod method) {
     return (Object o) -> {
       try {
-        return (com.github.dakusui.jcunitx.model.Parameter.Factory) method.invokeExplosively(o);
+        return (com.github.dakusui.jcunitx.model.parameter.Parameter.Factory) method.invokeExplosively(o);
       } catch (Throwable throwable) {
         throw unexpectedByDesign(throwable);
       }

@@ -1,7 +1,7 @@
 package com.github.dakusui.jcunit8.tests.usecases.parametersource;
 
-import com.github.dakusui.jcunitx.model.Parameter;
 import com.github.dakusui.jcunitx.annotations.ParameterSource;
+import com.github.dakusui.jcunitx.model.parameter.Parameter;
 
 import static java.util.Arrays.asList;
 

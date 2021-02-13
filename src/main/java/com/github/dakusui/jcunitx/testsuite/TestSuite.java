@@ -2,8 +2,8 @@ package com.github.dakusui.jcunitx.testsuite;
 
 import com.github.dakusui.jcunitx.core.tuples.Tuple;
 import com.github.dakusui.jcunitx.core.tuples.TupleUtils;
-import com.github.dakusui.jcunitx.model.Constraint;
-import com.github.dakusui.jcunitx.model.ParameterSpace;
+import com.github.dakusui.jcunitx.model.condition.Constraint;
+import com.github.dakusui.jcunitx.model.parameter.ParameterSpace;
 
 import java.util.*;
 import java.util.stream.Collectors;

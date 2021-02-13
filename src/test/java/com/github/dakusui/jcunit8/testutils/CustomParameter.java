@@ -1,10 +1,10 @@
 package com.github.dakusui.jcunit8.testutils;
 
 import com.github.dakusui.jcunitx.core.tuples.Tuple;
-import com.github.dakusui.jcunitx.model.Constraint;
+import com.github.dakusui.jcunitx.model.condition.Constraint;
 import com.github.dakusui.jcunitx.model.Factor;
-import com.github.dakusui.jcunitx.model.Parameter;
 import com.github.dakusui.jcunitx.model.TestPredicate;
+import com.github.dakusui.jcunitx.model.parameter.Parameter;
 
 import java.util.ArrayList;
 import java.util.List;

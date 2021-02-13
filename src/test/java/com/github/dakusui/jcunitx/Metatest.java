@@ -18,7 +18,7 @@ public class Metatest {
   public void metatest() {
     LauncherDiscoveryRequest request = LauncherDiscoveryRequestBuilder.request()
         .selectors(
-            selectPackage("com.github.dakusui.jcunit"),
+            selectPackage("com.github.dakusui"),
             selectClass(AppTest.class)
         )
         .filters(
@@ -37,6 +37,9 @@ public class Metatest {
       TestExecutionSummary summary = listener.getSummary();
       // Do something with the TestExecutionSummary.
       System.out.println(summary);
+      summary.getFailures().forEach(System.err::println);
+      System.err.println(summary.getTotalFailureCount());
+      System.out.println(summary.getTestsFoundCount());
     }
   }
 }
