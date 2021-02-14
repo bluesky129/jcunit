@@ -2,7 +2,7 @@ package com.github.dakusui.jcunit8.testutils.testsuitequality;
 
 import com.github.dakusui.jcunitx.core.tuples.Tuple;
 import com.github.dakusui.jcunit8.extras.normalizer.compat.FactorSpaceSpecForExperiments;
-import com.github.dakusui.jcunitx.model.FactorSpace;
+import com.github.dakusui.jcunitx.model.factor.FactorSpace;
 import org.junit.BeforeClass;
 
 import java.util.List;

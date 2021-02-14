@@ -1,6 +1,6 @@
 package com.github.dakusui.jcunitx.engine.junit4;
 
-import com.github.dakusui.jcunitx.model.TestPredicate;
+import com.github.dakusui.jcunitx.model.condition.TestPredicate;
 import com.github.dakusui.jcunitx.engine.core.NodeUtils;
 import com.github.dakusui.jcunitx.annotations.AfterTestCase;
 import com.github.dakusui.jcunitx.annotations.BeforeTestCase;

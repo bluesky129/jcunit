@@ -1,8 +1,8 @@
 package com.github.dakusui.jcunitx.model.parameter;
 
 import com.github.dakusui.jcunitx.core.tuples.Tuple;
-import com.github.dakusui.jcunitx.model.Factor;
-import com.github.dakusui.jcunitx.model.FactorSpace;
+import com.github.dakusui.jcunitx.model.factor.Factor;
+import com.github.dakusui.jcunitx.model.factor.FactorSpace;
 import com.github.dakusui.jcunitx.model.condition.Constraint;
 import com.github.dakusui.jcunitx.model.regex.Expr;
 import com.github.dakusui.jcunitx.model.regex.Parser;

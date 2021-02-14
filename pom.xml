@@ -104,14 +104,13 @@
             <version>${junit-platform.version}</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- BEGIN: TESTING DEPENDENCIES -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>${junit-jupiter.version}</version>
-            <scope>test</scope>
         </dependency>
+
+        <!-- BEGIN: TESTING DEPENDENCIES -->
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-launcher</artifactId>
@@ -162,14 +161,16 @@
             <version>2.13.2</version>
             <scope>test</scope>
         </dependency>
+        <!-- END: DEPRECATED DEPENDENCIES -->
+
+        <!-- BEGIN: REFERENCE DEPENDENCIES -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
             <version>5.5.2</version>
             <scope>test</scope>
         </dependency>
-        <!-- END: DEPRECATED DEPENDENCIES -->
-
+        <!-- END: REFERENCE DEPENDENCIES -->
     </dependencies>
 
     <build>

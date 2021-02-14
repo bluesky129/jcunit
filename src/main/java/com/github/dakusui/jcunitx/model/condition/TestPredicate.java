@@ -1,4 +1,4 @@
-package com.github.dakusui.jcunitx.model;
+package com.github.dakusui.jcunitx.model.condition;
 
 import com.github.dakusui.jcunitx.core.tuples.Tuple;
 import com.github.dakusui.jcunitx.core.Utils;

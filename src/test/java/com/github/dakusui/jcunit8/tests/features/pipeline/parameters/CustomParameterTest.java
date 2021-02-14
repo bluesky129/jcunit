@@ -3,7 +3,7 @@ package com.github.dakusui.jcunit8.tests.features.pipeline.parameters;
 import com.github.dakusui.jcunitx.model.condition.Constraint;
 import com.github.dakusui.jcunitx.model.parameter.Parameter;
 import com.github.dakusui.jcunitx.pipeline.stages.generators.IpoGplus;
-import com.github.dakusui.jcunitx.testsuite.SchemafulTupleSet;
+import com.github.dakusui.jcunitx.testsuite.RowSet;
 import com.github.dakusui.jcunit8.testutils.*;
 import org.junit.Test;
 
@@ -30,7 +30,7 @@ public class CustomParameterTest extends PipelineTestBase {
   @Test
   public void givenOneCustomParameter$whenGenerateWithIpoG$thenTupleSetGenerated() {
     SchemafulTupleSetUtils.validateSchemafulTupleSet(
-        SchemafulTupleSet.fromTuples(
+        RowSet.fromTuples(
             new IpoGplus(
                 customParameterFactory().create("custom1").toFactorSpace(),
                 requirement(),

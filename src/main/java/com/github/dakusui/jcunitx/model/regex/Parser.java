@@ -249,6 +249,7 @@ public class Parser {
   }
 
   private static String[] nextToken(String input) {
+    input = input.trim();
     if (input.isEmpty())
       return null;
     char first = input.charAt(0);

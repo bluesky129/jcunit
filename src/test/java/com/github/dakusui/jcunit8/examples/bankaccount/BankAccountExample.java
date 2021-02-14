@@ -18,12 +18,12 @@ import static org.junit.Assert.assertEquals;
 @RunWith(JCUnit8.class)
 public class BankAccountExample {
 
-  private BankAccount myAccount;
-  private BankAccount anotherAccount = BankAccount.open();
+  private       BankAccount myAccount;
+  private final BankAccount anotherAccount = BankAccount.open();
 
   @ParameterSource
   public Regex.Factory<String> scenario() {
-    return Regex.Factory.of("open deposit(deposit|withdraw|transfer){0,2}getBalance");
+    return Regex.Factory.of("open deposit (deposit|withdraw|transfer){0,2} getBalance");
   }
 
   @ParameterSource

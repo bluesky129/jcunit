@@ -3,7 +3,7 @@ package com.github.dakusui.jcunitx.core;
 import com.github.dakusui.combinatoradix.CartesianEnumeratorAdaptor;
 import com.github.dakusui.combinatoradix.Domains;
 import com.github.dakusui.jcunitx.core.tuples.Tuple;
-import com.github.dakusui.jcunitx.model.Factor;
+import com.github.dakusui.jcunitx.model.factor.Factor;
 
 import java.util.AbstractList;
 import java.util.List;

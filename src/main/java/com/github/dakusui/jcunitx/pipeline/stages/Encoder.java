@@ -1,8 +1,9 @@
 package com.github.dakusui.jcunitx.pipeline.stages;
 
 import com.github.dakusui.jcunitx.exceptions.FrameworkException;
-import com.github.dakusui.jcunitx.model.*;
 import com.github.dakusui.jcunitx.model.condition.Constraint;
+import com.github.dakusui.jcunitx.model.factor.Factor;
+import com.github.dakusui.jcunitx.model.factor.FactorSpace;
 import com.github.dakusui.jcunitx.model.parameter.Parameter;
 import com.github.dakusui.jcunitx.model.parameter.ParameterSpace;
 

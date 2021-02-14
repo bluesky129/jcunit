@@ -3,7 +3,7 @@ package com.github.dakusui.jcunitx.engine.core;
 import com.github.dakusui.jcunitx.core.tuples.Tuple;
 import com.github.dakusui.jcunitx.exceptions.FrameworkException;
 import com.github.dakusui.jcunitx.model.condition.Constraint;
-import com.github.dakusui.jcunitx.model.TestPredicate;
+import com.github.dakusui.jcunitx.model.condition.TestPredicate;
 import com.github.dakusui.jcunitx.annotations.Condition;
 import com.github.dakusui.jcunitx.annotations.compat.ConfigureWith;
 import com.github.dakusui.jcunitx.annotations.From;

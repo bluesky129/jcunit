@@ -2,7 +2,7 @@ package com.github.dakusui.jcunitx.engine.junit4.utils;
 
 import com.github.dakusui.jcunitx.core.tuples.Tuple;
 import com.github.dakusui.jcunitx.core.utils.Checks;
-import com.github.dakusui.jcunitx.model.TestPredicate;
+import com.github.dakusui.jcunitx.model.condition.TestPredicate;
 import com.github.dakusui.jcunitx.engine.core.NodeUtils;
 import com.github.dakusui.jcunitx.annotations.AfterTestCase;
 import com.github.dakusui.jcunitx.annotations.BeforeTestCase;

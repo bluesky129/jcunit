@@ -2,12 +2,12 @@ package com.github.dakusui.jcunit8.tests.features.pipeline.constraints;
 
 import com.github.dakusui.jcunitx.core.tuples.Tuple;
 import com.github.dakusui.jcunitx.model.condition.Constraint;
-import com.github.dakusui.jcunitx.model.Factor;
-import com.github.dakusui.jcunitx.model.FactorSpace;
+import com.github.dakusui.jcunitx.model.factor.Factor;
+import com.github.dakusui.jcunitx.model.factor.FactorSpace;
 import com.github.dakusui.jcunitx.model.parameter.ParameterSpace;
 import com.github.dakusui.jcunitx.pipeline.stages.generators.Cartesian;
 import com.github.dakusui.jcunitx.pipeline.stages.generators.IpoGplus;
-import com.github.dakusui.jcunitx.testsuite.SchemafulTupleSet;
+import com.github.dakusui.jcunitx.testsuite.RowSet;
 import com.github.dakusui.jcunit8.testutils.ParameterSpaceUtils;
 import com.github.dakusui.jcunit8.testutils.PipelineTestBase;
 import com.github.dakusui.jcunit8.testutils.SchemafulTupleSetUtils;
@@ -95,7 +95,7 @@ public class ImpossibleConstraintTest extends PipelineTestBase {
   public void givenImpossibleConstraint$whenGenerateWithIpoGplus$thenEmptyTupleSetGenerated() {
     FactorSpace factorSpace = buildSimpleFactorSpaceWithImpossibleConstraint();
     SchemafulTupleSetUtils.validateSchemafulTupleSet(
-        new SchemafulTupleSet.Builder(
+        new RowSet.Builder(
             factorSpace.getFactors().stream().map(Factor::getName).collect(Collectors.toList())
         ).addAll(
             new IpoGplus(
@@ -114,7 +114,7 @@ public class ImpossibleConstraintTest extends PipelineTestBase {
   public void givenImpossibleConstraint$whenGenerateWithCartesian$thenExceptionThrown() {
     FactorSpace factorSpace = buildSimpleFactorSpaceWithImpossibleConstraint();
     SchemafulTupleSetUtils.validateSchemafulTupleSet(
-        new SchemafulTupleSet.Builder(
+        new RowSet.Builder(
             factorSpace.getFactors().stream().map(Factor::getName).collect(Collectors.toList())
         ).addAll(
             new Cartesian(

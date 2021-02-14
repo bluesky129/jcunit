@@ -1,4 +1,4 @@
-package com.github.dakusui.jcunitx.model;
+package com.github.dakusui.jcunitx.model.factor;
 
 import java.util.Collection;
 import java.util.List;

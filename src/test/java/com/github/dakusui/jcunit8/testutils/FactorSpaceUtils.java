@@ -1,7 +1,7 @@
 package com.github.dakusui.jcunit8.testutils;
 
-import com.github.dakusui.jcunitx.model.Factor;
-import com.github.dakusui.jcunitx.model.FactorSpace;
+import com.github.dakusui.jcunitx.model.factor.Factor;
+import com.github.dakusui.jcunitx.model.factor.FactorSpace;
 import org.hamcrest.Matcher;
 
 import java.util.function.Predicate;

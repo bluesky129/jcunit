@@ -37,7 +37,7 @@ public @interface ConfigureWith {
   /**
    * Specifies a class to define a parameter space, which has parameters, constraints
    * and non-constraint conditions. If this value is not used, (or {@code Object.class}
-   * is specified, ) the same class to which {@code CondigureWith} annotation is
+   * is specified, ) the same class to which {@code ConfigureWith} annotation is
    * attached is used to create a parameter space Object.
    *
    * @return A class that defines parameter space or {@code Object.class}.

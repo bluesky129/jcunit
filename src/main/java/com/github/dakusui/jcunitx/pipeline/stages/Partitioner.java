@@ -2,8 +2,8 @@ package com.github.dakusui.jcunitx.pipeline.stages;
 
 import com.github.dakusui.jcunitx.core.Utils;
 import com.github.dakusui.jcunitx.model.condition.Constraint;
-import com.github.dakusui.jcunitx.model.Factor;
-import com.github.dakusui.jcunitx.model.FactorSpace;
+import com.github.dakusui.jcunitx.model.factor.Factor;
+import com.github.dakusui.jcunitx.model.factor.FactorSpace;
 import com.github.dakusui.jcunitx.pipeline.Requirement;
 
 import java.util.*;

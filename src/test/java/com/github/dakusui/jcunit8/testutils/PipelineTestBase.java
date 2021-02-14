@@ -2,14 +2,15 @@ package com.github.dakusui.jcunit8.testutils;
 
 import com.github.dakusui.jcunitx.core.tuples.Tuple;
 import com.github.dakusui.jcunitx.model.condition.Constraint;
+import com.github.dakusui.jcunitx.model.factor.Factor;
+import com.github.dakusui.jcunitx.model.factor.FactorSpace;
 import com.github.dakusui.jcunitx.model.parameter.Parameter;
 import com.github.dakusui.jcunitx.model.parameter.ParameterSpace;
 import com.github.dakusui.jcunitx.pipeline.Config;
 import com.github.dakusui.jcunitx.pipeline.Pipeline;
 import com.github.dakusui.jcunitx.pipeline.Requirement;
-import com.github.dakusui.jcunitx.testsuite.SchemafulTupleSet;
+import com.github.dakusui.jcunitx.testsuite.RowSet;
 import com.github.dakusui.jcunitx.testsuite.TestSuite;
-import com.github.dakusui.jcunitx.model.*;
 
 import java.util.Collections;
 import java.util.List;
@@ -18,30 +19,30 @@ import static java.util.Arrays.asList;
 
 public abstract class PipelineTestBase {
 
-  protected TestSuite generateTestSuite(Parameter... parameters) {
+  protected TestSuite generateTestSuite(Parameter<?>... parameters) {
     ParameterSpace parameterSpace = new ParameterSpace.Builder()
         .addAllParameters(asList(parameters))
         .build();
     return new Pipeline.Standard().generateTestSuite(buildConfig(), parameterSpace, null);
   }
 
-  protected TestSuite generateTestSuite(List<Parameter> parameters, List<Constraint> constraints) {
+  protected TestSuite generateTestSuite(List<Parameter<?>> parameters, List<Constraint> constraints) {
     return new Pipeline.Standard().generateTestSuite(buildConfig(), preprocess(parameters, constraints), null);
   }
 
-  protected ParameterSpace preprocess(Parameter... parameters) {
+  protected ParameterSpace preprocess(Parameter<?>... parameters) {
     return new Pipeline.Standard().preprocess(buildConfig(), new ParameterSpace.Builder().addAllParameters(asList(parameters)).build());
   }
 
-  protected ParameterSpace preprocess(List<Parameter> parameters, List<Constraint> constraints) {
+  protected ParameterSpace preprocess(List<Parameter<?>> parameters, List<Constraint> constraints) {
     return new Pipeline.Standard().preprocess(buildConfig(), new ParameterSpace.Builder().addAllParameters(parameters).addAllConstraints(constraints).build());
   }
 
-  protected SchemafulTupleSet engine(List<Parameter> parameters, List<Constraint> constraints) {
+  protected RowSet engine(List<Parameter<?>> parameters, List<Constraint> constraints) {
     return new Pipeline.Standard().engine(buildConfig(), new ParameterSpace.Builder().addAllParameters(parameters).addAllConstraints(constraints).build());
   }
 
-  protected FactorSpace encode(List<Parameter> parameters, List<Constraint> constraints) {
+  protected FactorSpace encode(List<Parameter<?>> parameters, List<Constraint> constraints) {
     return buildConfig()
         .encoder().apply(
             new ParameterSpace.Builder()

@@ -4,7 +4,7 @@ import com.github.dakusui.jcunitx.core.tuples.Tuple;
 import com.github.dakusui.jcunitx.model.condition.Constraint;
 import com.github.dakusui.jcunitx.model.parameter.Parameter;
 import com.github.dakusui.jcunitx.pipeline.stages.generators.IpoGplus;
-import com.github.dakusui.jcunitx.testsuite.SchemafulTupleSet;
+import com.github.dakusui.jcunitx.testsuite.RowSet;
 import com.github.dakusui.jcunitx.testsuite.TestCase;
 import com.github.dakusui.jcunit8.testutils.*;
 import org.junit.Test;
@@ -37,7 +37,7 @@ public class RegexTest extends PipelineTestBase {
   @Test
   public void givenRegex$whenGenerateWithIpoG$thenNonEmptyTupleSetGenerated() {
     SchemafulTupleSetUtils.validateSchemafulTupleSet(
-        SchemafulTupleSet.fromTuples(
+        RowSet.fromTuples(
             new IpoGplus(
                 Parameter.Regex.Factory.of("A(B|C){0,3}").create("regex1").toFactorSpace(),
                 requirement(),

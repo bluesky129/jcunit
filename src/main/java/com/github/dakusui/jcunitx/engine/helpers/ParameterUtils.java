@@ -1,7 +1,7 @@
 package com.github.dakusui.jcunitx.engine.helpers;
 
 import com.github.dakusui.jcunitx.core.tuples.Tuple;
-import com.github.dakusui.jcunitx.model.SequenceParameterFactoryBuilder;
+import com.github.dakusui.jcunitx.model.parameter.SequenceParameterFactoryBuilder;
 import com.github.dakusui.jcunitx.model.parameter.GroupedParameterFactoryBuilder;
 import com.github.dakusui.jcunitx.model.parameter.Parameter;
 

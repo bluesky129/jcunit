@@ -12,7 +12,7 @@ import static com.github.dakusui.jcunitx.pipeline.PipelineException.checkIfStren
  * A list of tuples all of whose entries have the same attribute names. An implementation
  * of this interface must also guarantee that it doesn't have the same element.
  */
-public interface SchemafulTupleSet extends List<Tuple> {
+public interface RowSet extends List<Tuple> {
   List<String> getAttributeNames();
   int width();
 
@@ -24,7 +24,7 @@ public interface SchemafulTupleSet extends List<Tuple> {
    */
   TupleSet subtuplesOf(int strength);
 
-  static SchemafulTupleSet fromTuples(List<Tuple> tuples_) {
+  static RowSet fromTuples(List<Tuple> tuples_) {
     Objects.requireNonNull(tuples_);
     FrameworkException.check(tuples_, tuples -> !tuples.isEmpty());
     return new Builder(new ArrayList<>(tuples_.get(0).keySet()))
@@ -32,7 +32,7 @@ public interface SchemafulTupleSet extends List<Tuple> {
         .build();
   }
 
-  static SchemafulTupleSet empty(List<String> attributeNames) {
+  static RowSet empty(List<String> attributeNames) {
     return new Builder(attributeNames).build();
   }
 
@@ -61,8 +61,8 @@ public interface SchemafulTupleSet extends List<Tuple> {
       return this;
     }
 
-    public SchemafulTupleSet build() {
-      class Impl extends AbstractList<Tuple> implements SchemafulTupleSet {
+    public RowSet build() {
+      class Impl extends AbstractList<Tuple> implements RowSet {
         private final List<Tuple>  tuples;
         private final List<String> attributeNames;
 

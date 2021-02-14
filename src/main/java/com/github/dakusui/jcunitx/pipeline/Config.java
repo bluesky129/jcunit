@@ -2,14 +2,14 @@ package com.github.dakusui.jcunitx.pipeline;
 
 import com.github.dakusui.jcunitx.core.tuples.Tuple;
 import com.github.dakusui.jcunitx.model.condition.Constraint;
-import com.github.dakusui.jcunitx.model.Factor;
-import com.github.dakusui.jcunitx.model.FactorSpace;
+import com.github.dakusui.jcunitx.model.factor.Factor;
+import com.github.dakusui.jcunitx.model.factor.FactorSpace;
 import com.github.dakusui.jcunitx.model.parameter.ParameterSpace;
 import com.github.dakusui.jcunitx.pipeline.stages.Encoder;
 import com.github.dakusui.jcunitx.pipeline.stages.Generator;
 import com.github.dakusui.jcunitx.pipeline.stages.Joiner;
 import com.github.dakusui.jcunitx.pipeline.stages.Partitioner;
-import com.github.dakusui.jcunitx.testsuite.SchemafulTupleSet;
+import com.github.dakusui.jcunitx.testsuite.RowSet;
 
 import java.util.List;
 import java.util.function.BinaryOperator;
@@ -30,9 +30,9 @@ public interface Config {
 
   Function<FactorSpace, List<FactorSpace>> partitioner();
 
-  Function<FactorSpace, SchemafulTupleSet> generator(ParameterSpace parameterSpace, Requirement requirement);
+  Function<FactorSpace, RowSet> generator(ParameterSpace parameterSpace, Requirement requirement);
 
-  BinaryOperator<SchemafulTupleSet> joiner();
+  BinaryOperator<RowSet> joiner();
 
   Function<? super FactorSpace, ? extends FactorSpace> optimizer();
 
@@ -99,8 +99,8 @@ public interface Config {
     }
 
     @Override
-    public Function<FactorSpace, SchemafulTupleSet> generator(ParameterSpace parameterSpace, Requirement requirement) {
-      return (FactorSpace factorSpace) -> new SchemafulTupleSet.Builder(
+    public Function<FactorSpace, RowSet> generator(ParameterSpace parameterSpace, Requirement requirement) {
+      return (FactorSpace factorSpace) -> new RowSet.Builder(
           factorSpace.getFactors().stream(
           ).map(
               Factor::getName
@@ -117,7 +117,7 @@ public interface Config {
     }
 
     @Override
-    public BinaryOperator<SchemafulTupleSet> joiner() {
+    public BinaryOperator<RowSet> joiner() {
       return joiner;
     }
 

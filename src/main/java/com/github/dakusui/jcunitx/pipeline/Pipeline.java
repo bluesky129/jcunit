@@ -5,15 +5,16 @@ import com.github.dakusui.jcunitx.exceptions.InvalidTestException;
 import com.github.dakusui.jcunitx.core.Utils;
 import com.github.dakusui.jcunitx.exceptions.TestDefinitionException;
 import com.github.dakusui.jcunitx.model.condition.Constraint;
+import com.github.dakusui.jcunitx.model.factor.Factor;
+import com.github.dakusui.jcunitx.model.factor.FactorSpace;
 import com.github.dakusui.jcunitx.model.parameter.Parameter;
 import com.github.dakusui.jcunitx.model.parameter.ParameterSpace;
 import com.github.dakusui.jcunitx.pipeline.stages.Generator;
 import com.github.dakusui.jcunitx.pipeline.stages.generators.Negative;
 import com.github.dakusui.jcunitx.pipeline.stages.generators.Passthrough;
-import com.github.dakusui.jcunitx.testsuite.SchemafulTupleSet;
+import com.github.dakusui.jcunitx.testsuite.RowSet;
 import com.github.dakusui.jcunitx.testsuite.TestScenario;
 import com.github.dakusui.jcunitx.testsuite.TestSuite;
-import com.github.dakusui.jcunitx.model.*;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -108,7 +109,7 @@ public interface Pipeline {
           .build();
     }
 
-    public SchemafulTupleSet engine(Config config, ParameterSpace parameterSpace) {
+    public RowSet engine(Config config, ParameterSpace parameterSpace) {
       return config.partitioner().apply(
           config.encoder().apply(
               parameterSpace
@@ -119,7 +120,7 @@ public interface Pipeline {
           .map(config.generator(parameterSpace, config.getRequirement()))
           .reduce(config.joiner())
           .map(
-              (SchemafulTupleSet tuples) -> new SchemafulTupleSet.Builder(parameterSpace.getParameterNames()).addAll(
+              (RowSet tuples) -> new RowSet.Builder(parameterSpace.getParameterNames()).addAll(
                   tuples.stream()
                       .map((Tuple tuple) -> {
                         Tuple.Builder builder = new Tuple.Builder();
@@ -161,8 +162,7 @@ public interface Pipeline {
           new Passthrough(tuplesForRegularTests, factorSpace, requirement);
     }
 
-    @SuppressWarnings("unchecked")
-    private Parameter toSimpleParameterIfNecessary(Config config, Parameter parameter, List<Constraint> constraints) {
+    private Parameter<?> toSimpleParameterIfNecessary(Config config, Parameter<?> parameter, List<Constraint> constraints) {
       if (!(parameter instanceof Parameter.Simple) && isInvolvedByAnyConstraint(parameter, constraints)) {
         return Parameter.Simple.Factory.of(
             Utils.unique(

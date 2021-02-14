@@ -1,6 +1,6 @@
 package com.github.dakusui.jcunit8.extras.normalizer;
 
-import com.github.dakusui.jcunitx.model.Factor;
+import com.github.dakusui.jcunitx.model.factor.Factor;
 
 import java.util.*;
 

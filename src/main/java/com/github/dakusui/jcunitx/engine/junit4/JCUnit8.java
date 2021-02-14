@@ -1,21 +1,22 @@
 package com.github.dakusui.jcunitx.engine.junit4;
 
-import com.github.dakusui.jcunitx.annotations.*;
+import com.github.dakusui.jcunitx.annotations.AfterTestCase;
+import com.github.dakusui.jcunitx.annotations.BeforeTestCase;
+import com.github.dakusui.jcunitx.annotations.From;
+import com.github.dakusui.jcunitx.annotations.ParameterSource;
 import com.github.dakusui.jcunitx.annotations.compat.ConfigureWith;
 import com.github.dakusui.jcunitx.core.Utils;
 import com.github.dakusui.jcunitx.core.tuples.Tuple;
 import com.github.dakusui.jcunitx.core.utils.Checks;
+import com.github.dakusui.jcunitx.engine.core.NodeUtils;
+import com.github.dakusui.jcunitx.engine.junit4.utils.InternalUtils;
 import com.github.dakusui.jcunitx.exceptions.TestDefinitionException;
 import com.github.dakusui.jcunitx.model.condition.Constraint;
-import com.github.dakusui.jcunitx.model.parameter.Parameter;
 import com.github.dakusui.jcunitx.model.parameter.ParameterSpace;
-import com.github.dakusui.jcunitx.testsuite.*;
-
 import com.github.dakusui.jcunitx.pipeline.Config;
 import com.github.dakusui.jcunitx.pipeline.Pipeline;
 import com.github.dakusui.jcunitx.pipeline.stages.ConfigFactory;
-import com.github.dakusui.jcunitx.engine.core.NodeUtils;
-import com.github.dakusui.jcunitx.engine.junit4.utils.InternalUtils;
+import com.github.dakusui.jcunitx.testsuite.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -114,7 +115,7 @@ public class JCUnit8 extends org.junit.runners.Parameterized {
     };
   }
 
-  private static ParameterSpace buildParameterSpace(List<com.github.dakusui.jcunitx.model.parameter.Parameter> parameters, List<Constraint> constraints) {
+  private static ParameterSpace buildParameterSpace(List<com.github.dakusui.jcunitx.model.parameter.Parameter<?>> parameters, List<Constraint> constraints) {
     return new ParameterSpace.Builder()
         .addAllParameters(parameters)
         .addAllConstraints(constraints)
@@ -125,8 +126,8 @@ public class JCUnit8 extends org.junit.runners.Parameterized {
     return Pipeline.Standard.<Tuple>create().execute(config, parameterSpace, testScenario);
   }
 
-  private static SortedMap<String, com.github.dakusui.jcunitx.model.parameter.Parameter> buildParameterMap(TestClass parameterSpaceDefinitionTestClass) {
-    return new TreeMap<String, com.github.dakusui.jcunitx.model.parameter.Parameter>() {
+  private static SortedMap<String, com.github.dakusui.jcunitx.model.parameter.Parameter<?>> buildParameterMap(TestClass parameterSpaceDefinitionTestClass) {
+    return new TreeMap<String, com.github.dakusui.jcunitx.model.parameter.Parameter<?>>() {
       {
         parameterSpaceDefinitionTestClass.getAnnotatedMethods(ParameterSource.class).forEach(
             frameworkMethod -> put(frameworkMethod.getName(),
@@ -197,15 +198,13 @@ public class JCUnit8 extends org.junit.runners.Parameterized {
     return buildTestSuite(
         configFactory.create(),
         buildParameterSpace(
-            new ArrayList<>(
-                buildParameterMap(parameterSpaceDefinitionTestClass).values()
-            ).stream(
-            ).filter(
-                parameter -> involvedParameterNames.contains(parameter.getName())
-            ).collect(
-                toList()
-            ),
-            NodeUtils.allTestPredicates(testClass).values().stream()
+            new ArrayList<>(buildParameterMap(parameterSpaceDefinitionTestClass).values())
+                .stream()
+                .filter(parameter -> involvedParameterNames.contains(parameter.getName()))
+                .collect(toList()),
+            NodeUtils.allTestPredicates(testClass)
+                .values()
+                .stream()
                 .filter(each -> each instanceof Constraint)
                 .map(Constraint.class::cast)
                 .collect(toList())

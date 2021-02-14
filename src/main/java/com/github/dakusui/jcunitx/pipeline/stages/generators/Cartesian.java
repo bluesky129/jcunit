@@ -2,7 +2,7 @@ package com.github.dakusui.jcunitx.pipeline.stages.generators;
 
 import com.github.dakusui.jcunitx.core.tuples.Tuple;
 import com.github.dakusui.jcunitx.model.condition.Constraint;
-import com.github.dakusui.jcunitx.model.FactorSpace;
+import com.github.dakusui.jcunitx.model.factor.FactorSpace;
 import com.github.dakusui.jcunitx.pipeline.Requirement;
 import com.github.dakusui.jcunitx.pipeline.stages.Generator;
 

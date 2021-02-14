@@ -1,10 +1,10 @@
-package com.github.dakusui.jcunitx.model;
+package com.github.dakusui.jcunitx.model.parameter;
 
 import com.github.dakusui.jcunitx.core.tuples.Tuple;
 import com.github.dakusui.jcunitx.core.utils.Checks;
 import com.github.dakusui.jcunitx.core.Utils;
 import com.github.dakusui.jcunitx.model.condition.Constraint;
-import com.github.dakusui.jcunitx.model.parameter.Parameter;
+import com.github.dakusui.jcunitx.model.factor.Factor;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.github.dakusui.jcunit8.tests.features.pipeline.stages;
 
-import com.github.dakusui.jcunitx.model.FactorSpace;
+import com.github.dakusui.jcunitx.model.factor.FactorSpace;
 import com.github.dakusui.jcunitx.pipeline.stages.generators.Cartesian;
 import com.github.dakusui.jcunit8.testutils.FactorSpaceUtils;
 import com.github.dakusui.jcunit8.testutils.PipelineTestBase;

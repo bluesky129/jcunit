@@ -6,6 +6,8 @@ import com.github.dakusui.jcunitx.core.tuples.Tuple;
 import com.github.dakusui.jcunitx.core.StreamableCartesianator;
 import com.github.dakusui.jcunitx.core.Utils;
 import com.github.dakusui.jcunitx.model.condition.Constraint;
+import com.github.dakusui.jcunitx.model.factor.Factor;
+import com.github.dakusui.jcunitx.model.factor.FactorSpace;
 import com.github.dakusui.jcunitx.model.parameter.Parameter;
 import com.github.dakusui.jcunitx.model.parameter.ParameterSpace;
 import com.github.dakusui.jcunitx.pipeline.Config;
@@ -13,9 +15,8 @@ import com.github.dakusui.jcunitx.pipeline.Pipeline;
 import com.github.dakusui.jcunitx.pipeline.Requirement;
 import com.github.dakusui.jcunitx.pipeline.stages.Joiner;
 import com.github.dakusui.jcunitx.pipeline.stages.generators.IpoGplus;
-import com.github.dakusui.jcunitx.testsuite.SchemafulTupleSet;
+import com.github.dakusui.jcunitx.testsuite.RowSet;
 import com.github.dakusui.jcunitx.testsuite.TestSuite;
-import com.github.dakusui.jcunitx.model.*;
 import com.github.dakusui.thincrest_pcond.functions.Printable;
 
 import java.util.*;
@@ -57,14 +58,14 @@ public enum CoveringArrayGenerationUtils {
     );
   }
 
-  public static ParameterSpace parameterSpace(List<Parameter> parameters, List<Constraint> constraints) {
+  public static ParameterSpace parameterSpace(List<Parameter<?>> parameters, List<Constraint> constraints) {
     return new ParameterSpace.Builder()
-        .addAllParameters((Collection<? extends com.github.dakusui.jcunitx.model.parameter.Parameter>) parameters)
+        .addAllParameters(parameters)
         .addAllConstraints(constraints)
         .build();
   }
 
-  public static FactorSpace factorSpace(List<Parameter> parameters, List<Constraint> constraints) {
+  public static FactorSpace factorSpace(List<Parameter<?>> parameters, List<Constraint> constraints) {
     return toFactorSpace(parameterSpace(parameters, constraints));
   }
 
@@ -92,8 +93,8 @@ public enum CoveringArrayGenerationUtils {
 
   public static List<Tuple> join(List<Tuple> lhs, List<Tuple> rhs, Function<Requirement, Joiner> joinerFactory, int strength) {
     return joinerFactory.apply(new Requirement.Builder().withStrength(strength).build()).apply(
-        SchemafulTupleSet.fromTuples(lhs),
-        SchemafulTupleSet.fromTuples(rhs)
+        RowSet.fromTuples(lhs),
+        RowSet.fromTuples(rhs)
     );
   }
 
@@ -255,7 +256,7 @@ public enum CoveringArrayGenerationUtils {
 
   public static class TestSuiteBuilder {
     private final List<Tuple>      seeds       = new LinkedList<>();
-    private final List<Parameter>  parameters  = new LinkedList<>();
+    private final List<Parameter<?>>  parameters  = new LinkedList<>();
     private final List<Constraint> constraints = new LinkedList<>();
 
     private int strength;

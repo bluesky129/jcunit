@@ -1,8 +1,8 @@
 package com.github.dakusui.jcunit8.extras.normalizer.compat;
 
 import com.github.dakusui.jcunit8.extras.normalizer.FactorSpaceSpec;
-import com.github.dakusui.jcunitx.model.Factor;
-import com.github.dakusui.jcunitx.model.FactorSpace;
+import com.github.dakusui.jcunitx.model.factor.Factor;
+import com.github.dakusui.jcunitx.model.factor.FactorSpace;
 
 import java.util.LinkedList;
 import java.util.List;

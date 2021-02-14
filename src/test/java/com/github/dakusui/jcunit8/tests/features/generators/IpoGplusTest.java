@@ -4,7 +4,7 @@ import com.github.dakusui.jcunitx.core.tuples.Tuple;
 import com.github.dakusui.jcunitx.core.StreamableTupleCartesianator;
 import com.github.dakusui.jcunitx.core.Utils;
 import com.github.dakusui.jcunitx.model.condition.Constraint;
-import com.github.dakusui.jcunitx.model.Factor;
+import com.github.dakusui.jcunitx.model.factor.Factor;
 import com.github.dakusui.jcunitx.pipeline.stages.generators.IpoGplus;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
